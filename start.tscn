@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwg6dvrtjky3i"]
+
+[ext_resource type="Script" path="res://start.gd" id="1_upowf"]
+[ext_resource type="Texture2D" uid="uid://vrg4bhj51m5t" path="res://icon.svg" id="2_msn8j"]
+
+[node name="Start" type="Node"]
+script = ExtResource("1_upowf")
+
+[node name="BG" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_msn8j")
+
+[node name="StartButton" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -204.0
+offset_top = -74.0
+offset_right = 204.0
+offset_bottom = 74.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 100
+text = "開始遊戲"
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
