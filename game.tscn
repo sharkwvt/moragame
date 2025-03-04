@@ -1,0 +1,209 @@
+[gd_scene load_steps=7 format=3 uid="uid://cc57mtcvdx3ex"]
+
+[ext_resource type="Script" path="res://game.gd" id="1_r4lsy"]
+[ext_resource type="PackedScene" uid="uid://bbnqy0t83t7js" path="res://關卡按鈕.tscn" id="2_8jlop"]
+[ext_resource type="Texture2D" uid="uid://dtip44sec3kdw" path="res://Image/剪刀.png" id="3_rk6as"]
+[ext_resource type="Texture2D" uid="uid://bdr2ht0bxbdyx" path="res://Image/石頭.png" id="4_pnyek"]
+[ext_resource type="Texture2D" uid="uid://bh61ejcf8ihk0" path="res://Image/布.png" id="5_rxaq4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hpg7j"]
+font_size = 100
+
+[node name="Main" type="Node"]
+script = ExtResource("1_r4lsy")
+level_btn_scene = ExtResource("2_8jlop")
+
+[node name="Game" type="Panel" parent="."]
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_vertical = 2
+
+[node name="BG" type="ColorRect" parent="Game"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.479834, 0.479834, 0.479834, 1)
+
+[node name="關卡數" type="Label" parent="Game"]
+layout_mode = 1
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 160.0
+offset_bottom = 80.0
+theme_override_font_sizes/font_size = 50
+text = "關卡數"
+
+[node name="勝場數" type="Label" parent="Game"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -160.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 80.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 50
+text = "勝場數"
+
+[node name="代幣數" type="Label" parent="Game"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = 130.0
+offset_right = 75.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "代幣數"
+
+[node name="Title" type="Label" parent="Game"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -226.0
+offset_right = 150.0
+offset_bottom = -86.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "野球拳"
+label_settings = SubResource("LabelSettings_hpg7j")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="按鈕" type="Panel" parent="Game"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.7
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="剪刀" type="Button" parent="Game/按鈕"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -345.0
+offset_top = -146.0
+offset_right = -207.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 50
+icon = ExtResource("3_rk6as")
+flat = true
+
+[node name="石頭" type="Button" parent="Game/按鈕"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -138.0
+offset_right = 71.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 50
+icon = ExtResource("4_pnyek")
+flat = true
+
+[node name="布" type="Button" parent="Game/按鈕"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 208.0
+offset_top = -150.0
+offset_right = 361.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 50
+icon = ExtResource("5_rxaq4")
+flat = true
+
+[node name="勝率50" type="Button" parent="Game/按鈕"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -280.0
+offset_top = 18.0
+offset_right = -30.0
+offset_bottom = 118.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 50
+toggle_mode = true
+text = "勝率50%"
+
+[node name="勝率100" type="Button" parent="Game/按鈕"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 50.0
+offset_top = 18.0
+offset_right = 300.0
+offset_bottom = 118.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 50
+toggle_mode = true
+text = "勝率100%"
+
+[node name="我方出拳" type="Sprite2D" parent="Game"]
+visible = false
+position = Vector2(140, 550)
+texture = ExtResource("3_rk6as")
+
+[node name="對方出拳" type="Sprite2D" parent="Game"]
+visible = false
+position = Vector2(140, 240)
+rotation = 3.14159
+texture = ExtResource("3_rk6as")
+
+[node name="Level" type="Panel" parent="."]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[connection signal="pressed" from="Game/按鈕/剪刀" to="." method="_on_choice_btn_pressed" binds= [0]]
+[connection signal="pressed" from="Game/按鈕/石頭" to="." method="_on_choice_btn_pressed" binds= [1]]
+[connection signal="pressed" from="Game/按鈕/布" to="." method="_on_choice_btn_pressed" binds= [2]]
+[connection signal="pressed" from="Game/按鈕/勝率50" to="." method="_on_item_btn_pressed" binds= [1]]
+[connection signal="pressed" from="Game/按鈕/勝率100" to="." method="_on_item_btn_pressed" binds= [2]]
