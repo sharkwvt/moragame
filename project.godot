@@ -17,7 +17,12 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Data="*res://data.gd"
+Data="*res://autoload/data.gd"
+Steamworks="*res://autoload/steamworks.gd"
+
+[debug]
+
+file_logging/enable_file_logging=true
 
 [display]
 

@@ -2,11 +2,12 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Data.initialize_steam()
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func _on_start_button_pressed() -> void:
+	Steamworks.set_achievement("成就ID1")
 	Data.start_game()

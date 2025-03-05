@@ -19,13 +19,13 @@ enum CHOICES {
 	剪刀,
 	石頭,
 	布
-}
+	}
 
 enum ITEM {
 	無,
 	道具1,
 	道具2
-}
+	}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

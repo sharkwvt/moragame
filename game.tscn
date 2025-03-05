@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://game.gd" id="1_r4lsy"]
 [ext_resource type="PackedScene" uid="uid://bbnqy0t83t7js" path="res://關卡按鈕.tscn" id="2_8jlop"]
-[ext_resource type="Texture2D" uid="uid://dtip44sec3kdw" path="res://Image/剪刀.png" id="3_rk6as"]
-[ext_resource type="Texture2D" uid="uid://bdr2ht0bxbdyx" path="res://Image/石頭.png" id="4_pnyek"]
-[ext_resource type="Texture2D" uid="uid://bh61ejcf8ihk0" path="res://Image/布.png" id="5_rxaq4"]
+[ext_resource type="Texture2D" uid="uid://dtip44sec3kdw" path="res://image/剪刀.png" id="3_rk6as"]
+[ext_resource type="Texture2D" uid="uid://bdr2ht0bxbdyx" path="res://image/石頭.png" id="4_pnyek"]
+[ext_resource type="Texture2D" uid="uid://bh61ejcf8ihk0" path="res://image/布.png" id="5_rxaq4"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_hpg7j"]
 font_size = 100

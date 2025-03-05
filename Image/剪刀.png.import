@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dtip44sec3kdw"
-path="res://.godot/imported/剪刀.png-9bd113f3a798ee86e6ae0a7a2d500291.ctex"
+path="res://.godot/imported/剪刀.png-5cbf7ab63a0d770517d77da1b391a5de.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Image/剪刀.png"
-dest_files=["res://.godot/imported/剪刀.png-9bd113f3a798ee86e6ae0a7a2d500291.ctex"]
+source_file="res://image/剪刀.png"
+dest_files=["res://.godot/imported/剪刀.png-5cbf7ab63a0d770517d77da1b391a5de.ctex"]
 
 [params]
 
