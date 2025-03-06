@@ -11,24 +11,30 @@ var achievements: Dictionary = {
 	"成就ID3": false
 	}
 
+
 func _init() -> void:
 	# 設定環境變數
 	OS.set_environment("SteamAppId", str(steam_appid))
 	OS.set_environment("SteamGameId", str(steam_appid))
+	
 	initialize_steam()
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	Steam.run_callbacks()
 
+
 func is_steam_enabled() -> bool:
-	if Data.this_platform == "steam" and steam_api != null:
+	if Main.this_platform == "steam" and steam_api != null:
 		return true
 	return false
+
 
 # steam 初始化
 func initialize_steam() -> void:
@@ -37,20 +43,21 @@ func initialize_steam() -> void:
 		
 		var initialized: Dictionary = steam_api.steamInitEx(true)
 		
-		print("[STEAM] 初始化?: %s" % initialized)
+		print("[STEAM] 初始化: %s" % initialized)
 		
 		if initialized['status'] > 0:
 			print("Steam初始化失敗, 停用功能: %s" % initialized)
 			steam_api = null
 			return
 		
-		Data.this_platform = "steam"
+		Main.this_platform = "steam"
 		steam_id = steam_api.getSteamID()
 		steam_name = steam_api.getPersonaName()
 		print("steam_id " + str(steam_id))
 		print("steam_name " + steam_name)
 		# 接收Steam狀態後執行
 		Steam.current_stats_received.connect(_on_steam_stats_ready)
+
 
 func _on_steam_stats_ready(this_game: int, this_result: int, this_user: int) -> void:
 	print("開始接收Steam數據和成就: %s / %s / %s" % [this_user, this_result, this_game])
@@ -66,9 +73,10 @@ func _on_steam_stats_ready(this_game: int, this_result: int, this_user: int) -> 
 	load_steam_stats()
 	load_steam_achievements()
 
+
 # 讀取數據
 func load_steam_stats() -> void:
-	var statistics := Data.statistics
+	var statistics := Main.statistics
 	for this_stat in statistics.keys():
 		var steam_stat: int = Steam.getStatInt(this_stat)
 		if statistics[this_stat] != steam_stat:
@@ -77,6 +85,7 @@ func load_steam_stats() -> void:
 		else:
 			print("數據 %s 數值相同" % this_stat)
 	print("Steam數據讀取完成")
+
 
 # 讀取成就
 func load_steam_achievements() -> void:
@@ -94,9 +103,10 @@ func load_steam_achievements() -> void:
 	
 	print("Steam成就讀取完成")
 
+
 # 設定數據
 func set_statistic(this_stat: String, new_value: int = 0) -> void:
-	var statistics := Data.statistics
+	var statistics := Main.statistics
 	if not statistics.has(this_stat):
 		print("數據 %s 不存在" % this_stat)
 		return
@@ -114,6 +124,7 @@ func set_statistic(this_stat: String, new_value: int = 0) -> void:
 		return
 	
 	print("數據傳送完成")
+
 
 # 設定成就
 func set_achievement(this_achievement: String) -> void:

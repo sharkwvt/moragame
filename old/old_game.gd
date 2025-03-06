@@ -1,4 +1,5 @@
-extends Node
+extends Control
+class_name old_GameScene
 
 @export var level_btn_scene: PackedScene
 var now_level = 1
@@ -69,9 +70,9 @@ func show_choice():
 	#player_choice_sp.queue_free()
 	#bot_choice_sp.queue_free()
 
-func set_choice_visible(visible):
-	player_choice_sp.visible = visible
-	bot_choice_sp.visible = visible
+func set_choice_visible(to_set: bool):
+	player_choice_sp.visible = to_set
+	bot_choice_sp.visible = to_set
 
 func play_logic():
 	bot_choice = randi_range(0, 2)
@@ -95,7 +96,7 @@ func play_logic():
 			show_msg("平手")
 		1:
 			show_msg("贏了")
-			now_coin += win_coin
+			set_coin(now_coin + win_coin)
 			wins_count += 1
 		-1:
 			show_msg("輸了")
@@ -141,12 +142,22 @@ func create_level_btns():
 		btn.focus_mode = Control.FOCUS_NONE
 		$Level.add_child(btn)
 
+func set_coin(value: int):
+	now_coin = value
+	Steamworks.set_statistic(Main.STAT_KEY_COIN, now_coin)
+
 func refresh_btn():
 	$"Game/按鈕/勝率50".button_pressed = used_item == ITEM.道具1
 	$"Game/按鈕/勝率100".button_pressed = used_item == ITEM.道具2
 
 func show_msg(msg):
 	$Game/Title.text = msg
+
+
+func show_scene():
+	reset_game()
+	move_to_front()
+
 
 # 點擊猜拳與道具按鈕
 func _on_choice_btn_pressed(tag):

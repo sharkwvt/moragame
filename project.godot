@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="野球拳"
-run/main_scene="res://start.tscn"
+run/main_scene="res://scene/start/start.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Data="*res://autoload/data.gd"
+Main="*res://autoload/main.gd"
+Setting="*res://autoload/setting.gd"
 Steamworks="*res://autoload/steamworks.gd"
 
 [debug]
@@ -26,8 +27,8 @@ file_logging/enable_file_logging=true
 
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
+window/size/viewport_width=1280
+window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 
 [rendering]
