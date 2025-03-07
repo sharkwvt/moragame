@@ -64,8 +64,8 @@ func set_tween(duration: float = 1.0):
 	#tween.tween_property(texture_rect, "position:x", -texture_rect.size.x, duration)
 	# 淡出
 	tween.tween_property(shader_material, "shader_parameter/progress", 1.0, duration)
-	tween.tween_callback(main.queue_free) # 整個移除來防止遮擋
 
 func _on_tween_finished(scene: Control, org_parent: Node):
 	scene.visible = false # reparent會移到最前，需要隱藏
 	scene.reparent(org_parent)
+	main.queue_free()
