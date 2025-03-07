@@ -3,7 +3,7 @@ class_name StartScene
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Main.now_scene = self
+	Main.current_scene = self
 	Main.instance_scenes[Main.SCENE.start] = self
 	Main.play_music(Main.music_1)
 
