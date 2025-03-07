@@ -9,7 +9,7 @@ var achievements: Dictionary = {
 	"成就ID1": false,
 	"成就ID2": false,
 	"成就ID3": false
-	}
+}
 
 
 func _init() -> void:

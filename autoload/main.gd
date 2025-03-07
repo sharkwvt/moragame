@@ -7,12 +7,14 @@ var game_scene = preload("res://old/old_game.tscn")
 
 var music_1 = preload("res://sound/maou_bgm_acoustic50.mp3")
 
+var now_scene: Control
+
 var instance_scenes = [0, 0, 0]
 enum SCENE {
 	start,
 	menu,
 	game
-	}
+}
 
 var music_player: AudioStreamPlayer
 
@@ -53,6 +55,11 @@ func to_scene(scene: SCENE):
 			SCENE.game:
 				instance_scenes[scene] = game_scene.instantiate()
 		get_tree().root.add_child(instance_scenes[scene])
+		
+	var tf = TransitionEffect.new()
+	get_tree().root.add_child(tf)
+	tf.start_transition(now_scene)
+	now_scene = instance_scenes[scene]
 
 
 func show_setting_view():
