@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://bbnqy0t83t7js"]
-
-[node name="關卡按鈕" type="Button"]
-offset_right = 250.0
-offset_bottom = 100.0
-theme_override_font_sizes/font_size = 50
-text = "關卡 1"
