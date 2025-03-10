@@ -14,13 +14,4 @@ func _process(_delta: float) -> void:
 
 
 func _on_button_down() -> void:
-	var audio_player = AudioStreamPlayer.new()
-	audio_player.stream = btn_sfx
-	audio_player.bus = "SFX"
-	audio_player.finished.connect(_on_sfx_finished.bind(audio_player))
-	get_tree().root.add_child(audio_player)
-	audio_player.play()
-
-
-func _on_sfx_finished(audio_player: AudioStreamPlayer):
-	audio_player.queue_free()
+	Main.play_sfx(btn_sfx)

@@ -14,12 +14,11 @@ func _process(_delta: float) -> void:
 
 
 func show_scene():
-	visible = true
-	move_to_front()
+	pass
 
 
 func _on_start_button_pressed() -> void:
-	Main.to_scene(Main.SCENE.menu)
+	Main.to_scene(Main.SCENE.menu, 1)
 
 
 func _on_setting_button_pressed() -> void:

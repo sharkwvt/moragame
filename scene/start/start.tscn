@@ -30,7 +30,7 @@ offset_top = 62.0
 offset_right = 150.0
 offset_bottom = 162.0
 theme_override_font_sizes/font_size = 50
-text = "開始遊戲"
+text = "開始"
 
 [node name="SettingButton" parent="." instance=ExtResource("3_3rubr")]
 layout_mode = 1
