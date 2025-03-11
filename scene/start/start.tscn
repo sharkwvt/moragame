@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bwg6dvrtjky3i"]
+[gd_scene load_steps=6 format=3 uid="uid://bwg6dvrtjky3i"]
 
 [ext_resource type="Script" path="res://scene/start/start.gd" id="1_upowf"]
 [ext_resource type="Texture2D" uid="uid://nr1sgf6jdxai" path="res://scene/start/start_bg.jpg" id="2_7et6q"]
 [ext_resource type="PackedScene" uid="uid://b1kawh5aqevsc" path="res://common/common_button.tscn" id="3_3rubr"]
+[ext_resource type="Texture2D" uid="uid://brlcx2erf54ob" path="res://image/setting.png" id="4_4gry2"]
+[ext_resource type="Script" path="res://common/common_button.gd" id="5_w74jd"]
 
 [node name="Start" type="Control"]
 layout_mode = 3
@@ -32,14 +34,37 @@ offset_bottom = 162.0
 theme_override_font_sizes/font_size = 50
 text = "開始"
 
-[node name="SettingButton" parent="." instance=ExtResource("3_3rubr")]
+[node name="SettingButton" type="Button" parent="."]
 layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -101.0
+offset_top = 26.0
+offset_right = -27.0
+offset_bottom = 100.0
+grow_horizontal = 0
+icon = ExtResource("4_4gry2")
+flat = true
+script = ExtResource("5_w74jd")
+
+[node name="結束" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 offset_left = -150.0
-offset_top = 196.0
+offset_top = 193.0
 offset_right = 150.0
-offset_bottom = 296.0
+offset_bottom = 293.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_font_sizes/font_size = 50
-text = "設定"
+text = "結束"
+script = ExtResource("5_w74jd")
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="SettingButton" to="." method="_on_setting_button_pressed"]
+[connection signal="pressed" from="結束" to="." method="_on_結束_pressed"]

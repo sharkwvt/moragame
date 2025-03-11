@@ -2,6 +2,7 @@ extends Control
 
 var character_data: Main.CharacterData
 var character_img
+var menu_btn: MenuButton
 # 對話
 var story_view: Control
 var story_character: TextureRect
@@ -19,7 +20,7 @@ var choice_str = ["剪刀", "石頭", "布"]
 var choice_img_path = "res://Image/%s.png"
 
 enum STATE {
-	結束 = -1,
+	退出 = -1,
 	對話 = 0,
 	猜拳 = 1,
 	通關 = 2
@@ -52,10 +53,15 @@ func setup():
 	game_character = $Game/GameCharacter
 	player_choice_sp = $"Game/我方出拳"
 	bot_choice_sp = $"Game/對方出拳"
+	menu_btn = $Game/MenuButton
+	var popup: PopupMenu = menu_btn.get_popup()
+	popup.add_theme_font_size_override("font_size", 50) # 改字體大小
+	popup.id_pressed.connect(_on_popup_item_pressed)
 
 
 func reset_game():
 	game_state = STATE.對話
+	story_view.visible = true
 	talk_view.visible = false
 	# 已通關時重新開始
 	if character_data.progress >= character_data.level:
@@ -69,6 +75,7 @@ func refresh_game():
 	story_character.texture = character_img
 	game_character.texture = character_img
 	set_choice_visible(false)
+	$"Game/進度".text = "進度 " + str(now_level) + "/" + str(character_data.level)
 	if now_level >= character_data.level:
 		talk_lbl.text = "過關"
 		game_state = STATE.通關
@@ -85,21 +92,17 @@ func to_continue():
 			elif talk_view.visible == false:
 				# 開啟對話
 				talk_view.visible = true
-			elif story_view.visible:
+			elif story_view.visible == true:
 				# 關閉對話
 				story_view.visible = false
 				# 開始猜拳
-				if now_level < character_data.level:
-					game_state = STATE.猜拳
-				else:
-					game_state = STATE.通關
+				game_state = STATE.猜拳
 			elif story_view.visible == false:
 				# 猜拳完進對話
 				refresh_game()
 				story_view.visible = true
 		STATE.通關:
-			Main.to_scene(Main.SCENE.menu)
-			game_state = STATE.結束
+			quite()
 
 
 # 顯示雙方猜拳
@@ -144,13 +147,28 @@ func show_scene():
 	reset_game()
 
 
+func quite():
+	Main.to_scene(Main.SCENE.menu)
+	game_state = STATE.退出
+
+
 # 點擊猜拳
 func _on_choice_btn_pressed(tag):
 	player_choice = tag
 	play_logic()
 
 
+func _on_popup_item_pressed(id: int) -> void:
+	match id:
+		0:
+			# 設定
+			Main.show_setting_view()
+		1:
+			# 退出
+			quite()
+
+
 func _input(event):
 	# 滑鼠任何鍵
-	if event is InputEventMouseButton and event.pressed and game_state != STATE.結束:
+	if event is InputEventMouseButton and event.pressed and game_state != STATE.退出:
 		to_continue()

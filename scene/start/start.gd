@@ -23,3 +23,7 @@ func _on_start_button_pressed() -> void:
 
 func _on_setting_button_pressed() -> void:
 	Main.show_setting_view()
+
+
+func _on_結束_pressed() -> void:
+	get_tree().quit()
