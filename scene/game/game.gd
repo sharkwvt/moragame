@@ -1,7 +1,7 @@
 extends Control
 
 var character_data: Main.CharacterData
-var character_img
+var character_imgs = []
 var menu_btn: MenuButton
 # 對話
 var story_view: Control
@@ -12,12 +12,14 @@ var talk_lbl: Label
 var game_state = STATE.對話
 var game_character: TextureRect
 var now_level: int
+var tip_view: TextureRect
+var tip_lbl: Label
 var player_choice_sp: Sprite2D
 var bot_choice_sp: Sprite2D
 var player_choice
 var bot_choice
 var choice_str = ["剪刀", "石頭", "布"]
-var choice_img_path = "res://Image/%s.png"
+var choice_img_path = "res://scene/game/%s.png"
 
 enum STATE {
 	退出 = -1,
@@ -45,12 +47,13 @@ func _process(_delta: float) -> void:
 
 func setup():
 	character_data = Main.current_character_data
-	character_img = load(character_data.img)
 	story_view = $Story
 	story_character = $Story/StoryCharacter
 	talk_view = $Story/Talk
 	talk_lbl = $Story/Talk/Label
 	game_character = $Game/GameCharacter
+	tip_view = $Game/TipView
+	tip_lbl = $Game/TipView/TipLabel
 	player_choice_sp = $"Game/我方出拳"
 	bot_choice_sp = $"Game/對方出拳"
 	menu_btn = $Game/MenuButton
@@ -60,9 +63,9 @@ func setup():
 
 
 func reset_game():
+	load_imgs()
 	game_state = STATE.對話
 	story_view.visible = true
-	talk_view.visible = false
 	# 已通關時重新開始
 	if character_data.progress >= character_data.level:
 		now_level = 0
@@ -72,15 +75,21 @@ func reset_game():
 
 
 func refresh_game():
-	story_character.texture = character_img
-	game_character.texture = character_img
+	story_character.texture = character_imgs[now_level]
+	game_character.texture = character_imgs[now_level]
 	set_choice_visible(false)
 	$"Game/進度".text = "進度 " + str(now_level) + "/" + str(character_data.level)
+	talk_lbl.text = character_data.story[now_level]
 	if now_level >= character_data.level:
-		talk_lbl.text = "過關"
 		game_state = STATE.通關
-	else:
-		talk_lbl.text = character_data.story[now_level]
+
+
+func load_imgs():
+	var file_name = character_data.file_name
+	for i in character_data.story.size():
+		var path = "res://characters/" + file_name + "/" + file_name + "_" + str(i+1) + ".jpg"
+		var img = load(path)
+		character_imgs.append(img)
 
 
 func to_continue():
@@ -89,9 +98,9 @@ func to_continue():
 			if TransitionEffect.main != null:
 				# 跳過轉場動畫
 				TransitionEffect.skip_anim()
-			elif talk_view.visible == false:
-				# 開啟對話
-				talk_view.visible = true
+			#elif talk_view.visible == false:
+				## 開啟對話
+				#talk_view.visible = true
 			elif story_view.visible == true:
 				# 關閉對話
 				story_view.visible = false
@@ -114,6 +123,7 @@ func show_choice():
 func set_choice_visible(to_set: bool):
 	player_choice_sp.visible = to_set
 	bot_choice_sp.visible = to_set
+	tip_view.visible = to_set
 
 
 # 輸贏判定
@@ -123,15 +133,15 @@ func play_logic():
 	var result = determine_winner(player_choice, bot_choice)
 	match result:
 		0:
-			print("平手")
+			tip_lbl.text = "平手"
 		1:
 			now_level += 1
 			if character_data.progress < now_level:
 				character_data.progress = now_level
 			game_state = STATE.對話
-			print("贏了")
+			tip_lbl.text = "贏了"
 		-1:
-			print("輸了")
+			tip_lbl.text = "輸了"
 
 # 猜拳判定
 func determine_winner(player, bot):

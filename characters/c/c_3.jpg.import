@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bh61ejcf8ihk0"
-path="res://.godot/imported/布.png-1e48d7a77853215a6a6cd55b22af87aa.ctex"
+uid="uid://ctjfooqtjs8bm"
+path="res://.godot/imported/c_3.jpg-4df748a6a2326d8a86f50e56c5851bf1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://image/布.png"
-dest_files=["res://.godot/imported/布.png-1e48d7a77853215a6a6cd55b22af87aa.ctex"]
+source_file="res://characters/c/c_3.jpg"
+dest_files=["res://.godot/imported/c_3.jpg-4df748a6a2326d8a86f50e56c5851bf1.ctex"]
 
 [params]
 

@@ -44,8 +44,8 @@ func create_test_data():
 				var data = Main.CharacterData.new()
 				data.id = 99
 				data.category = "where"
-				data.name = "who"
-				data.img = "res://scene/menu/btns/btn.png"
+				data.display_name = "who"
+				data.file_name = "c"
 				menu_dic[category].append(data)
 
 

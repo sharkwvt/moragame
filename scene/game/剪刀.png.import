@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bdr2ht0bxbdyx"
-path="res://.godot/imported/石頭.png-e3cadad004e7fd215702e6b4a603b8e6.ctex"
+uid="uid://dtip44sec3kdw"
+path="res://.godot/imported/剪刀.png-f11e0f22cfe4d5ffbf22144f6cd59755.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://image/石頭.png"
-dest_files=["res://.godot/imported/石頭.png-e3cadad004e7fd215702e6b4a603b8e6.ctex"]
+source_file="res://scene/game/剪刀.png"
+dest_files=["res://.godot/imported/剪刀.png-f11e0f22cfe4d5ffbf22144f6cd59755.ctex"]
 
 [params]
 

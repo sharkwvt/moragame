@@ -17,6 +17,8 @@ func refresh():
 	var sound_db = Setting.setting_data[Setting.setting_sfx_key]
 	$MusicLabel/MusicSlider.value = music_db
 	$SoundLabel/SoundSlider.value = sound_db
+	var is_fullscreen: bool = DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN
+	$"全螢幕Lbl/CheckBox".button_pressed = is_fullscreen
 
 
 func _on_music_slider_value_changed(value: float) -> void:
@@ -33,3 +35,10 @@ func _on_sound_slider_drag_ended(_value_changed: bool) -> void:
 
 func _on_close_button_pressed() -> void:
 	queue_free()
+
+
+func _on_check_box_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)

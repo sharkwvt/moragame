@@ -20,12 +20,12 @@ enum SCENE {
 
 class CharacterData:
 	var id = 0
-	var name: String
+	var display_name: String
+	var file_name: String
 	var category: String
 	var level: int
 	var story: Array
 	var progress = 0
-	var img
 var characters_json: Dictionary
 var characters_data = []
 var current_character_data: CharacterData
@@ -85,7 +85,6 @@ func load_characters_data():
 			for key in character.keys():
 				if key in data:
 					data.set(key, character[key])
-			data.img = "res://characters/c_1.png"
 			characters_data.append(data)
 
 
