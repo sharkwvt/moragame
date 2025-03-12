@@ -4,22 +4,31 @@ var config = ConfigFile.new()
 var setting_path = "user://setting.cfg"
 var setting_section = "setting"
 
-var setting_music_key = "music"
-var setting_sfx_key = "sfx"
+var setting_music_key = "MUSIC"
+var setting_sfx_key = "SFX"
+var setting_screen_key = "SCREEN_MODE"
 var setting_data: Dictionary = {}
 
+enum SCREEN_MODE {
+	視窗1280p,
+	視窗1920p,
+	無邊框全螢幕,
+	全螢幕
+}
 
 func _init() -> void:
 	setting_data[setting_music_key] = 0.5
 	setting_data[setting_sfx_key] = 0.5
+	setting_data[setting_screen_key] = SCREEN_MODE.視窗1280p  # 預設
 	load_setting()
 	set_music_db(setting_data[setting_music_key])
 	set_sound_db(setting_data[setting_sfx_key])
+	set_screen_mode(setting_data[setting_screen_key])
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -32,7 +41,8 @@ func load_setting():
 		reset_setting()
 		return
 	for key in setting_data.keys():
-		setting_data[key] = config.get_value(setting_section, key)
+		if config.has_section_key(setting_section, key):
+			setting_data[key] = config.get_value(setting_section, key)
 
 
 func set_setting(key, value):
@@ -54,3 +64,22 @@ func set_music_db(value):
 func set_sound_db(value):
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), 60 * (value - 1))
 	set_setting(setting_sfx_key, value)
+
+
+func set_screen_mode(mode: SCREEN_MODE):
+	match mode:
+		SCREEN_MODE.視窗1280p:
+			DisplayServer.window_set_size(Vector2i(1280, 720))
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
+		SCREEN_MODE.視窗1920p:
+			DisplayServer.window_set_size(Vector2i(1920, 1080))
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
+		SCREEN_MODE.無邊框全螢幕:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
+		SCREEN_MODE.全螢幕:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+	
+	set_setting(setting_screen_key, mode)

@@ -17,8 +17,9 @@ func refresh():
 	var sound_db = Setting.setting_data[Setting.setting_sfx_key]
 	$MusicLabel/MusicSlider.value = music_db
 	$SoundLabel/SoundSlider.value = sound_db
-	var is_fullscreen: bool = DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN
-	$"全螢幕Lbl/CheckBox".button_pressed = is_fullscreen
+	var is_fullscreen: bool = DisplayServer.window_get_mode() != DisplayServer.WINDOW_MODE_WINDOWED
+	var popup: PopupMenu = $OptionButton.get_popup()
+	popup.add_theme_font_size_override("font_size", 50) # 改字體大小
 
 
 func _on_music_slider_value_changed(value: float) -> void:
@@ -37,8 +38,10 @@ func _on_close_button_pressed() -> void:
 	queue_free()
 
 
-func _on_check_box_toggled(toggled_on: bool) -> void:
-	if toggled_on:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
-	else:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+func _on_option_button_item_selected(index: int) -> void:
+	Main.play_btn_sfx()
+	Setting.set_screen_mode(index)
+
+
+func _on_option_button_pressed() -> void:
+	Main.play_btn_sfx()

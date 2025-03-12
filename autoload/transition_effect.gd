@@ -1,5 +1,7 @@
 extends Node
 
+var screen_size = Vector2i(1280, 720)
+
 var main: Control
 var viewport: SubViewport
 var texture_rect: TextureRect
@@ -32,7 +34,8 @@ func start_transition(scene: Node, anim_type = 0, duration: float = 1.0):
 
 func setup_viewport():
 	viewport = SubViewport.new()
-	viewport.size = get_viewport().size
+	#viewport.size = get_viewport().size
+	viewport.size = screen_size
 	viewport.render_target_update_mode = SubViewport.UPDATE_ONCE
 	viewport.render_target_clear_mode = SubViewport.CLEAR_MODE_ALWAYS
 	main.add_child(viewport)
@@ -48,7 +51,8 @@ func setup_texture_rect():
 	texture_rect.texture = viewport.get_texture()
 	texture_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	texture_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT
-	texture_rect.size = get_viewport().size
+	#texture_rect.size = get_viewport().size
+	texture_rect.size = screen_size
 	main.add_child(texture_rect)
 
 func apply_shader(anim_type = 0):

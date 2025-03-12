@@ -107,36 +107,34 @@ offset_bottom = 214.0
 theme_override_font_sizes/font_size = 50
 text = "關閉"
 
-[node name="全螢幕Lbl" type="Label" parent="."]
+[node name="OptionButton" type="OptionButton" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -38.0
-offset_top = -206.0
-offset_right = 112.0
-offset_bottom = -136.0
+offset_left = -166.0
+offset_top = -213.0
+offset_right = 166.0
+offset_bottom = -134.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 50
-text = "全螢幕"
-
-[node name="CheckBox" type="CheckBox" parent="全螢幕Lbl"]
-layout_mode = 1
-offset_left = -79.0
-offset_top = 1.0
-offset_right = 4.0
-offset_bottom = 25.0
-scale = Vector2(3, 3)
-theme_override_font_sizes/font_size = 20
-alignment = 2
-expand_icon = true
+selected = 0
+item_count = 4
+popup/item_0/text = "視窗1280p"
+popup/item_1/text = "視窗1920p"
+popup/item_1/id = 1
+popup/item_2/text = "無邊框全螢幕"
+popup/item_2/id = 2
+popup/item_3/text = "全螢幕"
+popup/item_3/id = 3
 
 [connection signal="mouse_exited" from="SettingBG" to="." method="_on_setting_bg_mouse_exited"]
 [connection signal="value_changed" from="MusicLabel/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="drag_ended" from="SoundLabel/SoundSlider" to="." method="_on_sound_slider_drag_ended"]
 [connection signal="value_changed" from="SoundLabel/SoundSlider" to="." method="_on_sound_slider_value_changed"]
 [connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]
-[connection signal="toggled" from="全螢幕Lbl/CheckBox" to="." method="_on_check_box_toggled"]
+[connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="pressed" from="OptionButton" to="." method="_on_option_button_pressed"]

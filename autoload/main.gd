@@ -8,6 +8,7 @@ var menu_scene = preload("res://scene/menu/menu.tscn")
 var game_scene = preload("res://scene/game/game.tscn")
 
 var music_1 = preload("res://sound/maou_bgm_acoustic50.mp3")
+var btn_sfx = preload("res://sound/maou_se_system47.mp3")
 
 var current_scene: Control
 
@@ -121,6 +122,9 @@ func play_sfx(sfx):
 	audio_player.finished.connect(audio_player.queue_free)
 	get_tree().root.add_child(audio_player)
 	audio_player.play()
+
+func play_btn_sfx():
+	play_sfx(btn_sfx)
 
 
 func _on_music_finished():
