@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cne1x2ehvd3sk"]
+[gd_scene load_steps=7 format=3 uid="uid://cne1x2ehvd3sk"]
 
 [ext_resource type="Texture2D" uid="uid://b3t2ytl32tv2m" path="res://scene/menu/menu_bg.jpg" id="1_sl21d"]
 [ext_resource type="Script" path="res://scene/menu/menu.gd" id="1_tmr3e"]
 [ext_resource type="Texture2D" uid="uid://brlcx2erf54ob" path="res://image/setting.png" id="4_c57vh"]
 [ext_resource type="Script" path="res://common/common_button.gd" id="5_1gyvk"]
 [ext_resource type="Texture2D" uid="uid://dmnlpgomsbqkf" path="res://image/return.png" id="6_e4ip4"]
+[ext_resource type="Texture2D" uid="uid://oshmv10dnkr" path="res://image/箭頭.png" id="6_rtbmv"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -46,6 +47,58 @@ offset_bottom = 8.0
 icon = ExtResource("6_e4ip4")
 flat = true
 script = ExtResource("5_1gyvk")
+
+[node name="左箭頭" type="Button" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -156.0
+offset_right = 75.0
+offset_bottom = 200.0
+grow_vertical = 2
+focus_mode = 0
+flat = true
+script = ExtResource("5_1gyvk")
+
+[node name="TextureRect" type="TextureRect" parent="左箭頭"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_rtbmv")
+flip_h = true
+
+[node name="右箭頭" type="Button" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -178.0
+offset_right = -10.0
+offset_bottom = 178.0
+grow_horizontal = 0
+grow_vertical = 2
+focus_mode = 0
+flat = true
+script = ExtResource("5_1gyvk")
+
+[node name="TextureRect" type="TextureRect" parent="右箭頭"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_rtbmv")
 
 [connection signal="pressed" from="SettingButton" to="." method="_on_setting_button_pressed"]
 [connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]
