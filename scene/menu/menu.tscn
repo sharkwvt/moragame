@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cne1x2ehvd3sk"]
+[gd_scene load_steps=6 format=3 uid="uid://cne1x2ehvd3sk"]
 
 [ext_resource type="Texture2D" uid="uid://b3t2ytl32tv2m" path="res://scene/menu/menu_bg.jpg" id="1_sl21d"]
 [ext_resource type="Script" path="res://scene/menu/menu.gd" id="1_tmr3e"]
-[ext_resource type="Texture2D" uid="uid://d0ljjsgg75hl3" path="res://scene/menu/btns/btn.png" id="3_0ns3y"]
 [ext_resource type="Texture2D" uid="uid://brlcx2erf54ob" path="res://image/setting.png" id="4_c57vh"]
 [ext_resource type="Script" path="res://common/common_button.gd" id="5_1gyvk"]
 [ext_resource type="Texture2D" uid="uid://dmnlpgomsbqkf" path="res://image/return.png" id="6_e4ip4"]
@@ -48,15 +47,5 @@ icon = ExtResource("6_e4ip4")
 flat = true
 script = ExtResource("5_1gyvk")
 
-[node name="CommonButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 208.0
-offset_top = 155.0
-offset_right = 616.0
-offset_bottom = 563.0
-icon = ExtResource("3_0ns3y")
-script = ExtResource("5_1gyvk")
-
 [connection signal="pressed" from="SettingButton" to="." method="_on_setting_button_pressed"]
 [connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]
-[connection signal="pressed" from="CommonButton" to="." method="_on_common_button_pressed"]
