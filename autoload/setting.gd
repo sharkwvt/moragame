@@ -72,10 +72,12 @@ func set_screen_mode(mode: SCREEN_MODE):
 			DisplayServer.window_set_size(Vector2i(1280, 720))
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
+			center_window()
 		SCREEN_MODE.視窗1920p:
 			DisplayServer.window_set_size(Vector2i(1920, 1080))
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
+			center_window()
 		SCREEN_MODE.無邊框全螢幕:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
@@ -83,3 +85,10 @@ func set_screen_mode(mode: SCREEN_MODE):
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 	
 	set_setting(setting_screen_key, mode)
+	
+# 視窗置中
+func center_window():
+	var screen_size = DisplayServer.screen_get_size(0)
+	var window_size = DisplayServer.window_get_size()
+	var new_position = (screen_size - window_size) / 2
+	DisplayServer.window_set_position(new_position)
