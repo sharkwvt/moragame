@@ -17,7 +17,7 @@ func refresh():
 	var sound_db = Setting.setting_data[Setting.setting_sfx_key]
 	$MusicLabel/MusicSlider.value = music_db
 	$SoundLabel/SoundSlider.value = sound_db
-	var is_fullscreen: bool = DisplayServer.window_get_mode() != DisplayServer.WINDOW_MODE_WINDOWED
+	$OptionButton.selected = Setting.setting_data[Setting.setting_screen_key]
 	var popup: PopupMenu = $OptionButton.get_popup()
 	popup.add_theme_font_size_override("font_size", 50) # 改字體大小
 
