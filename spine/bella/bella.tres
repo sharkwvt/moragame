@@ -1,0 +1,8 @@
+[gd_resource type="SpineSkeletonDataResource" load_steps=3 format=3 uid="uid://c82isbrlafhax"]
+
+[ext_resource type="SpineAtlasResource" uid="uid://btyyeuy4ogos5" path="res://spine/bella/belle_scene_3.atlas" id="1_m0d4l"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://1uqkw7gdnlbv" path="res://spine/bella/belle_scene_3.spine-json" id="2_m6wgo"]
+
+[resource]
+atlas_res = ExtResource("1_m0d4l")
+skeleton_file_res = ExtResource("2_m6wgo")
