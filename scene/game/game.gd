@@ -46,7 +46,6 @@ func _process(_delta: float) -> void:
 
 
 func setup():
-	character_data = Main.current_character_data
 	story_view = $Story
 	story_character = $Story/StoryCharacter
 	talk_view = $Story/Talk
@@ -63,6 +62,7 @@ func setup():
 
 
 func reset_game():
+	character_data = Main.current_character_data
 	load_imgs()
 	game_state = STATE.對話
 	story_view.visible = true
@@ -85,6 +85,7 @@ func refresh_game():
 
 
 func load_imgs():
+	character_imgs.clear()
 	var file_name = character_data.file_name
 	for i in character_data.story.size():
 		var path = "res://characters/" + file_name + "/" + file_name + "_" + str(i+1) + ".jpg"

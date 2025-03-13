@@ -19,7 +19,7 @@ var list_index = 0
 func _ready() -> void:
 	setup()
 	set_menu_dic()
-	create_test_data() # 測試用資料
+	#create_test_data() # 測試用資料
 	create_characters_btns()
 	set_lists()
 
@@ -41,6 +41,7 @@ func set_menu_dic():
 			var menu_data: MenuData
 			var category = character.category
 			if category not in categorys:
+				# 創主題並記錄
 				categorys.append(category)
 				menu_data = MenuData.new()
 				menu_data.category = category
@@ -89,7 +90,8 @@ func create_characters_btns():
 		menu_data.list_view = list_view
 		# 計算行列數量
 		var h_count_max = floori(btns_panel.size.x / offset.x)
-		var h_count = h_count_max if character_count > h_count_max else character_count
+		#var h_count = h_count_max if character_count > h_count_max else character_count
+		var h_count = 5
 		var v_count = ceil(character_count/float(h_count))
 		var i = 0
 		for data: Main.CharacterData in menu_data.characters:
