@@ -23,9 +23,30 @@ func run_spine_start():
 	for element in (($ColorRect/bella.skeleton_data_res as SpineSkeletonDataResource).get_animations() as Array[SpineAnimation]) :
 		bellaAnim.add_animation((element as SpineAnimation).get_name(),0,false,0)
 	
+	var wendyAnim: SpineAnimationState = $ColorRect/wendy.get_animation_state()
+	wendyAnim.set_time_scale(2)
+	for element in (($ColorRect/wendy.skeleton_data_res as SpineSkeletonDataResource).get_animations() as Array[SpineAnimation]) :
+		wendyAnim.add_animation((element as SpineAnimation).get_name(),0,false,0)
+	
+	var lolaAnim: SpineAnimationState = $ColorRect/lola.get_animation_state()
+	lolaAnim.set_time_scale(2)
+	for element in (($ColorRect/lola.skeleton_data_res as SpineSkeletonDataResource).get_animations() as Array[SpineAnimation]) :
+		lolaAnim.add_animation((element as SpineAnimation).get_name(),0,false,0)
+	
+	var kittyAnim: SpineAnimationState = $ColorRect/kitty.get_animation_state()
+	kittyAnim.set_time_scale(2)
+	for element in (($ColorRect/kitty.skeleton_data_res as SpineSkeletonDataResource).get_animations() as Array[SpineAnimation]) :
+		kittyAnim.add_animation((element as SpineAnimation).get_name(),0,false,0)
+	
 func run_spine_stop():
-	var anim: SpineAnimationState = $ColorRect/bella.get_animation_state()
-	anim.clear_tracks()
+	var anim1: SpineAnimationState = $ColorRect/bella.get_animation_state()
+	anim1.clear_tracks()
+	var anim2: SpineAnimationState = $ColorRect/wendy.get_animation_state()
+	anim2.clear_tracks()
+	var anim3: SpineAnimationState = $ColorRect/kitty.get_animation_state()
+	anim3.clear_tracks()
+	var anim4: SpineAnimationState = $ColorRect/lola.get_animation_state()
+	anim4.clear_tracks()
 
 
 func _on_start_button_pressed() -> void:
