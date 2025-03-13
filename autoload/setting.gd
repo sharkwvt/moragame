@@ -10,8 +10,8 @@ var setting_screen_key = "SCREEN_MODE"
 var setting_data: Dictionary = {}
 
 enum SCREEN_MODE {
-	視窗1280p,
-	視窗1920p,
+	視窗720p,
+	視窗1080p,
 	無邊框全螢幕,
 	全螢幕
 }
@@ -19,7 +19,7 @@ enum SCREEN_MODE {
 func _init() -> void:
 	setting_data[setting_music_key] = 0.5
 	setting_data[setting_sfx_key] = 0.5
-	setting_data[setting_screen_key] = SCREEN_MODE.視窗1280p  # 預設
+	setting_data[setting_screen_key] = SCREEN_MODE.視窗720p  # 預設
 	load_setting()
 	set_music_db(setting_data[setting_music_key])
 	set_sound_db(setting_data[setting_sfx_key])
@@ -68,12 +68,12 @@ func set_sound_db(value):
 
 func set_screen_mode(mode: SCREEN_MODE):
 	match mode:
-		SCREEN_MODE.視窗1280p:
+		SCREEN_MODE.視窗720p:
 			DisplayServer.window_set_size(Vector2i(1280, 720))
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
 			center_window()
-		SCREEN_MODE.視窗1920p:
+		SCREEN_MODE.視窗1080p:
 			DisplayServer.window_set_size(Vector2i(1920, 1080))
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
