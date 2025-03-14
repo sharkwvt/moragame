@@ -1,8 +1,0 @@
-[gd_resource type="SpineSkeletonDataResource" load_steps=3 format=3 uid="uid://cb8nhafbt63kk"]
-
-[ext_resource type="SpineAtlasResource" uid="uid://vcjxxbe2skxv" path="res://spine/kitty/kitty_scene.atlas" id="1_hdlee"]
-[ext_resource type="SpineSkeletonFileResource" uid="uid://c5hjmaxqd208t" path="res://spine/kitty/kitty_scene.spine-json" id="2_h3uk1"]
-
-[resource]
-atlas_res = ExtResource("1_hdlee")
-skeleton_file_res = ExtResource("2_h3uk1")

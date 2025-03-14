@@ -1,14 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bwg6dvrtjky3i"]
+[gd_scene load_steps=6 format=3 uid="uid://bwg6dvrtjky3i"]
 
 [ext_resource type="Script" path="res://scene/start/start.gd" id="1_upowf"]
 [ext_resource type="Texture2D" uid="uid://nr1sgf6jdxai" path="res://scene/start/start_bg.jpg" id="2_7et6q"]
 [ext_resource type="PackedScene" uid="uid://b1kawh5aqevsc" path="res://common/common_button.tscn" id="3_3rubr"]
 [ext_resource type="Texture2D" uid="uid://brlcx2erf54ob" path="res://Image/setting.png" id="4_4gry2"]
 [ext_resource type="Script" path="res://common/common_button.gd" id="5_w74jd"]
-[ext_resource type="SpineSkeletonDataResource" uid="uid://c82isbrlafhax" path="res://spine/bella/bella.tres" id="6_ggvdi"]
-[ext_resource type="SpineSkeletonDataResource" uid="uid://b3rloswqljvg5" path="res://spine/wendy/wendy.tres" id="7_phf0s"]
-[ext_resource type="SpineSkeletonDataResource" uid="uid://cuohprqua8tgr" path="res://spine/lola/lola.tres" id="8_miw42"]
-[ext_resource type="SpineSkeletonDataResource" uid="uid://cb8nhafbt63kk" path="res://spine/kitty/kitty.tres" id="9_3i12j"]
 
 [node name="Start" type="Control"]
 layout_mode = 3
@@ -69,66 +65,6 @@ theme_override_font_sizes/font_size = 50
 text = "結束"
 script = ExtResource("5_w74jd")
 
-[node name="Button" type="Button" parent="."]
-layout_mode = 1
-offset_right = 8.0
-offset_bottom = 8.0
-icon = ExtResource("4_4gry2")
-flat = true
-
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="bella" type="SpineSprite" parent="ColorRect"]
-skeleton_data_res = ExtResource("6_ggvdi")
-preview_skin = "Default"
-preview_animation = "-- Empty --"
-preview_frame = false
-preview_time = 0.0
-position = Vector2(300, 300)
-scale = Vector2(0.06, 0.06)
-
-[node name="wendy" type="SpineSprite" parent="ColorRect"]
-skeleton_data_res = ExtResource("7_phf0s")
-preview_skin = "Default"
-preview_animation = "-- Empty --"
-preview_frame = false
-preview_time = 0.0
-position = Vector2(725, 486)
-scale = Vector2(0.1, 0.1)
-
-[node name="lola" type="SpineSprite" parent="ColorRect"]
-skeleton_data_res = ExtResource("8_miw42")
-preview_skin = "Default"
-preview_animation = "-- Empty --"
-preview_frame = false
-preview_time = 0.0
-position = Vector2(1148, 300)
-scale = Vector2(0.1, 0.1)
-
-[node name="kitty" type="SpineSprite" parent="ColorRect"]
-skeleton_data_res = ExtResource("9_3i12j")
-preview_skin = "Default"
-preview_animation = "-- Empty --"
-preview_frame = false
-preview_time = 0.0
-position = Vector2(383, 524)
-scale = Vector2(0.1, 0.1)
-
-[node name="Button" type="Button" parent="ColorRect"]
-layout_mode = 1
-offset_right = 8.0
-offset_bottom = 8.0
-icon = ExtResource("4_4gry2")
-
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="SettingButton" to="." method="_on_setting_button_pressed"]
 [connection signal="pressed" from="結束" to="." method="_on_結束_pressed"]
-[connection signal="pressed" from="Button" to="." method="_on_test_button_pressed"]
-[connection signal="pressed" from="ColorRect/Button" to="." method="_on_close_test_button_pressed"]
