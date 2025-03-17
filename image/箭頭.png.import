@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://oshmv10dnkr"
-path="res://.godot/imported/箭頭.png-a34e559eb95fb2d751ae4a8a061876e5.ctex"
+path="res://.godot/imported/箭頭.png-26b415612214d201fc4e128b5f367b5f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Image/箭頭.png"
-dest_files=["res://.godot/imported/箭頭.png-a34e559eb95fb2d751ae4a8a061876e5.ctex"]
+source_file="res://image/箭頭.png"
+dest_files=["res://.godot/imported/箭頭.png-26b415612214d201fc4e128b5f367b5f.ctex"]
 
 [params]
 

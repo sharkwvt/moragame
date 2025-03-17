@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://bgxx4iw8gxpeb"
+
+[deps]
+
+files=["res://game_character_lines.態度.translation", "res://game_character_lines.台詞編號.translation", "res://game_character_lines.內容.translation"]
+
+source_file="res://game_character_lines.csv"
+dest_files=["res://game_character_lines.態度.translation", "res://game_character_lines.台詞編號.translation", "res://game_character_lines.內容.translation"]
+
+[params]
+
+compress=true
+delimiter=0
