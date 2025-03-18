@@ -45,7 +45,12 @@ func create_character_btns():
 
 
 func get_category_title(data: Main.CategoryData) -> String:
-	return data.category + " " + str(int(data.progress / data.all_level * 100)) + "%"
+	var all_level = 0
+	var progress: float = 0
+	for c_data in data.characters:
+		all_level += c_data.level
+		progress += c_data.progress
+	return data.category + " " + str(int(progress / all_level * 100)) + "%"
 
 
 func refresh():

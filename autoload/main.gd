@@ -36,8 +36,6 @@ var current_character_data: CharacterData
 class CategoryData:
 	var category: String
 	var characters = []
-	var all_level = 0
-	var progress: float = 0
 var categorys_data = []
 var current_category_data: CategoryData
 
@@ -134,8 +132,6 @@ func load_category_data():
 				category_data.category = category
 				categorys_data.append(category_data)
 			category_data.characters.append(character)
-			category_data.all_level += character.level
-			category_data.progress += character.progress
 
 
 func load_characters_json():
