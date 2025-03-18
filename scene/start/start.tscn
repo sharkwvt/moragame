@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scene/start/start.gd" id="1_upowf"]
 [ext_resource type="Texture2D" uid="uid://nr1sgf6jdxai" path="res://scene/start/start_bg.jpg" id="2_7et6q"]
 [ext_resource type="PackedScene" uid="uid://b1kawh5aqevsc" path="res://common/common_button.tscn" id="3_3rubr"]
-[ext_resource type="Texture2D" uid="uid://brlcx2erf54ob" path="res://Image/setting.png" id="4_4gry2"]
+[ext_resource type="Texture2D" uid="uid://brlcx2erf54ob" path="res://image/setting.png" id="4_4gry2"]
 [ext_resource type="Script" path="res://common/common_button.gd" id="5_w74jd"]
 
 [node name="Start" type="Control"]

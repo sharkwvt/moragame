@@ -4,6 +4,7 @@ var characters_json_path = "res://characters/characters.json"
 
 var setting_view = preload("res://setting_view.tscn")
 
+var category_scene = preload("res://scene/category/category.tscn")
 var menu_scene = preload("res://scene/menu/menu.tscn")
 var game_scene = preload("res://scene/game/game.tscn")
 
@@ -12,9 +13,10 @@ var btn_sfx = preload("res://sound/maou_se_system47.mp3")
 
 var current_scene: Control
 
-var instance_scenes = [0, 0, 0]
+var instance_scenes = [0, 0, 0, 0]
 enum SCENE {
 	start,
+	category,
 	menu,
 	game
 }
@@ -31,6 +33,14 @@ var characters_json: Dictionary
 var characters_data = []
 var current_character_data: CharacterData
 
+class CategoryData:
+	var category: String
+	var characters = []
+	var all_level = 0
+	var progress: float = 0
+var categorys_data = []
+var current_category_data: CategoryData
+
 var music_player: AudioStreamPlayer
 
 var this_platform: String = "other" # 遊戲平台
@@ -43,7 +53,7 @@ const STAT_KEY_COIN = "代幣"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	load_characters_data()
+	reload_data()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -67,6 +77,8 @@ func to_scene(scene: SCENE, anim_type = 0):
 		instance_scenes[scene].show_scene()
 	else:
 		match scene:
+			SCENE.category:
+				instance_scenes[scene] = category_scene.instantiate()
 			SCENE.menu:
 				instance_scenes[scene] = menu_scene.instantiate()
 			SCENE.game:
@@ -77,8 +89,15 @@ func to_scene(scene: SCENE, anim_type = 0):
 	current_scene = instance_scenes[scene]
 
 
-func load_characters_data():
+func reload_data():
 	load_characters_json()
+	load_characters_data()
+	create_test_data() # 測試用資料
+	load_category_data()
+
+
+func load_characters_data():
+	characters_data.clear()
 	if characters_json:
 		var characters: Array = characters_json["characters"]
 		for character: Dictionary in characters:
@@ -87,6 +106,36 @@ func load_characters_data():
 				if key in data:
 					data.set(key, character[key])
 			characters_data.append(data)
+
+func create_test_data():
+	for i in 16:
+		var test_category = "testcategory" + str(i % 3)
+		var data = CharacterData.new()
+		data.id = 99 + i
+		data.category = test_category
+		data.display_name = "who"+str(i)
+		data.file_name = "test"
+		data.level = 2
+		data.story = ["test1", "test2", "test3"]
+		characters_data.append(data)
+
+
+func load_category_data():
+	categorys_data.clear()
+	if characters_data:
+		for character: CharacterData in characters_data:
+			var category_data: CategoryData
+			var category = character.category
+			for c_data: CategoryData in categorys_data:
+				if c_data.category == category:
+					category_data = c_data
+			if category_data == null:
+				category_data = CategoryData.new()
+				category_data.category = category
+				categorys_data.append(category_data)
+			category_data.characters.append(character)
+			category_data.all_level += character.level
+			category_data.progress += character.progress
 
 
 func load_characters_json():

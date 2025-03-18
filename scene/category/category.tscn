@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://dru60vogwkrk2"]
+
+[ext_resource type="Script" path="res://scene/category/category.gd" id="1_fsov7"]
+[ext_resource type="Texture2D" uid="uid://cq5iodg7u1k8m" path="res://scene/category/category_bg.jpg" id="2_lccvr"]
+[ext_resource type="Texture2D" uid="uid://brlcx2erf54ob" path="res://image/setting.png" id="3_iof1k"]
+[ext_resource type="Script" path="res://common/common_button.gd" id="4_oxpgw"]
+[ext_resource type="Texture2D" uid="uid://dmnlpgomsbqkf" path="res://image/return.png" id="5_84soe"]
+
+[node name="Category" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fsov7")
+
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_lccvr")
+expand_mode = 1
+
+[node name="SettingButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -101.0
+offset_top = 26.0
+offset_right = -27.0
+offset_bottom = 100.0
+grow_horizontal = 0
+icon = ExtResource("3_iof1k")
+flat = true
+script = ExtResource("4_oxpgw")
+
+[node name="ReturnButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 98.0
+offset_bottom = 82.0
+icon = ExtResource("5_84soe")
+flat = true
+script = ExtResource("4_oxpgw")
+
+[connection signal="pressed" from="SettingButton" to="." method="_on_setting_button_pressed"]
+[connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]

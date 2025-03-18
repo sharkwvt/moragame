@@ -50,7 +50,7 @@ func run_spine_stop():
 
 
 func _on_start_button_pressed() -> void:
-	Main.to_scene(Main.SCENE.menu, 1)
+	Main.to_scene(Main.SCENE.category, 1)
 
 
 func _on_setting_button_pressed() -> void:
