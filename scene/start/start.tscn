@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scene/start/start.gd" id="1_upowf"]
 [ext_resource type="Texture2D" uid="uid://nr1sgf6jdxai" path="res://scene/start/start_bg.jpg" id="2_7et6q"]
 [ext_resource type="PackedScene" uid="uid://b1kawh5aqevsc" path="res://common/common_button.tscn" id="3_3rubr"]
-[ext_resource type="Texture2D" uid="uid://brlcx2erf54ob" path="res://image/setting.png" id="4_4gry2"]
+[ext_resource type="Texture2D" uid="uid://vrg4bhj51m5t" path="res://icon.svg" id="5_by2yh"]
 [ext_resource type="Script" path="res://common/common_button.gd" id="5_w74jd"]
 
 [node name="Start" type="Control"]
@@ -27,44 +27,74 @@ expand_mode = 1
 
 [node name="StartButton" parent="." instance=ExtResource("3_3rubr")]
 layout_mode = 1
-offset_left = -150.0
-offset_top = 62.0
-offset_right = 150.0
-offset_bottom = 162.0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 200.0
+offset_top = 300.0
+offset_right = 408.0
+offset_bottom = 378.0
+grow_horizontal = 1
+grow_vertical = 1
 theme_override_font_sizes/font_size = 50
-text = "開始"
+text = "開始挑戰"
+flat = true
 
-[node name="SettingButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -101.0
-offset_top = 26.0
-offset_right = -27.0
-offset_bottom = 100.0
-grow_horizontal = 0
-icon = ExtResource("4_4gry2")
+[node name="ReviewButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 380.0
+offset_right = 308.0
+offset_bottom = 458.0
+theme_override_font_sizes/font_size = 50
+text = "回想"
 flat = true
 script = ExtResource("5_w74jd")
 
-[node name="結束" type="Button" parent="."]
+[node name="SettingButton" type="Button" parent="."]
+layout_mode = 1
+offset_left = 200.0
+offset_top = 460.0
+offset_right = 308.0
+offset_bottom = 538.0
+theme_override_font_sizes/font_size = 50
+text = "設置"
+flat = true
+script = ExtResource("5_w74jd")
+
+[node name="ExitButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = 193.0
-offset_right = 150.0
-offset_bottom = 293.0
+offset_left = -440.0
+offset_top = 180.0
+offset_right = -332.0
+offset_bottom = 258.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 50
-text = "結束"
+text = "離開"
+flat = true
 script = ExtResource("5_w74jd")
 
+[node name="標題" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -363.5
+offset_top = 45.0
+offset_right = 363.5
+offset_bottom = 279.0
+grow_horizontal = 2
+texture = ExtResource("5_by2yh")
+
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="ReviewButton" to="." method="_on_review_button_pressed"]
 [connection signal="pressed" from="SettingButton" to="." method="_on_setting_button_pressed"]
-[connection signal="pressed" from="結束" to="." method="_on_結束_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_pressed"]

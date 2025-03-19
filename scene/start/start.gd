@@ -53,11 +53,15 @@ func _on_start_button_pressed() -> void:
 	Main.to_scene(Main.SCENE.category, 1)
 
 
+func _on_review_button_pressed() -> void:
+	Main.to_scene(Main.SCENE.review)
+
+
 func _on_setting_button_pressed() -> void:
 	Main.show_setting_view()
 
 
-func _on_結束_pressed() -> void:
+func _on_exit_pressed() -> void:
 	get_tree().quit()
 
 

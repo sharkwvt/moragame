@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://drs1erfxicjah"]
+
+[ext_resource type="Texture2D" uid="uid://b0nff7sdwts26" path="res://scene/review/btn/folder.png" id="1_oncl8"]
+
+[node name="Btn" type="Button"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 65.0
+grow_horizontal = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+text = "主題 00%"
+icon = ExtResource("1_oncl8")
+flat = true
+expand_icon = true

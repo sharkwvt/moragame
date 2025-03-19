@@ -1,0 +1,347 @@
+[gd_scene load_steps=9 format=3 uid="uid://7eupwhka7hay"]
+
+[ext_resource type="Script" path="res://scene/review/review.gd" id="1_v2t6e"]
+[ext_resource type="Texture2D" uid="uid://dryyp3w856wdb" path="res://scene/review/review_bg.jpg" id="1_xnd0t"]
+[ext_resource type="Texture2D" uid="uid://dmnlpgomsbqkf" path="res://image/return.png" id="2_y3tl7"]
+[ext_resource type="Script" path="res://common/common_button.gd" id="3_uvvti"]
+[ext_resource type="Texture2D" uid="uid://cllgmvngq6gop" path="res://scene/review/iphone.png" id="5_h58or"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xclfo"]
+bg_color = Color(0.707496, 0.513817, 0.782956, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_73hn5"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u86fy"]
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="Review" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v2t6e")
+
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_xnd0t")
+expand_mode = 1
+
+[node name="ReturnButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 98.0
+offset_bottom = 82.0
+icon = ExtResource("2_y3tl7")
+flat = true
+script = ExtResource("3_uvvti")
+
+[node name="Phone" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = -602.0
+offset_right = 474.0
+offset_bottom = 222.0
+grow_vertical = 0
+texture = ExtResource("5_h58or")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CategoryList" type="Panel" parent="Phone"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -155.0
+offset_top = -283.0
+offset_right = 160.0
+offset_bottom = 282.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xclfo")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 576.0
+offset_top = 210.0
+offset_right = 726.0
+offset_bottom = 360.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_73hn5")
+
+[node name="Mask" type="Panel" parent="Panel"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -70.0
+offset_right = 70.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_u86fy")
+
+[node name="CommonButton" type="Button" parent="Panel/Mask"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("3_uvvti")
+
+[node name="NameLabel" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -30.0
+offset_right = 30.0
+offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 30
+text = "名字"
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 804.0
+offset_top = 160.0
+offset_right = 954.0
+offset_bottom = 310.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_73hn5")
+
+[node name="Mask" type="Panel" parent="Panel2"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -70.0
+offset_right = 70.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_u86fy")
+
+[node name="CommonButton" type="Button" parent="Panel2/Mask"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("3_uvvti")
+
+[node name="NameLabel" type="Label" parent="Panel2"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -30.0
+offset_right = 30.0
+offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 30
+text = "名字"
+
+[node name="Panel3" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 1045.0
+offset_top = 202.0
+offset_right = 1195.0
+offset_bottom = 352.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_73hn5")
+
+[node name="Mask" type="Panel" parent="Panel3"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -70.0
+offset_right = 70.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_u86fy")
+
+[node name="CommonButton" type="Button" parent="Panel3/Mask"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("3_uvvti")
+
+[node name="NameLabel" type="Label" parent="Panel3"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -30.0
+offset_right = 30.0
+offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 30
+text = "名字"
+
+[node name="Panel4" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 677.0
+offset_top = 423.0
+offset_right = 827.0
+offset_bottom = 573.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_73hn5")
+
+[node name="Mask" type="Panel" parent="Panel4"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -70.0
+offset_right = 70.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_u86fy")
+
+[node name="CommonButton" type="Button" parent="Panel4/Mask"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("3_uvvti")
+
+[node name="NameLabel" type="Label" parent="Panel4"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -30.0
+offset_right = 30.0
+offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 30
+text = "名字"
+
+[node name="Panel5" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 942.0
+offset_top = 426.0
+offset_right = 1092.0
+offset_bottom = 576.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_73hn5")
+
+[node name="Mask" type="Panel" parent="Panel5"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -70.0
+offset_right = 70.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_u86fy")
+
+[node name="CommonButton" type="Button" parent="Panel5/Mask"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("3_uvvti")
+
+[node name="NameLabel" type="Label" parent="Panel5"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -30.0
+offset_right = 30.0
+offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 30
+text = "名字"
+
+[connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="Panel/Mask/CommonButton" to="." method="_on_character_button_pressed" binds= [0]]
+[connection signal="pressed" from="Panel2/Mask/CommonButton" to="." method="_on_character_button_pressed" binds= [1]]
+[connection signal="pressed" from="Panel3/Mask/CommonButton" to="." method="_on_character_button_pressed" binds= [2]]
+[connection signal="pressed" from="Panel4/Mask/CommonButton" to="." method="_on_character_button_pressed" binds= [3]]
+[connection signal="pressed" from="Panel5/Mask/CommonButton" to="." method="_on_character_button_pressed" binds= [4]]

@@ -88,7 +88,7 @@ func load_imgs():
 	character_imgs.clear()
 	var file_name = character_data.file_name
 	for i in character_data.story.size():
-		var path = "res://characters/" + file_name + "/" + file_name + "_" + str(i+1) + ".jpg"
+		var path = character_data.get_cg_path(i+1)
 		var img = load(path)
 		character_imgs.append(img)
 

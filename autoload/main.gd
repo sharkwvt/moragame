@@ -7,18 +7,20 @@ var setting_view = preload("res://setting_view.tscn")
 var category_scene = preload("res://scene/category/category.tscn")
 var menu_scene = preload("res://scene/menu/menu.tscn")
 var game_scene = preload("res://scene/game/game.tscn")
+var review_scene = preload("res://scene/review/review.tscn")
 
 var music_1 = preload("res://sound/maou_bgm_acoustic50.mp3")
 var btn_sfx = preload("res://sound/maou_se_system47.mp3")
 
 var current_scene: Control
 
-var instance_scenes = [0, 0, 0, 0]
+var instance_scenes = [0, 0, 0, 0, 0]
 enum SCENE {
 	start,
 	category,
 	menu,
-	game
+	game,
+	review
 }
 
 class CharacterData:
@@ -29,6 +31,10 @@ class CharacterData:
 	var level: int
 	var story: Array
 	var progress = 0
+	func get_avatar_path() -> String:
+		return "res://characters/" + file_name + "/" + file_name + "_1.jpg"
+	func get_cg_path(index) -> String:
+		return "res://characters/" + file_name + "/" + file_name + "_" + str(index) + ".jpg"
 var characters_json: Dictionary
 var characters_data = []
 var current_character_data: CharacterData
@@ -36,6 +42,14 @@ var current_character_data: CharacterData
 class CategoryData:
 	var category: String
 	var characters = []
+	func get_progress_str() -> String:
+		var all_level = 0
+		var progress: float = 0
+		for c_data in characters:
+			all_level += c_data.level
+			progress += c_data.progress
+		return str(int(progress / all_level * 100)) + "%"
+		
 var categorys_data = []
 var current_category_data: CategoryData
 
@@ -70,10 +84,12 @@ func play_music(music):
 
 func to_scene(scene: SCENE, anim_type = 0):
 	if instance_scenes[scene] is Control:
+		# 使用已創建的場景
 		instance_scenes[scene].visible = true
 		instance_scenes[scene].move_to_front()
 		instance_scenes[scene].show_scene()
 	else:
+		# 創建場景
 		match scene:
 			SCENE.category:
 				instance_scenes[scene] = category_scene.instantiate()
@@ -81,6 +97,8 @@ func to_scene(scene: SCENE, anim_type = 0):
 				instance_scenes[scene] = menu_scene.instantiate()
 			SCENE.game:
 				instance_scenes[scene] = game_scene.instantiate()
+			SCENE.review:
+				instance_scenes[scene] = review_scene.instantiate()
 		get_tree().root.add_child(instance_scenes[scene])
 		
 	TransitionEffect.start_transition(current_scene, anim_type)
@@ -107,7 +125,7 @@ func load_characters_data():
 
 func create_test_data():
 	for i in 16:
-		var test_category = "testcategory" + str(i % 3)
+		var test_category = "category" + str(i % 3)
 		var data = CharacterData.new()
 		data.id = 99 + i
 		data.category = test_category
@@ -120,13 +138,14 @@ func create_test_data():
 
 func load_category_data():
 	categorys_data.clear()
-	if characters_data:
+	if characters_data.size() > 0:
 		for character: CharacterData in characters_data:
 			var category_data: CategoryData
 			var category = character.category
 			for c_data: CategoryData in categorys_data:
 				if c_data.category == category:
 					category_data = c_data
+					break
 			if category_data == null:
 				category_data = CategoryData.new()
 				category_data.category = category

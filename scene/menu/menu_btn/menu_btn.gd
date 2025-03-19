@@ -6,8 +6,7 @@ var has_bonus: bool
 
 func set_data(data: Main.CharacterData):
 	character_data = data
-	var avatar_path = "res://characters/" + data.file_name + "/" + data.file_name + "_1.jpg"
-	$AvatarBG/Avatar.texture = load(avatar_path)
+	$AvatarBG/Avatar.texture = load(data.get_avatar_path())
 	$NameBG/NameLabel.text = data.display_name
 	has_bonus = data.progress >= data.level
 

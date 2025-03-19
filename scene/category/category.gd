@@ -17,26 +17,34 @@ func _process(_delta: float) -> void:
 
 func create_character_btns():
 	var categorys = Main.categorys_data
-	var offset = size.x / (categorys.size()+1)
+	var spaceing = 40
+	var offset = spaceing
 	var i = 0
 	for data: Main.CategoryData in categorys:
 		var btn: Button = category_btn.instantiate()
-		btn.expand_icon = true
-		btn.size = Vector2(150, 300)
-		btn.text = data.category
+		#btn.expand_icon = true
+		#btn.size = Vector2(150, 300)
+		#btn.text = data.category
+		btn.img_n = load("res://scene/category/category_btn/select_" + str(i) + "_n.png")
+		btn.img_s = load("res://scene/category/category_btn/select_" + str(i) + ".png")
+		btn.icon = btn.img_n
+		btn.scale = Vector2(0.75, 0.75)
 		#var test_color = ColorRect.new()
 		#test_color.set_anchors_preset(Control.PRESET_FULL_RECT)
 		#btn.add_child(test_color)
 		var title_lbl = Label.new()
 		title_lbl.text = get_category_title(data)
-		title_lbl.set_anchors_preset(Control.PRESET_BOTTOM_LEFT)
-		title_lbl.add_theme_font_size_override("font_size", 20)
-		titles_dic[data.category] = title_lbl
+		title_lbl.set_anchors_preset(Control.PRESET_BOTTOM_WIDE)
+		title_lbl.add_theme_font_size_override("font_size", 30)
+		title_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		btn.add_child(title_lbl)
+		titles_dic[data.category] = title_lbl
+		btn.position = Vector2.ZERO # 不知為何這樣才能取到size
 		btn.position = Vector2(
-			(i + 1) * offset - btn.size.x/2,
-			500 - btn.size.y
+			offset,
+			420 - btn.size.y * btn.scale.y
 		)
+		offset += btn.size.x * btn.scale.x + spaceing
 		# 綁定點擊事件
 		btn.pressed.connect(_on_category_btn_pressed.bind(data))
 		#btn.focus_mode = Control.FOCUS_NONE # 消除按鈕邊框
@@ -45,12 +53,7 @@ func create_character_btns():
 
 
 func get_category_title(data: Main.CategoryData) -> String:
-	var all_level = 0
-	var progress: float = 0
-	for c_data in data.characters:
-		all_level += c_data.level
-		progress += c_data.progress
-	return data.category + " " + str(int(progress / all_level * 100)) + "%"
+	return data.category + " " + data.get_progress_str()
 
 
 func refresh():
