@@ -119,3 +119,6 @@ focus_mode = 0
 icon = ExtResource("4_pqfi0")
 flat = true
 expand_icon = true
+
+[connection signal="pressed" from="." to="." method="_on_pressed" binds= [false]]
+[connection signal="pressed" from="BonusButton" to="." method="_on_pressed" binds= [true]]

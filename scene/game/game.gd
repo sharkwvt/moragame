@@ -3,6 +3,8 @@ extends Control
 var character_data: Main.CharacterData
 var character_imgs = []
 var menu_btn: MenuButton
+var has_bonus = false
+var gameover_view: ColorRect
 # 對話
 var story_view: Control
 var story_character: TextureRect
@@ -56,6 +58,7 @@ func setup():
 	player_choice_sp = $"Game/我方出拳"
 	bot_choice_sp = $"Game/對方出拳"
 	menu_btn = $Game/MenuButton
+	gameover_view = $GameOver
 	var popup: PopupMenu = menu_btn.get_popup()
 	popup.add_theme_font_size_override("font_size", 50) # 改字體大小
 	popup.id_pressed.connect(_on_popup_item_pressed)
@@ -66,8 +69,9 @@ func reset_game():
 	load_imgs()
 	game_state = STATE.對話
 	story_view.visible = true
+	gameover_view.visible = false
 	# 已通關時重新開始
-	if character_data.progress >= character_data.level:
+	if character_data.progress >= character_data.level or has_bonus:
 		now_level = 0
 	else:
 		now_level = character_data.progress
@@ -86,7 +90,6 @@ func refresh_game():
 
 func load_imgs():
 	character_imgs.clear()
-	var file_name = character_data.file_name
 	for i in character_data.story.size():
 		var path = character_data.get_cg_path(i+1)
 		var img = load(path)
@@ -126,6 +129,8 @@ func set_choice_visible(to_set: bool):
 	bot_choice_sp.visible = to_set
 	tip_view.visible = to_set
 
+func gameover():
+	gameover_view.visible = true
 
 # 輸贏判定
 func play_logic():
@@ -143,6 +148,8 @@ func play_logic():
 			tip_lbl.text = "贏了"
 		-1:
 			tip_lbl.text = "輸了"
+			if has_bonus:
+				gameover()
 
 # 猜拳判定
 func determine_winner(player, bot):
@@ -183,3 +190,10 @@ func _input(event):
 	# 滑鼠任何鍵
 	if event is InputEventMouseButton and event.pressed and game_state != STATE.退出:
 		to_continue()
+
+
+func _on_again_button_pressed() -> void:
+	reset_game()
+
+func _on_return_button_pressed() -> void:
+	quite()

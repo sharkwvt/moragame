@@ -30,7 +30,7 @@ func setup():
 	for btn: MenuBtn in btns:
 		btn.mouse_entered.connect(_on_btn_mouse_entered.bind(i, btn))
 		btn.mouse_exited.connect(_on_btn_mouse_exited.bind(i))
-		btn.pressed.connect(_on_characters_btn_pressed.bind(btn))
+		#btn.pressed.connect(_on_characters_btn_pressed.bind(btn))
 		i += 1
 		
 	refresh()

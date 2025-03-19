@@ -25,4 +25,9 @@ func open():
 	$NameBG.visible = true
 	$BonusButton.visible = has_bonus
 	disabled = false
-	
+
+
+func _on_pressed(is_bonus) -> void:
+	Main.current_character_data = character_data
+	Main.to_scene(Main.SCENE.game)
+	Main.instance_scenes[Main.SCENE.game].has_bonus = is_bonus
