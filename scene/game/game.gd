@@ -3,7 +3,7 @@ extends Control
 var character_data: Main.CharacterData
 var character_imgs = []
 var menu_btn: MenuButton
-var has_bonus = false
+var is_bonus = false
 var gameover_view: ColorRect
 # 對話
 var story_view: Control
@@ -71,7 +71,7 @@ func reset_game():
 	story_view.visible = true
 	gameover_view.visible = false
 	# 已通關時重新開始
-	if character_data.progress >= character_data.level or has_bonus:
+	if character_data.progress >= character_data.level or is_bonus:
 		now_level = 0
 	else:
 		now_level = character_data.progress
@@ -115,6 +115,9 @@ func to_continue():
 				refresh_game()
 				story_view.visible = true
 		STATE.通關:
+			if is_bonus:
+				character_data.has_bonus = true
+				Main.save_game()
 			quite()
 
 
@@ -144,11 +147,12 @@ func play_logic():
 			now_level += 1
 			if character_data.progress < now_level:
 				character_data.progress = now_level
+				Main.save_game()
 			game_state = STATE.對話
 			tip_lbl.text = "贏了"
 		-1:
 			tip_lbl.text = "輸了"
-			if has_bonus:
+			if is_bonus:
 				gameover()
 
 # 猜拳判定

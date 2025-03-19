@@ -1,6 +1,7 @@
 extends Node
 
 var characters_json_path = "res://characters/characters.json"
+var game_save_path = "user://moragame.save"
 
 var setting_view = preload("res://setting_view.tscn")
 
@@ -31,6 +32,7 @@ class CharacterData:
 	var level: int
 	var story: Array
 	var progress = 0
+	var has_bonus = false
 	func get_avatar_path() -> String:
 		return "res://characters/" + file_name + "/" + file_name + "_1.jpg"
 	func get_cg_path(index) -> String:
@@ -59,9 +61,9 @@ var this_platform: String = "other" # 遊戲平台
 
 # 要同步的數據
 var statistics: Dictionary = {
-	"代幣": 0
-	}
-const STAT_KEY_COIN = "代幣"
+	"characters_data": []
+}
+const STAT_KEY_Characters = "characters_data"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -110,6 +112,7 @@ func reload_data():
 	load_characters_data()
 	create_test_data() # 測試用資料
 	load_category_data()
+	load_game_save()
 
 
 func load_characters_data():
@@ -173,6 +176,48 @@ func load_characters_json():
 		return
 	
 	characters_json = json.data
+
+
+func save_game():
+	statistics[STAT_KEY_Characters] = []
+	var save_file = FileAccess.open(game_save_path, FileAccess.WRITE)
+	
+	for data: CharacterData in characters_data:
+		var dic = {
+			"id" = data.id,
+			"progress" = data.progress,
+			"has_bonus" = data.has_bonus
+		}
+		statistics[STAT_KEY_Characters].append(dic)
+		
+	save_file.store_line(JSON.stringify(statistics))
+
+
+func load_game_save():
+	if not FileAccess.file_exists(game_save_path):
+		print("存擋不存在")
+		return
+		
+	var file := FileAccess.open(game_save_path, FileAccess.READ)
+	if not file:
+		print("讀取存擋失敗")
+		return
+		
+	var content := file.get_as_text()
+	file.close()
+	
+	var json = JSON.new()
+	var pares_result := json.parse(content)
+	if pares_result != OK:
+		print("存擋內容錯誤")
+		return
+	
+	statistics = json.data
+	for data: CharacterData in characters_data:
+		for obj in statistics[STAT_KEY_Characters]:
+			if obj["id"] == data.id:
+				data.progress = obj["progress"]
+				data.has_bonus = obj["has_bonus"]
 
 
 func show_setting_view():

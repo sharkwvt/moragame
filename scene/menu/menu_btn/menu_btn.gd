@@ -30,4 +30,4 @@ func open():
 func _on_pressed(is_bonus) -> void:
 	Main.current_character_data = character_data
 	Main.to_scene(Main.SCENE.game)
-	Main.instance_scenes[Main.SCENE.game].has_bonus = is_bonus
+	Main.instance_scenes[Main.SCENE.game].is_bonus = is_bonus
