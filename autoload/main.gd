@@ -36,7 +36,7 @@ class CharacterData:
 	func get_avatar_path() -> String:
 		return "res://characters/" + file_name + "/" + file_name + "_1.jpg"
 	func get_cg_path(index) -> String:
-		return "res://characters/" + file_name + "/" + file_name + "_" + str(index) + ".jpg"
+		return "res://characters/" + file_name + "/" + file_name + "_" + str(index+1) + ".jpg"
 var characters_json: Dictionary
 var characters_data = []
 var current_character_data: CharacterData

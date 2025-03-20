@@ -7,6 +7,11 @@ var category_list_btns = []
 var character_btns = []
 var character_lbls = []
 
+var review_imgs = []
+var review_view: ColorRect
+var review_img: TextureRect
+var view_index = 0
+
 var selected_category: Main.CategoryData
 
 # Called when the node enters the scene tree for the first time.
@@ -33,6 +38,14 @@ func setup():
 	character_lbls.append($Panel3/NameLabel)
 	character_lbls.append($Panel4/NameLabel)
 	character_lbls.append($Panel5/NameLabel)
+	review_view = $View
+	review_img = $View/TextureRect
+
+
+func show_review(data: Main.CharacterData):
+	review_view.visible = true
+	load_imgs(data)
+	review_img.texture = review_imgs[view_index]
 
 
 func create_category_btns():
@@ -48,6 +61,12 @@ func create_category_btns():
 		btn.pressed.connect(_on_category_btn_pressed.bind(i))
 		category_list_panel.add_child(btn)
 		category_list_btns.append(btn)
+
+
+func load_imgs(data: Main.CharacterData):
+	review_imgs.clear()
+	for i in data.story.size():
+		review_imgs.append(load(data.get_cg_path(i)))
 
 
 func refresh_characters():
@@ -89,3 +108,14 @@ func _on_return_button_pressed() -> void:
 
 func _on_character_button_pressed(extra_arg_0: int) -> void:
 	var data = selected_category.characters[extra_arg_0]
+	show_review(data)
+
+
+func _on_view_button_pressed() -> void:
+	view_index += 1
+	if view_index >= review_imgs.size():
+		review_view.visible = false
+		view_index = 0
+		return
+	review_img.texture = review_imgs[view_index]
+	

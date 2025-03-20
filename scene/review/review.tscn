@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://7eupwhka7hay"]
+[gd_scene load_steps=10 format=3 uid="uid://7eupwhka7hay"]
 
 [ext_resource type="Script" path="res://scene/review/review.gd" id="1_v2t6e"]
 [ext_resource type="Texture2D" uid="uid://dryyp3w856wdb" path="res://scene/review/review_bg.jpg" id="1_xnd0t"]
 [ext_resource type="Texture2D" uid="uid://dmnlpgomsbqkf" path="res://image/return.png" id="2_y3tl7"]
 [ext_resource type="Script" path="res://common/common_button.gd" id="3_uvvti"]
 [ext_resource type="Texture2D" uid="uid://cllgmvngq6gop" path="res://scene/review/iphone.png" id="5_h58or"]
+[ext_resource type="Texture2D" uid="uid://bjljegg77h8m6" path="res://characters/c_1.png" id="6_ccxe2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xclfo"]
 bg_color = Color(0.707496, 0.513817, 0.782956, 1)
@@ -339,9 +340,39 @@ theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 30
 text = "名字"
 
+[node name="View" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="View"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_ccxe2")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ViewButton" type="Button" parent="View"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
 [connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]
 [connection signal="pressed" from="Panel/Mask/CommonButton" to="." method="_on_character_button_pressed" binds= [0]]
 [connection signal="pressed" from="Panel2/Mask/CommonButton" to="." method="_on_character_button_pressed" binds= [1]]
 [connection signal="pressed" from="Panel3/Mask/CommonButton" to="." method="_on_character_button_pressed" binds= [2]]
 [connection signal="pressed" from="Panel4/Mask/CommonButton" to="." method="_on_character_button_pressed" binds= [3]]
 [connection signal="pressed" from="Panel5/Mask/CommonButton" to="." method="_on_character_button_pressed" binds= [4]]
+[connection signal="pressed" from="View/ViewButton" to="." method="_on_view_button_pressed"]
