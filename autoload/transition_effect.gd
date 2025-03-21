@@ -77,6 +77,11 @@ func set_tween(anim_type = 0, duration: float = 1.0):
 	match anim_type:
 		1: # 左移出
 			tween.tween_property(texture_rect, "position:x", -texture_rect.size.x, duration)
+		2: # 放大+移動+跑shader
+			tween.set_parallel(true)
+			tween.tween_property(texture_rect, "position", -get_viewport().get_mouse_position(), duration)
+			tween.tween_property(texture_rect, "scale", Vector2(2, 2), duration)
+			tween.tween_property(shader_material, "shader_parameter/progress", 1.0, duration)
 		_: # 跑shader
 			tween.tween_property(shader_material, "shader_parameter/progress", 1.0, duration)
 

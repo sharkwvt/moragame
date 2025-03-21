@@ -190,7 +190,8 @@ func save_game():
 		}
 		statistics[STAT_KEY_Characters].append(dic)
 		
-	save_file.store_line(JSON.stringify(statistics))
+	#save_file.store_line(JSON.stringify(statistics))
+	save_file.store_var(statistics)
 
 
 func load_game_save():
@@ -203,16 +204,24 @@ func load_game_save():
 		print("讀取存擋失敗")
 		return
 		
-	var content := file.get_as_text()
+	#var content := file.get_as_text()
+	#file.close()
+	#
+	#var json = JSON.new()
+	#var pares_result := json.parse(content)
+	#if pares_result != OK:
+		#print("存擋內容錯誤")
+		#return
+	
+	#statistics = json.data
+		
+	var save_data = file.get_var()
 	file.close()
-	
-	var json = JSON.new()
-	var pares_result := json.parse(content)
-	if pares_result != OK:
-		print("存擋內容錯誤")
+	if save_data == null:
+		print("存擋為空")
 		return
-	
-	statistics = json.data
+		
+	statistics = save_data
 	for data: CharacterData in characters_data:
 		for obj in statistics[STAT_KEY_Characters]:
 			if obj["id"] == data.id:

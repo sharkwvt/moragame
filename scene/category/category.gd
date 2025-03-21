@@ -68,7 +68,7 @@ func show_scene():
 
 func _on_category_btn_pressed(data):
 	Main.current_category_data = data
-	Main.to_scene(Main.SCENE.menu)
+	Main.to_scene(Main.SCENE.menu, 2)
 
 
 func _on_setting_button_pressed() -> void:
