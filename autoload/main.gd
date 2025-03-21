@@ -59,11 +59,11 @@ var music_player: AudioStreamPlayer
 
 var this_platform: String = "other" # 遊戲平台
 
+const STAT_KEY_Characters = "characters_data"
 # 要同步的數據
 var statistics: Dictionary = {
-	"characters_data": []
+	STAT_KEY_Characters: []
 }
-const STAT_KEY_Characters = "characters_data"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
