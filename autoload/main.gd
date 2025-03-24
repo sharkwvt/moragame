@@ -34,9 +34,9 @@ class CharacterData:
 	var progress = 0
 	var has_bonus = false
 	func get_avatar_path() -> String:
-		return "res://characters/" + file_name + "/" + file_name + "_1.jpg"
+		return "res://characters/" + file_name + "/" + file_name + "_1.png"
 	func get_cg_path(index) -> String:
-		return "res://characters/" + file_name + "/" + file_name + "_" + str(index+1) + ".jpg"
+		return "res://characters/" + file_name + "/" + file_name + "_" + str(index+1) + ".png"
 var characters_json: Dictionary
 var characters_data = []
 var current_character_data: CharacterData

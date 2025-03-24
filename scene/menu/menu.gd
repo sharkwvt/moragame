@@ -4,10 +4,12 @@ class_name MenuScene
 var select_rooms = []
 var category_data: Main.CategoryData
 var btns = []
+var newTween:Tween
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	setup()
+	$lightMask.mouse_filter = MOUSE_FILTER_IGNORE
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -27,10 +29,12 @@ func setup():
 	btns.append($MenuBtn4)
 	btns.append($MenuBtn5)
 	var i = 0
-	for btn: MenuBtn in btns:
+	for tr: TextureRect in select_rooms:
+		tr.modulate.a = 0		
+	for btn: MenuBtn in btns:				
 		btn.mouse_entered.connect(_on_btn_mouse_entered.bind(i, btn))
 		btn.mouse_exited.connect(_on_btn_mouse_exited.bind(i))
-		#btn.pressed.connect(_on_characters_btn_pressed.bind(btn))
+		btn.pressed.connect(_on_characters_btn_pressed.bind(i,btn))
 		i += 1
 		
 	refresh()
@@ -55,18 +59,33 @@ func set_btns():
 
 func refresh():
 	category_data = Main.current_category_data
+	$lightMask.color.a= 0
+	for btn: MenuBtn in btns:		
+		btn.mouse_filter = Control.MOUSE_FILTER_STOP
+		
 	set_btns()
 
 
-func show_scene():
+func show_scene():	
 	refresh()
 
 
 func _on_btn_mouse_entered(id, btn) -> void:
-	select_rooms[id].visible = not btn.disabled
+	if btn.disabled	:
+		return
+	var tex:TextureRect= select_rooms[id] 	
+	tex.modulate.a=0
+	newTween = create_tween()	
+	newTween.tween_property(
+		tex,"modulate:a",0.6,0.15
+	)
 
 func _on_btn_mouse_exited(id) -> void:
-	select_rooms[id].visible = false
+	#select_rooms[id].visible = false
+	var tex:TextureRect= select_rooms[id] 
+	tex.modulate.a=0
+	if newTween!=null:
+		newTween.stop()
 
 
 func _on_setting_button_pressed() -> void:
@@ -77,6 +96,23 @@ func _on_return_button_pressed() -> void:
 	Main.to_scene(Main.SCENE.category)
 
 
-func _on_characters_btn_pressed(btn) -> void:
-	Main.current_character_data = btn.character_data
-	Main.to_scene(Main.SCENE.game)
+func _on_characters_btn_pressed(i,btn) -> void:
+	Main.current_character_data = btn.character_data	
+	for b: MenuBtn in btns:
+		b.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var tex:TextureRect= select_rooms[i] 
+	tex.modulate.a=0.6
+	var newTween = create_tween()
+	newTween.tween_property(
+		tex,"modulate:a",2,0.3
+	)
+	newTween.tween_property(
+		$lightMask,"color:a",1,0.6
+	)
+	newTween.finished.connect(_on_change_scene)
+	
+	
+func _on_change_scene ():
+	
+	Main.to_scene(Main.SCENE.game)	
+	

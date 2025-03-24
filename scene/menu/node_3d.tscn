@@ -1,0 +1,75 @@
+[gd_scene load_steps=10 format=3 uid="uid://3hs0v6alrb8x"]
+
+[ext_resource type="Texture2D" uid="uid://42fieeov0dit" path="res://scene/menu/land.png" id="1_jqpte"]
+[ext_resource type="Texture2D" uid="uid://b5dpant7ds151" path="res://scene/menu/sky.png" id="2_fxjm6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_neeey"]
+albedo_texture = ExtResource("1_jqpte")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0heu8"]
+lightmap_size_hint = Vector2i(202, 202)
+material = SubResource("StandardMaterial3D_neeey")
+size = Vector2(400, 200)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7yly7"]
+albedo_texture = ExtResource("2_fxjm6")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bhmff"]
+render_priority = 1
+albedo_texture = ExtResource("2_fxjm6")
+subsurf_scatter_enabled = true
+backlight_enabled = true
+backlight = Color(1, 1, 1, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_sdpfd"]
+lightmap_size_hint = Vector2i(17, 19)
+material = SubResource("StandardMaterial3D_bhmff")
+flip_faces = true
+top_radius = 100.0
+bottom_radius = 100.0
+height = 100.0
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="Skin" id="Skin_dtu5r"]
+bind_count = 1
+bind/0/name = &""
+bind/0/bone = -1
+bind/0/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_iv2ed"]
+size = Vector3(40, 90, 30)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.707103, -0.00314159, 0.707103, 0.00222144, 0.999995, 0.00222144, -0.707107, 2.05795e-11, 0.707107, 61.2345, 27.8222, 73.3684)
+
+[node name="plane" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_0heu8")
+
+[node name="sky" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.999619, 0, 0, 0, 0.999619, 0, 0, 0, 0.999619, -0.150436, 49.8465, 0.11174)
+material_override = SubResource("StandardMaterial3D_7yly7")
+mesh = SubResource("CylinderMesh_sdpfd")
+skin = SubResource("Skin_dtu5r")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.32314, 35.2945, -8.88156)
+mesh = SubResource("BoxMesh_iv2ed")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.8904, 49.6973, -40.7185)
+mesh = SubResource("BoxMesh_iv2ed")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.2064, 42.9813, 53.3338)
+mesh = SubResource("BoxMesh_iv2ed")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.0098, 49.6973, -13.8701)
+mesh = SubResource("BoxMesh_iv2ed")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.710001, 0, 0.704201, 0, 1, 0, -0.704201, 0, 0.710001, 65.5497, 0, 70.7865)

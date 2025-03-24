@@ -3,9 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://b3t2ytl32tv2m" path="res://scene/menu/menu_bg.jpg" id="1_sl21d"]
 [ext_resource type="Script" path="res://scene/menu/menu.gd" id="1_tmr3e"]
 [ext_resource type="Texture2D" uid="uid://bcw7eptj1qgoh" path="res://scene/menu/select_rooms/select_room_a.png" id="3_ft4bp"]
-[ext_resource type="Texture2D" uid="uid://brlcx2erf54ob" path="res://image/setting.png" id="4_c57vh"]
+[ext_resource type="Texture2D" uid="uid://brlcx2erf54ob" path="res://Image/setting.png" id="4_c57vh"]
 [ext_resource type="Script" path="res://common/common_button.gd" id="5_1gyvk"]
-[ext_resource type="Texture2D" uid="uid://dmnlpgomsbqkf" path="res://image/return.png" id="6_e4ip4"]
+[ext_resource type="Texture2D" uid="uid://dmnlpgomsbqkf" path="res://Image/return.png" id="6_e4ip4"]
 [ext_resource type="Texture2D" uid="uid://c58ggahgwm0pk" path="res://scene/menu/select_rooms/select_room_b.png" id="7_emlui"]
 [ext_resource type="Texture2D" uid="uid://bx86vseqt28ei" path="res://scene/menu/select_rooms/select_room_c.png" id="8_kvbf0"]
 [ext_resource type="Texture2D" uid="uid://ckhkl1an162wh" path="res://scene/menu/select_rooms/select_room_d.png" id="9_hdhty"]
@@ -56,7 +56,6 @@ flat = true
 script = ExtResource("5_1gyvk")
 
 [node name="SelectRoom" type="TextureRect" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -68,7 +67,6 @@ texture = ExtResource("3_ft4bp")
 expand_mode = 1
 
 [node name="SelectRoom2" type="TextureRect" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -80,7 +78,6 @@ texture = ExtResource("7_emlui")
 expand_mode = 1
 
 [node name="SelectRoom3" type="TextureRect" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -92,7 +89,6 @@ texture = ExtResource("8_kvbf0")
 expand_mode = 1
 
 [node name="SelectRoom4" type="TextureRect" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -104,7 +100,6 @@ texture = ExtResource("9_hdhty")
 expand_mode = 1
 
 [node name="SelectRoom5" type="TextureRect" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -149,6 +144,15 @@ offset_left = 1042.0
 offset_top = 155.0
 offset_right = 1248.0
 offset_bottom = 641.0
+
+[node name="lightMask" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
 
 [connection signal="pressed" from="SettingButton" to="." method="_on_setting_button_pressed"]
 [connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]

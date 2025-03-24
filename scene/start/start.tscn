@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b1kawh5aqevsc" path="res://common/common_button.tscn" id="3_3rubr"]
 [ext_resource type="Texture2D" uid="uid://vrg4bhj51m5t" path="res://icon.svg" id="5_by2yh"]
 [ext_resource type="Script" path="res://common/common_button.gd" id="5_w74jd"]
-[ext_resource type="Texture2D" uid="uid://gg1q2b343rg3" path="res://image/spark_particle2.png" id="6_a37sn"]
+[ext_resource type="Texture2D" uid="uid://gg1q2b343rg3" path="res://Image/spark_particle2.png" id="6_a37sn"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_74k8t"]
 particle_flag_disable_z = true
@@ -104,22 +104,20 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -363.5
-offset_top = 45.0
-offset_right = 363.5
-offset_bottom = 279.0
+offset_left = -231.0
+offset_top = 121.0
+offset_right = 496.0
+offset_bottom = 355.0
 grow_horizontal = 2
 texture = ExtResource("5_by2yh")
 
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
-visible = false
 position = Vector2(812, 413)
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_74k8t")
 texture = ExtResource("6_a37sn")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-visible = false
 position = Vector2(1073, 367)
 emitting = false
 amount = 88
