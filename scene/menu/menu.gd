@@ -100,7 +100,7 @@ func show_scene():
 
 func _on_btn_mouse_entered(id) -> void:
 	var btn: MenuBtn = btns[id]
-	if btn.disabled:
+	if not btn.is_open:
 		return
 	var tex: TextureRect = select_rooms[id]
 	tex.modulate.a = 0
@@ -117,6 +117,9 @@ func _on_btn_mouse_exited(id) -> void:
 
 func _on_btn_pressed(i, bonus) -> void:
 	var btn: MenuBtn = btns[i]
+	if not btn.is_open:
+		Main.show_tip("鎖住了")
+		return
 	Main.current_character_data = btn.character_data
 	is_bonus = bonus
 	play_enter_effect(i)

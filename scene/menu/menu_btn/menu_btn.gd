@@ -3,6 +3,7 @@ class_name MenuBtn
 
 var character_data
 var bonus_btn: Button
+var is_open: bool
 var has_bonus: bool
 
 # Called when the node enters the scene tree for the first time.
@@ -21,7 +22,7 @@ func lock():
 	$AvatarBG.visible = false
 	$NameBG.visible = false
 	$BonusButton.visible = false
-	disabled = true
+	is_open = false
 
 
 func open():
@@ -29,4 +30,4 @@ func open():
 	$AvatarBG.visible = true
 	$NameBG.visible = true
 	$BonusButton.visible = has_bonus
-	disabled = false
+	is_open = true
