@@ -69,14 +69,14 @@ func set_sound_db(value):
 func set_screen_mode(mode: SCREEN_MODE):
 	match mode:
 		SCREEN_MODE.視窗720p:
-			DisplayServer.window_set_size(Vector2i(1280, 720))
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
+			DisplayServer.window_set_size(Vector2i(1280, 720))
 			center_window()
 		SCREEN_MODE.視窗1080p:
-			DisplayServer.window_set_size(Vector2i(1920, 1080))
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
+			DisplayServer.window_set_size(Vector2i(1920, 1080))
 			center_window()
 		SCREEN_MODE.無邊框全螢幕:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)

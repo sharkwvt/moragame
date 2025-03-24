@@ -1,17 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bwg6dvrtjky3i"]
+[gd_scene load_steps=7 format=3 uid="uid://bwg6dvrtjky3i"]
 
 [ext_resource type="Script" path="res://scene/start/start.gd" id="1_upowf"]
 [ext_resource type="Texture2D" uid="uid://nr1sgf6jdxai" path="res://scene/start/start_bg.jpg" id="2_7et6q"]
 [ext_resource type="PackedScene" uid="uid://b1kawh5aqevsc" path="res://common/common_button.tscn" id="3_3rubr"]
 [ext_resource type="Script" path="res://common/common_button.gd" id="5_w74jd"]
 [ext_resource type="Texture2D" uid="uid://gg1q2b343rg3" path="res://image/spark_particle2.png" id="6_a37sn"]
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_74k8t"]
-particle_flag_disable_z = true
-direction = Vector3(0, 0, 0)
-spread = 180.0
-initial_velocity_max = 37.09
-gravity = Vector3(0, 0, 0)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0iler"]
 particle_flag_align_y = true
@@ -102,15 +95,9 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 200
 text = "廁戰勇者"
 
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
-position = Vector2(812, 413)
-emitting = false
-process_material = SubResource("ParticleProcessMaterial_74k8t")
-texture = ExtResource("6_a37sn")
-
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-position = Vector2(1073, 367)
-emitting = false
+visible = false
+position = Vector2(1719, 387)
 amount = 88
 process_material = SubResource("ParticleProcessMaterial_0iler")
 texture = ExtResource("6_a37sn")

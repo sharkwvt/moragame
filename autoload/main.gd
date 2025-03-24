@@ -13,6 +13,9 @@ var review_scene = preload("res://scene/review/review.tscn")
 var music_1 = preload("res://sound/maou_bgm_acoustic50.mp3")
 var btn_sfx = preload("res://sound/maou_se_system47.mp3")
 
+var mouse_click_effect = preload("res://common/mouse_click_effect.tscn")
+var mouse_trail_effect: GPUParticles2D
+
 var current_scene: Control
 
 var instance_scenes = [0, 0, 0, 0, 0]
@@ -71,8 +74,26 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	pass
+	move_mouse_trail()
 
+
+func move_mouse_trail():
+	if mouse_trail_effect == null:
+		create_mouse_trail()
+	mouse_trail_effect.position = get_tree().root.get_mouse_position()
+	
+
+func create_mouse_trail():
+	mouse_trail_effect = GPUParticles2D.new()
+	mouse_trail_effect.texture = load("res://image/spark_particle2.png")
+	var ppm := ParticleProcessMaterial.new()
+	ppm.gravity = Vector3.ZERO # 清除重力
+	mouse_trail_effect.process_material = ppm
+	mouse_trail_effect.amount = 10
+	mouse_trail_effect.speed_scale = 2
+	mouse_trail_effect.emitting = true
+	get_tree().root.add_child(mouse_trail_effect)
+	
 
 func play_music(music):
 	if not music_player:
@@ -105,6 +126,9 @@ func to_scene(scene: SCENE, anim_type = 0):
 		
 	TransitionEffect.start_transition(current_scene, anim_type)
 	current_scene = instance_scenes[scene]
+	
+	# 滑鼠特效移到最前
+	mouse_trail_effect.move_to_front()
 
 
 func reload_data():
@@ -247,3 +271,13 @@ func play_btn_sfx():
 
 func _on_music_finished():
 	music_player.play()
+
+
+func _input(event):
+	# 滑鼠任何鍵
+	if event is InputEventMouseButton and event.pressed:
+		var click_effect: GPUParticles2D = mouse_click_effect.instantiate()
+		click_effect.emitting = true
+		#click_effect.position = get_viewport().get_mouse_position()
+		click_effect.position = event.position
+		get_tree().root.add_child(click_effect)
