@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bwg6dvrtjky3i"]
+[gd_scene load_steps=8 format=3 uid="uid://bwg6dvrtjky3i"]
 
 [ext_resource type="Script" path="res://scene/start/start.gd" id="1_upowf"]
 [ext_resource type="Texture2D" uid="uid://nr1sgf6jdxai" path="res://scene/start/start_bg.jpg" id="2_7et6q"]
 [ext_resource type="PackedScene" uid="uid://b1kawh5aqevsc" path="res://common/common_button.tscn" id="3_3rubr"]
-[ext_resource type="Texture2D" uid="uid://vrg4bhj51m5t" path="res://icon.svg" id="5_by2yh"]
 [ext_resource type="Script" path="res://common/common_button.gd" id="5_w74jd"]
-[ext_resource type="Texture2D" uid="uid://gg1q2b343rg3" path="res://Image/spark_particle2.png" id="6_a37sn"]
+[ext_resource type="Texture2D" uid="uid://gg1q2b343rg3" path="res://image/spark_particle2.png" id="6_a37sn"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_74k8t"]
 particle_flag_disable_z = true
@@ -44,72 +43,64 @@ expand_mode = 1
 
 [node name="StartButton" parent="." instance=ExtResource("3_3rubr")]
 layout_mode = 1
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 200.0
-offset_top = 300.0
-offset_right = 408.0
-offset_bottom = 378.0
+anchors_preset = -1
+anchor_left = 0.176
+anchor_right = 0.176
 grow_horizontal = 1
-grow_vertical = 1
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 70
 text = "開始挑戰"
 flat = true
 
 [node name="ReviewButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 200.0
-offset_top = 380.0
-offset_right = 308.0
-offset_bottom = 458.0
-theme_override_font_sizes/font_size = 50
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.15
+anchor_top = 0.6
+anchor_right = 0.15
+anchor_bottom = 0.6
+grow_vertical = 2
+theme_override_font_sizes/font_size = 70
 text = "回想"
 flat = true
 script = ExtResource("5_w74jd")
 
 [node name="SettingButton" type="Button" parent="."]
 layout_mode = 1
-offset_left = 200.0
-offset_top = 460.0
-offset_right = 308.0
-offset_bottom = 538.0
-theme_override_font_sizes/font_size = 50
+anchors_preset = -1
+anchor_left = 0.15
+anchor_top = 0.7
+anchor_right = 0.15
+anchor_bottom = 0.7
+grow_vertical = 2
+theme_override_font_sizes/font_size = 70
 text = "設置"
 flat = true
 script = ExtResource("5_w74jd")
 
 [node name="ExitButton" type="Button" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -440.0
-offset_top = 180.0
-offset_right = -332.0
-offset_bottom = 258.0
-grow_horizontal = 2
+anchors_preset = -1
+anchor_left = 0.15
+anchor_top = 0.8
+anchor_right = 0.15
+anchor_bottom = 0.8
 grow_vertical = 2
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 70
 text = "離開"
 flat = true
 script = ExtResource("5_w74jd")
 
-[node name="標題" type="TextureRect" parent="."]
+[node name="標題" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = -1
 anchor_left = 0.5
+anchor_top = 0.2
 anchor_right = 0.5
-offset_left = -231.0
-offset_top = 121.0
-offset_right = 496.0
-offset_bottom = 355.0
+anchor_bottom = 0.2
 grow_horizontal = 2
-texture = ExtResource("5_by2yh")
+grow_vertical = 2
+theme_override_font_sizes/font_size = 200
+text = "廁戰勇者"
 
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
 position = Vector2(812, 413)

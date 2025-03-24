@@ -17,8 +17,8 @@ func refresh():
 	var sound_db = Setting.setting_data[Setting.setting_sfx_key]
 	$MusicLabel/MusicSlider.value = music_db
 	$SoundLabel/SoundSlider.value = sound_db
-	$OptionButton.selected = Setting.setting_data[Setting.setting_screen_key]
-	var popup: PopupMenu = $OptionButton.get_popup()
+	$ViewLabel/OptionButton.selected = Setting.setting_data[Setting.setting_screen_key]
+	var popup: PopupMenu = $ViewLabel/OptionButton.get_popup()
 	popup.add_theme_font_size_override("font_size", 50) # 改字體大小
 
 

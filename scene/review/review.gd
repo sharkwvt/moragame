@@ -28,16 +28,14 @@ func _process(_delta: float) -> void:
 
 func setup():
 	category_list_panel = $Phone/CategoryList
-	character_btns.append($Panel/Mask/CommonButton)
-	character_btns.append($Panel2/Mask/CommonButton)
-	character_btns.append($Panel3/Mask/CommonButton)
-	character_btns.append($Panel4/Mask/CommonButton)
-	character_btns.append($Panel5/Mask/CommonButton)
-	character_lbls.append($Panel/NameLabel)
-	character_lbls.append($Panel2/NameLabel)
-	character_lbls.append($Panel3/NameLabel)
-	character_lbls.append($Panel4/NameLabel)
-	character_lbls.append($Panel5/NameLabel)
+	character_btns.append($Characters/RCBtn)
+	character_btns.append($Characters/RCBtn2)
+	character_btns.append($Characters/RCBtn3)
+	character_btns.append($Characters/RCBtn4)
+	character_btns.append($Characters/RCBtn5)
+	for i in character_btns.size():
+		var btn: Button = character_btns[i]
+		btn.pressed.connect(_on_character_button_pressed.bind(i))
 	review_view = $View
 	review_img = $View/TextureRect
 
@@ -73,9 +71,11 @@ func refresh_characters():
 	for i in character_btns.size():
 		var data: Main.CharacterData = selected_category.characters[i]
 		var btn: Button = character_btns[i]
-		var lbl: Label = character_lbls[i]
-		btn.icon = load(data.get_avatar_path())
+		var lbl: Label = btn.lbl
+		var textrue: TextureRect = btn.textrue
+		textrue.texture = load(data.get_avatar_path())
 		btn.disabled = data.progress < data.level
+		textrue.visible = !btn.disabled
 		lbl.text = data.display_name
 
 

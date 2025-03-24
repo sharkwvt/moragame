@@ -3,9 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://b3t2ytl32tv2m" path="res://scene/menu/menu_bg.jpg" id="1_sl21d"]
 [ext_resource type="Script" path="res://scene/menu/menu.gd" id="1_tmr3e"]
 [ext_resource type="Texture2D" uid="uid://bcw7eptj1qgoh" path="res://scene/menu/select_rooms/select_room_a.png" id="3_ft4bp"]
-[ext_resource type="Texture2D" uid="uid://brlcx2erf54ob" path="res://Image/setting.png" id="4_c57vh"]
+[ext_resource type="Texture2D" uid="uid://brlcx2erf54ob" path="res://image/setting.png" id="4_c57vh"]
 [ext_resource type="Script" path="res://common/common_button.gd" id="5_1gyvk"]
-[ext_resource type="Texture2D" uid="uid://dmnlpgomsbqkf" path="res://Image/return.png" id="6_e4ip4"]
+[ext_resource type="Texture2D" uid="uid://dmnlpgomsbqkf" path="res://image/return.png" id="6_e4ip4"]
 [ext_resource type="Texture2D" uid="uid://c58ggahgwm0pk" path="res://scene/menu/select_rooms/select_room_b.png" id="7_emlui"]
 [ext_resource type="Texture2D" uid="uid://bx86vseqt28ei" path="res://scene/menu/select_rooms/select_room_c.png" id="8_kvbf0"]
 [ext_resource type="Texture2D" uid="uid://ckhkl1an162wh" path="res://scene/menu/select_rooms/select_room_d.png" id="9_hdhty"]
@@ -112,38 +112,53 @@ expand_mode = 1
 
 [node name="MenuBtn" parent="." instance=ExtResource("11_m02ck")]
 layout_mode = 0
-offset_left = 67.0
-offset_top = 155.0
-offset_right = 273.0
-offset_bottom = 641.0
+anchors_preset = 0
+offset_left = 92.0
+offset_top = 243.0
+offset_right = 402.0
+offset_bottom = 955.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="MenuBtn2" parent="." instance=ExtResource("11_m02ck")]
 layout_mode = 0
-offset_left = 315.0
-offset_top = 155.0
-offset_right = 521.0
-offset_bottom = 641.0
+anchors_preset = 0
+offset_left = 465.0
+offset_top = 230.0
+offset_right = 769.0
+offset_bottom = 949.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="MenuBtn3" parent="." instance=ExtResource("11_m02ck")]
 layout_mode = 0
-offset_left = 559.0
-offset_top = 155.0
-offset_right = 765.0
-offset_bottom = 641.0
+anchors_preset = 0
+offset_left = 830.0
+offset_top = 235.0
+offset_right = 1139.0
+offset_bottom = 946.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="MenuBtn4" parent="." instance=ExtResource("11_m02ck")]
 layout_mode = 0
-offset_left = 805.0
-offset_top = 155.0
-offset_right = 1011.0
-offset_bottom = 641.0
+anchors_preset = 0
+offset_left = 1199.0
+offset_top = 234.0
+offset_right = 1503.0
+offset_bottom = 953.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="MenuBtn5" parent="." instance=ExtResource("11_m02ck")]
 layout_mode = 0
-offset_left = 1042.0
-offset_top = 155.0
-offset_right = 1248.0
-offset_bottom = 641.0
+anchors_preset = 0
+offset_left = 1567.0
+offset_top = 227.0
+offset_right = 1871.0
+offset_bottom = 955.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="lightMask" type="ColorRect" parent="."]
 layout_mode = 1
@@ -156,4 +171,3 @@ color = Color(1, 1, 1, 0)
 
 [connection signal="pressed" from="SettingButton" to="." method="_on_setting_button_pressed"]
 [connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]
-[connection signal="mouse_entered" from="MenuBtn" to="." method="_on_menu_btn_mouse_entered"]

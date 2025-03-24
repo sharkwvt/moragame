@@ -133,7 +133,7 @@ func create_test_data():
 		data.id = 99 + i
 		data.category = test_category
 		data.display_name = "who"+str(i)
-		data.file_name = "test"
+		data.file_name = "sex_girl_a_lv"
 		data.level = 2
 		data.story = ["test1", "test2", "test3"]
 		characters_data.append(data)

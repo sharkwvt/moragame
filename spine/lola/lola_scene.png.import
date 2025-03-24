@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cj5ghtnmxuhvm"
-path="res://.godot/imported/功能.png-f01a3cbc7f4b5498b81ed621401fc277.ctex"
+uid="uid://bevmvnhsqygee"
+path="res://.godot/imported/lola_scene.png-0955ff77e58da531010f0328b41d4c8c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://image/功能.png"
-dest_files=["res://.godot/imported/功能.png-f01a3cbc7f4b5498b81ed621401fc277.ctex"]
+source_file="res://spine/lola/lola_scene.png"
+dest_files=["res://.godot/imported/lola_scene.png-0955ff77e58da531010f0328b41d4c8c.ctex"]
 
 [params]
 

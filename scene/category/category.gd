@@ -17,7 +17,7 @@ func _process(_delta: float) -> void:
 
 func create_character_btns():
 	var categorys = Main.categorys_data
-	var spaceing = 40
+	var spaceing = 100
 	var offset = spaceing
 	var i = 0
 	for data: Main.CategoryData in categorys:
@@ -28,7 +28,7 @@ func create_character_btns():
 		btn.img_n = load("res://scene/category/category_btn/select_" + str(i) + "_n.png")
 		btn.img_s = load("res://scene/category/category_btn/select_" + str(i) + ".png")
 		btn.icon = btn.img_n
-		btn.scale = Vector2(0.75, 0.75)
+		#btn.scale = Vector2(0.75, 0.75)
 		#var test_color = ColorRect.new()
 		#test_color.set_anchors_preset(Control.PRESET_FULL_RECT)
 		#btn.add_child(test_color)
@@ -42,9 +42,9 @@ func create_character_btns():
 		btn.position = Vector2.ZERO # 不知為何這樣才能取到size
 		btn.position = Vector2(
 			offset,
-			420 - btn.size.y * btn.scale.y
+			size.y * 0.7 - btn.size.y
 		)
-		offset += btn.size.x * btn.scale.x + spaceing
+		offset += btn.size.x + spaceing
 		# 綁定點擊事件
 		btn.pressed.connect(_on_category_btn_pressed.bind(data))
 		#btn.focus_mode = Control.FOCUS_NONE # 消除按鈕邊框

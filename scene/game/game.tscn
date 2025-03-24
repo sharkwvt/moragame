@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://ba1wq5rsch7ls"]
 
 [ext_resource type="Script" path="res://scene/game/game.gd" id="1_tbpdr"]
-[ext_resource type="Texture2D" uid="uid://lce66h88vkhs" path="res://scene/game/select_a_bg.png" id="2_i4cql"]
+[ext_resource type="Texture2D" uid="uid://cdyb41iokvcsy" path="res://scene/game/select_a_bg.png" id="2_i4cql"]
 [ext_resource type="Texture2D" uid="uid://dtip44sec3kdw" path="res://scene/game/剪刀.png" id="2_jvy74"]
 [ext_resource type="Texture2D" uid="uid://bjljegg77h8m6" path="res://characters/c_1.png" id="3_8ova6"]
-[ext_resource type="Texture2D" uid="uid://cj5ghtnmxuhvm" path="res://Image/功能.png" id="3_d0cw2"]
+[ext_resource type="Texture2D" uid="uid://cj5ghtnmxuhvm" path="res://image/功能.png" id="3_d0cw2"]
 [ext_resource type="Texture2D" uid="uid://bdr2ht0bxbdyx" path="res://scene/game/石頭.png" id="3_ulvrh"]
 [ext_resource type="Texture2D" uid="uid://bh61ejcf8ihk0" path="res://scene/game/布.png" id="4_txku1"]
 [ext_resource type="Script" path="res://common/common_button.gd" id="8_mk0gg"]
@@ -37,11 +37,12 @@ texture = ExtResource("2_i4cql")
 expand_mode = 1
 
 [node name="進度" type="Label" parent="Game"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 200.0
-offset_bottom = 81.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.01
+anchor_top = 0.01
+anchor_right = 0.01
+anchor_bottom = 0.01
 theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 50
 text = "進度 0/0"
@@ -58,11 +59,13 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="MenuButton" type="MenuButton" parent="Game"]
-layout_mode = 0
-offset_left = 1197.0
-offset_top = 14.0
-offset_right = 1261.0
-offset_bottom = 89.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.99
+anchor_top = 0.01
+anchor_right = 0.99
+anchor_bottom = 0.01
+grow_horizontal = 0
 icon = ExtResource("3_d0cw2")
 icon_alignment = 2
 vertical_icon_alignment = 0
@@ -73,15 +76,11 @@ popup/item_1/id = 1
 
 [node name="剪刀" type="Button" parent="Game"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 370.0
-offset_top = 26.0
-offset_right = 508.0
-offset_bottom = 164.0
+anchors_preset = -1
+anchor_left = 0.85
+anchor_top = 0.62
+anchor_right = 0.85
+anchor_bottom = 0.62
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
@@ -91,15 +90,11 @@ flat = true
 
 [node name="石頭" type="Button" parent="Game"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 292.0
-offset_top = 202.0
-offset_right = 427.0
-offset_bottom = 337.0
+anchors_preset = -1
+anchor_left = 0.9
+anchor_top = 0.8
+anchor_right = 0.9
+anchor_bottom = 0.8
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
@@ -109,15 +104,11 @@ flat = true
 
 [node name="布" type="Button" parent="Game"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 459.0
-offset_top = 190.0
-offset_right = 612.0
-offset_bottom = 343.0
+anchors_preset = -1
+anchor_left = 0.8
+anchor_top = 0.8
+anchor_right = 0.8
+anchor_bottom = 0.8
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
@@ -126,25 +117,21 @@ icon = ExtResource("4_txku1")
 flat = true
 
 [node name="我方出拳" type="Sprite2D" parent="Game"]
-position = Vector2(1137, 300)
+position = Vector2(358, 805)
 texture = ExtResource("2_jvy74")
 
 [node name="對方出拳" type="Sprite2D" parent="Game"]
-position = Vector2(953, 300)
+position = Vector2(354, 277)
 rotation = 3.14159
 texture = ExtResource("2_jvy74")
 
 [node name="TipView" type="TextureRect" parent="Game"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = -1
+anchor_left = 0.185
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 0.185
 anchor_bottom = 0.5
-offset_left = -434.0
-offset_top = -117.0
-offset_right = -234.0
-offset_bottom = -17.0
 grow_horizontal = 2
 grow_vertical = 2
 

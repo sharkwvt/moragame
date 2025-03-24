@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.json"
+type="SpineSkeletonFileResource"
+uid="uid://d0ugrsakm3jjn"
+path="res://.godot/imported/lola_scene.spine-json-fb7c22c355ef0613ae6822b5d2f25bd9.spjson"
+
+[deps]
+
+source_file="res://spine/lola/lola_scene.spine-json"
+dest_files=["res://.godot/imported/lola_scene.spine-json-fb7c22c355ef0613ae6822b5d2f25bd9.spjson"]
+
+[params]
+

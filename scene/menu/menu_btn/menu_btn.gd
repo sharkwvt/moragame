@@ -2,7 +2,12 @@ extends Button
 class_name MenuBtn
 
 var character_data
+var bonus_btn: Button
 var has_bonus: bool
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	bonus_btn = $BonusButton
 
 func set_data(data: Main.CharacterData):
 	character_data = data
@@ -25,10 +30,3 @@ func open():
 	$NameBG.visible = true
 	$BonusButton.visible = has_bonus
 	disabled = false
-
-
-func _on_pressed(is_bonus) -> void:
-	pass
-	#Main.current_character_data = character_data
-	#Main.to_scene(Main.SCENE.game)
-	#Main.instance_scenes[Main.SCENE.game].is_bonus = is_bonus

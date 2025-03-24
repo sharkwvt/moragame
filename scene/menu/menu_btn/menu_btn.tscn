@@ -20,8 +20,13 @@ corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
 
 [node name="MenuBtn" type="Button"]
-offset_right = 206.0
-offset_bottom = 486.0
+anchors_preset = -1
+offset_left = -103.0
+offset_top = -243.0
+offset_right = 103.0
+offset_bottom = 243.0
+grow_horizontal = 2
+grow_vertical = 2
 focus_mode = 0
 flat = true
 script = ExtResource("1_4bph8")
@@ -119,6 +124,3 @@ focus_mode = 0
 icon = ExtResource("4_pqfi0")
 flat = true
 expand_icon = true
-
-[connection signal="pressed" from="." to="." method="_on_pressed" binds= [false]]
-[connection signal="pressed" from="BonusButton" to="." method="_on_pressed" binds= [true]]

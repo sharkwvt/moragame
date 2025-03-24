@@ -1,0 +1,15 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://coehi5t5mhebg"
+path="res://.godot/imported/girl_a.atlas-df157e84bbcc5824b529711ec8d6e721.spatlas"
+
+[deps]
+
+source_file="res://spine/test/girl_a.atlas"
+dest_files=["res://.godot/imported/girl_a.atlas-df157e84bbcc5824b529711ec8d6e721.spatlas"]
+
+[params]
+
+normal_map_prefix="n"

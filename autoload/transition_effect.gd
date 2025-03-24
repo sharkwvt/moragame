@@ -1,6 +1,6 @@
 extends Node
 
-var screen_size = Vector2i(1280, 720)
+var screen_size = Vector2i(1920, 1080)
 
 var main: Control
 var viewport: SubViewport
