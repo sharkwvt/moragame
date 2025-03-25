@@ -10,6 +10,7 @@ var character_lbls = []
 var review_imgs = []
 var review_view: ColorRect
 var review_img: TextureRect
+var review_spine: SpineSprite
 var view_index = 0
 
 var selected_category: Main.CategoryData
@@ -38,6 +39,9 @@ func setup():
 		btn.pressed.connect(_on_character_button_pressed.bind(i))
 	review_view = $View
 	review_img = $View/TextureRect
+	review_spine = $View/SpineSprite
+	review_view.visible = false
+	review_spine.visible = false
 
 
 func show_review(data: Main.CharacterData):
@@ -65,6 +69,9 @@ func load_imgs(data: Main.CharacterData):
 	review_imgs.clear()
 	for i in data.story.size():
 		review_imgs.append(load(data.get_cg_path(i)))
+	review_spine.skeleton_data_res = load(data.get_spine_path())
+	var anim: SpineAnimationState = review_spine.get_animation_state()
+	anim.add_animation("animation")
 
 
 func refresh_characters():
@@ -113,9 +120,17 @@ func _on_character_button_pressed(extra_arg_0: int) -> void:
 
 func _on_view_button_pressed() -> void:
 	view_index += 1
-	if view_index >= review_imgs.size():
+	if view_index < review_imgs.size():
+		review_img.texture = review_imgs[view_index]
+	elif view_index == review_imgs.size():
+		# 顯示spine
+		review_img.visible = false
+		review_spine.visible = true
+	else:
+		# 關閉
 		review_view.visible = false
+		# 初始化
+		review_img.visible = true
+		review_spine.visible = false
 		view_index = 0
-		return
-	review_img.texture = review_imgs[view_index]
 	

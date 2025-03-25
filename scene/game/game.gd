@@ -142,11 +142,6 @@ func show_bonus():
 	spine_sprite.skeleton_data_res = load(character_data.get_spine_path())
 	var anim: SpineAnimationState = spine_sprite.get_animation_state()
 	anim.add_animation("animation")
-	var spine_size = spine_sprite.get_bounding_box()
-	spine_sprite.position = Vector2(
-		(size.x - spine_size.x)/2,
-		(size.y - spine_size.y)/2
-	)
 
 # 顯示雙方猜拳
 func show_choice():
