@@ -18,15 +18,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tbpdr")
 
-[node name="Game" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="BG" type="TextureRect" parent="Game"]
+[node name="BG" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,6 +27,26 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_i4cql")
 expand_mode = 1
+
+[node name="Character" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_8ova6")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Game" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
 
 [node name="進度" type="Label" parent="Game"]
 layout_mode = 1
@@ -46,17 +58,6 @@ anchor_bottom = 0.01
 theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 50
 text = "進度 0/0"
-
-[node name="GameCharacter" type="TextureRect" parent="Game"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_8ova6")
-expand_mode = 1
-stretch_mode = 5
 
 [node name="MenuButton" type="MenuButton" parent="Game"]
 layout_mode = 1
@@ -152,8 +153,7 @@ theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 50
 text = "結果"
 
-[node name="Story" type="ColorRect" parent="."]
-visible = false
+[node name="Bonus" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -161,15 +161,26 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="StoryCharacter" type="TextureRect" parent="Story"]
+[node name="BG" type="TextureRect" parent="Bonus"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("2_i4cql")
 expand_mode = 1
-stretch_mode = 5
+
+[node name="SpineSprite" type="SpineSprite" parent="Bonus"]
+
+[node name="Story" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
 
 [node name="Talk" type="TextureRect" parent="Story"]
 layout_mode = 1

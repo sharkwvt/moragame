@@ -5,14 +5,14 @@ var character_imgs = []
 var menu_btn: MenuButton
 var is_bonus = false
 var gameover_view: ColorRect
+var game_state = STATE.對話
+var game_character: TextureRect
 # 對話
 var story_view: Control
-var story_character: TextureRect
 var talk_view: TextureRect
 var talk_lbl: Label
 # 猜拳
-var game_state = STATE.對話
-var game_character: TextureRect
+var game_view: Control
 var now_level: int
 var tip_view: TextureRect
 var tip_lbl: Label
@@ -22,12 +22,16 @@ var player_choice
 var bot_choice
 var choice_str = ["剪刀", "石頭", "布"]
 var choice_img_path = "res://scene/game/%s.png"
+# bonus
+var bonus_view: Control
+var spine_sprite: SpineSprite
 
 enum STATE {
 	退出 = -1,
 	對話 = 0,
 	猜拳 = 1,
-	通關 = 2
+	通關 = 2,
+	bonus = 3
 }
 
 enum CHOICES {
@@ -48,16 +52,18 @@ func _process(_delta: float) -> void:
 
 
 func setup():
+	game_character = $Character
 	story_view = $Story
-	story_character = $Story/StoryCharacter
 	talk_view = $Story/Talk
 	talk_lbl = $Story/Talk/Label
-	game_character = $Game/GameCharacter
+	game_view = $Game
 	tip_view = $Game/TipView
 	tip_lbl = $Game/TipView/TipLabel
 	player_choice_sp = $"Game/我方出拳"
 	bot_choice_sp = $"Game/對方出拳"
 	menu_btn = $Game/MenuButton
+	bonus_view = $Bonus
+	spine_sprite = $Bonus/SpineSprite
 	gameover_view = $GameOver
 	var popup: PopupMenu = menu_btn.get_popup()
 	popup.add_theme_font_size_override("font_size", 50) # 改字體大小
@@ -69,6 +75,7 @@ func reset_game():
 	load_imgs()
 	game_state = STATE.對話
 	story_view.visible = true
+	bonus_view.visible = false
 	gameover_view.visible = false
 	# 已通關時重新開始
 	if character_data.progress >= character_data.level or is_bonus:
@@ -79,7 +86,6 @@ func reset_game():
 
 
 func refresh_game():
-	story_character.texture = character_imgs[now_level]
 	game_character.texture = character_imgs[now_level]
 	set_choice_visible(false)
 	$"Game/進度".text = "進度 " + str(now_level) + "/" + str(character_data.level)
@@ -106,20 +112,41 @@ func to_continue():
 				## 開啟對話
 				#talk_view.visible = true
 			elif story_view.visible == true:
-				# 關閉對話
+				# 關閉對話，開始猜拳
 				story_view.visible = false
-				# 開始猜拳
+				game_view.visible = true
 				game_state = STATE.猜拳
 			elif story_view.visible == false:
 				# 猜拳完進對話
 				refresh_game()
+				game_view.visible = false
 				story_view.visible = true
+			
 		STATE.通關:
 			if is_bonus:
 				character_data.has_bonus = true
 				Main.save_game()
+				show_bonus()
+			else:
+				quite()
+			
+		STATE.bonus:
 			quite()
 
+
+func show_bonus():
+	game_state = STATE.bonus
+	story_view.visible = false
+	game_view.visible = false
+	bonus_view.visible = true
+	spine_sprite.skeleton_data_res = load(character_data.get_spine_path())
+	var anim: SpineAnimationState = spine_sprite.get_animation_state()
+	anim.add_animation("animation")
+	var spine_size = spine_sprite.get_bounding_box()
+	spine_sprite.position = Vector2(
+		(size.x - spine_size.x)/2,
+		(size.y - spine_size.y)/2
+	)
 
 # 顯示雙方猜拳
 func show_choice():

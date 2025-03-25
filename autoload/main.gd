@@ -40,6 +40,9 @@ class CharacterData:
 		return "res://characters/" + file_name + "/" + file_name + "_1.png"
 	func get_cg_path(index) -> String:
 		return "res://characters/" + file_name + "/" + file_name + "_" + str(index+1) + ".png"
+	func get_spine_path() -> String:
+		var path = "res://characters/" + file_name + "/" + file_name + ".tres"
+		return path if FileAccess.file_exists(path) else "res://spine/test/test.tres"
 var characters_json: Dictionary
 var characters_data = []
 var current_character_data: CharacterData
@@ -60,6 +63,7 @@ var current_category_data: CategoryData
 
 var music_player: AudioStreamPlayer
 
+var lang # 語系
 var this_platform: String = "other" # 遊戲平台
 
 const STAT_KEY_Characters = "characters_data"
@@ -70,6 +74,10 @@ var statistics: Dictionary = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if "TW" or "HK" in OS.get_locale():
+		lang = "zhc"
+	else:
+		lang = OS.get_locale_language()
 	reload_data()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

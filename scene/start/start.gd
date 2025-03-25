@@ -5,7 +5,7 @@ class_name StartScene
 func _ready() -> void:
 	Main.current_scene = self
 	Main.instance_scenes[Main.SCENE.start] = self
-	Main.play_music(Main.music_1)	
+	Main.play_music(Main.music_1)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
