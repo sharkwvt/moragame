@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bwg6dvrtjky3i"]
+[gd_scene load_steps=6 format=3 uid="uid://bwg6dvrtjky3i"]
 
 [ext_resource type="Script" path="res://scene/start/start.gd" id="1_upowf"]
 [ext_resource type="Texture2D" uid="uid://nr1sgf6jdxai" path="res://scene/start/start_bg.jpg" id="2_7et6q"]
-[ext_resource type="PackedScene" uid="uid://b1kawh5aqevsc" path="res://common/common_button.tscn" id="3_3rubr"]
 [ext_resource type="Script" path="res://common/common_button.gd" id="5_w74jd"]
 [ext_resource type="Texture2D" uid="uid://gg1q2b343rg3" path="res://image/spark_particle2.png" id="6_a37sn"]
 
@@ -34,15 +33,22 @@ grow_vertical = 2
 texture = ExtResource("2_7et6q")
 expand_mode = 1
 
-[node name="StartButton" parent="." instance=ExtResource("3_3rubr")]
+[node name="StartButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.176
+anchor_top = 0.5
 anchor_right = 0.176
-grow_horizontal = 1
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_vertical = 2
 theme_override_font_sizes/font_size = 70
 text = "開始挑戰"
 flat = true
+script = ExtResource("5_w74jd")
 
 [node name="ReviewButton" type="Button" parent="."]
 layout_mode = 1

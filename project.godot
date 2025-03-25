@@ -41,6 +41,12 @@ esc={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://野球拳語言表 - UI.en.translation", "res://野球拳語言表 - UI.zh.translation", "res://野球拳語言表 - UI.zhc.translation")
+locale/fallback="zhc"
+locale/locale_filter_mode=0
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

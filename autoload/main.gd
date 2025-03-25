@@ -63,7 +63,6 @@ var current_category_data: CategoryData
 
 var music_player: AudioStreamPlayer
 
-var lang # 語系
 var this_platform: String = "other" # 遊戲平台
 
 const STAT_KEY_Characters = "characters_data"
@@ -74,10 +73,13 @@ var statistics: Dictionary = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	var lang
 	if "TW" or "HK" in OS.get_locale():
 		lang = "zhc"
 	else:
 		lang = OS.get_locale_language()
+	TranslationServer.set_locale(lang)
+	
 	reload_data()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
