@@ -73,13 +73,7 @@ var statistics: Dictionary = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var lang
-	if "TW" or "HK" in OS.get_locale():
-		lang = "zhc"
-	else:
-		lang = OS.get_locale_language()
-	TranslationServer.set_locale(lang)
-	
+	load_lang()
 	reload_data()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -103,7 +97,16 @@ func create_mouse_trail():
 	mouse_trail_effect.speed_scale = 2
 	mouse_trail_effect.emitting = true
 	get_tree().root.add_child(mouse_trail_effect)
-	
+
+
+func load_lang():
+	var lang
+	if "TW" or "HK" in OS.get_locale():
+		lang = "zhc"
+	else:
+		lang = OS.get_locale_language()
+	TranslationServer.set_locale(lang)
+
 
 func play_music(music):
 	if not music_player:
