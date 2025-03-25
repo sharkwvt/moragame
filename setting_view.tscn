@@ -28,34 +28,62 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.54902, 0.580392, 1, 1)
 
+[node name="ViewLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.43
+anchor_top = 0.35
+anchor_right = 0.43
+anchor_bottom = 0.35
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "顯示"
+
+[node name="OptionButton" type="OptionButton" parent="ViewLabel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 50.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+selected = 0
+item_count = 4
+popup/item_0/text = "視窗 720p"
+popup/item_1/text = "視窗 1080p"
+popup/item_1/id = 1
+popup/item_2/text = "無邊框全螢幕"
+popup/item_2/id = 2
+popup/item_3/text = "全螢幕"
+popup/item_3/id = 3
+
 [node name="MusicLabel" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -240.0
-offset_top = -110.0
-offset_right = -140.0
-offset_bottom = -40.0
-grow_horizontal = 2
+anchors_preset = -1
+anchor_left = 0.43
+anchor_top = 0.45
+anchor_right = 0.43
+anchor_bottom = 0.45
+grow_horizontal = 0
 grow_vertical = 2
 theme_override_font_sizes/font_size = 50
 text = "音樂"
 
 [node name="MusicSlider" type="HSlider" parent="MusicLabel"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 6
+anchor_left = 1.0
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 107.0
-offset_top = -18.0
-offset_right = 506.0
-offset_bottom = 21.0
-grow_horizontal = 2
+offset_left = 50.0
+offset_top = -19.5
+offset_right = 449.0
+offset_bottom = 19.5
+grow_horizontal = 0
 grow_vertical = 2
 max_value = 1.0
 step = 0.01
@@ -63,32 +91,28 @@ value = 0.5
 
 [node name="SoundLabel" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -240.0
-offset_top = -19.0
-offset_right = -140.0
-offset_bottom = 51.0
-grow_horizontal = 2
+anchors_preset = -1
+anchor_left = 0.43
+anchor_top = 0.54
+anchor_right = 0.43
+anchor_bottom = 0.54
+grow_horizontal = 0
 grow_vertical = 2
 theme_override_font_sizes/font_size = 50
 text = "音效"
 
 [node name="SoundSlider" type="HSlider" parent="SoundLabel"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 6
+anchor_left = 1.0
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 107.0
-offset_top = -18.0
-offset_right = 506.0
-offset_bottom = 21.0
-grow_horizontal = 2
+offset_left = 50.0
+offset_top = -19.5
+offset_right = 449.0
+offset_bottom = 19.5
+grow_horizontal = 0
 grow_vertical = 2
 max_value = 1.0
 step = 0.01
@@ -107,50 +131,10 @@ offset_bottom = 214.0
 theme_override_font_sizes/font_size = 50
 text = "關閉"
 
-[node name="ViewLabel" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -240.0
-offset_top = -205.0
-offset_right = -140.0
-offset_bottom = -135.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 50
-text = "顯示"
-
-[node name="OptionButton" type="OptionButton" parent="ViewLabel"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 50.0
-offset_top = -39.5
-offset_right = 382.0
-offset_bottom = 39.5
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_font_sizes/font_size = 50
-selected = 0
-item_count = 4
-popup/item_0/text = "視窗 720p"
-popup/item_1/text = "視窗 1080p"
-popup/item_1/id = 1
-popup/item_2/text = "無邊框全螢幕"
-popup/item_2/id = 2
-popup/item_3/text = "全螢幕"
-popup/item_3/id = 3
-
 [connection signal="mouse_exited" from="SettingBG" to="." method="_on_setting_bg_mouse_exited"]
+[connection signal="item_selected" from="ViewLabel/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="pressed" from="ViewLabel/OptionButton" to="." method="_on_option_button_pressed"]
 [connection signal="value_changed" from="MusicLabel/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="drag_ended" from="SoundLabel/SoundSlider" to="." method="_on_sound_slider_drag_ended"]
 [connection signal="value_changed" from="SoundLabel/SoundSlider" to="." method="_on_sound_slider_value_changed"]
 [connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]
-[connection signal="item_selected" from="ViewLabel/OptionButton" to="." method="_on_option_button_item_selected"]
-[connection signal="pressed" from="ViewLabel/OptionButton" to="." method="_on_option_button_pressed"]

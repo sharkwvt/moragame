@@ -55,7 +55,7 @@ func create_category_btns():
 	for i in Main.categorys_data.size():
 		var category_data: Main.CategoryData = Main.categorys_data[i]
 		var btn: Button = category_list_btn.instantiate()
-		btn.text = category_data.category + " " + category_data.get_progress_str()
+		btn.text = tr(category_data.category) + " " + category_data.get_progress_str()
 		btn.position = Vector2(
 			0,
 			offset_y + i * (btn.size.y + offset_y)

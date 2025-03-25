@@ -53,7 +53,7 @@ func create_character_btns():
 
 
 func get_category_title(data: Main.CategoryData) -> String:
-	return data.category + " " + data.get_progress_str()
+	return tr(data.category) + " " + data.get_progress_str()
 
 
 func refresh():

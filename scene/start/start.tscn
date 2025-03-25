@@ -72,7 +72,7 @@ anchor_right = 0.15
 anchor_bottom = 0.7
 grow_vertical = 2
 theme_override_font_sizes/font_size = 70
-text = "設置"
+text = "設定"
 flat = true
 script = ExtResource("5_w74jd")
 
