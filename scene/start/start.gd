@@ -1,6 +1,8 @@
 extends Control
 class_name StartScene
 
+var tween: Tween
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Main.current_scene = self
@@ -28,6 +30,18 @@ func setup():
 	exit_btn.mouse_entered.connect(_on_mouse_entered.bind(exit_btn))
 	exit_btn.mouse_exited.connect(_on_mouse_exited.bind(exit_btn))
 
+
+func play_click_anim(obj):
+	var duration = 0.2
+	tween.kill()
+	tween = obj.create_tween()
+	tween.tween_property(obj, "scale", Vector2(1.5, 1.5), duration)
+
+func play_reset_anim(obj):
+	var duration = 0.2
+	tween.kill()
+	tween = obj.create_tween()
+	tween.tween_property(obj, "scale", Vector2(1, 1), duration)
 
 func show_scene():
 	pass
@@ -67,7 +81,7 @@ func run_spine_stop():
 
 func _on_mouse_entered(btn: Button):
 	var duration = 0.5
-	var tween = btn.create_tween()
+	tween = btn.create_tween()
 	tween.set_loops()
 	tween.tween_property(btn, "scale", Vector2(1.1, 1.1), duration)
 	tween.tween_property(btn, "scale", Vector2(1, 1), duration)
@@ -78,18 +92,33 @@ func _on_mouse_exited(btn: Button):
 	btn.scale = Vector2(1, 1)
 
 func _on_start_button_pressed() -> void:
-	Main.to_scene(Main.SCENE.category, 1)
+	var btn = $StartButton
+	play_click_anim(btn)
+	await tween.finished
+	Main.to_scene(Main.SCENE.category)
+	play_reset_anim(btn)
 
 
 func _on_review_button_pressed() -> void:
+	var btn = $ReviewButton
+	play_click_anim(btn)
+	await tween.finished
 	Main.to_scene(Main.SCENE.review)
+	play_reset_anim(btn)
 
 
 func _on_setting_button_pressed() -> void:
+	var btn = $SettingButton
+	play_click_anim(btn)
+	await tween.finished
 	Main.show_setting_view()
+	play_reset_anim(btn)
 
 
 func _on_exit_pressed() -> void:
+	var btn = $ExitButton
+	play_click_anim(btn)
+	await tween.finished
 	get_tree().quit()
 
 

@@ -3,7 +3,7 @@ extends Node
 var characters_json_path = "res://characters/characters.json"
 var game_save_path = "user://moragame.save"
 
-var setting_view = preload("res://setting_view.tscn")
+var setting_view = preload("res://common/setting/setting_view.tscn")
 
 var category_scene = preload("res://scene/category/category.tscn")
 var menu_scene = preload("res://scene/menu/menu.tscn")
