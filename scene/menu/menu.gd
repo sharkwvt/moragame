@@ -113,7 +113,7 @@ func _on_btn_mouse_exited(id) -> void:
 	var tex: TextureRect = select_rooms[id] 
 	tex.modulate.a = 0
 	if light_tween != null:
-		light_tween.stop()
+		light_tween.kill()
 
 func _on_btn_pressed(i, bonus) -> void:
 	var btn: MenuBtn = btns[i]

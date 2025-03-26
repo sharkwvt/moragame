@@ -6,11 +6,27 @@ func _ready() -> void:
 	Main.current_scene = self
 	Main.instance_scenes[Main.SCENE.start] = self
 	Main.play_music(Main.music_1)
+	setup()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
+
+
+func setup():
+	var start_btn = $StartButton
+	start_btn.mouse_entered.connect(_on_mouse_entered.bind(start_btn))
+	start_btn.mouse_exited.connect(_on_mouse_exited.bind(start_btn))
+	var review_btn = $ReviewButton
+	review_btn.mouse_entered.connect(_on_mouse_entered.bind(review_btn))
+	review_btn.mouse_exited.connect(_on_mouse_exited.bind(review_btn))
+	var setting_btn = $SettingButton
+	setting_btn.mouse_entered.connect(_on_mouse_entered.bind(setting_btn))
+	setting_btn.mouse_exited.connect(_on_mouse_exited.bind(setting_btn))
+	var exit_btn = $ExitButton
+	exit_btn.mouse_entered.connect(_on_mouse_entered.bind(exit_btn))
+	exit_btn.mouse_exited.connect(_on_mouse_exited.bind(exit_btn))
 
 
 func show_scene():
@@ -48,6 +64,18 @@ func run_spine_stop():
 	var anim4: SpineAnimationState = $ColorRect/lola.get_animation_state()
 	anim4.clear_tracks()
 
+
+func _on_mouse_entered(btn: Button):
+	var duration = 0.5
+	var tween = btn.create_tween()
+	tween.set_loops()
+	tween.tween_property(btn, "scale", Vector2(1.1, 1.1), duration)
+	tween.tween_property(btn, "scale", Vector2(1, 1), duration)
+	await btn.mouse_exited
+	tween.kill()
+
+func _on_mouse_exited(btn: Button):
+	btn.scale = Vector2(1, 1)
 
 func _on_start_button_pressed() -> void:
 	Main.to_scene(Main.SCENE.category, 1)
