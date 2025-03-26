@@ -4,10 +4,13 @@ var config = ConfigFile.new()
 var setting_path = "user://setting.cfg"
 var setting_section = "setting"
 
+var setting_lang_key = "LANG"
 var setting_music_key = "MUSIC"
 var setting_sfx_key = "SFX"
 var setting_screen_key = "SCREEN_MODE"
 var setting_data: Dictionary = {}
+
+var langs = ["zhc", "zh", "en"]
 
 enum SCREEN_MODE {
 	視窗720p,
@@ -17,22 +20,24 @@ enum SCREEN_MODE {
 }
 
 func _init() -> void:
+	default_settings()
+	load_setting()
+
+func default_settings():
 	setting_data[setting_music_key] = 0.5
 	setting_data[setting_sfx_key] = 0.5
-	setting_data[setting_screen_key] = SCREEN_MODE.視窗720p  # 預設
-	load_setting()
-	set_music_db(setting_data[setting_music_key])
-	set_sound_db(setting_data[setting_sfx_key])
-	set_screen_mode(setting_data[setting_screen_key])
+	setting_data[setting_screen_key] = SCREEN_MODE.視窗720p
+	load_lang()
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
+func load_lang():
+	var lang
+	if "TW" or "HK" in OS.get_locale():
+		lang = "zhc"
+	else:
+		lang = OS.get_locale_language()
+	setting_data[setting_lang_key] = lang
+	TranslationServer.set_locale(lang)
 
 
 func load_setting():
@@ -43,6 +48,11 @@ func load_setting():
 	for key in setting_data.keys():
 		if config.has_section_key(setting_section, key):
 			setting_data[key] = config.get_value(setting_section, key)
+	
+	set_music_db(setting_data[setting_music_key])
+	set_sound_db(setting_data[setting_sfx_key])
+	set_screen_mode(setting_data[setting_screen_key])
+	set_lang(setting_data[setting_lang_key])
 
 
 func set_setting(key, value):
@@ -54,6 +64,11 @@ func set_setting(key, value):
 func reset_setting():
 	config.clear()
 	config.save(setting_path)
+
+
+func set_lang(value):
+	TranslationServer.set_locale(value)
+	set_setting(setting_lang_key, value)
 
 
 func set_music_db(value):

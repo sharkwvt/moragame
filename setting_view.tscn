@@ -21,26 +21,64 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -500.0
-offset_top = -250.0
+offset_top = -300.0
 offset_right = 500.0
-offset_bottom = 250.0
+offset_bottom = 300.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.54902, 0.580392, 1, 1)
 
-[node name="ViewLabel" type="Label" parent="."]
+[node name="LangLabel" type="Label" parent="SettingBG"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.43
 anchor_top = 0.35
 anchor_right = 0.43
 anchor_bottom = 0.35
+offset_left = -164.4
+offset_top = -157.0
+offset_right = -64.4
+offset_bottom = -87.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "語言"
+
+[node name="OptionButton" type="OptionButton" parent="SettingBG/LangLabel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 50.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+selected = 0
+item_count = 3
+popup/item_0/text = "繁體中文"
+popup/item_1/text = "简体中文"
+popup/item_1/id = 1
+popup/item_2/text = "English"
+popup/item_2/id = 2
+
+[node name="DisplayLabel" type="Label" parent="SettingBG"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.43
+anchor_top = 0.45
+anchor_right = 0.43
+anchor_bottom = 0.45
+offset_left = -164.4
+offset_top = -109.0
+offset_right = -64.4
+offset_bottom = -39.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_font_sizes/font_size = 50
 text = "顯示"
 
-[node name="OptionButton" type="OptionButton" parent="ViewLabel"]
+[node name="OptionButton" type="OptionButton" parent="SettingBG/DisplayLabel"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -60,19 +98,23 @@ popup/item_2/id = 2
 popup/item_3/text = "全螢幕"
 popup/item_3/id = 3
 
-[node name="MusicLabel" type="Label" parent="."]
+[node name="MusicLabel" type="Label" parent="SettingBG"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.43
-anchor_top = 0.45
+anchor_top = 0.55
 anchor_right = 0.43
-anchor_bottom = 0.45
+anchor_bottom = 0.55
+offset_left = -164.4
+offset_top = -61.0
+offset_right = -64.4
+offset_bottom = 9.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_font_sizes/font_size = 50
 text = "音樂"
 
-[node name="MusicSlider" type="HSlider" parent="MusicLabel"]
+[node name="MusicSlider" type="HSlider" parent="SettingBG/MusicLabel"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -89,19 +131,23 @@ max_value = 1.0
 step = 0.01
 value = 0.5
 
-[node name="SoundLabel" type="Label" parent="."]
+[node name="SoundLabel" type="Label" parent="SettingBG"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.43
-anchor_top = 0.54
+anchor_top = 0.65
 anchor_right = 0.43
-anchor_bottom = 0.54
+anchor_bottom = 0.65
+offset_left = -164.4
+offset_top = -13.0
+offset_right = -64.4
+offset_bottom = 57.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_font_sizes/font_size = 50
 text = "音效"
 
-[node name="SoundSlider" type="HSlider" parent="SoundLabel"]
+[node name="SoundSlider" type="HSlider" parent="SettingBG/SoundLabel"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -118,23 +164,28 @@ max_value = 1.0
 step = 0.01
 value = 0.5
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SoundLabel/SoundSlider"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SettingBG/SoundLabel/SoundSlider"]
 stream = ExtResource("1_twnpm")
 bus = &"SFX"
 
-[node name="CloseButton" parent="." instance=ExtResource("2_4ur23")]
+[node name="CloseButton" parent="SettingBG" instance=ExtResource("2_4ur23")]
 layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.75
+anchor_bottom = 0.75
 offset_left = -54.0
-offset_top = 136.0
+offset_top = 20.0
 offset_right = 54.0
-offset_bottom = 214.0
+offset_bottom = 120.0
 theme_override_font_sizes/font_size = 50
 text = "關閉"
 
 [connection signal="mouse_exited" from="SettingBG" to="." method="_on_setting_bg_mouse_exited"]
-[connection signal="item_selected" from="ViewLabel/OptionButton" to="." method="_on_option_button_item_selected"]
-[connection signal="pressed" from="ViewLabel/OptionButton" to="." method="_on_option_button_pressed"]
-[connection signal="value_changed" from="MusicLabel/MusicSlider" to="." method="_on_music_slider_value_changed"]
-[connection signal="drag_ended" from="SoundLabel/SoundSlider" to="." method="_on_sound_slider_drag_ended"]
-[connection signal="value_changed" from="SoundLabel/SoundSlider" to="." method="_on_sound_slider_value_changed"]
-[connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="item_selected" from="SettingBG/LangLabel/OptionButton" to="." method="_on_lang_option_item_selected"]
+[connection signal="pressed" from="SettingBG/LangLabel/OptionButton" to="." method="_on_option_button_pressed"]
+[connection signal="item_selected" from="SettingBG/DisplayLabel/OptionButton" to="." method="_on_display_option_item_selected"]
+[connection signal="pressed" from="SettingBG/DisplayLabel/OptionButton" to="." method="_on_option_button_pressed"]
+[connection signal="value_changed" from="SettingBG/MusicLabel/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="drag_ended" from="SettingBG/SoundLabel/SoundSlider" to="." method="_on_sound_slider_drag_ended"]
+[connection signal="value_changed" from="SettingBG/SoundLabel/SoundSlider" to="." method="_on_sound_slider_value_changed"]
+[connection signal="pressed" from="SettingBG/CloseButton" to="." method="_on_close_button_pressed"]
