@@ -48,7 +48,6 @@ func refresh():
 	$SettingBG.size.y = offset_y * (lbl_count + 1)
 	for i in lbl_count:
 		var lbl: Control = $SettingBG.get_children()[i]
-		print(i - (lbl_count-1)/2.0)
 		lbl.position.y = $SettingBG.size.y/2.0 + offset_y * (i - lbl_count/2.0)
 
 

@@ -180,7 +180,6 @@ offset_bottom = 120.0
 theme_override_font_sizes/font_size = 50
 text = "關閉"
 
-[connection signal="mouse_exited" from="SettingBG" to="." method="_on_setting_bg_mouse_exited"]
 [connection signal="item_selected" from="SettingBG/LangLabel/OptionButton" to="." method="_on_lang_option_item_selected"]
 [connection signal="pressed" from="SettingBG/LangLabel/OptionButton" to="." method="_on_option_button_pressed"]
 [connection signal="item_selected" from="SettingBG/DisplayLabel/OptionButton" to="." method="_on_display_option_item_selected"]
