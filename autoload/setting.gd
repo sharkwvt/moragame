@@ -15,6 +15,8 @@ var langs = ["zhc", "zh", "en"]
 enum SCREEN_MODE {
 	視窗720p,
 	視窗1080p,
+	視窗1440p,
+	視窗2160p,
 	無邊框全螢幕,
 	全螢幕
 }
@@ -82,22 +84,30 @@ func set_sound_db(value):
 
 
 func set_screen_mode(mode: SCREEN_MODE):
+	var is_window = mode not in [SCREEN_MODE.無邊框全螢幕, SCREEN_MODE.全螢幕]
+	var to_window = DisplayServer.window_get_mode() in [DisplayServer.WINDOW_MODE_FULLSCREEN, DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN]
+	if is_window and to_window:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
+		#await get_tree().process_frame # 等待下一幀
+		await get_tree().create_timer(0.1).timeout
+	
 	match mode:
 		SCREEN_MODE.視窗720p:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
 			DisplayServer.window_set_size(Vector2i(1280, 720))
-			center_window()
 		SCREEN_MODE.視窗1080p:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
 			DisplayServer.window_set_size(Vector2i(1920, 1080))
-			center_window()
+		SCREEN_MODE.視窗1440p:
+			DisplayServer.window_set_size(Vector2i(2560, 1440))
+		SCREEN_MODE.視窗2160p:
+			DisplayServer.window_set_size(Vector2i(3840, 2160))
 		SCREEN_MODE.無邊框全螢幕:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
 		SCREEN_MODE.全螢幕:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+	
+	if is_window:
+		center_window()
 	
 	set_setting(setting_screen_key, mode)
 	

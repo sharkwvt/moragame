@@ -10,9 +10,14 @@ func _ready() -> void:
 	mouse_exited.connect(_on_mouse_exited)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
+func set_data(data: Main.CategoryData):
+	$Panel/TitleLabel.text = data.category
+	$Panel/ProgressLabel.text = data.get_progress_str()
+	await $Panel/ProgressLabel.minimum_size_changed
+	$Panel.size = $Panel/TitleLabel.size
+	$Panel.size.x += 20
+	$Panel.position.x = (size.x - $Panel.size.x)/2.0
+	$Panel/ProgressLabel.position.y = $Panel.size.y
 
 
 func _on_mouse_entered():
