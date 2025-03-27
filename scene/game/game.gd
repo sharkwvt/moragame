@@ -10,7 +10,6 @@ var game_character: TextureRect
 # 對話
 var story_view: Control
 var talk_view: TextureRect
-var talk_lbl: Label
 # 猜拳
 var game_view: Control
 var now_level: int
@@ -55,7 +54,6 @@ func setup():
 	game_character = $Character
 	story_view = $Story
 	talk_view = $Story/Talk
-	talk_lbl = $Story/Talk/Label
 	game_view = $Game
 	tip_view = $Game/TipView
 	tip_lbl = $Game/TipView/TipLabel
@@ -74,7 +72,6 @@ func reset_game():
 	character_data = Main.current_character_data
 	load_imgs()
 	game_state = STATE.對話
-	story_view.visible = true
 	bonus_view.visible = false
 	gameover_view.visible = false
 	# 已通關時重新開始
@@ -83,13 +80,13 @@ func reset_game():
 	else:
 		now_level = character_data.progress
 	refresh_game()
+	show_story()
 
 
 func refresh_game():
 	game_character.texture = character_imgs[now_level]
 	set_choice_visible(false)
 	$"Game/進度".text = "進度 " + str(now_level) + "/" + str(character_data.level)
-	talk_lbl.text = character_data.story[now_level]
 	if now_level >= character_data.level:
 		game_state = STATE.通關
 
@@ -108,19 +105,15 @@ func to_continue():
 			if TransitionEffect.main != null:
 				# 跳過轉場動畫
 				TransitionEffect.skip_anim()
-			#elif talk_view.visible == false:
-				## 開啟對話
-				#talk_view.visible = true
 			elif story_view.visible == true:
 				# 關閉對話，開始猜拳
 				story_view.visible = false
 				game_view.visible = true
 				game_state = STATE.猜拳
 			elif story_view.visible == false:
-				# 猜拳完進對話
+				## 猜拳完進對話
 				refresh_game()
-				game_view.visible = false
-				story_view.visible = true
+				show_story()
 			
 		STATE.通關:
 			if is_bonus:
@@ -132,6 +125,15 @@ func to_continue():
 			
 		STATE.bonus:
 			quite()
+
+
+func show_story():
+	story_view.visible = true
+	game_view.visible = false
+	talk_view.show_talk_anim(character_data.story[now_level])
+	# 播完動畫後繼續
+	await talk_view.tween.finished
+	to_continue()
 
 
 func show_bonus():

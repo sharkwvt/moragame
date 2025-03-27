@@ -13,7 +13,7 @@ func _ready() -> void:
 func set_data(data: Main.CategoryData):
 	$Panel/TitleLabel.text = data.category
 	$Panel/ProgressLabel.text = data.get_progress_str()
-	await $Panel/ProgressLabel.minimum_size_changed
+	await $Panel/ProgressLabel.minimum_size_changed # 大小有變更
 	$Panel.size = $Panel/TitleLabel.size
 	$Panel.size.x += 20
 	$Panel.position.x = (size.x - $Panel.size.x)/2.0
