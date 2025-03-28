@@ -19,7 +19,9 @@ func show_talk_anim(text: String):
 	if tween:
 		tween.kill()
 	tween = create_tween()
+	tween.set_parallel(true)
 	tween.tween_property(self, "position:y", position.y - 100, 1)
-	tween.parallel().tween_property(self, "modulate:a", 1, 1)
+	tween.tween_property(self, "modulate:a", 1, 1)
+	tween.set_parallel(false)
 	tween.tween_property(self, "modulate:a", 1, 1)
 	tween.tween_property(self, "modulate:a", 0, 1)

@@ -7,6 +7,7 @@ var is_bonus = false
 var gameover_view: ColorRect
 var game_state = STATE.對話
 var game_character: TextureRect
+var character_tween: Tween
 # 對話
 var story_view: Control
 var talk_view: TextureRect
@@ -71,6 +72,7 @@ func setup():
 func reset_game():
 	character_data = Main.current_character_data
 	load_imgs()
+	set_character_tween()
 	game_state = STATE.對話
 	bonus_view.visible = false
 	gameover_view.visible = false
@@ -85,6 +87,7 @@ func reset_game():
 
 func refresh_game():
 	game_character.texture = character_imgs[now_level]
+	game_character.pivot_offset = Vector2(game_character.size.x/2.0, game_character.size.y/2.0)
 	set_choice_visible(false)
 	$"Game/進度".text = "進度 " + str(now_level) + "/" + str(character_data.level)
 	if now_level >= character_data.level:
@@ -127,6 +130,16 @@ func to_continue():
 			quite()
 
 
+func set_character_tween():
+	game_character.scale = Vector2i(1, 1)
+	if character_tween:
+		character_tween.kill()
+	character_tween = game_character.create_tween()
+	character_tween.set_loops()
+	character_tween.tween_property(game_character, "scale", Vector2(1.05, 1.05), 1)
+	character_tween.tween_property(game_character, "scale", Vector2(1, 1), 1)
+
+
 func show_story():
 	story_view.visible = true
 	game_view.visible = false
@@ -145,6 +158,7 @@ func show_bonus():
 	var anim: SpineAnimationState = spine_sprite.get_animation_state()
 	anim.add_animation("animation")
 
+
 # 顯示雙方猜拳
 func show_choice():
 	player_choice_sp.texture = load(choice_img_path % choice_str[player_choice])
@@ -156,8 +170,10 @@ func set_choice_visible(to_set: bool):
 	bot_choice_sp.visible = to_set
 	tip_view.visible = to_set
 
+
 func gameover():
 	gameover_view.visible = true
+
 
 # 輸贏判定
 func play_logic():
