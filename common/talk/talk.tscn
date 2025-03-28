@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://sfxekiqbeugx"]
 
-[ext_resource type="Script" path="res://scene/game/talk.gd" id="1_dp28c"]
+[ext_resource type="Script" path="res://common/talk/talk.gd" id="1_dp28c"]
 
 [node name="Talk" type="TextureRect"]
 anchors_preset = 12

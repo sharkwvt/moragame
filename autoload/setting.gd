@@ -11,6 +11,7 @@ var setting_screen_key = "SCREEN_MODE"
 var setting_data: Dictionary = {}
 
 var langs = ["zhc", "zh", "en"]
+var pj_size: Vector2
 
 enum SCREEN_MODE {
 	視窗720p,

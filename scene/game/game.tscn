@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bdr2ht0bxbdyx" path="res://scene/game/石頭.png" id="3_ulvrh"]
 [ext_resource type="Texture2D" uid="uid://bh61ejcf8ihk0" path="res://scene/game/布.png" id="4_txku1"]
 [ext_resource type="Script" path="res://common/common_button.gd" id="8_mk0gg"]
-[ext_resource type="PackedScene" uid="uid://sfxekiqbeugx" path="res://scene/game/talk.tscn" id="8_qrful"]
+[ext_resource type="PackedScene" uid="uid://sfxekiqbeugx" path="res://common/talk/talk.tscn" id="8_qrful"]
 
 [node name="Game" type="Control"]
 layout_mode = 3

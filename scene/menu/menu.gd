@@ -12,6 +12,7 @@ var is_bonus
 func _ready() -> void:
 	setup()
 	$lightMask.mouse_filter = MOUSE_FILTER_IGNORE
+	Main.show_talk_view("選角對話")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -96,6 +97,7 @@ func refresh():
 
 func show_scene():
 	refresh()
+	Main.show_talk_view("選角對話")
 
 
 func _on_btn_mouse_entered(id) -> void:

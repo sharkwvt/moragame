@@ -8,6 +8,7 @@ var btns = []
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	create_character_btns()
+	Main.show_talk_view("選關對話")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -47,6 +48,7 @@ func refresh():
 
 func show_scene():
 	refresh()
+	Main.show_talk_view("選關對話")
 
 
 func _on_category_btn_pressed(data):

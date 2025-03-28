@@ -1,10 +1,13 @@
 extends Node
 
+var screen_size = Vector2i(1920, 1080)
+
 var characters_json_path = "res://characters/characters.json"
 var game_save_path = "user://moragame.save"
-
+# 視窗
 var setting_view = preload("res://common/setting/setting_view.tscn")
-
+var talk_view = preload("res://common/talk/talk.tscn")
+# 場景
 var category_scene = preload("res://scene/category/category.tscn")
 var menu_scene = preload("res://scene/menu/menu.tscn")
 var game_scene = preload("res://scene/game/game.tscn")
@@ -258,6 +261,13 @@ func load_game_save():
 
 func show_setting_view():
 	get_tree().root.add_child(setting_view.instantiate())
+
+
+func show_talk_view(text):
+	var view = talk_view.instantiate()
+	get_tree().root.add_child(view)
+	view.show_talk_anim(text)
+	view.tween.finished.connect(view.queue_free)
 
 
 func play_sfx(sfx):

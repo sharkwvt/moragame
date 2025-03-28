@@ -1,21 +1,10 @@
 extends Node
 
-var screen_size = Vector2i(1920, 1080)
-
 var main: Control
 var viewport: SubViewport
 var texture_rect: TextureRect
 var shader_material: ShaderMaterial
 var tween: Tween
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
-
 
 # anim_type: 0 淡出, 1 移出
 func start_transition(scene: Node, anim_type = 0, duration: float = 1.0):
@@ -35,7 +24,7 @@ func start_transition(scene: Node, anim_type = 0, duration: float = 1.0):
 func setup_viewport():
 	viewport = SubViewport.new()
 	#viewport.size = get_viewport().size
-	viewport.size = screen_size
+	viewport.size = Main.screen_size
 	viewport.render_target_update_mode = SubViewport.UPDATE_ONCE
 	viewport.render_target_clear_mode = SubViewport.CLEAR_MODE_ALWAYS
 	main.add_child(viewport)
@@ -52,7 +41,7 @@ func setup_texture_rect():
 	texture_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	texture_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT
 	#texture_rect.size = get_viewport().size
-	texture_rect.size = screen_size
+	texture_rect.size = Main.screen_size
 	main.add_child(texture_rect)
 
 func apply_shader(anim_type = 0):
