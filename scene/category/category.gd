@@ -18,14 +18,14 @@ func _process(_delta: float) -> void:
 
 func create_character_btns():
 	var categorys = Main.categorys_data
-	var spaceing = 100
+	var spaceing = 140
 	var offset = spaceing
 	var i = 0
 	for data: Main.CategoryData in categorys:
 		var btn := category_btn.instantiate()
-		btn.img_n = load("res://scene/category/category_btn/select_" + str(i) + "_n.png")
-		btn.img_s = load("res://scene/category/category_btn/select_" + str(i) + ".png")
-		btn.icon = btn.img_n
+		btn.texture_n = load("res://scene/category/category_btn/building_" + str(i) + "_n.png")
+		btn.texture_light = load("res://scene/category/category_btn/building_" + str(i) + ".png")
+		btn.texture_halo = load("res://scene/category/category_btn/building_" + str(i) + "_halo.png")
 		btn.set_data(data)
 		btn.position = Vector2.ZERO # 不知為何這樣才能取到size
 		btn.position = Vector2(

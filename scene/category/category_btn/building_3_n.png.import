@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddyjpnt4vry0i"
-path="res://.godot/imported/select_0_n.png-7912a8bb26344dd09f3e9950ebeff47a.ctex"
+uid="uid://b0osd4p1lmduq"
+path="res://.godot/imported/building_3_n.png-4657c24900c490678d00e4be89fd8c93.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scene/category/category_btn/select_0_n.png"
-dest_files=["res://.godot/imported/select_0_n.png-7912a8bb26344dd09f3e9950ebeff47a.ctex"]
+source_file="res://scene/category/category_btn/building_3_n.png"
+dest_files=["res://.godot/imported/building_3_n.png-4657c24900c490678d00e4be89fd8c93.ctex"]
 
 [params]
 

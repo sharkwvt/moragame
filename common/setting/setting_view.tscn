@@ -1,8 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://xq5sy8c0spv"]
+[gd_scene load_steps=19 format=3 uid="uid://xq5sy8c0spv"]
 
 [ext_resource type="Script" path="res://common/setting/setting_view.gd" id="1_7xfc6"]
 [ext_resource type="AudioStream" uid="uid://c12134dx2n1k4" path="res://sound/maou_se_system47.mp3" id="1_twnpm"]
-[ext_resource type="PackedScene" uid="uid://b1kawh5aqevsc" path="res://common/common_button.tscn" id="2_4ur23"]
 [ext_resource type="Texture2D" uid="uid://bb4exyrnh7o00" path="res://image/scrollbar_bg.png" id="2_dcjoh"]
 [ext_resource type="Texture2D" uid="uid://cn5qct58mryrh" path="res://image/option_bg.png" id="2_swdfx"]
 [ext_resource type="Texture2D" uid="uid://dhac8pkp4th8t" path="res://image/scrollbar_button.png" id="3_3bf00"]
@@ -10,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b11ieyxtcxqxy" path="res://image/scrollbar_a.png" id="4_b4maj"]
 [ext_resource type="StyleBox" uid="uid://iq7a2hdjuv66" path="res://common/option/option_bg_pressed.tres" id="4_hh6qm"]
 [ext_resource type="Texture2D" uid="uid://cf56efcp2a3ll" path="res://image/scrollbar_b.png" id="5_7bw3q"]
-[ext_resource type="Texture2D" uid="uid://dmnlpgomsbqkf" path="res://image/return.png" id="10_h4ey7"]
+[ext_resource type="PackedScene" uid="uid://c2hckrk53snne" path="res://common/return/return_button.tscn" id="10_rms1i"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_yg4do"]
 
@@ -293,20 +292,19 @@ value = 0.5
 stream = ExtResource("1_twnpm")
 bus = &"SFX"
 
-[node name="CloseButton" parent="SettingBG" instance=ExtResource("2_4ur23")]
+[node name="ReturnButton" parent="SettingBG" instance=ExtResource("10_rms1i")]
 layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.75
-anchor_bottom = 0.75
-offset_left = -54.0
-offset_top = 20.0
-offset_right = 54.0
-offset_bottom = 120.0
-focus_mode = 0
-theme_override_font_sizes/font_size = 50
-icon = ExtResource("10_h4ey7")
-flat = true
-icon_alignment = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = 163.0
+offset_right = 50.0
+offset_bottom = 263.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="item_selected" from="SettingBG/LangLabel/OptionButton" to="." method="_on_lang_option_item_selected"]
 [connection signal="pressed" from="SettingBG/LangLabel/OptionButton" to="." method="_on_option_button_pressed"]
@@ -315,4 +313,4 @@ icon_alignment = 1
 [connection signal="value_changed" from="SettingBG/MusicLabel/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="drag_ended" from="SettingBG/SoundLabel/SoundSlider" to="." method="_on_sound_slider_drag_ended"]
 [connection signal="value_changed" from="SettingBG/SoundLabel/SoundSlider" to="." method="_on_sound_slider_value_changed"]
-[connection signal="pressed" from="SettingBG/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="SettingBG/ReturnButton" to="." method="_on_close_button_pressed"]

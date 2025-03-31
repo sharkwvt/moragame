@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b566fnh42eqtv"
-path="res://.godot/imported/select_2_n.png-6f766a569fbed4740a1180bafdff32fe.ctex"
+uid="uid://duxq8drpts6ji"
+path="res://.godot/imported/building_3_halo.png-6b018c19d45c42ad9e0a93b59b35def2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scene/category/category_btn/select_2_n.png"
-dest_files=["res://.godot/imported/select_2_n.png-6f766a569fbed4740a1180bafdff32fe.ctex"]
+source_file="res://scene/category/category_btn/building_3_halo.png"
+dest_files=["res://.godot/imported/building_3_halo.png-6b018c19d45c42ad9e0a93b59b35def2.ctex"]
 
 [params]
 
