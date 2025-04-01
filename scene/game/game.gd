@@ -86,7 +86,7 @@ func setup():
 			-50
 		)
 		bot_btn.scale.y = -1
-		bot_btn.setup(i)
+		bot_btn.setup(i, true)
 		bot_choice_btns.append(bot_btn)
 		game_view.add_child(bot_btn)
 
