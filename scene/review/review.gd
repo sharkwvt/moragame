@@ -69,6 +69,8 @@ func load_imgs(data: Main.CharacterData):
 	review_imgs.clear()
 	for i in data.story.size():
 		review_imgs.append(load(data.get_cg_path(i)))
+	if not data.has_bonus or data.get_spine_path() == "":
+		return
 	review_spine.skeleton_data_res = load(data.get_spine_path())
 	var anim: SpineAnimationState = review_spine.get_animation_state()
 	anim.add_animation("animation")
@@ -76,14 +78,13 @@ func load_imgs(data: Main.CharacterData):
 
 func refresh_characters():
 	for i in character_btns.size():
-		var data: Main.CharacterData = selected_category.characters[i]
 		var btn: Button = character_btns[i]
-		var lbl: Label = btn.lbl
-		var textrue: TextureRect = btn.textrue
-		textrue.texture = load(data.get_avatar_path())
-		btn.disabled = data.progress < data.level
-		textrue.visible = !btn.disabled
-		lbl.text = data.display_name
+		if i >= selected_category.characters.size():
+			btn.visible = false
+			continue
+		var data: Main.CharacterData = selected_category.characters[i]
+		btn.visible = data.progress >= data.level
+		btn.set_data(data)
 
 
 func refresh():
@@ -122,7 +123,7 @@ func _on_view_button_pressed() -> void:
 	view_index += 1
 	if view_index < review_imgs.size():
 		review_img.texture = review_imgs[view_index]
-	elif view_index == review_imgs.size():
+	elif view_index == review_imgs.size() and review_spine.skeleton_data_res:
 		# 顯示spine
 		review_img.visible = false
 		review_spine.visible = true

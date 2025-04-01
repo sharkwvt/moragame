@@ -3,15 +3,15 @@ extends Button
 var lbl: Label
 var textrue: TextureRect
 var character_data: Main.CharacterData
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	setup()
+var spine: SpineSprite
 
 
-func setup():
-	lbl = $NameLabel
-	textrue = $Panel/Mask/TextureRect
+func set_data(data: Main.CharacterData):
+	#lbl = $NameLabel
+	#textrue = $Panel/Mask/TextureRect
+	spine = $Control/SpineSprite
+	var skel: SpineSkeleton = spine.get_skeleton()
+	skel.set_skin_by_name(data.get_avatar_name())
 	button_down.connect(_on_button_down)
 
 

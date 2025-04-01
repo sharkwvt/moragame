@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://scene/category/category.gd" id="1_fsov7"]
 [ext_resource type="Texture2D" uid="uid://b5km4if17uloy" path="res://scene/category/category_bg.png" id="2_32ujb"]
-[ext_resource type="Texture2D" uid="uid://brlcx2erf54ob" path="res://Image/setting.png" id="3_iof1k"]
+[ext_resource type="Texture2D" uid="uid://brlcx2erf54ob" path="res://image/setting.png" id="3_iof1k"]
 [ext_resource type="Script" path="res://common/common_button.gd" id="4_oxpgw"]
 [ext_resource type="PackedScene" uid="uid://c2hckrk53snne" path="res://common/return/return_button.tscn" id="5_dd1j8"]
-[ext_resource type="Texture2D" uid="uid://bxk6kpy0n3i4o" path="res://Image/particle/rain_drop_2x64.png" id="6_0jnlu"]
+[ext_resource type="Texture2D" uid="uid://bxk6kpy0n3i4o" path="res://image/particle/rain_drop_2x64.png" id="6_0jnlu"]
 
 [node name="Category" type="Control"]
 layout_mode = 3

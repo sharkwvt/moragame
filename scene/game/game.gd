@@ -228,8 +228,6 @@ func play_logic():
 			result_str = "win"
 		-1:
 			result_str = "lose"
-			if is_bonus:
-				gameover()
 	
 	# 輸贏動畫
 	await game_tween.finished
@@ -241,6 +239,8 @@ func play_logic():
 	await tip_spine.animation_completed
 	switch_choice(false)
 	to_continue()
+	if is_bonus and result == -1:
+		gameover()
 
 # 猜拳判定
 func determine_winner(player, bot):

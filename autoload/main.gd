@@ -45,7 +45,7 @@ class CharacterData:
 		return "res://characters/sex_girl_" + file_name + "/sex_girl_" + file_name + "_lv" + str(index+1) + ".png"
 	func get_spine_path() -> String:
 		var path = "res://characters/sex_girl_" + file_name + "/" + file_name + ".tres"
-		return path if FileAccess.file_exists(path) else "res://spine/test/test.tres"
+		return path if FileAccess.file_exists(path) else ""
 var characters_json: Dictionary
 var characters_data = []
 var current_character_data: CharacterData
@@ -146,7 +146,7 @@ func reload_data():
 	load_characters_data()
 	#create_test_data() # 測試用資料
 	load_category_data()
-	#load_game_save()
+	load_game_save()
 
 
 func load_characters_data():

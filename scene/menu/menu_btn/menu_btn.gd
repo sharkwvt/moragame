@@ -35,7 +35,8 @@ func open():
 	#$AvatarBG.visible = true
 	#$NameBG.visible = true
 	avatar_spine.visible = true
-	$BonusButton.visible = has_bonus
+	#$BonusButton.visible = has_bonus
+	$BonusButton.visible = false
 	is_open = true
 	
 	var anim: SpineAnimationState = avatar_spine.get_animation_state()
