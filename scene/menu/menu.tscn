@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b3t2ytl32tv2m" path="res://scene/menu/menu_bg.jpg" id="1_sl21d"]
 [ext_resource type="Script" path="res://scene/menu/menu.gd" id="1_tmr3e"]
 [ext_resource type="Texture2D" uid="uid://bcw7eptj1qgoh" path="res://scene/menu/select_rooms/select_room_a.png" id="3_ft4bp"]
-[ext_resource type="Texture2D" uid="uid://brlcx2erf54ob" path="res://image/setting.png" id="4_c57vh"]
+[ext_resource type="Texture2D" uid="uid://brlcx2erf54ob" path="res://Image/setting.png" id="4_c57vh"]
 [ext_resource type="Script" path="res://common/common_button.gd" id="5_1gyvk"]
 [ext_resource type="PackedScene" uid="uid://c2hckrk53snne" path="res://common/return/return_button.tscn" id="5_s8ajn"]
 [ext_resource type="Texture2D" uid="uid://c58ggahgwm0pk" path="res://scene/menu/select_rooms/select_room_b.png" id="7_emlui"]
