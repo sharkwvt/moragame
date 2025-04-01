@@ -7,6 +7,7 @@ enum CHOICES {
 }
 
 var choice: CHOICES
+var bg: TextureRect
 var hand: TextureRect
 
 var tween: Tween
@@ -27,6 +28,7 @@ func _ready() -> void:
 
 
 func setup(c: CHOICES):
+	bg = $BG
 	hand = $TextureRect
 	choice = c
 	var img_path = "res://scene/game/choice_btn/"
@@ -42,7 +44,7 @@ func setup(c: CHOICES):
 
 
 func hand_up():
-	icon = img_s
+	bg.texture = img_s
 	if tween:
 		tween.kill()
 	tween = create_tween()
@@ -50,7 +52,7 @@ func hand_up():
 
 
 func hand_down():
-	icon = img_n
+	bg.texture = img_n
 	if tween:
 		tween.kill()
 	tween = create_tween()

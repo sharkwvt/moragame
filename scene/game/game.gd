@@ -193,7 +193,7 @@ func switch_choice(is_show: bool):
 	game_tween = game_view.create_tween()
 	if is_show:
 		game_tween.tween_property(btn, "position:y", size.y - btn.size.y, 1)
-		game_tween.parallel().tween_property(bot_btn, "position:y", bot_btn.size.y - 5, 1)
+		game_tween.parallel().tween_property(bot_btn, "position:y", bot_btn.size.y, 1)
 		btn.hand_up()
 		bot_btn.hand_up()
 	else:
