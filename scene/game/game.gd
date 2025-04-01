@@ -14,14 +14,16 @@ var talk_view: TextureRect
 # 猜拳
 var game_view: Control
 var now_level: int
-var tip_view: TextureRect
-var tip_lbl: Label
-var player_choice_sp: Sprite2D
-var bot_choice_sp: Sprite2D
+var tip_spine: SpineSprite
+var spine_path = "res://scene/game/win_lose_draw/%s.tres"
+var game_tween: Tween
+var choice_btn = preload("res://scene/game/choice_btn/choice_btn.tscn")
+var player_choice_btns = []
+var bot_choice_btns = []
 var player_choice
 var bot_choice
 var choice_str = ["剪刀", "石頭", "布"]
-var choice_img_path = "res://scene/game/%s.png"
+var choice_img_path = "res://scene/game/image/%s.png"
 # bonus
 var bonus_view: Control
 var spine_sprite: SpineSprite
@@ -56,10 +58,7 @@ func setup():
 	story_view = $Story
 	talk_view = $Story/Talk
 	game_view = $Game
-	tip_view = $Game/TipView
-	tip_lbl = $Game/TipView/TipLabel
-	player_choice_sp = $"Game/我方出拳"
-	bot_choice_sp = $"Game/對方出拳"
+	tip_spine = $Game/Tip
 	menu_btn = $Game/MenuButton
 	bonus_view = $Bonus
 	spine_sprite = $Bonus/SpineSprite
@@ -67,6 +66,29 @@ func setup():
 	var popup: PopupMenu = menu_btn.get_popup()
 	popup.add_theme_font_size_override("font_size", 50) # 改字體大小
 	popup.id_pressed.connect(_on_popup_item_pressed)
+	
+	var count = 3
+	for i in count:
+		var btn: Button = choice_btn.instantiate()
+		var offset = btn.size.x + 100
+		btn.position = Vector2(
+			size.x/2.0 + (i - count/2.0) * offset,
+			size.y - btn.size.y + 100
+		)
+		btn.setup(i)
+		player_choice_btns.append(btn)
+		btn.pressed.connect(_on_choice_btn_pressed.bind(i))
+		game_view.add_child(btn)
+		
+		var bot_btn: Button = choice_btn.instantiate()
+		bot_btn.position = Vector2(
+			size.x/2.0 + (i - count/2.0) * offset,
+			-50
+		)
+		bot_btn.scale.y = -1
+		bot_btn.setup(i)
+		bot_choice_btns.append(bot_btn)
+		game_view.add_child(bot_btn)
 
 
 func reset_game():
@@ -76,6 +98,7 @@ func reset_game():
 	game_state = STATE.對話
 	bonus_view.visible = false
 	gameover_view.visible = false
+	tip_spine.visible = false
 	# 已通關時重新開始
 	if character_data.progress >= character_data.level or is_bonus:
 		now_level = 0
@@ -88,7 +111,6 @@ func reset_game():
 func refresh_game():
 	game_character.texture = character_imgs[now_level]
 	game_character.pivot_offset = Vector2(game_character.size.x/2.0, game_character.size.y/2.0)
-	set_choice_visible(false)
 	$"Game/進度".text = "進度 " + str(now_level) + "/" + str(character_data.level)
 	if now_level >= character_data.level:
 		game_state = STATE.通關
@@ -160,15 +182,28 @@ func show_bonus():
 
 
 # 顯示雙方猜拳
-func show_choice():
-	player_choice_sp.texture = load(choice_img_path % choice_str[player_choice])
-	bot_choice_sp.texture = load(choice_img_path % choice_str[bot_choice])
-	set_choice_visible(true)
+func switch_choice(is_show: bool):
+	for btn: Button in player_choice_btns:
+		btn.disabled = true
 	
-func set_choice_visible(to_set: bool):
-	player_choice_sp.visible = to_set
-	bot_choice_sp.visible = to_set
-	tip_view.visible = to_set
+	var btn: Button = player_choice_btns[player_choice]
+	var bot_btn: Button = bot_choice_btns[bot_choice]
+	if game_tween:
+		game_tween.kill()
+	game_tween = game_view.create_tween()
+	if is_show:
+		game_tween.tween_property(btn, "position:y", size.y - btn.size.y, 1)
+		game_tween.parallel().tween_property(bot_btn, "position:y", bot_btn.size.y - 5, 1)
+		btn.hand_up()
+		bot_btn.hand_up()
+	else:
+		game_tween.tween_property(btn, "position", btn.pos, 1)
+		game_tween.parallel().tween_property(bot_btn, "position", bot_btn.pos, 1)
+		btn.hand_down()
+		bot_btn.hand_down()
+		await game_tween.finished
+		for b: Button in player_choice_btns:
+			b.disabled = false
 
 
 func gameover():
@@ -178,22 +213,34 @@ func gameover():
 # 輸贏判定
 func play_logic():
 	bot_choice = randi_range(0, 2)
-	show_choice()
+	switch_choice(true)
 	var result = determine_winner(player_choice, bot_choice)
+	var result_str: String
 	match result:
 		0:
-			tip_lbl.text = "平手"
+			result_str = "draw"
 		1:
 			now_level += 1
 			if character_data.progress < now_level:
 				character_data.progress = now_level
 				Main.save_game()
 			game_state = STATE.對話
-			tip_lbl.text = "贏了"
+			result_str = "win"
 		-1:
-			tip_lbl.text = "輸了"
+			result_str = "lose"
 			if is_bonus:
 				gameover()
+	
+	# 輸贏動畫
+	await game_tween.finished
+	tip_spine.skeleton_data_res = load(spine_path % result_str)
+	var anim: SpineAnimationState = tip_spine.get_animation_state()
+	anim.set_animation(result_str, false)
+	tip_spine.visible = true
+	
+	await tip_spine.animation_completed
+	switch_choice(false)
+	to_continue()
 
 # 猜拳判定
 func determine_winner(player, bot):
@@ -233,7 +280,8 @@ func _on_popup_item_pressed(id: int) -> void:
 func _input(event):
 	# 滑鼠任何鍵
 	if event is InputEventMouseButton and event.pressed and game_state != STATE.退出:
-		to_continue()
+		#to_continue()
+		pass
 
 
 func _on_again_button_pressed() -> void:

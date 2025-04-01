@@ -1,0 +1,17 @@
+lose.png
+size:408,408
+filter:Linear,Linear
+lose_You
+bounds:0,94,265,100
+lose_bg
+bounds:0,195,213,213
+lose_e
+bounds:0,0,93,108
+rotate:90
+lose_l
+bounds:214,202,93,108
+rotate:90
+lose_o
+bounds:214,296,112,112
+lose_s
+bounds:266,89,103,112
