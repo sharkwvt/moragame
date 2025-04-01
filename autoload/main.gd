@@ -39,12 +39,12 @@ class CharacterData:
 	var story: Array
 	var progress = 0
 	var has_bonus = false
-	func get_avatar_path() -> String:
-		return "res://characters/" + file_name + "/" + file_name + "_1.png"
+	func get_avatar_name() -> String:
+		return "photo_girl_" + file_name
 	func get_cg_path(index) -> String:
-		return "res://characters/" + file_name + "/" + file_name + "_" + str(index+1) + ".png"
+		return "res://characters/sex_girl_" + file_name + "/sex_girl_" + file_name + "_lv" + str(index+1) + ".png"
 	func get_spine_path() -> String:
-		var path = "res://characters/" + file_name + "/" + file_name + ".tres"
+		var path = "res://characters/sex_girl_" + file_name + "/" + file_name + ".tres"
 		return path if FileAccess.file_exists(path) else "res://spine/test/test.tres"
 var characters_json: Dictionary
 var characters_data = []
@@ -53,12 +53,16 @@ var current_character_data: CharacterData
 class CategoryData:
 	var category: String
 	var characters = []
+	var all_level: int
+	var progress: float
 	func get_progress_str() -> String:
-		var all_level = 0
-		var progress: float = 0
+		all_level = 0
+		progress = 0
 		for c_data in characters:
 			all_level += c_data.level
 			progress += c_data.progress
+		if all_level == 0:
+			return "🔒"
 		return str(int(progress / all_level * 100)) + "%"
 		
 var categorys_data = []
@@ -140,9 +144,9 @@ func to_scene(scene: SCENE, anim_type = 0):
 func reload_data():
 	load_characters_json()
 	load_characters_data()
-	create_test_data() # 測試用資料
+	#create_test_data() # 測試用資料
 	load_category_data()
-	load_game_save()
+	#load_game_save()
 
 
 func load_characters_data():
@@ -172,18 +176,18 @@ func create_test_data():
 func load_category_data():
 	categorys_data.clear()
 	if characters_data.size() > 0:
+		var category_strs = ["公寓", "學校", "醫院", "辦公樓"]
+		for category in category_strs:
+			var category_data = CategoryData.new()
+			category_data.category = category
+			categorys_data.append(category_data)
+			
 		for character: CharacterData in characters_data:
-			var category_data: CategoryData
 			var category = character.category
 			for c_data: CategoryData in categorys_data:
 				if c_data.category == category:
-					category_data = c_data
+					c_data.characters.append(character)
 					break
-			if category_data == null:
-				category_data = CategoryData.new()
-				category_data.category = category
-				categorys_data.append(category_data)
-			category_data.characters.append(character)
 
 
 func load_characters_json():

@@ -6,11 +6,10 @@
 
 [node name="ChoiceBtn" type="Button"]
 self_modulate = Color(1, 1, 1, 0)
-offset_right = 170.0
-offset_bottom = 263.0
+offset_right = 222.0
+offset_bottom = 269.0
 focus_mode = 0
 theme_override_font_sizes/font_size = 50
-icon = ExtResource("1_j7d1b")
 flat = true
 script = ExtResource("2_u1kpv")
 

@@ -14,6 +14,7 @@ corner_radius_bottom_left = 10
 
 [node name="CategoryBtn" type="Button"]
 focus_mode = 0
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
 icon = ExtResource("1_yl4vb")
 flat = true
 icon_alignment = 1

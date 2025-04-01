@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjmk1u46mecua"
-path="res://.godot/imported/sex_girl_a_lv_1.png-ed76cb2605dee995258fcd88ebb31861.ctex"
+uid="uid://cdvppueaawgwq"
+path="res://.godot/imported/sex_girl_b_lv1.png-829607bf184c313639fe1bb53cde9a4c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/sex_girl_a_lv/sex_girl_a_lv_1.png"
-dest_files=["res://.godot/imported/sex_girl_a_lv_1.png-ed76cb2605dee995258fcd88ebb31861.ctex"]
+source_file="res://characters/sex_girl_b/sex_girl_b_lv1.png"
+dest_files=["res://.godot/imported/sex_girl_b_lv1.png-829607bf184c313639fe1bb53cde9a4c.ctex"]
 
 [params]
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxxejc615wwp5"]
+[gd_scene load_steps=8 format=3 uid="uid://cxxejc615wwp5"]
 
 [ext_resource type="Script" path="res://scene/menu/menu_btn/menu_btn.gd" id="1_4bph8"]
 [ext_resource type="Texture2D" uid="uid://bjljegg77h8m6" path="res://characters/c_1.png" id="2_aa6vc"]
 [ext_resource type="Texture2D" uid="uid://pcerblv7eeu8" path="res://scene/menu/menu_btn/lock.png" id="3_dn1hs"]
+[ext_resource type="SpineSkeletonDataResource" uid="uid://dcflm6jsagvju" path="res://characters/photo_gir/photo.tres" id="3_u8fym"]
 [ext_resource type="Texture2D" uid="uid://de7dqg6fww0vb" path="res://scene/menu/menu_btn/bonus.png" id="4_pqfi0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p6lmd"]
@@ -20,7 +21,6 @@ corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
 
 [node name="MenuBtn" type="Button"]
-anchors_preset = -1
 offset_left = -103.0
 offset_top = -243.0
 offset_right = 103.0
@@ -42,6 +42,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.490196)
 
 [node name="AvatarBG" type="Panel" parent="."]
+visible = false
 clip_children = 2
 layout_mode = 1
 anchors_preset = 5
@@ -66,6 +67,7 @@ expand_mode = 1
 stretch_mode = 6
 
 [node name="NameBG" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -94,6 +96,23 @@ theme_override_font_sizes/font_size = 30
 text = "名稱"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="SpineSprite" type="SpineSprite" parent="Control"]
+skeleton_data_res = ExtResource("3_u8fym")
+preview_skin = "photo_girl_a"
+preview_animation = "photo_gir"
+preview_frame = false
+preview_time = 0.0
 
 [node name="Lock" type="TextureRect" parent="."]
 layout_mode = 1

@@ -20,9 +20,9 @@ func create_character_btns():
 	var categorys = Main.categorys_data
 	var spaceing = 140
 	var offset = spaceing
-	var i = 0
-	for data: Main.CategoryData in categorys:
-		var btn := category_btn.instantiate()
+	for i in categorys.size():
+		var data: Main.CategoryData = categorys[i]
+		var btn: Button = category_btn.instantiate()
 		var img_path = "res://scene/category/category_btn/image/"
 		btn.texture_n = load(img_path + "building_" + str(i) + "_n.png")
 		btn.texture_light = load(img_path + "building_" + str(i) + ".png")
@@ -34,11 +34,14 @@ func create_character_btns():
 			size.y * 0.7 - btn.size.y
 		)
 		offset += btn.size.x + spaceing
+		if i > 0:
+			var temp: Main.CategoryData = categorys[i-1]
+			btn.is_lock = temp.progress != temp.all_level or temp.all_level == 0
+			btn.disabled = btn.is_lock
 		# 綁定點擊事件
 		btn.pressed.connect(_on_category_btn_pressed.bind(data))
 		btns.append(btn)
 		add_child(btn)
-		i += 1
 
 
 func refresh():

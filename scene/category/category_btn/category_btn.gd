@@ -6,6 +6,7 @@ var texture_halo: Texture
 var img_light: TextureRect
 var img_halo: TextureRect
 var tween: Tween
+var is_lock: bool
 var on_exit = false
 
 # Called when the node enters the scene tree for the first time.
@@ -35,6 +36,8 @@ func set_data(data: Main.CategoryData):
 
 
 func _on_mouse_entered():
+	if is_lock:
+		return
 	img_halo.visible = true
 	if tween:
 		tween.kill()

@@ -43,20 +43,14 @@ func setup():
 
 
 func set_btns():
-	var i = 0
-	var temp_btn := MenuBtn.new()
-	for btn: MenuBtn in btns:
-		var c_data = category_data.characters[i]
+	for i in btns.size():
+		var btn: MenuBtn = btns[i]
+		var c_data = category_data.characters[i] if i < category_data.characters.size() else Main.CharacterData.new()
 		btn.set_data(c_data)
-		if i == 0:
-			btn.open()
+		if i > 0 and !btns[i-1].has_bonus:
+			btn.lock()
 		else:
-			if temp_btn.has_bonus:
-				btn.open()
-			else:
-				btn.lock()
-		temp_btn = btn
-		i += 1
+			btn.open()
 
 
 func play_enter_effect(i):
