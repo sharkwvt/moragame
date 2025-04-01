@@ -1,0 +1,12 @@
+draw.png
+size:284,284
+filter:Linear,Linear
+draw_a
+bounds:0,65,142,109
+draw_d
+bounds:175,169,115,109
+rotate:90
+draw_r
+bounds:143,59,120,109
+draw_w
+bounds:0,175,174,109

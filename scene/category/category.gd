@@ -23,9 +23,10 @@ func create_character_btns():
 	var i = 0
 	for data: Main.CategoryData in categorys:
 		var btn := category_btn.instantiate()
-		btn.texture_n = load("res://scene/category/category_btn/building_" + str(i) + "_n.png")
-		btn.texture_light = load("res://scene/category/category_btn/building_" + str(i) + ".png")
-		btn.texture_halo = load("res://scene/category/category_btn/building_" + str(i) + "_halo.png")
+		var img_path = "res://scene/category/category_btn/image/"
+		btn.texture_n = load(img_path + "building_" + str(i) + "_n.png")
+		btn.texture_light = load(img_path + "building_" + str(i) + ".png")
+		btn.texture_halo = load(img_path + "building_" + str(i) + "_halo.png")
 		btn.set_data(data)
 		btn.position = Vector2.ZERO # 不知為何這樣才能取到size
 		btn.position = Vector2(
