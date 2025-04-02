@@ -94,9 +94,10 @@ func _on_mouse_exited(btn: Button):
 func _on_start_button_pressed() -> void:
 	var btn = $StartButton
 	play_click_anim(btn)
-	await tween.finished
+	#await get_tree().create_timer(0.3).timeout
+	#await tween.finished
 	Main.to_scene(Main.SCENE.category)
-	play_reset_anim(btn)
+	#play_reset_anim(btn)
 
 
 func _on_review_button_pressed() -> void:
