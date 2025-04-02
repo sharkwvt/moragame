@@ -192,13 +192,13 @@ func switch_choice(is_show: bool):
 		game_tween.kill()
 	game_tween = game_view.create_tween()
 	if is_show:
-		game_tween.tween_property(btn, "position:y", size.y - btn.size.y, 1)
-		game_tween.parallel().tween_property(bot_btn, "position:y", bot_btn.size.y, 1)
+		game_tween.tween_property(btn, "position:y", size.y - btn.size.y, 0.5)
+		game_tween.parallel().tween_property(bot_btn, "position:y", bot_btn.size.y, 0.5)
 		btn.hand_up()
 		bot_btn.hand_up()
 	else:
-		game_tween.tween_property(btn, "position", btn.pos, 1)
-		game_tween.parallel().tween_property(bot_btn, "position", bot_btn.pos, 1)
+		game_tween.tween_property(btn, "position", btn.pos, 0.2)
+		game_tween.parallel().tween_property(bot_btn, "position", bot_btn.pos, 0.2)
 		btn.hand_down()
 		bot_btn.hand_down()
 		await game_tween.finished

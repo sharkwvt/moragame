@@ -6,8 +6,8 @@
 
 [node name="ChoiceBtn" type="Button"]
 self_modulate = Color(1, 1, 1, 0)
-offset_right = 222.0
-offset_bottom = 269.0
+offset_right = 173.0
+offset_bottom = 373.0
 focus_mode = 0
 theme_override_font_sizes/font_size = 50
 flat = true

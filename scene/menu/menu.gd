@@ -34,6 +34,7 @@ func setup():
 	
 	for i in btns.size():
 		var btn: MenuBtn = btns[i]
+		btn.index = i
 		btn.mouse_entered.connect(_on_btn_mouse_entered.bind(i))
 		btn.mouse_exited.connect(_on_btn_mouse_exited.bind(i))
 		btn.pressed.connect(_on_btn_pressed.bind(i, false))
@@ -56,7 +57,9 @@ func set_btns():
 func play_enter_effect(i):
 	# 關閉鼠標感應
 	for btn: MenuBtn in btns:
-		btn.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		btn.mouse_filter = Control.MOUSE_FILTER_IGNORE	
+		if btn.index == i:
+			btn.play_animation()
 	
 	var tex: TextureRect = select_rooms[i] 
 	tex.modulate.a = 0.6

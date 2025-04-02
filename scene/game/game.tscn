@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scene/game/game.gd" id="1_tbpdr"]
 [ext_resource type="Texture2D" uid="uid://cdyb41iokvcsy" path="res://scene/game/game_bg.png" id="2_i4cql"]
 [ext_resource type="Texture2D" uid="uid://bjljegg77h8m6" path="res://characters/c_1.png" id="3_8ova6"]
-[ext_resource type="Texture2D" uid="uid://cj5ghtnmxuhvm" path="res://image/功能.png" id="3_d0cw2"]
+[ext_resource type="Texture2D" uid="uid://cj5ghtnmxuhvm" path="res://Image/功能.png" id="3_d0cw2"]
 [ext_resource type="SpineSkeletonDataResource" uid="uid://de7pummjnpngd" path="res://scene/game/win_lose_draw/draw.tres" id="5_govgq"]
 [ext_resource type="Script" path="res://common/common_button.gd" id="8_mk0gg"]
 [ext_resource type="PackedScene" uid="uid://sfxekiqbeugx" path="res://common/talk/talk.tscn" id="8_qrful"]

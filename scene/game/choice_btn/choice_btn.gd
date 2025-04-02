@@ -54,7 +54,7 @@ func hand_up():
 	if tween:
 		tween.kill()
 	tween = create_tween()
-	tween.tween_property(hand, "position", selected_pos, 0.5)
+	tween.tween_property(hand, "position", selected_pos, 0.2)
 
 
 func hand_down():
@@ -63,7 +63,7 @@ func hand_down():
 	if tween:
 		tween.kill()
 	tween = create_tween()
-	tween.tween_property(hand, "position", org_pos, 0.5)
+	tween.tween_property(hand, "position", org_pos, 0.1)
 
 
 func reset():

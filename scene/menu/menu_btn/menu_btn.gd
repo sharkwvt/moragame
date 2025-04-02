@@ -1,11 +1,13 @@
 extends Button
 class_name MenuBtn
 
+var index:int
 var character_data
 var bonus_btn: Button
 var is_open: bool
 var has_bonus: bool
 var avatar_spine: SpineSprite
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -39,5 +41,8 @@ func open():
 	$BonusButton.visible = false
 	is_open = true
 	
+	
+	
+func play_animation():
 	var anim: SpineAnimationState = avatar_spine.get_animation_state()
 	anim.set_animation("photo_gir", false)
