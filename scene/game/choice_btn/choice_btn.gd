@@ -53,8 +53,8 @@ func hand_up():
 		bg.texture = img_s
 	if tween:
 		tween.kill()
-	tween = create_tween()
-	tween.tween_property(hand, "position", selected_pos, 0.2)
+	#tween = create_tween()
+	#tween.tween_property(hand, "position", selected_pos, 0.2)
 
 
 func hand_down():
@@ -62,8 +62,8 @@ func hand_down():
 		bg.texture = img_n
 	if tween:
 		tween.kill()
-	tween = create_tween()
-	tween.tween_property(hand, "position", org_pos, 0.1)
+	#tween = create_tween()
+	#tween.tween_property(hand, "position", org_pos, 0.1)
 
 
 func reset():

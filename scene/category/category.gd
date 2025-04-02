@@ -8,6 +8,7 @@ var btns = []
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	create_character_btns()
+	$CPUParticles2D.move_to_front()
 	Main.show_talk_view("選關對話")
 
 

@@ -185,6 +185,7 @@ func show_bonus():
 func switch_choice(is_show: bool):
 	for btn: Button in player_choice_btns:
 		btn.disabled = true
+		#btn.visible = false
 	
 	var btn: Button = player_choice_btns[player_choice]
 	var bot_btn: Button = bot_choice_btns[bot_choice]
@@ -204,6 +205,7 @@ func switch_choice(is_show: bool):
 		await game_tween.finished
 		for b: Button in player_choice_btns:
 			b.disabled = false
+			#btn.visible = true
 
 
 func gameover():

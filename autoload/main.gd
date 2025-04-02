@@ -315,3 +315,10 @@ func _input(event):
 		#click_effect.position = get_viewport().get_mouse_position()
 		click_effect.position = event.position
 		get_tree().root.add_child(click_effect)
+		
+func _unhandled_key_input(event: InputEvent) -> void:
+		if event.is_action_pressed("esc"):
+			if Engine.time_scale == 1:
+				Engine.time_scale = 0.01
+			else:
+				Engine.time_scale = 1
