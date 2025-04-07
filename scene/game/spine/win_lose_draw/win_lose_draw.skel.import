@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://cja8jybg3jlol"
+path="res://.godot/imported/win_lose_draw.skel-ca5259e009e9e6baa012e8cafd242a2d.spskel"
+
+[deps]
+
+source_file="res://scene/game/spine/win_lose_draw/win_lose_draw.skel"
+dest_files=["res://.godot/imported/win_lose_draw.skel-ca5259e009e9e6baa012e8cafd242a2d.spskel"]
+
+[params]
+

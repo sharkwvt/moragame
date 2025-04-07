@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cxxejc615wwp5"]
+[gd_scene load_steps=9 format=3 uid="uid://cxxejc615wwp5"]
 
 [ext_resource type="Script" path="res://scene/menu/menu_btn/menu_btn.gd" id="1_4bph8"]
 [ext_resource type="Texture2D" uid="uid://bjljegg77h8m6" path="res://characters/c_1.png" id="2_aa6vc"]
 [ext_resource type="Texture2D" uid="uid://pcerblv7eeu8" path="res://scene/menu/menu_btn/lock.png" id="3_dn1hs"]
 [ext_resource type="SpineSkeletonDataResource" uid="uid://dcflm6jsagvju" path="res://characters/photo_gir/photo.tres" id="3_u8fym"]
 [ext_resource type="Texture2D" uid="uid://de7dqg6fww0vb" path="res://scene/menu/menu_btn/bonus.png" id="4_pqfi0"]
+[ext_resource type="SpineSkeletonDataResource" uid="uid://bld7of8wgr8cg" path="res://scene/menu/menu_btn/spine/lock/lock.tres" id="6_sod05"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p6lmd"]
 bg_color = Color(1, 1, 1, 1)
@@ -143,3 +144,21 @@ focus_mode = 0
 icon = ExtResource("4_pqfi0")
 flat = true
 expand_icon = true
+
+[node name="SpineLock" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SpineSprite" type="SpineSprite" parent="SpineLock"]
+skeleton_data_res = ExtResource("6_sod05")
+preview_skin = "default"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0

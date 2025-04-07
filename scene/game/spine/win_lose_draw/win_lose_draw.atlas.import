@@ -1,0 +1,15 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://dp4yfcl1b6y2r"
+path="res://.godot/imported/win_lose_draw.atlas-78024af0587cb9342ae832c6494d02d9.spatlas"
+
+[deps]
+
+source_file="res://scene/game/spine/win_lose_draw/win_lose_draw.atlas"
+dest_files=["res://.godot/imported/win_lose_draw.atlas-78024af0587cb9342ae832c6494d02d9.spatlas"]
+
+[params]
+
+normal_map_prefix="n"

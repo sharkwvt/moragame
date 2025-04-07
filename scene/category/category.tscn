@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dru60vogwkrk2"]
+[gd_scene load_steps=9 format=3 uid="uid://dru60vogwkrk2"]
 
 [ext_resource type="Script" path="res://scene/category/category.gd" id="1_fsov7"]
 [ext_resource type="Texture2D" uid="uid://b5km4if17uloy" path="res://scene/category/category_bg.png" id="2_32ujb"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c2hckrk53snne" path="res://common/return/return_button.tscn" id="5_dd1j8"]
 [ext_resource type="Texture2D" uid="uid://d3rxs3qwnxuwl" path="res://image/particle/rain_drop_1x16.png" id="6_3ulg3"]
 [ext_resource type="Texture2D" uid="uid://twb4hgdg6oew" path="res://image/particle/rain_drop_2x30.png" id="7_at8md"]
+[ext_resource type="SpineSkeletonDataResource" uid="uid://ck8rd6gxpymn8" path="res://scene/category/spine/scen.tres" id="8_larw7"]
 
 [node name="Category" type="Control"]
 layout_mode = 3
@@ -26,6 +27,23 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_32ujb")
 expand_mode = 1
+
+[node name="SpineBG" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SpineSprite" type="SpineSprite" parent="SpineBG"]
+skeleton_data_res = ExtResource("8_larw7")
+preview_skin = "Default"
+preview_animation = "scen_a"
+preview_frame = false
+preview_time = 0.0
 
 [node name="SettingButton" type="Button" parent="."]
 visible = false
