@@ -13,6 +13,11 @@ func _ready() -> void:
 	setup()
 	$lightMask.mouse_filter = MOUSE_FILTER_IGNORE
 	Main.show_talk_view("選角對話")
+	var bgScaleX = Main.screen_size.x / (($SpineBG/SpineSprite as SpineSprite).skeleton_data_res as SpineSkeletonDataResource).get_width()
+	var bgScaleY = Main.screen_size.y / (($SpineBG/SpineSprite as SpineSprite).skeleton_data_res as SpineSkeletonDataResource).get_height()	
+	$SpineBG.scale = Vector2(bgScaleX,1.348)
+	var backgroundAni: SpineAnimationState = $SpineBG/SpineSprite.get_animation_state()
+	backgroundAni.set_animation("toilet_a")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
