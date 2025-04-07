@@ -10,6 +10,12 @@ func _ready() -> void:
 	create_character_btns()
 	$CPUParticles2D.move_to_front()
 	Main.show_talk_view("選關對話")
+	
+	var bgScaleX = Main.screen_size.x / (($SpineBG/SpineSprite as SpineSprite).skeleton_data_res as SpineSkeletonDataResource).get_width()
+	var bgScaleY = Main.screen_size.y / (($SpineBG/SpineSprite as SpineSprite).skeleton_data_res as SpineSkeletonDataResource).get_height()	
+	$SpineBG.scale = Vector2(1.5,bgScaleY)
+	var backgroundAni: SpineAnimationState = $SpineBG/SpineSprite.get_animation_state()
+	backgroundAni.set_animation("scen_a")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
