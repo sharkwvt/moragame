@@ -27,7 +27,7 @@ func lock():
 	$Lock.visible = true
 	#$AvatarBG.visible = false
 	#$NameBG.visible = false
-	avatar_spine.visible = false
+	$Control/SpineSprite.visible = false
 	$BonusButton.visible = false
 	is_open = false
 
@@ -36,7 +36,7 @@ func open():
 	$Lock.visible = false
 	#$AvatarBG.visible = true
 	#$NameBG.visible = true
-	avatar_spine.visible = true
+	$Control/SpineSprite.visible = true
 	#$BonusButton.visible = has_bonus
 	$BonusButton.visible = false
 	is_open = true

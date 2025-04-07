@@ -46,7 +46,11 @@ func setup():
 func set_btns():
 	for i in btns.size():
 		var btn: MenuBtn = btns[i]
-		var c_data = category_data.characters[i] if i < category_data.characters.size() else Main.CharacterData.new()
+		# 沒人了
+		if i > category_data.characters.size()-1:
+			btn.lock()
+			continue
+		var c_data = category_data.characters[i]
 		btn.set_data(c_data)
 		if i > 0 and !btns[i-1].has_bonus:
 			btn.lock()

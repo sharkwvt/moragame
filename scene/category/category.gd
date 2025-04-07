@@ -37,7 +37,7 @@ func create_character_btns():
 		offset += btn.size.x + spaceing
 		if i > 0:
 			var temp: Main.CategoryData = categorys[i-1]
-			btn.is_lock = temp.progress != temp.all_level or temp.all_level == 0
+			btn.is_lock = temp.progress != temp.all_level or data.all_level == 0
 			btn.disabled = btn.is_lock
 		# 綁定點擊事件
 		btn.pressed.connect(_on_category_btn_pressed.bind(data))
