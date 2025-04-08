@@ -35,7 +35,7 @@ func create_character_btns():
 		btn.position = Vector2.ZERO # 不知為何這樣才能取到size
 		btn.position = Vector2(
 			offset,
-			size.y * 0.7 - btn.size.y
+			size.y * 0.75 - btn.size.y
 		)
 		offset += btn.size.x + spaceing
 		if i > 0:
