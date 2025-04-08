@@ -118,9 +118,11 @@ func play_music(music):
 func to_scene(scene: SCENE, anim_type = 0):
 	if instance_scenes[scene] is Control:
 		# 使用已創建的場景
-		instance_scenes[scene].visible = true
 		instance_scenes[scene].move_to_front()
 		instance_scenes[scene].show_scene()
+		# 避免閃爍
+		await get_tree().process_frame
+		instance_scenes[scene].visible = true
 	else:
 		# 創建場景
 		match scene:

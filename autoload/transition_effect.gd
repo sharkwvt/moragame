@@ -62,6 +62,8 @@ func apply_shader(anim_type = 0):
 	texture_rect.material = shader_material
 
 func set_tween(anim_type = 0, duration: float = 1.0):
+	if tween:
+		tween.kill()
 	tween = main.create_tween()
 	match anim_type:
 		1: # 左移出

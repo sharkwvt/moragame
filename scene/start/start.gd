@@ -81,23 +81,25 @@ func run_spine_stop():
 
 func _on_mouse_entered(btn: Button):
 	var duration = 0.5
+	if tween:
+		tween.kill()
 	tween = btn.create_tween()
 	tween.set_loops()
 	tween.tween_property(btn, "scale", Vector2(1.1, 1.1), duration)
 	tween.tween_property(btn, "scale", Vector2(1, 1), duration)
-	await btn.mouse_exited
-	tween.kill()
 
 func _on_mouse_exited(btn: Button):
 	btn.scale = Vector2(1, 1)
+	if tween:
+		tween.kill()
 
 func _on_start_button_pressed() -> void:
 	var btn = $StartButton
 	play_click_anim(btn)
 	#await get_tree().create_timer(0.3).timeout
-	#await tween.finished
+	await tween.finished
 	Main.to_scene(Main.SCENE.category)
-	#play_reset_anim(btn)
+	play_reset_anim(btn)
 
 
 func _on_review_button_pressed() -> void:
