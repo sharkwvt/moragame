@@ -1,8 +1,0 @@
-[gd_resource type="SpineSkeletonDataResource" load_steps=3 format=3 uid="uid://dne1idg6mqkbm"]
-
-[ext_resource type="SpineAtlasResource" uid="uid://bvakq1v3mav2f" path="res://scene/game/win_lose_draw/lose.atlas" id="1_cgqf8"]
-[ext_resource type="SpineSkeletonFileResource" uid="uid://bkuunlpu4y15l" path="res://scene/game/win_lose_draw/lose.skel" id="2_v7mvn"]
-
-[resource]
-atlas_res = ExtResource("1_cgqf8")
-skeleton_file_res = ExtResource("2_v7mvn")
