@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brxl7ay3l71ij"
-path="res://.godot/imported/win_lose_draw.png-189b352e388af5afbdd3bd90270a511d.ctex"
+uid="uid://clwangumbojuu"
+path="res://.godot/imported/npc_a.png-a40e87d142275064f36155c21af657b8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scene/game/spine/win_lose_draw/win_lose_draw.png"
-dest_files=["res://.godot/imported/win_lose_draw.png-189b352e388af5afbdd3bd90270a511d.ctex"]
+source_file="res://scene/game/spine/npc/npc_a.png"
+dest_files=["res://.godot/imported/npc_a.png-a40e87d142275064f36155c21af657b8.ctex"]
 
 [params]
 

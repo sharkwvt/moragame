@@ -1,0 +1,15 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://cigfmp0rb64tj"
+path="res://.godot/imported/user_a.atlas-c267fcc891092ac10912fb1433f903c7.spatlas"
+
+[deps]
+
+source_file="res://scene/game/spine/user/user_a.atlas"
+dest_files=["res://.godot/imported/user_a.atlas-c267fcc891092ac10912fb1433f903c7.spatlas"]
+
+[params]
+
+normal_map_prefix="n"

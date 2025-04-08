@@ -1,8 +1,8 @@
-[gd_resource type="SpineSkeletonDataResource" load_steps=3 format=3 uid="uid://bs6ub4c5c1dhq"]
+[gd_resource type="SpineSkeletonDataResource" load_steps=3 format=3 uid="uid://bqwqjpwl3gi6p"]
 
-[ext_resource type="SpineAtlasResource" uid="uid://dp4yfcl1b6y2r" path="res://scene/game/spine/win_lose_draw/win_lose_draw.atlas" id="1_gh43s"]
-[ext_resource type="SpineSkeletonFileResource" uid="uid://cja8jybg3jlol" path="res://scene/game/spine/win_lose_draw/win_lose_draw.skel" id="2_pj2co"]
+[ext_resource type="SpineAtlasResource" uid="uid://g2tuyi445hjh" path="res://scene/game/spine/win_lose_draw/win_lose_draw.atlas" id="1_ewrt2"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://d6hh12enm22n" path="res://scene/game/spine/win_lose_draw/win_lose_draw.skel" id="2_eyy24"]
 
 [resource]
-atlas_res = ExtResource("1_gh43s")
-skeleton_file_res = ExtResource("2_pj2co")
+atlas_res = ExtResource("1_ewrt2")
+skeleton_file_res = ExtResource("2_eyy24")

@@ -14,16 +14,17 @@ var talk_view: TextureRect
 # 猜拳
 var game_view: Control
 var now_level: int
-var tip_spine: SpineSprite
-var spine_path = "res://scene/game/win_lose_draw/%s.tres"
+var tips_node: Control
+var result_spine: SpineSprite
+var user_spine: SpineSprite
+var npc_spine: SpineSprite
 var game_tween: Tween
 var choice_btn = preload("res://scene/game/choice_btn/choice_btn.tscn")
 var player_choice_btns = []
 var bot_choice_btns = []
 var player_choice
 var bot_choice
-var choice_str = ["剪刀", "石頭", "布"]
-var choice_img_path = "res://scene/game/image/%s.png"
+var choice_str = ["scissors", "rock", "paper"]
 # bonus
 var bonus_view: Control
 var spine_sprite: SpineSprite
@@ -58,7 +59,10 @@ func setup():
 	story_view = $Story
 	talk_view = $Story/Talk
 	game_view = $Game
-	tip_spine = $Game/Tip
+	tips_node = $Game/Tips
+	result_spine = $Game/Tips/Result
+	user_spine = $Game/Tips/User
+	npc_spine = $Game/Tips/Npc
 	menu_btn = $Game/MenuButton
 	bonus_view = $Bonus
 	spine_sprite = $Bonus/SpineSprite
@@ -98,7 +102,7 @@ func reset_game():
 	game_state = STATE.對話
 	bonus_view.visible = false
 	gameover_view.visible = false
-	tip_spine.visible = false
+	tips_node.visible = false
 	# 已通關時重新開始
 	if character_data.progress >= character_data.level or is_bonus:
 		now_level = 0
@@ -183,29 +187,40 @@ func show_bonus():
 
 # 顯示雙方猜拳
 func switch_choice(is_show: bool):
+	tips_node.visible = is_show
 	for btn: Button in player_choice_btns:
-		btn.disabled = true
-		#btn.visible = false
+		btn.disabled = is_show
+		#btn.visible = not is_show
 	
-	var btn: Button = player_choice_btns[player_choice]
-	var bot_btn: Button = bot_choice_btns[bot_choice]
-	if game_tween:
-		game_tween.kill()
-	game_tween = game_view.create_tween()
 	if is_show:
-		game_tween.tween_property(btn, "position:y", size.y - btn.size.y, 0.5)
-		game_tween.parallel().tween_property(bot_btn, "position:y", bot_btn.size.y, 0.5)
-		btn.hand_up()
-		bot_btn.hand_up()
-	else:
-		game_tween.tween_property(btn, "position", btn.pos, 0.2)
-		game_tween.parallel().tween_property(bot_btn, "position", bot_btn.pos, 0.2)
-		btn.hand_down()
-		bot_btn.hand_down()
-		await game_tween.finished
-		for b: Button in player_choice_btns:
-			b.disabled = false
-			#btn.visible = true
+		var user_skel: SpineSkeleton = user_spine.get_skeleton()
+		user_skel.set_skin_by_name(choice_str[player_choice])
+		var user_anim: SpineAnimationState = user_spine.get_animation_state()
+		user_anim.set_animation("user_a", false)
+		var npc_skel: SpineSkeleton = npc_spine.get_skeleton()
+		npc_skel.set_skin_by_name(choice_str[bot_choice])
+		var npc_anim: SpineAnimationState = npc_spine.get_animation_state()
+		npc_anim.set_animation("npc_a", false)
+
+	#var btn: Button = player_choice_btns[player_choice]
+	#var bot_btn: Button = bot_choice_btns[bot_choice]
+	#if game_tween:
+		#game_tween.kill()
+	#game_tween = game_view.create_tween()
+	#if is_show:
+		#game_tween.tween_property(btn, "position:y", size.y - btn.size.y, 0.5)
+		#game_tween.parallel().tween_property(bot_btn, "position:y", bot_btn.size.y, 0.5)
+		#btn.hand_up()
+		#bot_btn.hand_up()
+	#else:
+		#game_tween.tween_property(btn, "position", btn.pos, 0.2)
+		#game_tween.parallel().tween_property(bot_btn, "position", bot_btn.pos, 0.2)
+		#btn.hand_down()
+		#bot_btn.hand_down()
+		#await game_tween.finished
+		#for b: Button in player_choice_btns:
+			#b.disabled = false
+			##btn.visible = true
 
 
 func gameover():
@@ -215,30 +230,29 @@ func gameover():
 # 輸贏判定
 func play_logic():
 	bot_choice = randi_range(0, 2)
-	switch_choice(true)
 	var result = determine_winner(player_choice, bot_choice)
 	var result_str: String
 	match result:
 		0:
-			result_str = "draw"
+			result_str = "DRAW"
 		1:
 			now_level += 1
 			if character_data.progress < now_level:
 				character_data.progress = now_level
 				Main.save_game()
 			game_state = STATE.對話
-			result_str = "win"
+			result_str = "WIN"
 		-1:
-			result_str = "lose"
+			result_str = "LOSE"
 	
 	# 輸贏動畫
-	await game_tween.finished
-	tip_spine.skeleton_data_res = load(spine_path % result_str)
-	var anim: SpineAnimationState = tip_spine.get_animation_state()
+	#await game_tween.finished
+	switch_choice(true)
+	var anim: SpineAnimationState = result_spine.get_animation_state()
 	anim.set_animation(result_str, false)
-	tip_spine.visible = true
+	tips_node.visible = true
 	
-	await tip_spine.animation_completed
+	await result_spine.animation_completed
 	switch_choice(false)
 	to_continue()
 	if is_bonus and result == -1:

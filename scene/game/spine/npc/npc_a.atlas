@@ -1,0 +1,12 @@
+npc_a.png
+size:473,473
+filter:Linear,Linear
+paper_a
+bounds:0,237,236,236
+offsets:1,1,238,238
+rock_a
+bounds:0,0,236,236
+offsets:1,1,238,238
+scissors_a
+bounds:237,237,236,236
+offsets:1,1,238,238
