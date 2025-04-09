@@ -21,7 +21,6 @@ var npc_spine: SpineSprite
 var game_tween: Tween
 var choice_btn = preload("res://scene/game/choice_btn/choice_btn.tscn")
 var player_choice_btns = []
-var bot_choice_btns = []
 var player_choice
 var bot_choice
 var choice_str = ["scissors", "rock", "paper"]
@@ -83,16 +82,6 @@ func setup():
 		player_choice_btns.append(btn)
 		btn.pressed.connect(_on_choice_btn_pressed.bind(i))
 		game_view.add_child(btn)
-		
-		var bot_btn: Button = choice_btn.instantiate()
-		bot_btn.position = Vector2(
-			size.x/2.0 + (i - count/2.0) * offset,
-			-50
-		)
-		bot_btn.scale.y = -1
-		bot_btn.setup(i, true)
-		bot_choice_btns.append(bot_btn)
-		game_view.add_child(bot_btn)
 
 
 func reset_game():
@@ -202,26 +191,6 @@ func switch_choice(is_show: bool):
 		npc_skel.set_skin_by_name(choice_str[bot_choice])
 		var npc_anim: SpineAnimationState = npc_spine.get_animation_state()
 		npc_anim.set_animation("npc_a", false)
-
-	#var btn: Button = player_choice_btns[player_choice]
-	#var bot_btn: Button = bot_choice_btns[bot_choice]
-	#if game_tween:
-		#game_tween.kill()
-	#game_tween = game_view.create_tween()
-	#if is_show:
-		#game_tween.tween_property(btn, "position:y", size.y - btn.size.y, 0.5)
-		#game_tween.parallel().tween_property(bot_btn, "position:y", bot_btn.size.y, 0.5)
-		#btn.hand_up()
-		#bot_btn.hand_up()
-	#else:
-		#game_tween.tween_property(btn, "position", btn.pos, 0.2)
-		#game_tween.parallel().tween_property(bot_btn, "position", bot_btn.pos, 0.2)
-		#btn.hand_down()
-		#bot_btn.hand_down()
-		#await game_tween.finished
-		#for b: Button in player_choice_btns:
-			#b.disabled = false
-			##btn.visible = true
 
 
 func gameover():

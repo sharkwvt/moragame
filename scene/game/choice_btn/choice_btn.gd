@@ -8,6 +8,7 @@ enum CHOICES {
 
 var choice: CHOICES
 var bg: TextureRect
+var bg_s: TextureRect
 var hand: TextureRect
 
 var tween: Tween
@@ -15,9 +16,6 @@ var pos: Vector2
 var org_pos: Vector2
 var selected_pos: Vector2
 var is_bot: bool
-
-var img_n = load("res://scene/game/choice_btn/select_bg.png")
-var img_s = load("res://scene/game/choice_btn/select_bg_s.png")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -30,6 +28,7 @@ func _ready() -> void:
 
 func setup(c: CHOICES, bot: bool = false):
 	bg = $BG
+	bg_s = $BG_s
 	hand = $TextureRect
 	choice = c
 	var img_path = "res://scene/game/choice_btn/"
@@ -44,13 +43,12 @@ func setup(c: CHOICES, bot: bool = false):
 	hand.set_anchors_preset(Control.PRESET_CENTER_BOTTOM)
 	is_bot = bot
 	if is_bot:
-		bg.texture = load("res://scene/game/choice_btn/npc_select_bg.png")
 		bg.flip_v = true
 		disabled = true
 
 func hand_up():
 	if not is_bot:
-		bg.texture = img_s
+		bg_s.visible = true
 	if tween:
 		tween.kill()
 	#tween = create_tween()
@@ -59,7 +57,7 @@ func hand_up():
 
 func hand_down():
 	if not is_bot:
-		bg.texture = img_n
+		bg_s.visible = false
 	if tween:
 		tween.kill()
 	#tween = create_tween()
@@ -71,12 +69,12 @@ func reset():
 
 
 func _on_mouse_entered() -> void:
-	if disabled:
-		return
+	#if disabled:
+		#return
 	hand_up()
 
 
 func _on_mouse_exited() -> void:
-	if disabled:
-		return
+	#if disabled:
+		#return
 	hand_down()
