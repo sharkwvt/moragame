@@ -1,7 +1,7 @@
 photo_gir.png
-size:281,281
+size:512,512
 filter:Linear,Linear
 photo_girl_a
-bounds:0,129,140,152
+bounds:2,209,189,205
 photo_girl_b
-bounds:141,129,140,152
+bounds:2,2,189,205

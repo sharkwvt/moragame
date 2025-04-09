@@ -13,6 +13,8 @@ var menu_scene = preload("res://scene/menu/menu.tscn")
 var game_scene = preload("res://scene/game/game.tscn")
 var review_scene = preload("res://scene/review/review.tscn")
 
+var category_strs = ["公寓", "學校", "醫院", "辦公樓"]
+
 var music_1 = preload("res://sound/maou_bgm_acoustic50.mp3")
 var btn_sfx = preload("res://sound/maou_se_system47.mp3")
 
@@ -142,6 +144,8 @@ func to_scene(scene: SCENE, anim_type = 0):
 	# 滑鼠特效移到最前
 	mouse_trail_effect.move_to_front()
 
+func get_menu_scene() -> MenuScene:
+	return instance_scenes[SCENE.menu]
 
 func reload_data():
 	load_characters_json()
@@ -178,7 +182,6 @@ func create_test_data():
 func load_category_data():
 	categorys_data.clear()
 	if characters_data.size() > 0:
-		var category_strs = ["公寓", "學校", "醫院", "辦公樓"]
 		for category in category_strs:
 			var category_data = CategoryData.new()
 			category_data.category = category

@@ -6,7 +6,8 @@ var category_data: Main.CategoryData
 var btns = []
 var light_tween:Tween
 
-var is_bonus
+var show_unlock_anim: bool
+var is_to_bonus: bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -53,20 +54,21 @@ func set_btns():
 		if i > category_data.characters.size()-1:
 			btn.lock()
 			continue
-		var c_data = category_data.characters[i]
+		var c_data: Main.CharacterData = category_data.characters[i]
 		btn.set_data(c_data)
-		if i > 0 and !btns[i-1].has_bonus:
+		if i > 0 and !btns[i-1].can_bonus:
 			btn.lock()
 		else:
-			btn.open()
+			if show_unlock_anim and c_data.progress == 0:
+				btn.play_unlock_anim()
+			else:
+				btn.open()
 
 
 func play_enter_effect(i):
 	# 關閉鼠標感應
 	for btn: MenuBtn in btns:
-		btn.mouse_filter = Control.MOUSE_FILTER_IGNORE	
-		if btn.index == i:
-			btn.play_animation()
+		btn.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	
 	var tex: TextureRect = select_rooms[i] 
 	tex.modulate.a = 0.6
@@ -79,10 +81,9 @@ func play_enter_effect(i):
 	)
 	tween.finished.connect(start_game)
 
-
 func start_game():
 	Main.to_scene(Main.SCENE.game)
-	Main.instance_scenes[Main.SCENE.game].is_bonus = is_bonus
+	Main.instance_scenes[Main.SCENE.game].is_bonus = is_to_bonus
 
 
 func refresh():
@@ -101,7 +102,9 @@ func refresh():
 
 func show_scene():
 	refresh()
-	Main.show_talk_view("選角對話")
+	if !show_unlock_anim:
+		Main.show_talk_view("選角對話")
+	
 
 
 func _on_btn_mouse_entered(id) -> void:
@@ -127,7 +130,7 @@ func _on_btn_pressed(i, bonus) -> void:
 		Main.show_tip("鎖住了")
 		return
 	Main.current_character_data = btn.character_data
-	is_bonus = bonus
+	is_to_bonus = bonus
 	play_enter_effect(i)
 
 

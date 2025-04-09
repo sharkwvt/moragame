@@ -145,6 +145,7 @@ func to_continue():
 				show_story()
 			
 		STATE.通關:
+			Main.get_menu_scene().show_unlock_anim = true
 			if is_bonus:
 				character_data.has_bonus = true
 				Main.save_game()
