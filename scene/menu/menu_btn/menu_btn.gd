@@ -7,10 +7,15 @@ var bonus_btn: Button
 var is_open: bool
 var can_bonus: bool
 var avatar_spine: SpineSprite
+var lock_sp: SpineSprite
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	bonus_btn = $BonusButton
+	lock_sp = $Lock/SpineSprite
+	var anim: SpineAnimationState = lock_sp.get_animation_state()
+	anim.set_animation("lock_a", false)
+	anim.set_time_scale(0)
 
 func set_data(data: Main.CharacterData):
 	avatar_spine = $Avatar/SpineSprite
@@ -42,9 +47,7 @@ func open():
 
 
 func play_unlock_anim():
-	var lock_sp: SpineSprite = $Lock/SpineSprite
-	var anim: SpineAnimationState = lock_sp.get_animation_state()
-	anim.set_animation("lock_a", false)
+	lock_sp.get_animation_state().set_time_scale(1)
 	await lock_sp.animation_completed
 	open()
 	play_animation()
