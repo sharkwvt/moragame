@@ -2,7 +2,8 @@ extends Node
 
 var screen_size = Vector2i(1920, 1080)
 
-var characters_json_path = "res://characters/characters.json"
+var categorys_path = "res://categorys"
+var category_json_path = "/data.json"
 var game_save_path = "user://moragame.save"
 # 視窗
 var setting_view = preload("res://common/setting/setting_view.tscn")
@@ -13,15 +14,17 @@ var menu_scene = preload("res://scene/menu/menu.tscn")
 var game_scene = preload("res://scene/game/game.tscn")
 var review_scene = preload("res://scene/review/review.tscn")
 
-var category_strs = ["公寓", "學校", "醫院", "辦公樓"]
-
 var music_1 = preload("res://sound/maou_bgm_acoustic50.mp3")
 var btn_sfx = preload("res://sound/maou_se_system47.mp3")
 
 var mouse_click_effect = preload("res://common/mouse_click_effect.tscn")
 var mouse_trail_effect: GPUParticles2D
 
+var categorys_data = []
+var characters_data = []
 var current_scene: Control
+var current_character_data: CharacterData
+var current_category_data: CategoryData
 
 var instance_scenes = [0, 0, 0, 0, 0]
 enum SCENE {
@@ -41,22 +44,33 @@ class CharacterData:
 	var story: Array
 	var progress = 0
 	var has_bonus = false
+	func get_path() -> String:
+		return "res://categorys/" + category + "/characters/sex_girl_" + file_name
 	func get_avatar_name() -> String:
 		return "photo_girl_" + file_name
 	func get_cg_path(index) -> String:
-		return "res://characters/sex_girl_" + file_name + "/sex_girl_" + file_name + "_lv" + str(index+1) + ".png"
+		return get_path() + "/sex_girl_" + file_name + "_lv" + str(index+1) + ".png"
 	func get_spine_path() -> String:
-		var path = "res://characters/sex_girl_" + file_name + "/" + file_name + ".tres"
+		var path = get_path() + "/spine/" + file_name + ".tres"
 		return path if FileAccess.file_exists(path) else ""
-var characters_json: Dictionary
-var characters_data = []
-var current_character_data: CharacterData
 
 class CategoryData:
+	var id: int
 	var category: String
 	var characters = []
 	var all_level: int
 	var progress: float
+	var path: String
+	func get_img_path(type) -> String:
+		var name = "building"
+		match type:
+			0:
+				name += "_n"
+			1:
+				name += "_s"
+			2:
+				name += "_halo"
+		return path + "/btn/" + name + ".png"
 	func get_progress_str() -> String:
 		all_level = 0
 		progress = 0
@@ -66,9 +80,9 @@ class CategoryData:
 		if all_level == 0:
 			return "🔒"
 		return str(int(progress / all_level * 100)) + "%"
-		
-var categorys_data = []
-var current_category_data: CategoryData
+	func get_avatar_path() -> String:
+		return path + "/characters/photo_girl/photo.tres"
+
 
 var music_player: AudioStreamPlayer
 
@@ -148,73 +162,65 @@ func get_menu_scene() -> MenuScene:
 	return instance_scenes[SCENE.menu]
 
 func reload_data():
-	load_characters_json()
-	load_characters_data()
-	#create_test_data() # 測試用資料
-	load_category_data()
+	load_categorys_data()
 	load_game_save()
 
-
-func load_characters_data():
-	characters_data.clear()
-	if characters_json:
-		var characters: Array = characters_json["characters"]
-		for character: Dictionary in characters:
-			var data = Main.CharacterData.new()
-			for key in character.keys():
-				if key in data:
-					data.set(key, character[key])
-			characters_data.append(data)
-
-func create_test_data():
-	for i in 16:
-		var test_category = "category" + str(i % 3)
-		var data = CharacterData.new()
-		data.id = 99 + i
-		data.category = test_category
-		data.display_name = "who"+str(i)
-		data.file_name = "sex_girl_a_lv"
-		data.level = 2
-		data.story = ["test1", "test2", "test3"]
-		characters_data.append(data)
-
-
-func load_category_data():
+func load_categorys_data():
 	categorys_data.clear()
-	if characters_data.size() > 0:
-		for category in category_strs:
+	
+	var dir = DirAccess.open(categorys_path)
+	if dir == null:
+		print("無法開啟資料夾: ", categorys_path)
+		return
+	
+	dir.list_dir_begin()
+	var file_name = dir.get_next()
+	while file_name != "":
+		if dir.current_is_dir() and file_name != "." and file_name != "..":
+			print("load_category_data: ", file_name)
 			var category_data = CategoryData.new()
-			category_data.category = category
+			category_data.category = file_name
+			category_data.path = categorys_path + "/" + file_name
 			categorys_data.append(category_data)
-			
-		for character: CharacterData in characters_data:
-			var category = character.category
-			for c_data: CategoryData in categorys_data:
-				if c_data.category == category:
-					c_data.characters.append(character)
-					break
+			var json_data = get_json_data(category_data.path + category_json_path)
+			if !json_data.is_empty():
+				category_data.id = int(json_data["category"]["id"])
+				var characters: Array = json_data["characters"]
+				for character: Dictionary in characters:
+					var data = CharacterData.new()
+					for key in character.keys():
+						if key in data:
+							data.set(key, character[key])
+					data.category = category_data.category
+					characters_data.append(data)
+					category_data.characters.append(data)
+		file_name = dir.get_next()
+	dir.list_dir_end()
+	
+	# 排序
+	categorys_data.sort_custom(func(a, b): return a["id"] < b["id"])
 
 
-func load_characters_json():
-	if not FileAccess.file_exists(characters_json_path):
-		print("characters.json不存在")
-		return
+func get_json_data(path: String) -> Dictionary:
+	var json = JSON.new()
+	if not FileAccess.file_exists(path):
+		print(path + " 不存在")
+		return {}
 		
-	var file := FileAccess.open(characters_json_path, FileAccess.READ)
+	var file := FileAccess.open(path, FileAccess.READ)
 	if not file:
-		print("讀取characters.json失敗")
-		return
+		print("讀取" + path + "失敗")
+		return {}
 		
 	var content := file.get_as_text()
 	file.close()
 	
-	var json = JSON.new()
 	var pares_result := json.parse(content)
 	if pares_result != OK:
-		print("characters.json內容錯誤")
-		return
+		print(path + "內容錯誤")
+		return {}
 	
-	characters_json = json.data
+	return json.data
 
 
 func save_game():

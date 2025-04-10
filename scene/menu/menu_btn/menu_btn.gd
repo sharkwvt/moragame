@@ -17,14 +17,15 @@ func _ready() -> void:
 	anim.set_animation("lock_a", false)
 	anim.set_time_scale(0)
 
-func set_data(data: Main.CharacterData):
+func set_data(category_data: Main.CategoryData, data: Main.CharacterData):
 	avatar_spine = $Avatar/SpineSprite
 	character_data = data
 	#$AvatarBG/Avatar.texture = load(data.get_avatar_path())
 	#$NameBG/NameLabel.text = data.display_name
+	avatar_spine.skeleton_data_res = load(category_data.get_avatar_path())
 	can_bonus = data.progress >= data.level and data.level > 0
 	var skel: SpineSkeleton = avatar_spine.get_skeleton()
-	skel.set_skin_by_name(data.get_avatar_name())
+	skel.set_skin_by_name(character_data.get_avatar_name())
 
 
 func lock():
@@ -41,8 +42,7 @@ func open():
 	#$AvatarBG.visible = true
 	#$NameBG.visible = true
 	$Avatar/SpineSprite.visible = true
-	#$BonusButton.visible = has_bonus
-	$BonusButton.visible = false
+	$BonusButton.visible = can_bonus if character_data.get_spine_path() != "" else false
 	is_open = true
 
 

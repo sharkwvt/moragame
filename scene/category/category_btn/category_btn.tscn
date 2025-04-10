@@ -1,9 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://go5vh14alrtp"]
+[gd_scene load_steps=3 format=3 uid="uid://go5vh14alrtp"]
 
 [ext_resource type="Script" path="res://scene/category/category_btn/category_btn.gd" id="1_d1dxt"]
-[ext_resource type="Texture2D" uid="uid://b1k6bfk8sp2tk" path="res://scene/category/category_btn/image/building_0_n.png" id="1_yl4vb"]
-[ext_resource type="Texture2D" uid="uid://0ao0iswodv1b" path="res://scene/category/category_btn/image/building_0.png" id="3_2o24d"]
-[ext_resource type="Texture2D" uid="uid://dstkb40ac2b3k" path="res://scene/category/category_btn/image/building_0_halo.png" id="4_p8cfe"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dm3ir"]
 bg_color = Color(0, 0, 0, 0.25098)
@@ -15,7 +12,6 @@ corner_radius_bottom_left = 10
 [node name="CategoryBtn" type="Button"]
 focus_mode = 0
 theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
-icon = ExtResource("1_yl4vb")
 flat = true
 icon_alignment = 1
 script = ExtResource("1_d1dxt")
@@ -76,7 +72,6 @@ offset_bottom = 108.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("3_2o24d")
 
 [node name="Halo" type="TextureRect" parent="."]
 visible = false
@@ -93,4 +88,3 @@ offset_bottom = 108.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("4_p8cfe")

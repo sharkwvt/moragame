@@ -172,7 +172,7 @@ func show_bonus():
 	bonus_view.visible = true
 	spine_sprite.skeleton_data_res = load(character_data.get_spine_path())
 	var anim: SpineAnimationState = spine_sprite.get_animation_state()
-	anim.add_animation("animation")
+	anim.add_animation("sex_girl_a")
 
 
 # 顯示雙方猜拳
@@ -265,9 +265,8 @@ func _on_popup_item_pressed(id: int) -> void:
 
 func _input(event):
 	# 滑鼠任何鍵
-	if event is InputEventMouseButton and event.pressed and game_state != STATE.退出:
-		#to_continue()
-		pass
+	if event is InputEventMouseButton and event.pressed and game_state == STATE.bonus:
+		to_continue()
 
 
 func _on_again_button_pressed() -> void:

@@ -29,6 +29,8 @@ func setup():
 	var exit_btn = $ExitButton
 	exit_btn.mouse_entered.connect(_on_mouse_entered.bind(exit_btn))
 	exit_btn.mouse_exited.connect(_on_mouse_exited.bind(exit_btn))
+	var backgroundAni: SpineAnimationState = $SpineBG/SpineSprite.get_animation_state()
+	backgroundAni.set_animation("title")
 
 
 func play_click_anim(obj):
@@ -42,6 +44,7 @@ func play_reset_anim(obj):
 	tween.kill()
 	tween = obj.create_tween()
 	tween.tween_property(obj, "scale", Vector2(1, 1), duration)
+
 
 func show_scene():
 	pass

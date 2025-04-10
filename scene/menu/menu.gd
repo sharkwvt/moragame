@@ -55,7 +55,7 @@ func set_btns():
 			btn.lock()
 			continue
 		var c_data: Main.CharacterData = category_data.characters[i]
-		btn.set_data(c_data)
+		btn.set_data(category_data, c_data)
 		if i > 0 and !btns[i-1].can_bonus:
 			btn.lock()
 		else:

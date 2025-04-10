@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bwg6dvrtjky3i"]
+[gd_scene load_steps=7 format=3 uid="uid://bwg6dvrtjky3i"]
 
 [ext_resource type="Script" path="res://scene/start/start.gd" id="1_upowf"]
 [ext_resource type="Texture2D" uid="uid://nr1sgf6jdxai" path="res://scene/start/start_bg.jpg" id="2_7et6q"]
+[ext_resource type="SpineSkeletonDataResource" uid="uid://d283y7njhp6p1" path="res://scene/start/spine/title.tres" id="3_n5avh"]
 [ext_resource type="Script" path="res://common/common_button.gd" id="5_w74jd"]
 [ext_resource type="Texture2D" uid="uid://gg1q2b343rg3" path="res://image/spark_particle2.png" id="6_a37sn"]
 
@@ -32,6 +33,23 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_7et6q")
 expand_mode = 1
+
+[node name="SpineBG" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SpineSprite" type="SpineSprite" parent="SpineBG"]
+skeleton_data_res = ExtResource("3_n5avh")
+preview_skin = "Default"
+preview_animation = "title"
+preview_frame = false
+preview_time = 0.0
 
 [node name="StartButton" type="Button" parent="."]
 layout_mode = 1

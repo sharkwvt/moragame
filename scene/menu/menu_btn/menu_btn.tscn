@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cxxejc615wwp5"]
+[gd_scene load_steps=7 format=3 uid="uid://cxxejc615wwp5"]
 
 [ext_resource type="Script" path="res://scene/menu/menu_btn/menu_btn.gd" id="1_4bph8"]
 [ext_resource type="Texture2D" uid="uid://bjljegg77h8m6" path="res://characters/c_1.png" id="2_aa6vc"]
-[ext_resource type="SpineSkeletonDataResource" uid="uid://dcflm6jsagvju" path="res://characters/photo_gir/photo.tres" id="3_u8fym"]
 [ext_resource type="Texture2D" uid="uid://de7dqg6fww0vb" path="res://scene/menu/menu_btn/bonus.png" id="4_pqfi0"]
 [ext_resource type="SpineSkeletonDataResource" uid="uid://bld7of8wgr8cg" path="res://scene/menu/menu_btn/spine/lock/lock.tres" id="6_sod05"]
 
@@ -108,11 +107,6 @@ offset_bottom = 40.0
 grow_horizontal = 2
 
 [node name="SpineSprite" type="SpineSprite" parent="Avatar"]
-skeleton_data_res = ExtResource("3_u8fym")
-preview_skin = "photo_girl_b"
-preview_animation = "-- Empty --"
-preview_frame = false
-preview_time = 0.0
 
 [node name="BonusButton" type="Button" parent="."]
 layout_mode = 1
