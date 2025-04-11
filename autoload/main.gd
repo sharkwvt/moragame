@@ -53,6 +53,8 @@ class CharacterData:
 	func get_spine_path() -> String:
 		var path = get_path() + "/spine/" + file_name + ".tres"
 		return path if FileAccess.file_exists(path) else ""
+	func get_anim_name() -> String:
+		return "sex_girl_" + file_name
 
 class CategoryData:
 	var id: int

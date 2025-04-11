@@ -64,7 +64,7 @@ func setup():
 	npc_spine = $Game/Tips/Npc
 	menu_btn = $Game/MenuButton
 	bonus_view = $Bonus
-	spine_sprite = $Bonus/SpineSprite
+	spine_sprite = $Bonus/Spine/SpineSprite
 	gameover_view = $GameOver
 	var popup: PopupMenu = menu_btn.get_popup()
 	popup.add_theme_font_size_override("font_size", 50) # 改字體大小
@@ -172,7 +172,7 @@ func show_bonus():
 	bonus_view.visible = true
 	spine_sprite.skeleton_data_res = load(character_data.get_spine_path())
 	var anim: SpineAnimationState = spine_sprite.get_animation_state()
-	anim.add_animation("sex_girl_a")
+	anim.add_animation(character_data.get_anim_name())
 
 
 # 顯示雙方猜拳

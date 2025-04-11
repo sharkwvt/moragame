@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://4d5p6dmomc7w"]
+[gd_scene load_steps=4 format=3 uid="uid://4d5p6dmomc7w"]
 
 [ext_resource type="Script" path="res://scene/review/btn/review_character_btn.gd" id="1_0o56p"]
-[ext_resource type="SpineSkeletonDataResource" uid="uid://dcflm6jsagvju" path="res://characters/photo_gir/photo.tres" id="2_hwjmm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_akb6t"]
 bg_color = Color(1, 1, 1, 1)
@@ -85,7 +84,7 @@ theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 30
 text = "名字"
 
-[node name="Control" type="Control" parent="."]
+[node name="Avatar" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -94,9 +93,4 @@ offset_top = 23.8
 offset_bottom = 23.8
 grow_horizontal = 2
 
-[node name="SpineSprite" type="SpineSprite" parent="Control"]
-skeleton_data_res = ExtResource("2_hwjmm")
-preview_skin = "photo_girl_a"
-preview_animation = "-- Empty --"
-preview_frame = false
-preview_time = 0.0
+[node name="SpineSprite" type="SpineSprite" parent="Avatar"]

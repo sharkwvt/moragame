@@ -1,16 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxxejc615wwp5"]
+[gd_scene load_steps=5 format=3 uid="uid://cxxejc615wwp5"]
 
 [ext_resource type="Script" path="res://scene/menu/menu_btn/menu_btn.gd" id="1_4bph8"]
-[ext_resource type="Texture2D" uid="uid://bjljegg77h8m6" path="res://characters/c_1.png" id="2_aa6vc"]
 [ext_resource type="Texture2D" uid="uid://de7dqg6fww0vb" path="res://scene/menu/menu_btn/bonus.png" id="4_pqfi0"]
 [ext_resource type="SpineSkeletonDataResource" uid="uid://bld7of8wgr8cg" path="res://scene/menu/menu_btn/spine/lock/lock.tres" id="6_sod05"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p6lmd"]
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 50
-corner_radius_top_right = 50
-corner_radius_bottom_right = 50
-corner_radius_bottom_left = 50
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_50xma"]
 bg_color = Color(0, 0, 0, 1)
@@ -39,31 +31,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.490196)
-
-[node name="AvatarBG" type="Panel" parent="."]
-visible = false
-clip_children = 2
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -76.0
-offset_top = -77.0
-offset_right = 76.0
-offset_bottom = 75.0
-grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_p6lmd")
-
-[node name="Avatar" type="TextureRect" parent="AvatarBG"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_aa6vc")
-expand_mode = 1
-stretch_mode = 6
 
 [node name="NameBG" type="Panel" parent="."]
 visible = false

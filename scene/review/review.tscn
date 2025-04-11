@@ -1,12 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://7eupwhka7hay"]
+[gd_scene load_steps=7 format=3 uid="uid://7eupwhka7hay"]
 
 [ext_resource type="Script" path="res://scene/review/review.gd" id="1_v2t6e"]
 [ext_resource type="Texture2D" uid="uid://dryyp3w856wdb" path="res://scene/review/review_bg.jpg" id="1_xnd0t"]
-[ext_resource type="Texture2D" uid="uid://dmnlpgomsbqkf" path="res://image/return.png" id="2_y3tl7"]
-[ext_resource type="Script" path="res://common/common_button.gd" id="3_uvvti"]
+[ext_resource type="PackedScene" uid="uid://c2hckrk53snne" path="res://common/return/return_button.tscn" id="3_dxly4"]
 [ext_resource type="Texture2D" uid="uid://cllgmvngq6gop" path="res://scene/review/iphone.png" id="5_h58or"]
 [ext_resource type="PackedScene" uid="uid://4d5p6dmomc7w" path="res://scene/review/btn/review_character_btn.tscn" id="6_bmebv"]
-[ext_resource type="Texture2D" uid="uid://bjljegg77h8m6" path="res://characters/c_1.png" id="6_ccxe2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xclfo"]
 bg_color = Color(0.707496, 0.513817, 0.782956, 1)
@@ -34,15 +32,13 @@ grow_vertical = 2
 texture = ExtResource("1_xnd0t")
 expand_mode = 1
 
-[node name="ReturnButton" type="Button" parent="."]
+[node name="ReturnButton" parent="." instance=ExtResource("3_dxly4")]
 layout_mode = 0
-offset_left = 20.0
-offset_top = 20.0
-offset_right = 98.0
-offset_bottom = 82.0
-icon = ExtResource("2_y3tl7")
-flat = true
-script = ExtResource("3_uvvti")
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
 
 [node name="Phone" type="TextureRect" parent="."]
 layout_mode = 1
@@ -116,6 +112,7 @@ offset_right = 1525.0
 offset_bottom = 842.0
 
 [node name="View" type="ColorRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -142,7 +139,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("6_ccxe2")
 expand_mode = 1
 stretch_mode = 5
 

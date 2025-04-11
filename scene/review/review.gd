@@ -39,7 +39,7 @@ func setup():
 		btn.pressed.connect(_on_character_button_pressed.bind(i))
 	review_view = $View
 	review_img = $View/TextureRect
-	review_spine = $View/SpineSprite
+	review_spine = $View/Spine/SpineSprite
 	review_view.visible = false
 	review_spine.visible = false
 
@@ -73,7 +73,7 @@ func load_imgs(data: Main.CharacterData):
 		return
 	review_spine.skeleton_data_res = load(data.get_spine_path())
 	var anim: SpineAnimationState = review_spine.get_animation_state()
-	anim.add_animation("animation")
+	anim.add_animation(data.get_anim_name())
 
 
 func refresh_characters():
@@ -84,7 +84,7 @@ func refresh_characters():
 			continue
 		var data: Main.CharacterData = selected_category.characters[i]
 		btn.visible = data.progress >= data.level
-		btn.set_data(data)
+		btn.set_data(selected_category, data)
 
 
 func refresh():

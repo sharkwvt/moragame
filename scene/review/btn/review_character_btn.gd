@@ -5,14 +5,16 @@ var textrue: TextureRect
 var character_data: Main.CharacterData
 var spine: SpineSprite
 
+func _ready() -> void:
+	button_down.connect(_on_button_down)
 
-func set_data(data: Main.CharacterData):
+func set_data(category_data: Main.CategoryData, data: Main.CharacterData):
 	#lbl = $NameLabel
 	#textrue = $Panel/Mask/TextureRect
-	spine = $Control/SpineSprite
+	spine = $Avatar/SpineSprite
+	spine.skeleton_data_res = load(category_data.get_avatar_path())
 	var skel: SpineSkeleton = spine.get_skeleton()
 	skel.set_skin_by_name(data.get_avatar_name())
-	button_down.connect(_on_button_down)
 
 
 func _on_button_down() -> void:
