@@ -13,7 +13,7 @@ var is_to_bonus: bool
 func _ready() -> void:
 	setup()
 	$lightMask.mouse_filter = MOUSE_FILTER_IGNORE
-	Main.show_talk_view("選角對話")
+	Main.show_talk_view("今天，要攻略哪一個對象呢❤️")
 	
 	var backgroundAni: SpineAnimationState = $SpineBG/SpineSprite.get_animation_state()
 	backgroundAni.set_animation("toilet_a")
@@ -103,7 +103,7 @@ func refresh():
 func show_scene():
 	refresh()
 	if !show_unlock_anim:
-		Main.show_talk_view("選角對話")
+		Main.show_talk_view("今天，要攻略哪一個對象呢❤️")
 	
 
 

@@ -13,7 +13,7 @@ func show_talk_anim(text: String):
 	modulate.a = 0
 	var lbl: Label = $SubViewport/Label
 	lbl.text = text
-	$SubViewport.size.y = lbl.size.y
+	$SubViewport.size.y = lbl.size.y+60
 	size.y = lbl.size.y
 	position.y = Main.screen_size.y - size.y - 200
 	

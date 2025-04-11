@@ -9,7 +9,7 @@ var btns = []
 func _ready() -> void:
 	create_character_btns()
 	$CPUParticles2D.move_to_front()
-	Main.show_talk_view("選關對話")
+	Main.show_talk_view("挑一個好地點出擊，獲取勝利吧！")
 	
 	var backgroundAni: SpineAnimationState = $SpineBG/SpineSprite.get_animation_state()
 	backgroundAni.set_animation("scen_a")
@@ -60,7 +60,7 @@ func refresh():
 
 func show_scene():
 	refresh()
-	Main.show_talk_view("選關對話")
+	Main.show_talk_view("挑一個好地點出擊，獲取勝利吧！")
 
 
 func _on_category_btn_pressed(data):
