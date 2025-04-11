@@ -1,19 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bwg6dvrtjky3i"]
+[gd_scene load_steps=4 format=3 uid="uid://bwg6dvrtjky3i"]
 
 [ext_resource type="Script" path="res://scene/start/start.gd" id="1_upowf"]
-[ext_resource type="Texture2D" uid="uid://nr1sgf6jdxai" path="res://scene/start/start_bg.jpg" id="2_7et6q"]
 [ext_resource type="SpineSkeletonDataResource" uid="uid://d283y7njhp6p1" path="res://scene/start/spine/title.tres" id="3_n5avh"]
 [ext_resource type="Script" path="res://common/common_button.gd" id="5_w74jd"]
-[ext_resource type="Texture2D" uid="uid://gg1q2b343rg3" path="res://image/spark_particle2.png" id="6_a37sn"]
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0iler"]
-particle_flag_align_y = true
-particle_flag_disable_z = true
-direction = Vector3(-1, -1, 0)
-spread = 30.757
-initial_velocity_min = 210.16
-initial_velocity_max = 446.43
-gravity = Vector3(0, 500, 0)
 
 [node name="Start" type="Control"]
 layout_mode = 3
@@ -23,16 +12,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_upowf")
-
-[node name="BG" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_7et6q")
-expand_mode = 1
 
 [node name="SpineBG" type="Control" parent="."]
 layout_mode = 1
@@ -51,17 +30,22 @@ preview_animation = "title"
 preview_frame = false
 preview_time = 0.0
 
-[node name="StartButton" type="Button" parent="."]
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StartButton" type="Button" parent="Control"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.176
 anchor_top = 0.5
 anchor_right = 0.176
 anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -50.0
-offset_right = 50.0
-offset_bottom = 50.0
+offset_left = 280.88
+offset_top = 466.5
+offset_right = 568.88
+offset_bottom = 573.5
 grow_vertical = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 70
@@ -69,13 +53,17 @@ text = "開始挑戰"
 flat = true
 script = ExtResource("5_w74jd")
 
-[node name="ReviewButton" type="Button" parent="."]
+[node name="ReviewButton" type="Button" parent="Control"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.15
 anchor_top = 0.6
 anchor_right = 0.15
 anchor_bottom = 0.6
+offset_left = 282.0
+offset_top = 570.5
+offset_right = 430.0
+offset_bottom = 677.5
 grow_vertical = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 70
@@ -83,13 +71,17 @@ text = "回想"
 flat = true
 script = ExtResource("5_w74jd")
 
-[node name="SettingButton" type="Button" parent="."]
+[node name="SettingButton" type="Button" parent="Control"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.15
 anchor_top = 0.7
 anchor_right = 0.15
 anchor_bottom = 0.7
+offset_left = 282.0
+offset_top = 674.5
+offset_right = 430.0
+offset_bottom = 781.5
 grow_vertical = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 70
@@ -97,13 +89,17 @@ text = "設定"
 flat = true
 script = ExtResource("5_w74jd")
 
-[node name="ExitButton" type="Button" parent="."]
+[node name="ExitButton" type="Button" parent="Control"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.15
 anchor_top = 0.8
 anchor_right = 0.15
 anchor_bottom = 0.8
+offset_left = 282.0
+offset_top = 778.5
+offset_right = 430.0
+offset_bottom = 885.5
 grow_vertical = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 70
@@ -118,6 +114,10 @@ anchor_left = 0.5
 anchor_top = 0.2
 anchor_right = 0.5
 anchor_bottom = 0.2
+offset_left = -400.0
+offset_top = -140.0
+offset_right = 400.0
+offset_bottom = 140.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 200
@@ -125,14 +125,7 @@ text = "廁戰勇者"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-visible = false
-position = Vector2(1719, 387)
-amount = 88
-process_material = SubResource("ParticleProcessMaterial_0iler")
-texture = ExtResource("6_a37sn")
-
-[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="ReviewButton" to="." method="_on_review_button_pressed"]
-[connection signal="pressed" from="SettingButton" to="." method="_on_setting_button_pressed"]
-[connection signal="pressed" from="ExitButton" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Control/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Control/ReviewButton" to="." method="_on_review_button_pressed"]
+[connection signal="pressed" from="Control/SettingButton" to="." method="_on_setting_button_pressed"]
+[connection signal="pressed" from="Control/ExitButton" to="." method="_on_exit_pressed"]

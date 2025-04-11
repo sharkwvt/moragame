@@ -13,6 +13,7 @@ config_version=5
 config/name="野球拳"
 run/main_scene="res://scene/start/start.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
+boot_splash/image="res://image/title_1.png"
 config/icon="res://icon.svg"
 
 [autoload]
