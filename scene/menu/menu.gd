@@ -43,6 +43,7 @@ func setup():
 		btn.mouse_exited.connect(_on_btn_mouse_exited.bind(i))
 		btn.pressed.connect(_on_btn_pressed.bind(i, false))
 		btn.bonus_btn.pressed.connect(_on_btn_pressed.bind(i, true))
+		btn.avatar_btn.pressed.connect(_on_btn_avatar_pressed.bind(i))
 	
 	refresh()
 
@@ -133,6 +134,9 @@ func _on_btn_pressed(i, bonus) -> void:
 	is_to_bonus = bonus
 	play_enter_effect(i)
 
+func _on_btn_avatar_pressed(i):
+	var btn: MenuBtn = btns[i]
+	btn.play_animation()
 
 func _on_setting_button_pressed() -> void:
 	Main.show_setting_view()

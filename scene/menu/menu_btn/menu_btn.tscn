@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cxxejc615wwp5"]
+[gd_scene load_steps=6 format=3 uid="uid://cxxejc615wwp5"]
 
 [ext_resource type="Script" path="res://scene/menu/menu_btn/menu_btn.gd" id="1_4bph8"]
+[ext_resource type="Script" path="res://common/common_button.gd" id="3_f86tw"]
 [ext_resource type="Texture2D" uid="uid://de7dqg6fww0vb" path="res://scene/menu/menu_btn/bonus.png" id="4_pqfi0"]
 [ext_resource type="SpineSkeletonDataResource" uid="uid://bld7of8wgr8cg" path="res://scene/menu/menu_btn/spine/lock/lock.tres" id="6_sod05"]
 
@@ -68,12 +69,27 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 40.0
+offset_left = -19.84
+offset_right = -19.84
 grow_horizontal = 2
 
 [node name="SpineSprite" type="SpineSprite" parent="Avatar"]
+
+[node name="AvatarButton" type="Button" parent="Avatar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -92.0
+offset_top = -20.0
+offset_right = 89.0
+offset_bottom = 156.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+script = ExtResource("3_f86tw")
 
 [node name="BonusButton" type="Button" parent="."]
 layout_mode = 1
