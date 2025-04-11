@@ -22,8 +22,7 @@ func _process(_delta: float) -> void:
 
 func create_character_btns():
 	var categorys = Main.categorys_data
-	var spaceing = 140
-	var offset = spaceing
+	var all_width = 0
 	for i in categorys.size():
 		var data: Main.CategoryData = categorys[i]
 		var btn: Button = category_btn.instantiate()
@@ -32,11 +31,7 @@ func create_character_btns():
 		btn.texture_halo = load(data.get_img_path(2))
 		btn.set_data(data)
 		btn.position = Vector2.ZERO # 不知為何這樣才能取到size
-		btn.position = Vector2(
-			offset,
-			size.y * 0.75 - btn.size.y
-		)
-		offset += btn.size.x + spaceing
+		all_width += btn.size.x
 		if i > 0:
 			var temp: Main.CategoryData = categorys[i-1]
 			btn.is_lock = temp.progress != temp.all_level or data.all_level == 0
@@ -45,10 +40,20 @@ func create_character_btns():
 		btn.pressed.connect(_on_category_btn_pressed.bind(data))
 		btns.append(btn)
 		add_child(btn)
+	# 排列
+	var spaceing = (size.x - all_width) / (btns.size() + 1)
+	var offset = spaceing
+	for i in btns.size():
+		var btn: Button = btns[i]
+		btn.position = Vector2(
+			offset,
+			size.y * 0.75 - btn.size.y
+		)
+		offset += btn.size.x + spaceing
+		
 
 
 func refresh():
-	#Main.reload_data()
 	for i in Main.categorys_data.size():
 		btns[i].set_data(Main.categorys_data[i])
 

@@ -69,7 +69,7 @@ func load_imgs(data: Main.CharacterData):
 	review_imgs.clear()
 	for i in data.story.size():
 		review_imgs.append(load(data.get_cg_path(i)))
-	if not data.has_bonus or data.get_spine_path() == "":
+	if not data.has_bonus:
 		return
 	review_spine.skeleton_data_res = load(data.get_spine_path())
 	var anim: SpineAnimationState = review_spine.get_animation_state()
