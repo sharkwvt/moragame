@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+PckLoader="*res://autoload/pck_loader.gd"
 Main="*res://autoload/main.gd"
 Setting="*res://autoload/setting.gd"
 TransitionEffect="*res://autoload/transition_effect.gd"
