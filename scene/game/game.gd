@@ -152,7 +152,7 @@ func set_progress(ps: float):
 	if pb_tween:
 		pb_tween.kill()
 	pb_tween = progress_bar.create_tween()
-	pb_tween.tween_property(progress_bar, "value", ps, 1)
+	pb_tween.tween_property(progress_bar, "value", ps, 1).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
 
 
 func set_character_tween():
