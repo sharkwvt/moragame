@@ -8,6 +8,7 @@ var game_save_path = "user://moragame.save"
 # 視窗
 var setting_view = preload("res://common/setting/setting_view.tscn")
 var talk_view = preload("res://common/talk/talk.tscn")
+var dialog_view = preload("res://common/dialog/dialog.tscn")
 # 場景
 var category_scene = preload("res://scene/category/category.tscn")
 var menu_scene = preload("res://scene/menu/menu.tscn")
@@ -313,7 +314,26 @@ func show_tip(msg: String):
 	tween.set_parallel(true)
 	tween.tween_property(lbl, "position:y", lbl.position.y - 100, 3)
 	tween.tween_property(lbl, "modulate:a", 0, 3)
-	tween.finished.connect(lbl.queue_free)
+	#tween.finished.connect(lbl.queue_free)
+	await tween.finished
+	lbl.queue_free()
+	tween.kill()
+
+
+func show_dialog(msg: String):
+	var dialog = ConfirmationDialog.new()
+	current_scene.add_child(dialog)
+	dialog.dialog_text = msg
+	dialog.popup_centered()
+	dialog.confirmed.connect(func(): print("okokok1"))
+	dialog.canceled.connect(func(): print("okokok2"))
+
+
+func create_dialog_view() -> DialogView:
+	var dialog = dialog_view.instantiate()
+	dialog.setup()
+	get_tree().root.add_child(dialog)
+	return dialog
 
 
 func _on_music_finished():

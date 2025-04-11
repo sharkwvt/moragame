@@ -4,7 +4,6 @@ var character_data: Main.CharacterData
 var character_imgs = []
 var menu_btn: MenuButton
 var is_bonus = false
-var gameover_view: ColorRect
 var game_state = STATE.對話
 var game_character: TextureRect
 var character_tween: Tween
@@ -14,6 +13,8 @@ var talk_view: TextureRect
 # 猜拳
 var game_view: Control
 var now_level: int
+var progress_bar: ProgressBar
+var pb_tween: Tween
 var tips_node: Control
 var result_spine: SpineSprite
 var user_spine: SpineSprite
@@ -58,6 +59,7 @@ func setup():
 	story_view = $Story
 	talk_view = $Story/Talk
 	game_view = $Game
+	progress_bar = $ProgressBar
 	tips_node = $Game/Tips
 	result_spine = $Game/Tips/Result
 	user_spine = $Game/Tips/User
@@ -65,7 +67,6 @@ func setup():
 	menu_btn = $Game/MenuButton
 	bonus_view = $Bonus
 	spine_sprite = $Bonus/Spine/SpineSprite
-	gameover_view = $GameOver
 	var popup: PopupMenu = menu_btn.get_popup()
 	popup.add_theme_font_size_override("font_size", 50) # 改字體大小
 	popup.id_pressed.connect(_on_popup_item_pressed)
@@ -86,11 +87,11 @@ func setup():
 
 func reset_game():
 	character_data = Main.current_character_data
+	progress_bar.value = 0
 	load_imgs()
 	set_character_tween()
 	game_state = STATE.對話
 	bonus_view.visible = false
-	gameover_view.visible = false
 	tips_node.visible = false
 	# 已通關時重新開始
 	if character_data.progress >= character_data.level or is_bonus:
@@ -104,7 +105,8 @@ func reset_game():
 func refresh_game():
 	game_character.texture = character_imgs[now_level]
 	game_character.pivot_offset = Vector2(game_character.size.x/2.0, game_character.size.y/2.0)
-	$"Game/進度".text = "進度 " + str(now_level) + "/" + str(character_data.level)
+	#$"Game/進度".text = "進度 " + str(now_level) + "/" + str(character_data.level)
+	set_progress(float(now_level)/character_data.level)
 	if now_level >= character_data.level:
 		game_state = STATE.通關
 
@@ -144,6 +146,13 @@ func to_continue():
 			
 		STATE.bonus:
 			quite()
+
+
+func set_progress(ps: float):
+	if pb_tween:
+		pb_tween.kill()
+	pb_tween = progress_bar.create_tween()
+	pb_tween.tween_property(progress_bar, "value", ps, 1)
 
 
 func set_character_tween():
@@ -194,7 +203,14 @@ func switch_choice(is_show: bool):
 
 
 func gameover():
-	gameover_view.visible = true
+	var dialog = Main.create_dialog_view()
+	dialog.title.text = "挑戰失敗"
+	dialog.msg.text = "要再來一次嗎？"
+	dialog.confirm_btn.text = "再來一次"
+	dialog.cancel_btn.text = "返回"
+	dialog.confirm_btn.pressed.connect(_on_again_button_pressed.bind(dialog))
+	dialog.cancel_btn.pressed.connect(_on_dialog_confirm.bind(dialog))
+	set_progress(0)
 
 
 # 輸贏判定
@@ -269,8 +285,21 @@ func _input(event):
 		to_continue()
 
 
-func _on_again_button_pressed() -> void:
+func _on_again_button_pressed(view: Control) -> void:
+	view.queue_free()
 	reset_game()
 
 func _on_return_button_pressed() -> void:
+	var dialog = Main.create_dialog_view()
+	dialog.title.text = "提示"
+	dialog.msg.text = "確定要退出嗎？"
+	dialog.confirm_btn.pressed.connect(_on_dialog_confirm.bind(dialog))
+	dialog.cancel_btn.pressed.connect(_on_dialog_cancel.bind(dialog))
+	
+func _on_dialog_confirm(view: Control):
+	view.queue_free()
 	quite()
+	
+func _on_dialog_cancel(view: Control):
+	view.queue_free()
+	

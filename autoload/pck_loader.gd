@@ -6,4 +6,4 @@ var pck_path = "res://pck_test.pck"
 func _ready() -> void:
 	var success = ProjectSettings.load_resource_pack(pck_path, false)
 	if success:
-		print("pck讀取成功")
+		print(pck_path + " 讀取成功")
