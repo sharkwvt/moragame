@@ -2,6 +2,9 @@ extends Control
 class_name StartScene
 
 var tween: Tween
+var mask: ColorRect
+var title: Control
+var btns = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -9,6 +12,7 @@ func _ready() -> void:
 	Main.instance_scenes[Main.SCENE.start] = self
 	Main.play_music(Main.music_1)
 	setup()
+	play_anim()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -17,20 +21,38 @@ func _process(_delta: float) -> void:
 
 
 func setup():
-	var start_btn = $Control/StartButton
-	start_btn.mouse_entered.connect(_on_mouse_entered.bind(start_btn))
-	start_btn.mouse_exited.connect(_on_mouse_exited.bind(start_btn))
-	var review_btn = $Control/ReviewButton
-	review_btn.mouse_entered.connect(_on_mouse_entered.bind(review_btn))
-	review_btn.mouse_exited.connect(_on_mouse_exited.bind(review_btn))
-	var setting_btn = $Control/SettingButton
-	setting_btn.mouse_entered.connect(_on_mouse_entered.bind(setting_btn))
-	setting_btn.mouse_exited.connect(_on_mouse_exited.bind(setting_btn))
-	var exit_btn = $Control/ExitButton
-	exit_btn.mouse_entered.connect(_on_mouse_entered.bind(exit_btn))
-	exit_btn.mouse_exited.connect(_on_mouse_exited.bind(exit_btn))
+	mask = $Mask
+	title = $Title
+	btns.append($Control/StartButton)
+	btns.append($Control/ReviewButton)
+	btns.append($Control/SettingButton)
+	btns.append($Control/ExitButton)
+	for i in btns.size():
+		var btn: Button = btns[i]
+		btn.add_theme_color_override("font_disabled_color", Color.WHITE)
+		btn.mouse_entered.connect(_on_mouse_entered.bind(i))
+		btn.mouse_exited.connect(_on_mouse_exited.bind(i))
+		btn.pressed.connect(_on_button_pressed.bind(i))
+		btn.modulate.a = 0
+
+	# 背景動畫
 	var backgroundAni: SpineAnimationState = $SpineBG/SpineSprite.get_animation_state()
 	backgroundAni.set_animation("title")
+
+
+func play_anim():
+	title.modulate.a = 0
+	tween = create_tween()
+	var title_center =  Vector2(title.position.x, size.y/2.0 - title.size.y/2.0)
+	tween.tween_method(title.set_position, title_center, title.position, 1)
+	tween.parallel().tween_property(title, "modulate:a", 1, 1)
+	tween.set_parallel()
+	for i in btns.size():
+		var btn: Button = btns[i]
+		var delay = 0.5 + i*0.2
+		tween.tween_method(btn.set_position, Vector2(0, btn.position.y), btn.position, 0.5).set_delay(delay)
+		tween.tween_property(btn, "modulate:a", 1, 0.5).set_delay(delay)
+	tween.finished.connect(func(): mask.visible = false) # 移除防點擊
 
 
 func play_click_anim(obj):
@@ -50,9 +72,8 @@ func show_scene():
 	pass
 
 
-
-
-func _on_mouse_entered(btn: Button):
+func _on_mouse_entered(i):
+	var btn: Button = btns[i]
 	var duration = 0.5
 	if tween:
 		tween.kill()
@@ -61,38 +82,25 @@ func _on_mouse_entered(btn: Button):
 	tween.tween_property(btn, "scale", Vector2(1.1, 1.1), duration)
 	tween.tween_property(btn, "scale", Vector2(1, 1), duration)
 
-func _on_mouse_exited(btn: Button):
+func _on_mouse_exited(i):
+	var btn: Button = btns[i]
 	btn.scale = Vector2(1, 1)
 	if tween:
 		tween.kill()
 
-func _on_start_button_pressed() -> void:
-	var btn = $Control/StartButton
+func _on_button_pressed(i) -> void:
+	var btn: Button = btns[i]
 	play_click_anim(btn)
-	#await get_tree().create_timer(0.3).timeout
 	await tween.finished
-	Main.to_scene(Main.SCENE.category)
+	mask.visible = true
+	match i:
+		0:
+			Main.to_scene(Main.SCENE.category)
+		1:
+			Main.to_scene(Main.SCENE.review)
+		2:
+			Main.show_setting_view()
+		3:
+			get_tree().quit()
 	play_reset_anim(btn)
-
-
-func _on_review_button_pressed() -> void:
-	var btn = $Control/ReviewButton
-	play_click_anim(btn)
-	await tween.finished
-	Main.to_scene(Main.SCENE.review)
-	play_reset_anim(btn)
-
-
-func _on_setting_button_pressed() -> void:
-	var btn = $Control/SettingButton
-	play_click_anim(btn)
-	await tween.finished
-	Main.show_setting_view()
-	play_reset_anim(btn)
-
-
-func _on_exit_pressed() -> void:
-	var btn = $Control/ExitButton
-	play_click_anim(btn)
-	await tween.finished
-	get_tree().quit()
+	mask.visible = false
