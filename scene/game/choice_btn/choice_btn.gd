@@ -19,14 +19,16 @@ var is_bot: bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pos = position
-	org_pos = hand.position
-	org_pos.y += 80
-	selected_pos = hand.position
-	hand.position = org_pos
+	hand.pivot_offset = Vector2(hand.size.x/2.0, hand.size.y/2.0)
+	#pos = position
+	#org_pos = hand.position
+	#org_pos.y += 80
+	#selected_pos = hand.position
+	#hand.position = org_pos
 
 
 func setup(c: CHOICES, bot: bool = false):
+	pivot_offset = Vector2(size.x/2.0, size.y/2.0)
 	bg = $BG
 	bg_s = $BG_s
 	hand = $TextureRect
@@ -40,28 +42,30 @@ func setup(c: CHOICES, bot: bool = false):
 		CHOICES.布:
 			img_path += "paper_a.png"
 	hand.texture = load(img_path)
-	hand.set_anchors_preset(Control.PRESET_CENTER_BOTTOM)
+	#hand.set_anchors_preset(Control.PRESET_CENTER_BOTTOM)
 	is_bot = bot
 	if is_bot:
 		bg.flip_v = true
 		disabled = true
 
 func hand_up():
-	if not is_bot:
-		bg_s.visible = true
+	#if not is_bot:
+		#bg_s.visible = true
 	if tween:
 		tween.kill()
-	#tween = create_tween()
+	tween = create_tween()
 	#tween.tween_property(hand, "position", selected_pos, 0.2)
+	tween.tween_property(hand, "scale", Vector2(1.1, 1.1), 0.2)
 
 
 func hand_down():
-	if not is_bot:
-		bg_s.visible = false
+	#if not is_bot:
+		#bg_s.visible = false
 	if tween:
 		tween.kill()
-	#tween = create_tween()
+	tween = create_tween()
 	#tween.tween_property(hand, "position", org_pos, 0.1)
+	tween.tween_property(hand, "scale", Vector2(1, 1), 0.2)
 
 
 func reset():

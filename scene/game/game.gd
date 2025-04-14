@@ -78,7 +78,8 @@ func setup():
 		var offset = btn.size.x + 100
 		btn.position = Vector2(
 			size.x/2.0 + (i - count/2.0) * offset,
-			size.y - btn.size.y + 100
+			#size.y - btn.size.y + 100
+			size.y - btn.size.y
 		)
 		btn.setup(i)
 		player_choice_btns.append(btn)

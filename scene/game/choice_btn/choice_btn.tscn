@@ -7,14 +7,15 @@
 
 [node name="ChoiceBtn" type="Button"]
 self_modulate = Color(1, 1, 1, 0)
-offset_right = 173.0
-offset_bottom = 373.0
+offset_right = 279.0
+offset_bottom = 270.0
 focus_mode = 0
 theme_override_font_sizes/font_size = 50
 flat = true
 script = ExtResource("2_u1kpv")
 
 [node name="BG" type="TextureRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -45,16 +46,17 @@ texture = ExtResource("3_0jww1")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -83.0
-offset_top = -375.0
-offset_right = 83.0
+anchor_bottom = 0.5
+offset_left = -99.0
+offset_top = -99.0
+offset_right = 99.0
+offset_bottom = 99.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 texture = ExtResource("3_kkfh2")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
