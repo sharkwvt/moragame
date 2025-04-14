@@ -55,16 +55,19 @@ func play_anim():
 	tween.finished.connect(func(): mask.visible = false) # 移除防點擊
 
 
+func play_entered_anim(obj):
+	var duration = 0.5
+	tween.kill()
+	tween = obj.create_tween()
+	tween.set_loops()
+	tween.tween_property(obj, "scale", Vector2(1.1, 1.1), duration)
+	tween.tween_property(obj, "scale", Vector2(1, 1), duration)
+
 func play_click_anim(obj):
 	var duration = 0.2
 	tween.kill()
 	tween = obj.create_tween()
 	tween.tween_property(obj, "scale", Vector2(1.5, 1.5), duration)
-
-func play_reset_anim(obj):
-	var duration = 0.2
-	tween.kill()
-	tween = obj.create_tween()
 	tween.tween_property(obj, "scale", Vector2(1, 1), duration)
 
 
@@ -73,20 +76,13 @@ func show_scene():
 
 
 func _on_mouse_entered(i):
-	var btn: Button = btns[i]
-	var duration = 0.5
-	if tween:
-		tween.kill()
-	tween = btn.create_tween()
-	tween.set_loops()
-	tween.tween_property(btn, "scale", Vector2(1.1, 1.1), duration)
-	tween.tween_property(btn, "scale", Vector2(1, 1), duration)
+	play_entered_anim(btns[i])
 
 func _on_mouse_exited(i):
-	var btn: Button = btns[i]
-	btn.scale = Vector2(1, 1)
 	if tween:
 		tween.kill()
+	var btn: Button = btns[i]
+	btn.scale = Vector2(1, 1)
 
 func _on_button_pressed(i) -> void:
 	var btn: Button = btns[i]
@@ -102,5 +98,4 @@ func _on_button_pressed(i) -> void:
 			Main.show_setting_view()
 		3:
 			get_tree().quit()
-	play_reset_anim(btn)
 	mask.visible = false
