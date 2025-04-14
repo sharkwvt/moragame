@@ -23,10 +23,10 @@ func _process(_delta: float) -> void:
 func setup():
 	mask = $Mask
 	title = $Title
-	btns.append($Control/StartButton)
-	btns.append($Control/ReviewButton)
-	btns.append($Control/SettingButton)
-	btns.append($Control/ExitButton)
+	btns.append($StartButton)
+	btns.append($ReviewButton)
+	btns.append($SettingButton)
+	btns.append($ExitButton)
 	for i in btns.size():
 		var btn: Button = btns[i]
 		btn.add_theme_color_override("font_disabled_color", Color.WHITE)

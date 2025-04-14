@@ -45,7 +45,7 @@ esc={
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://野球拳語言表 - UI.en.translation", "res://野球拳語言表 - UI.zh.translation", "res://野球拳語言表 - UI.zhc.translation")
+locale/translations=PackedStringArray("res://csv/UI.en.translation", "res://csv/UI.zh.translation", "res://csv/UI.zhc.translation")
 locale/fallback="zhc"
 locale/locale_filter_mode=0
 

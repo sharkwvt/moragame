@@ -30,22 +30,13 @@ preview_animation = "title"
 preview_frame = false
 preview_time = 0.0
 
-[node name="Control" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="StartButton" type="Button" parent="Control"]
+[node name="StartButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.176
+anchor_left = 0.15
 anchor_top = 0.5
-anchor_right = 0.176
+anchor_right = 0.15
 anchor_bottom = 0.5
-offset_left = 280.88
-offset_top = 466.5
-offset_right = 568.88
-offset_bottom = 573.5
 grow_vertical = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 70
@@ -53,17 +44,16 @@ text = "開始挑戰"
 flat = true
 script = ExtResource("5_w74jd")
 
-[node name="ReviewButton" type="Button" parent="Control"]
+[node name="ReviewButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.15
 anchor_top = 0.6
 anchor_right = 0.15
 anchor_bottom = 0.6
-offset_left = 282.0
-offset_top = 570.5
-offset_right = 430.0
-offset_bottom = 677.5
+offset_top = -53.5
+offset_right = 148.0
+offset_bottom = 53.5
 grow_vertical = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 70
@@ -71,17 +61,16 @@ text = "回想"
 flat = true
 script = ExtResource("5_w74jd")
 
-[node name="SettingButton" type="Button" parent="Control"]
+[node name="SettingButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.15
 anchor_top = 0.7
 anchor_right = 0.15
 anchor_bottom = 0.7
-offset_left = 282.0
-offset_top = 674.5
-offset_right = 430.0
-offset_bottom = 781.5
+offset_top = -53.5
+offset_right = 148.0
+offset_bottom = 53.5
 grow_vertical = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 70
@@ -89,17 +78,16 @@ text = "設定"
 flat = true
 script = ExtResource("5_w74jd")
 
-[node name="ExitButton" type="Button" parent="Control"]
+[node name="ExitButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.15
 anchor_top = 0.8
 anchor_right = 0.15
 anchor_bottom = 0.8
-offset_left = 282.0
-offset_top = 778.5
-offset_right = 430.0
-offset_bottom = 885.5
+offset_top = -53.5
+offset_right = 148.0
+offset_bottom = 53.5
 grow_vertical = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 70
