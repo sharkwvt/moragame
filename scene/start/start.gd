@@ -1,4 +1,4 @@
-extends Control
+extends Scene
 class_name StartScene
 
 var tween: Tween
@@ -69,10 +69,6 @@ func play_click_anim(obj):
 	tween = obj.create_tween()
 	tween.tween_property(obj, "scale", Vector2(1.5, 1.5), duration)
 	tween.tween_property(obj, "scale", Vector2(1, 1), duration)
-
-
-func show_scene():
-	pass
 
 
 func _on_mouse_entered(i):

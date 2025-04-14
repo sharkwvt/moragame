@@ -1,4 +1,4 @@
-extends Control
+extends Scene
 class_name CategoryScene
 
 var category_btn = preload("res://scene/category/category_btn/category_btn.tscn")
@@ -62,6 +62,9 @@ func show_scene():
 	refresh()
 	Main.show_talk_view("挑一個好地點出擊，獲取勝利吧！")
 
+func return_scene():
+	Main.to_scene(Main.SCENE.start)
+
 
 func _on_category_btn_pressed(data):
 	Main.current_category_data = data
@@ -73,4 +76,4 @@ func _on_setting_button_pressed() -> void:
 
 
 func _on_return_button_pressed() -> void:
-	Main.to_scene(Main.SCENE.start)
+	return_scene()

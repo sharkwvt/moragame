@@ -1,4 +1,4 @@
-extends Control
+extends Scene
 
 var category_list_btn = preload("res://scene/review/btn/review_category_btn.tscn")
 
@@ -100,6 +100,9 @@ func show_scene():
 	refresh()
 	_on_category_btn_pressed(0)
 
+func return_scene():
+	Main.to_scene(Main.SCENE.start)
+
 
 func _on_category_btn_pressed(index):
 	Main.play_btn_sfx()
@@ -111,7 +114,7 @@ func _on_category_btn_pressed(index):
 
 
 func _on_return_button_pressed() -> void:
-	Main.to_scene(Main.SCENE.start)
+	return_scene()
 
 
 func _on_character_button_pressed(extra_arg_0: int) -> void:

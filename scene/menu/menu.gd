@@ -1,4 +1,4 @@
-extends Control
+extends Scene
 class_name MenuScene
 
 var select_rooms = []
@@ -105,7 +105,9 @@ func show_scene():
 	refresh()
 	if !show_unlock_anim:
 		Main.show_talk_view("今天，要攻略哪一個對象呢❤️")
-	
+
+func return_scene():
+	Main.to_scene(Main.SCENE.category)
 
 
 func _on_btn_mouse_entered(id) -> void:
@@ -143,5 +145,4 @@ func _on_setting_button_pressed() -> void:
 
 
 func _on_return_button_pressed() -> void:
-	Main.to_scene(Main.SCENE.category)
-	
+	return_scene()

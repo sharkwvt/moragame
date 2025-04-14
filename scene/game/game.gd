@@ -1,4 +1,4 @@
-extends Control
+extends Scene
 
 var character_data: Main.CharacterData
 var character_imgs = []

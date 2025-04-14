@@ -350,8 +350,12 @@ func _input(event):
 		get_tree().root.add_child(click_effect)
 		
 func _unhandled_key_input(event: InputEvent) -> void:
-		if event.is_action_pressed("esc"):
-			if Engine.time_scale == 1:
-				Engine.time_scale = 0.01
-			else:
-				Engine.time_scale = 1
+	if event.is_action_pressed("scale_time"):
+		if Engine.time_scale == 1:
+			Engine.time_scale = 0.01
+		else:
+			Engine.time_scale = 1
+	
+	if event.is_action_pressed("ui_cancel"):
+		if !TransitionEffect.main and current_scene.visible:
+			current_scene.return_scene()
