@@ -4,7 +4,7 @@ var screen_size = Vector2i(1920, 1080)
 
 var categorys_path = "res://categorys"
 var category_json_path = "/data.json"
-var game_save_path = "user://moragame.save"
+var game_save_path = "user://moragame.sav"
 # 視窗
 var setting_view = preload("res://common/setting/setting_view.tscn")
 var talk_view = preload("res://common/talk/talk.tscn")

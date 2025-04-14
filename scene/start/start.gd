@@ -31,7 +31,7 @@ func setup():
 		var btn: Button = btns[i]
 		btn.add_theme_color_override("font_disabled_color", Color.WHITE)
 		btn.mouse_entered.connect(_on_mouse_entered.bind(i))
-		btn.mouse_exited.connect(_on_mouse_exited.bind(i))
+		btn.mouse_exited.connect(_on_mouse_exited)
 		btn.pressed.connect(_on_button_pressed.bind(i))
 		btn.modulate.a = 0
 
@@ -84,7 +84,7 @@ func set_btns_disabled(b: bool):
 func _on_mouse_entered(i):
 	play_entered_anim(btns[i])
 
-func _on_mouse_exited(i):
+func _on_mouse_exited():
 	reset_btns()
 	set_btns_disabled(false)
 

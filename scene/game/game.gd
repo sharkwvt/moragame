@@ -7,6 +7,7 @@ var is_bonus = false
 var game_state = STATE.對話
 var game_character: TextureRect
 var character_tween: Tween
+var has_esc_dialog: bool
 # 對話
 var story_view: Control
 var talk_view: TextureRect
@@ -211,7 +212,7 @@ func gameover():
 	dialog.confirm_btn.text = "重試"
 	dialog.cancel_btn.text = "返回"
 	dialog.confirm_btn.pressed.connect(_on_again_button_pressed.bind(dialog))
-	dialog.cancel_btn.pressed.connect(_on_dialog_confirm.bind(dialog))
+	dialog.cancel_btn.pressed.connect(_on_return_confirm.bind(dialog))
 	set_progress(0)
 
 
@@ -259,6 +260,19 @@ func determine_winner(player, bot):
 func show_scene():
 	reset_game()
 
+func return_scene():
+	show_return_ckeck()
+
+func show_return_ckeck():
+	if has_esc_dialog:
+		return
+	has_esc_dialog = true
+	var dialog = Main.create_dialog_view()
+	dialog.title.text = "提示"
+	dialog.msg.text = "確定要退出嗎？"
+	dialog.confirm_btn.pressed.connect(_on_return_confirm.bind(dialog))
+	dialog.cancel_btn.pressed.connect(_on_dialog_cancel.bind(dialog))
+
 
 func quite():
 	Main.to_scene(Main.SCENE.menu)
@@ -290,18 +304,16 @@ func _on_popup_item_pressed(id: int) -> void:
 func _on_again_button_pressed(view: Control) -> void:
 	view.queue_free()
 	reset_game()
+	has_esc_dialog = false
 
 func _on_return_button_pressed() -> void:
-	var dialog = Main.create_dialog_view()
-	dialog.title.text = "提示"
-	dialog.msg.text = "確定要退出嗎？"
-	dialog.confirm_btn.pressed.connect(_on_dialog_confirm.bind(dialog))
-	dialog.cancel_btn.pressed.connect(_on_dialog_cancel.bind(dialog))
+	show_return_ckeck()
 	
-func _on_dialog_confirm(view: Control):
+func _on_return_confirm(view: Control):
 	view.queue_free()
 	quite()
 	
 func _on_dialog_cancel(view: Control):
 	view.queue_free()
+	has_esc_dialog = false
 	
