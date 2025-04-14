@@ -17,6 +17,7 @@ icon_alignment = 1
 script = ExtResource("1_d1dxt")
 
 [node name="Panel" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5

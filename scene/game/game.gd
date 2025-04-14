@@ -208,7 +208,7 @@ func gameover():
 	var dialog = Main.create_dialog_view()
 	dialog.title.text = "挑戰失敗"
 	dialog.msg.text = "要再來一次嗎？"
-	dialog.confirm_btn.text = "再來一次"
+	dialog.confirm_btn.text = "重試"
 	dialog.cancel_btn.text = "返回"
 	dialog.confirm_btn.pressed.connect(_on_again_button_pressed.bind(dialog))
 	dialog.cancel_btn.pressed.connect(_on_dialog_confirm.bind(dialog))
@@ -281,10 +281,10 @@ func _on_popup_item_pressed(id: int) -> void:
 			quite()
 
 
-func _input(event):
-	# 滑鼠任何鍵
-	if event is InputEventMouseButton and event.pressed and game_state == STATE.bonus:
-		to_continue()
+#func _input(event):
+	## 滑鼠任何鍵
+	#if event is InputEventMouseButton and event.pressed and game_state == STATE.bonus:
+		#to_continue()
 
 
 func _on_again_button_pressed(view: Control) -> void:
