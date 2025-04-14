@@ -1,7 +1,7 @@
 extends Node
 
 var steam_api: Object = null
-var steam_appid: int = 480 # 480為測試用
+var steam_appid: int = 3668520 # 480為測試用
 var steam_id: int = 0
 var steam_name: String = "You"
 

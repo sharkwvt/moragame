@@ -12,7 +12,7 @@ func _ready() -> void:
 	Main.instance_scenes[Main.SCENE.start] = self
 	Main.play_music(Main.music_1)
 	setup()
-	play_anim()
+	play_start_anim()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -40,7 +40,7 @@ func setup():
 	backgroundAni.set_animation("title")
 
 
-func play_anim():
+func play_start_anim():
 	title.modulate.a = 0
 	tween = create_tween()
 	var title_center =  Vector2(title.position.x, size.y/2.0 - title.size.y/2.0)
@@ -53,7 +53,6 @@ func play_anim():
 		tween.tween_method(btn.set_position, Vector2(0, btn.position.y), btn.position, 0.5).set_delay(delay)
 		tween.tween_property(btn, "modulate:a", 1, 0.5).set_delay(delay)
 	tween.finished.connect(func(): mask.visible = false) # 移除防點擊
-
 
 func play_entered_anim(obj):
 	var duration = 0.5
@@ -71,20 +70,29 @@ func play_click_anim(obj):
 	tween.tween_property(obj, "scale", Vector2(1, 1), duration)
 
 
+func reset_btns():
+	if tween:
+		tween.kill()
+	for btn: Button in btns:
+		btn.scale = Vector2(1, 1)
+	
+func set_btns_disabled(b: bool):
+	for btn: Button in btns:
+		btn.disabled = b
+
+
 func _on_mouse_entered(i):
 	play_entered_anim(btns[i])
 
 func _on_mouse_exited(i):
-	if tween:
-		tween.kill()
-	var btn: Button = btns[i]
-	btn.scale = Vector2(1, 1)
+	reset_btns()
+	set_btns_disabled(false)
 
 func _on_button_pressed(i) -> void:
+	set_btns_disabled(true)
 	var btn: Button = btns[i]
 	play_click_anim(btn)
 	await tween.finished
-	mask.visible = true
 	match i:
 		0:
 			Main.to_scene(Main.SCENE.category)
@@ -94,4 +102,4 @@ func _on_button_pressed(i) -> void:
 			Main.show_setting_view()
 		3:
 			get_tree().quit()
-	mask.visible = false
+	set_btns_disabled(false)

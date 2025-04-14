@@ -305,6 +305,7 @@ offset_right = 50.0
 offset_bottom = 263.0
 grow_horizontal = 2
 grow_vertical = 2
+type = 1
 
 [connection signal="item_selected" from="SettingBG/LangLabel/OptionButton" to="." method="_on_lang_option_item_selected"]
 [connection signal="pressed" from="SettingBG/LangLabel/OptionButton" to="." method="_on_option_button_pressed"]
