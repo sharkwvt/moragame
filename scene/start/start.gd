@@ -55,6 +55,7 @@ func play_start_anim():
 	tween.finished.connect(func(): mask.visible = false) # 移除防點擊
 
 func play_entered_anim(obj):
+	obj.pivot_offset = Vector2(obj.size.x/2.0, obj.size.y/2.0)
 	var duration = 0.5
 	tween.kill()
 	tween = obj.create_tween()

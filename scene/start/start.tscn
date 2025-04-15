@@ -41,6 +41,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 70
 text = "開始挑戰"
 flat = true
+alignment = 0
 script = ExtResource("5_w74jd")
 
 [node name="ReviewButton" type="Button" parent="."]
@@ -57,6 +58,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 70
 text = "回想"
 flat = true
+alignment = 0
 script = ExtResource("5_w74jd")
 
 [node name="SettingButton" type="Button" parent="."]
@@ -73,6 +75,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 70
 text = "設定"
 flat = true
+alignment = 0
 script = ExtResource("5_w74jd")
 
 [node name="ExitButton" type="Button" parent="."]
@@ -89,6 +92,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 70
 text = "離開"
 flat = true
+alignment = 0
 script = ExtResource("5_w74jd")
 
 [node name="Title" type="Label" parent="."]
