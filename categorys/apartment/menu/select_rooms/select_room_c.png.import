@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckhkl1an162wh"
-path="res://.godot/imported/select_room_d.png-23afd576d1852d40d12e91727ffdcf84.ctex"
+uid="uid://bx86vseqt28ei"
+path="res://.godot/imported/select_room_c.png-b0342c485b14238217d05e67e2bd5026.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scene/menu/select_rooms/select_room_d.png"
-dest_files=["res://.godot/imported/select_room_d.png-23afd576d1852d40d12e91727ffdcf84.ctex"]
+source_file="res://categorys/apartment/menu/select_rooms/select_room_c.png"
+dest_files=["res://.godot/imported/select_room_c.png-b0342c485b14238217d05e67e2bd5026.ctex"]
 
 [params]
 

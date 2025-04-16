@@ -66,6 +66,7 @@ class CategoryData:
 	var all_level: int
 	var progress: float
 	var path: String
+	var menu: PackedScene
 	func get_img_path(type) -> String:
 		var name = "building"
 		match type:
@@ -85,6 +86,8 @@ class CategoryData:
 		if all_level == 0:
 			return "🔒"
 		return str(int(progress / all_level * 100)) + "%"
+	func get_menu_path() -> String:
+		return path + "/menu/menu.tscn"
 	func get_avatar_path() -> String:
 		return path + "/characters/photo_girl/photo.tres"
 
@@ -187,6 +190,10 @@ func load_categorys_data():
 			var category_data = CategoryData.new()
 			category_data.category = file_name
 			category_data.path = categorys_path + "/" + file_name
+			if FileAccess.file_exists(category_data.get_menu_path()):
+				category_data.menu = load(category_data.get_menu_path())
+			else:
+				print(category_data.get_menu_path() + " 不存在")
 			categorys_data.append(category_data)
 			var json_data = get_json_data(category_data.path + category_json_path)
 			if !json_data.is_empty():

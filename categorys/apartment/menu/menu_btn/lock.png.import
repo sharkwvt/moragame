@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://de7dqg6fww0vb"
-path="res://.godot/imported/bonus.png-52b9c0cfda4e6f76326f09dd522508da.ctex"
+uid="uid://pcerblv7eeu8"
+path="res://.godot/imported/lock.png-d7b2a215e615449f86819356fd72d97f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scene/menu/menu_btn/bonus.png"
-dest_files=["res://.godot/imported/bonus.png-52b9c0cfda4e6f76326f09dd522508da.ctex"]
+source_file="res://categorys/apartment/menu/menu_btn/lock.png"
+dest_files=["res://.godot/imported/lock.png-d7b2a215e615449f86819356fd72d97f.ctex"]
 
 [params]
 

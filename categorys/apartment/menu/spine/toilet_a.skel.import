@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://dljdtrfmsaeg0"
+path="res://.godot/imported/toilet_a.skel-fc3aaa2d2853df96e353bcbac03af795.spskel"
+
+[deps]
+
+source_file="res://categorys/apartment/menu/spine/toilet_a.skel"
+dest_files=["res://.godot/imported/toilet_a.skel-fc3aaa2d2853df96e353bcbac03af795.spskel"]
+
+[params]
+

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dw377kxm44um"
-path="res://.godot/imported/toilet_a.png-c4fad7f119cdf9f9480bc7363e4c71ff.ctex"
+uid="uid://de7dqg6fww0vb"
+path="res://.godot/imported/bonus.png-e979f025ce431815e25cd2b976f009b7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scene/menu/spine/toilet_a.png"
-dest_files=["res://.godot/imported/toilet_a.png-c4fad7f119cdf9f9480bc7363e4c71ff.ctex"]
+source_file="res://categorys/apartment/menu/menu_btn/bonus.png"
+dest_files=["res://.godot/imported/bonus.png-e979f025ce431815e25cd2b976f009b7.ctex"]
 
 [params]
 

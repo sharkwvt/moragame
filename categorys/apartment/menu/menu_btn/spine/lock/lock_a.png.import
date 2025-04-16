@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pcerblv7eeu8"
-path="res://.godot/imported/lock.png-5ca1a9658567105d902d0f8e680396b2.ctex"
+uid="uid://ck8o87amqq81f"
+path="res://.godot/imported/lock_a.png-4a88ad4f8979238026624b934fbdaab5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scene/menu/menu_btn/lock.png"
-dest_files=["res://.godot/imported/lock.png-5ca1a9658567105d902d0f8e680396b2.ctex"]
+source_file="res://categorys/apartment/menu/menu_btn/spine/lock/lock_a.png"
+dest_files=["res://.godot/imported/lock_a.png-4a88ad4f8979238026624b934fbdaab5.ctex"]
 
 [params]
 
