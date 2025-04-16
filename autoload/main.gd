@@ -5,6 +5,8 @@ var screen_size = Vector2i(1920, 1080)
 var categorys_path = "res://categorys"
 var category_json_path = "/data.json"
 var game_save_path = "user://moragame.sav"
+var csv_path = "res://categorys/%s/csv"
+
 # 視窗
 var setting_view = preload("res://common/setting/setting_view.tscn")
 var talk_view = preload("res://common/talk/talk.tscn")
@@ -166,6 +168,7 @@ func get_menu_scene() -> MenuScene:
 
 func reload_data():
 	load_categorys_data()
+	load_csv()
 	load_game_save()
 
 func load_categorys_data():
@@ -275,6 +278,23 @@ func load_game_save():
 			if obj["id"] == data.id:
 				data.progress = obj["progress"]
 				data.has_bonus = obj["has_bonus"]
+
+
+func load_csv():
+	for category: CategoryData in categorys_data:
+		var path = csv_path % category.category
+		var dir = DirAccess.open(path)
+		if dir == null:
+			print("無法開啟資料夾: ", path)
+			continue
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while file_name != "":
+			if ".translation" in file_name:
+				print("load_csv: ", file_name)
+				TranslationServer.add_translation(load(path + "/" + file_name))
+			file_name = dir.get_next()
+		dir.list_dir_end()
 
 
 func show_setting_view():
