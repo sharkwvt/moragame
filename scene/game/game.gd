@@ -171,14 +171,14 @@ func play_character_switch_anim():
 	
 	character_temp.texture = character.texture
 	var mt: ShaderMaterial = character_temp.material
-	mt.set_shader_parameter("alpha", 1)
+	mt.set_shader_parameter("alpha", 1.0)
 	character_light_mask.texture = character.texture
 	character_light.color.a = 0
 	character.texture = character_imgs[now_level]
 	
 	character_tween = character.create_tween()
 	character_tween.tween_property(character, "scale", Vector2(1.1, 1.1), duration)
-	character_tween.parallel().tween_property(mt, "shader_parameter/alpha", 0, duration)
+	character_tween.parallel().tween_property(mt, "shader_parameter/alpha", 0.0, duration)
 	character_tween.parallel().tween_property(character_light, "color:a", 0.5, duration)
 	character_tween.tween_property(character, "scale", Vector2(1, 1), duration)
 	character_tween.parallel().tween_property(character_light, "color:a", 0, duration)
