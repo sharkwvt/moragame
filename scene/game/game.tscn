@@ -1,16 +1,22 @@
-[gd_scene load_steps=10 format=3 uid="uid://ba1wq5rsch7ls"]
+[gd_scene load_steps=13 format=3 uid="uid://ba1wq5rsch7ls"]
 
 [ext_resource type="Script" path="res://scene/game/game.gd" id="1_tbpdr"]
+[ext_resource type="PackedScene" uid="uid://bfrlvuybx0tun" path="res://scene/game/choice_btn/choice_btn.tscn" id="2_h614x"]
 [ext_resource type="Texture2D" uid="uid://cdyb41iokvcsy" path="res://scene/game/game_bg.png" id="2_i4cql"]
 [ext_resource type="Texture2D" uid="uid://dhac8pkp4th8t" path="res://image/scrollbar_button.png" id="3_3xtq8"]
 [ext_resource type="Texture2D" uid="uid://cj5ghtnmxuhvm" path="res://image/功能.png" id="3_d0cw2"]
+[ext_resource type="Shader" path="res://shaders/alpha.gdshader" id="4_s858n"]
 [ext_resource type="SpineSkeletonDataResource" uid="uid://cnxmg4ay3xcyn" path="res://scene/game/spine/user/user.tres" id="6_2d2y1"]
 [ext_resource type="SpineSkeletonDataResource" uid="uid://bqwqjpwl3gi6p" path="res://scene/game/spine/win_lose_draw/wld.tres" id="6_446c2"]
 [ext_resource type="SpineSkeletonDataResource" uid="uid://r5klclna050j" path="res://scene/game/spine/npc/npc.tres" id="7_0e5wi"]
 [ext_resource type="PackedScene" uid="uid://c2hckrk53snne" path="res://common/return/return_button.tscn" id="7_hr14f"]
 [ext_resource type="PackedScene" uid="uid://sfxekiqbeugx" path="res://common/talk/talk.tscn" id="8_qrful"]
 
-[node name="Game" type="Control"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sc3j8"]
+shader = ExtResource("4_s858n")
+shader_parameter/alpha = 1.0
+
+[node name="Game" type="Control" node_paths=PackedStringArray("menu_btn", "character", "character_temp", "character_light_mask", "character_light", "progress_bar", "story_view", "talk_view", "game_view", "tips_node", "result_spine", "user_spine", "npc_spine", "bonus_view", "spine_sprite")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,6 +24,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tbpdr")
+menu_btn = NodePath("Game/MenuButton")
+character = NodePath("Character")
+character_temp = NodePath("Character/TempCharacter")
+character_light_mask = NodePath("Character/LightMask")
+character_light = NodePath("Character/LightMask/Light")
+progress_bar = NodePath("ProgressBar")
+story_view = NodePath("Story")
+talk_view = NodePath("Story/Talk")
+choice_btn = ExtResource("2_h614x")
+game_view = NodePath("Game")
+tips_node = NodePath("Game/Tips")
+result_spine = NodePath("Game/Tips/Result")
+user_spine = NodePath("Game/Tips/User")
+npc_spine = NodePath("Game/Tips/Npc")
+bonus_view = NodePath("Bonus")
+spine_sprite = NodePath("Bonus/Spine/SpineSprite")
 
 [node name="BG" type="TextureRect" parent="."]
 layout_mode = 1
@@ -38,6 +60,37 @@ grow_horizontal = 2
 grow_vertical = 2
 expand_mode = 1
 stretch_mode = 5
+
+[node name="TempCharacter" type="TextureRect" parent="Character"]
+material = SubResource("ShaderMaterial_sc3j8")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LightMask" type="TextureRect" parent="Character"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Light" type="ColorRect" parent="Character/LightMask"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 layout_mode = 1

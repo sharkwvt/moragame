@@ -1,5 +1,7 @@
 extends Scene
 
+@export var phone: TextureRect
+
 var category_list_btn = preload("res://scene/review/btn/review_category_btn.tscn")
 
 var category_list_panel: Panel
@@ -14,17 +16,15 @@ var review_spine: SpineSprite
 var view_index = 0
 
 var selected_category: Main.CategoryData
+var tween: Tween
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	setup()
 	create_category_btns()
-	_on_category_btn_pressed(0)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
+	play_start_anim()
+	await tween.finished
+	_on_category_btn_pressed(0) # 開第一個
 
 
 func setup():
@@ -42,6 +42,12 @@ func setup():
 	review_spine = $View/Spine/SpineSprite
 	review_view.visible = false
 	review_spine.visible = false
+
+
+func play_start_anim():
+	tween = create_tween()
+	tween.tween_property(phone, "position", phone.position, 1)
+	phone.position.y += phone.size.y
 
 
 func show_review(data: Main.CharacterData):

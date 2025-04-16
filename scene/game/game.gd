@@ -1,34 +1,39 @@
 extends Scene
 
+@export var menu_btn: MenuButton
+@export var character: TextureRect
+@export var character_temp: TextureRect
+@export var character_light_mask: TextureRect
+@export var character_light: ColorRect
+@export var progress_bar: ProgressBar
+# 對話
+@export var story_view: Control
+@export var talk_view: TextureRect
+# 猜拳
+@export var choice_btn: PackedScene
+@export var game_view: Control
+@export var tips_node: Control
+@export var result_spine: SpineSprite
+@export var user_spine: SpineSprite
+@export var npc_spine: SpineSprite
+# bonus
+@export var bonus_view: Control
+@export var spine_sprite: SpineSprite
+
 var character_data: Main.CharacterData
 var character_imgs = []
-var menu_btn: MenuButton
 var is_bonus = false
 var game_state = STATE.對話
-var game_character: TextureRect
 var character_tween: Tween
 var has_esc_dialog: bool
-# 對話
-var story_view: Control
-var talk_view: TextureRect
 # 猜拳
-var game_view: Control
 var now_level: int
-var progress_bar: ProgressBar
 var pb_tween: Tween
-var tips_node: Control
-var result_spine: SpineSprite
-var user_spine: SpineSprite
-var npc_spine: SpineSprite
 var game_tween: Tween
-var choice_btn = preload("res://scene/game/choice_btn/choice_btn.tscn")
 var player_choice_btns = []
 var player_choice
 var bot_choice
 var choice_str = ["scissors", "rock", "paper"]
-# bonus
-var bonus_view: Control
-var spine_sprite: SpineSprite
 
 enum STATE {
 	退出 = -1,
@@ -56,18 +61,6 @@ func _process(_delta: float) -> void:
 
 
 func setup():
-	game_character = $Character
-	story_view = $Story
-	talk_view = $Story/Talk
-	game_view = $Game
-	progress_bar = $ProgressBar
-	tips_node = $Game/Tips
-	result_spine = $Game/Tips/Result
-	user_spine = $Game/Tips/User
-	npc_spine = $Game/Tips/Npc
-	menu_btn = $Game/MenuButton
-	bonus_view = $Bonus
-	spine_sprite = $Bonus/Spine/SpineSprite
 	var popup: PopupMenu = menu_btn.get_popup()
 	popup.add_theme_font_size_override("font_size", 50) # 改字體大小
 	popup.id_pressed.connect(_on_popup_item_pressed)
@@ -100,13 +93,13 @@ func reset_game():
 		now_level = 0
 	else:
 		now_level = character_data.progress
+	character.texture = character_imgs[now_level]
 	refresh_game()
 	show_story()
 
 
 func refresh_game():
-	game_character.texture = character_imgs[now_level]
-	game_character.pivot_offset = Vector2(game_character.size.x/2.0, game_character.size.y/2.0)
+	character.pivot_offset = Vector2(character.size.x/2.0, character.size.y/2.0)
 	#$"Game/進度".text = "進度 " + str(now_level) + "/" + str(character_data.level)
 	set_progress(float(now_level)/character_data.level)
 	if now_level >= character_data.level:
@@ -135,6 +128,7 @@ func to_continue():
 			elif story_view.visible == false:
 				## 猜拳完進對話
 				refresh_game()
+				play_character_switch_anim()
 				show_story()
 			
 		STATE.通關:
@@ -160,14 +154,37 @@ func set_progress(ps: float):
 
 
 func set_character_tween():
-	game_character.scale = Vector2i(1, 1)
+	character.scale = Vector2i(1, 1)
 	if character_tween:
 		character_tween.kill()
-	character_tween = game_character.create_tween()
+	character_tween = character.create_tween()
 	character_tween.set_loops()
-	character_tween.tween_property(game_character, "scale", Vector2(1.05, 1.05), 1)
-	character_tween.tween_property(game_character, "scale", Vector2(1, 1), 1)
+	character_tween.tween_property(character, "scale", Vector2(1.05, 1.05), 1)
+	character_tween.tween_property(character, "scale", Vector2(1, 1), 1)
 
+
+func play_character_switch_anim():
+	if character_tween:
+		character_tween.kill()
+		
+	var duration = 0.3
+	
+	character_temp.texture = character.texture
+	var mt: ShaderMaterial = character_temp.material
+	mt.set_shader_parameter("alpha", 1)
+	character_light_mask.texture = character.texture
+	character_light.color.a = 0
+	character.texture = character_imgs[now_level]
+	
+	character_tween = character.create_tween()
+	character_tween.tween_property(character, "scale", Vector2(1.1, 1.1), duration)
+	character_tween.parallel().tween_property(mt, "shader_parameter/alpha", 0, duration)
+	character_tween.parallel().tween_property(character_light, "color:a", 0.5, duration)
+	character_tween.tween_property(character, "scale", Vector2(1, 1), duration)
+	character_tween.parallel().tween_property(character_light, "color:a", 0, duration)
+	await character_tween.finished
+	set_character_tween()
+	
 
 func show_story():
 	story_view.visible = true
@@ -258,13 +275,7 @@ func determine_winner(player, bot):
 		return -1
 
 
-func show_scene():
-	reset_game()
-
-func return_scene():
-	show_return_ckeck()
-
-func show_return_ckeck():
+func show_return_check():
 	if has_esc_dialog:
 		return
 	has_esc_dialog = true
@@ -278,6 +289,13 @@ func show_return_ckeck():
 func quite():
 	Main.to_scene(Main.SCENE.menu)
 	game_state = STATE.退出
+
+
+func show_scene():
+	reset_game()
+
+func return_scene():
+	show_return_check()
 
 
 # 點擊猜拳
@@ -308,7 +326,7 @@ func _on_again_button_pressed(view: Control) -> void:
 	has_esc_dialog = false
 
 func _on_return_button_pressed() -> void:
-	show_return_ckeck()
+	show_return_check()
 	
 func _on_return_confirm(view: Control):
 	view.queue_free()
