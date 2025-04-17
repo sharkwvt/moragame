@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cxxejc615wwp5"]
+[gd_scene load_steps=7 format=3 uid="uid://cxxejc615wwp5"]
 
 [ext_resource type="Script" path="res://scene/menu/menu_btn.gd" id="1_8v8uy"]
 [ext_resource type="Script" path="res://common/common_button.gd" id="2_dowxg"]
+[ext_resource type="SpineSkeletonDataResource" uid="uid://c5ag0s6vyrp6q" path="res://categorys/apartment/characters/photo_girl/photo.tres" id="2_u4g4y"]
 [ext_resource type="Texture2D" uid="uid://de7dqg6fww0vb" path="res://categorys/apartment/menu/menu_btn/bonus.png" id="3_j22r5"]
 [ext_resource type="SpineSkeletonDataResource" uid="uid://bld7of8wgr8cg" path="res://categorys/apartment/menu/menu_btn/spine/lock/lock.tres" id="4_tanph"]
 
@@ -12,7 +13,7 @@ corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
 
-[node name="MenuBtn" type="Button" node_paths=PackedStringArray("avatar_btn", "avatar_spine", "bonus_btn", "lock_view", "lock_sp")]
+[node name="MenuBtn" type="Button" node_paths=PackedStringArray("avatar_btn", "avatar_spine", "lock_view", "lock_sp")]
 offset_left = -103.0
 offset_top = -243.0
 offset_right = 103.0
@@ -24,7 +25,6 @@ flat = true
 script = ExtResource("1_8v8uy")
 avatar_btn = NodePath("Avatar/AvatarButton")
 avatar_spine = NodePath("Avatar/AvatarSpine")
-bonus_btn = NodePath("BonusButton")
 lock_view = NodePath("Lock")
 lock_sp = NodePath("Lock/LockSpine")
 
@@ -79,6 +79,11 @@ offset_right = -19.84
 grow_horizontal = 2
 
 [node name="AvatarSpine" type="SpineSprite" parent="Avatar"]
+skeleton_data_res = ExtResource("2_u4g4y")
+preview_skin = "photo_girl_a2"
+preview_animation = "click"
+preview_frame = false
+preview_time = 0.0
 
 [node name="AvatarButton" type="Button" parent="Avatar"]
 layout_mode = 1
@@ -97,6 +102,7 @@ flat = true
 script = ExtResource("2_dowxg")
 
 [node name="BonusButton" type="Button" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0

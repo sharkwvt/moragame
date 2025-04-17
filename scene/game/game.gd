@@ -25,7 +25,8 @@ var character_imgs = []
 var is_bonus = false
 var game_state = STATE.對話
 var character_tween: Tween
-var has_esc_dialog: bool
+var has_dialog: bool
+var dialog
 # 猜拳
 var now_level: int
 var pb_tween: Tween
@@ -224,13 +225,16 @@ func switch_choice(is_show: bool):
 
 
 func gameover():
-	var dialog = Main.create_dialog_view()
+	if dialog:
+		dialog.queue_free()
+	has_dialog = true
+	dialog = Main.create_dialog_view()
 	dialog.title.text = "挑戰失敗"
 	dialog.msg.text = "要再來一次嗎？"
 	dialog.confirm_btn.text = "重試"
 	dialog.cancel_btn.text = "返回"
-	dialog.confirm_btn.pressed.connect(_on_again_button_pressed.bind(dialog))
-	dialog.cancel_btn.pressed.connect(_on_return_confirm.bind(dialog))
+	dialog.confirm_btn.pressed.connect(_on_again_button_pressed)
+	dialog.cancel_btn.pressed.connect(_on_return_confirm)
 	set_progress(0)
 
 
@@ -276,14 +280,19 @@ func determine_winner(player, bot):
 
 
 func show_return_check():
-	if has_esc_dialog:
+	if has_dialog:
 		return
-	has_esc_dialog = true
-	var dialog = Main.create_dialog_view()
+	has_dialog = true
+	dialog = Main.create_dialog_view()
 	dialog.title.text = "提示"
 	dialog.msg.text = "確定要退出嗎？"
-	dialog.confirm_btn.pressed.connect(_on_return_confirm.bind(dialog))
-	dialog.cancel_btn.pressed.connect(_on_dialog_cancel.bind(dialog))
+	dialog.confirm_btn.pressed.connect(_on_return_confirm)
+	dialog.cancel_btn.pressed.connect(_on_dialog_cancel)
+
+
+func close_dialog():
+	dialog.queue_free()
+	has_dialog = false
 
 
 func quite():
@@ -320,19 +329,17 @@ func _on_popup_item_pressed(id: int) -> void:
 		#to_continue()
 
 
-func _on_again_button_pressed(view: Control) -> void:
-	view.queue_free()
+func _on_again_button_pressed() -> void:
+	close_dialog()
 	reset_game()
-	has_esc_dialog = false
 
 func _on_return_button_pressed() -> void:
 	show_return_check()
 	
-func _on_return_confirm(view: Control):
-	view.queue_free()
+func _on_return_confirm():
+	close_dialog()
 	quite()
 	
-func _on_dialog_cancel(view: Control):
-	view.queue_free()
-	has_esc_dialog = false
+func _on_dialog_cancel():
+	close_dialog()
 	

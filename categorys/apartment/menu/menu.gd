@@ -40,8 +40,7 @@ func setup():
 		btn.index = i
 		btn.mouse_entered.connect(_on_btn_mouse_entered.bind(i))
 		btn.mouse_exited.connect(_on_btn_mouse_exited.bind(i))
-		btn.pressed.connect(_on_btn_pressed.bind(i, false))
-		btn.bonus_btn.pressed.connect(_on_btn_pressed.bind(i, true))
+		btn.pressed.connect(_on_btn_pressed.bind(i))
 		btn.avatar_btn.pressed.connect(_on_btn_avatar_pressed.bind(i))
 	
 	refresh()
@@ -126,18 +125,18 @@ func _on_btn_mouse_exited(id) -> void:
 	if light_tween != null:
 		light_tween.kill()
 
-func _on_btn_pressed(i, bonus) -> void:
+func _on_btn_pressed(i) -> void:
 	var btn: MenuBtn = btns[i]
 	if not btn.is_open:
 		Main.show_tip("鎖住了")
 		return
 	Main.current_character_data = btn.character_data
-	is_to_bonus = bonus
+	is_to_bonus = btn.to_bonus
 	play_enter_effect(i)
 
 func _on_btn_avatar_pressed(i):
 	var btn: MenuBtn = btns[i]
-	btn.play_animation()
+	btn.on_click_avatar()
 
 func _on_setting_button_pressed() -> void:
 	Main.show_setting_view()

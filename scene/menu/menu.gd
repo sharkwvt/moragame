@@ -24,6 +24,7 @@ func refresh():
 	node.visible = true
 	node.show_unlock_anim = show_unlock_anim
 	node.refresh()
+	show_unlock_anim = false # 只播放一次
 
 
 func show_scene():
