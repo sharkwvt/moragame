@@ -38,59 +38,6 @@ enum SCENE {
 	review
 }
 
-class CharacterData:
-	var id = 0
-	var display_name: String
-	var file_name: String
-	var category: String
-	var level: int
-	var story: Array
-	var progress = 0
-	var has_bonus = false
-	func get_path() -> String:
-		return "res://categorys/" + category + "/characters/sex_girl_" + file_name
-	func get_avatar_name() -> String:
-		return "photo_girl_" + file_name
-	func get_cg_path(index) -> String:
-		return get_path() + "/sex_girl_" + file_name + "_lv" + str(index+1) + ".png"
-	func get_spine_path() -> String:
-		var path = get_path() + "/spine/" + file_name + ".tres"
-		return path if FileAccess.file_exists(path) else ""
-	func get_anim_name() -> String:
-		return "sex_girl_" + file_name
-
-class CategoryData:
-	var id: int
-	var category: String
-	var characters = []
-	var all_level: int
-	var progress: float
-	var path: String
-	var menu: PackedScene
-	func get_img_path(type) -> String:
-		var name = "building"
-		match type:
-			0:
-				name += "_n"
-			1:
-				name += "_s"
-			2:
-				name += "_halo"
-		return path + "/btn/" + name + ".png"
-	func get_progress_str() -> String:
-		all_level = 0
-		progress = 0
-		for c_data in characters:
-			all_level += c_data.level
-			progress += c_data.progress
-		if all_level == 0:
-			return "🔒"
-		return str(int(progress / all_level * 100)) + "%"
-	func get_menu_path() -> String:
-		return path + "/menu/menu.tscn"
-	func get_avatar_path() -> String:
-		return path + "/characters/photo_girl/photo.tres"
-
 
 var music_player: AudioStreamPlayer
 
@@ -358,7 +305,6 @@ func show_dialog(msg: String):
 
 func create_dialog_view() -> DialogView:
 	var dialog = dialog_view.instantiate()
-	dialog.setup()
 	get_tree().root.add_child(dialog)
 	return dialog
 

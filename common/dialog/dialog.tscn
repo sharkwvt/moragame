@@ -2,9 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://cn5qct58mryrh" path="res://image/option_bg.png" id="1_ge262"]
 [ext_resource type="Script" path="res://common/dialog/dialog.gd" id="1_oqa2m"]
-[ext_resource type="Script" path="res://common/common_button.gd" id="2_1ufeq"]
+[ext_resource type="Script" path="res://extends/button_ex.gd" id="2_1ufeq"]
 
-[node name="Dialog" type="ColorRect"]
+[node name="Dialog" type="ColorRect" node_paths=PackedStringArray("bg", "title", "msg", "confirm_btn", "cancel_btn")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -12,6 +12,11 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.133333)
 script = ExtResource("1_oqa2m")
+bg = NodePath("BG")
+title = NodePath("BG/TitleLabel")
+msg = NodePath("BG/MsgLabel")
+confirm_btn = NodePath("BG/ConfirmButton")
+cancel_btn = NodePath("BG/CancelButton")
 
 [node name="BG" type="NinePatchRect" parent="."]
 layout_mode = 1

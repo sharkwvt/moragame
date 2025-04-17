@@ -7,7 +7,7 @@ class_name MenuBtn
 @export var lock_sp: SpineSprite
 
 var index:int
-var character_data: Main.CharacterData
+var character_data: CharacterData
 var is_open: bool
 var can_bonus: bool
 var to_bonus: bool
@@ -18,7 +18,7 @@ func _ready() -> void:
 	anim.set_animation("lock_a", false)
 	anim.set_time_scale(0)
 
-func set_data(category_data: Main.CategoryData, data: Main.CharacterData):
+func set_data(category_data: CategoryData, data: CharacterData):
 	character_data = data
 	#$AvatarBG/Avatar.texture = load(data.get_avatar_path())
 	#$NameBG/NameLabel.text = data.display_name

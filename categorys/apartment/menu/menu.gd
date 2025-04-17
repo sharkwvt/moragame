@@ -1,7 +1,7 @@
 extends Control
 
 var select_rooms = []
-var category_data: Main.CategoryData
+var category_data: CategoryData
 var btns = []
 var light_tween:Tween
 
@@ -53,7 +53,7 @@ func set_btns():
 		if i > category_data.characters.size()-1:
 			btn.lock()
 			continue
-		var c_data: Main.CharacterData = category_data.characters[i]
+		var c_data: CharacterData = category_data.characters[i]
 		btn.set_data(category_data, c_data)
 		if i > 0 and !btns[i-1].can_bonus:
 			btn.lock()

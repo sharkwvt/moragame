@@ -36,8 +36,7 @@ func setup():
 		btn.modulate.a = 0
 
 	# 背景動畫
-	var backgroundAni: SpineAnimationState = $SpineBG/SpineSprite.get_animation_state()
-	backgroundAni.set_animation("title")
+	$SpineBG/SpineSprite.play_first_anim()
 
 
 func play_start_anim():
@@ -64,7 +63,7 @@ func play_entered_anim(obj):
 	tween.tween_property(obj, "scale", Vector2(1, 1), duration)
 
 func play_click_anim(obj):
-	var duration = 0.2
+	var duration = 0.1
 	tween.kill()
 	tween = obj.create_tween()
 	tween.tween_property(obj, "scale", Vector2(1.5, 1.5), duration)

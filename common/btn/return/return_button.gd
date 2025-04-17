@@ -1,4 +1,4 @@
-extends Button
+extends ButtonEx
 
 @export var type = 0
 @export var img_n: Texture
@@ -9,9 +9,6 @@ func _ready() -> void:
 	setup()
 
 func setup():
-	pivot_offset = Vector2(size.x/2.0, size.y/2.0)
-	focus_mode = FOCUS_NONE
-	button_down.connect(_on_button_down)
 	if type == 1:
 		remove_theme_color_override("icon_pressed_color")
 		button_up.connect(_on_button_up)

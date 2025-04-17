@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://b3t2ytl32tv2m" path="res://categorys/apartment/menu/menu_bg.jpg" id="2_7afsy"]
 [ext_resource type="SpineSkeletonDataResource" uid="uid://gun6ki8nkyxt" path="res://categorys/apartment/menu/spine/toilet.tres" id="3_05gpe"]
 [ext_resource type="Texture2D" uid="uid://brlcx2erf54ob" path="res://image/setting.png" id="4_jryh7"]
-[ext_resource type="Script" path="res://common/common_button.gd" id="5_sul5q"]
-[ext_resource type="PackedScene" uid="uid://c2hckrk53snne" path="res://common/return/return_button.tscn" id="6_o27jh"]
+[ext_resource type="Script" path="res://extends/button_ex.gd" id="5_43isc"]
+[ext_resource type="PackedScene" uid="uid://c2hckrk53snne" path="res://common/btn/return/return_button.tscn" id="6_o27jh"]
 [ext_resource type="Texture2D" uid="uid://bcw7eptj1qgoh" path="res://categorys/apartment/menu/select_rooms/select_room_a.png" id="7_ta0d5"]
 [ext_resource type="Texture2D" uid="uid://c58ggahgwm0pk" path="res://categorys/apartment/menu/select_rooms/select_room_b.png" id="8_t62f3"]
 [ext_resource type="Texture2D" uid="uid://bx86vseqt28ei" path="res://categorys/apartment/menu/select_rooms/select_room_c.png" id="9_ax2a3"]
@@ -63,7 +63,7 @@ offset_bottom = 100.0
 grow_horizontal = 0
 icon = ExtResource("4_jryh7")
 flat = true
-script = ExtResource("5_sul5q")
+script = ExtResource("5_43isc")
 
 [node name="ReturnButton" parent="." instance=ExtResource("6_o27jh")]
 layout_mode = 1

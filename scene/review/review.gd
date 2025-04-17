@@ -12,10 +12,10 @@ var character_lbls = []
 var review_imgs = []
 var review_view: ColorRect
 var review_img: TextureRect
-var review_spine: SpineSprite
+var review_spine: SpineSpriteEx
 var view_index = 0
 
-var selected_category: Main.CategoryData
+var selected_category: CategoryData
 var tween: Tween
 
 # Called when the node enters the scene tree for the first time.
@@ -50,7 +50,7 @@ func play_start_anim():
 	phone.position.y += phone.size.y
 
 
-func show_review(data: Main.CharacterData):
+func show_review(data: CharacterData):
 	review_view.visible = true
 	load_imgs(data)
 	review_img.texture = review_imgs[view_index]
@@ -59,7 +59,7 @@ func show_review(data: Main.CharacterData):
 func create_category_btns():
 	var offset_y = 20
 	for i in Main.categorys_data.size():
-		var category_data: Main.CategoryData = Main.categorys_data[i]
+		var category_data: CategoryData = Main.categorys_data[i]
 		var btn: Button = category_list_btn.instantiate()
 		btn.text = tr(category_data.category) + " " + category_data.get_progress_str()
 		btn.position = Vector2(
@@ -71,15 +71,14 @@ func create_category_btns():
 		category_list_btns.append(btn)
 
 
-func load_imgs(data: Main.CharacterData):
+func load_imgs(data: CharacterData):
 	review_imgs.clear()
 	for i in data.story.size():
 		review_imgs.append(load(data.get_cg_path(i)))
 	if not data.has_bonus:
 		return
 	review_spine.skeleton_data_res = load(data.get_spine_path())
-	var anim: SpineAnimationState = review_spine.get_animation_state()
-	anim.add_animation(data.get_anim_name())
+	review_spine.play_first_anim()
 
 
 func refresh_characters():
@@ -88,7 +87,7 @@ func refresh_characters():
 		if i >= selected_category.characters.size():
 			btn.visible = false
 			continue
-		var data: Main.CharacterData = selected_category.characters[i]
+		var data: CharacterData = selected_category.characters[i]
 		btn.visible = data.progress >= data.level
 		btn.set_data(selected_category, data)
 
@@ -96,7 +95,7 @@ func refresh_characters():
 func refresh():
 	# 更新主題按鈕
 	for i in Main.categorys_data.size():
-		var category_data: Main.CategoryData = Main.categorys_data[i]
+		var category_data: CategoryData = Main.categorys_data[i]
 		var btn = category_list_btns[i]
 		btn.text = category_data.category + " " + category_data.get_progress_str()
 		btn.button_pressed = false

@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b11ieyxtcxqxy" path="res://image/scrollbar_a.png" id="4_b4maj"]
 [ext_resource type="StyleBox" uid="uid://iq7a2hdjuv66" path="res://common/option/option_bg_pressed.tres" id="4_hh6qm"]
 [ext_resource type="Texture2D" uid="uid://cf56efcp2a3ll" path="res://image/scrollbar_b.png" id="5_7bw3q"]
-[ext_resource type="PackedScene" uid="uid://c2hckrk53snne" path="res://common/return/return_button.tscn" id="10_rms1i"]
+[ext_resource type="PackedScene" uid="uid://c2hckrk53snne" path="res://common/btn/return/return_button.tscn" id="10_rms1i"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_yg4do"]
 

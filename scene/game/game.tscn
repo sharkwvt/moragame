@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ba1wq5rsch7ls"]
+[gd_scene load_steps=14 format=3 uid="uid://ba1wq5rsch7ls"]
 
 [ext_resource type="Script" path="res://scene/game/game.gd" id="1_tbpdr"]
 [ext_resource type="PackedScene" uid="uid://bfrlvuybx0tun" path="res://scene/game/choice_btn/choice_btn.tscn" id="2_h614x"]
@@ -9,8 +9,9 @@
 [ext_resource type="SpineSkeletonDataResource" uid="uid://cnxmg4ay3xcyn" path="res://scene/game/spine/user/user.tres" id="6_2d2y1"]
 [ext_resource type="SpineSkeletonDataResource" uid="uid://bqwqjpwl3gi6p" path="res://scene/game/spine/win_lose_draw/wld.tres" id="6_446c2"]
 [ext_resource type="SpineSkeletonDataResource" uid="uid://r5klclna050j" path="res://scene/game/spine/npc/npc.tres" id="7_0e5wi"]
-[ext_resource type="PackedScene" uid="uid://c2hckrk53snne" path="res://common/return/return_button.tscn" id="7_hr14f"]
+[ext_resource type="PackedScene" uid="uid://c2hckrk53snne" path="res://common/btn/return/return_button.tscn" id="7_hr14f"]
 [ext_resource type="PackedScene" uid="uid://sfxekiqbeugx" path="res://common/talk/talk.tscn" id="8_qrful"]
+[ext_resource type="Script" path="res://extends/spine_sprite_ex.gd" id="10_a5m72"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sc3j8"]
 shader = ExtResource("4_s858n")
@@ -189,7 +190,6 @@ preview_frame = false
 preview_time = 0.0
 
 [node name="Bonus" type="ColorRect" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -218,6 +218,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="SpineSprite" type="SpineSprite" parent="Bonus/Spine"]
+script = ExtResource("10_a5m72")
 
 [node name="Story" type="ColorRect" parent="."]
 visible = false

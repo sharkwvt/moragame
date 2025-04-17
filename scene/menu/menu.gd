@@ -13,7 +13,7 @@ func refresh():
 	for c: Control in get_children():
 		c.visible = false
 
-	var data: Main.CategoryData = Main.current_category_data
+	var data: CategoryData = Main.current_category_data
 	var node: Control
 	if data.category in menus.keys():
 		node = menus[data.category]

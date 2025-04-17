@@ -24,7 +24,7 @@ func create_character_btns():
 	var categorys = Main.categorys_data
 	var all_width = 0
 	for i in categorys.size():
-		var data: Main.CategoryData = categorys[i]
+		var data: CategoryData = categorys[i]
 		var btn: Button = category_btn.instantiate()
 		btn.texture_n = load(data.get_img_path(0))
 		btn.texture_light = load(data.get_img_path(1))
@@ -33,7 +33,7 @@ func create_character_btns():
 		btn.position = Vector2.ZERO # 不知為何這樣才能取到size
 		all_width += btn.size.x
 		if i > 0:
-			var temp: Main.CategoryData = categorys[i-1]
+			var temp: CategoryData = categorys[i-1]
 			btn.is_lock = temp.progress != temp.all_level or data.all_level == 0
 			btn.disabled = btn.is_lock
 		# 綁定點擊事件

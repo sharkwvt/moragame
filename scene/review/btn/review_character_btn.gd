@@ -2,13 +2,13 @@ extends Button
 
 var lbl: Label
 var textrue: TextureRect
-var character_data: Main.CharacterData
+var character_data: CharacterData
 var spine: SpineSprite
 
 func _ready() -> void:
 	button_down.connect(_on_button_down)
 
-func set_data(category_data: Main.CategoryData, data: Main.CharacterData):
+func set_data(category_data: CategoryData, data: CharacterData):
 	#lbl = $NameLabel
 	#textrue = $Panel/Mask/TextureRect
 	spine = $Avatar/SpineSprite

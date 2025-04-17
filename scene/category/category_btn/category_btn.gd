@@ -16,7 +16,7 @@ func _ready() -> void:
 	mouse_exited.connect(_on_mouse_exited)
 
 
-func set_data(data: Main.CategoryData):
+func set_data(data: CategoryData):
 	on_exit = false
 	$Panel/TitleLabel.text = data.category
 	$Panel/ProgressLabel.text = data.get_progress_str()

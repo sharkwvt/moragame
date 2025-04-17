@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cp4r76bosywg" path="res://image/back_d.png" id="1_7fj4h"]
 [ext_resource type="Texture2D" uid="uid://dmnlpgomsbqkf" path="res://image/return.png" id="1_co6q2"]
-[ext_resource type="Script" path="res://common/return/return_button.gd" id="2_tn1xh"]
+[ext_resource type="Script" path="res://common/btn/return/return_button.gd" id="2_tn1xh"]
 [ext_resource type="Texture2D" uid="uid://biqni0ndvup1y" path="res://image/return2.png" id="4_52hlu"]
 
 [node name="ReturnButton" type="Button"]

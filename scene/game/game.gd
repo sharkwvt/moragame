@@ -18,9 +18,9 @@ extends Scene
 @export var npc_spine: SpineSprite
 # bonus
 @export var bonus_view: Control
-@export var spine_sprite: SpineSprite
+@export var spine_sprite: SpineSpriteEx
 
-var character_data: Main.CharacterData
+var character_data: CharacterData
 var character_imgs = []
 var is_bonus = false
 var game_state = STATE.對話
@@ -202,8 +202,7 @@ func show_bonus():
 	game_view.visible = false
 	bonus_view.visible = true
 	spine_sprite.skeleton_data_res = load(character_data.get_spine_path())
-	var anim: SpineAnimationState = spine_sprite.get_animation_state()
-	anim.add_animation(character_data.get_anim_name())
+	spine_sprite.play_first_anim()
 
 
 # 顯示雙方猜拳
@@ -225,8 +224,8 @@ func switch_choice(is_show: bool):
 
 
 func gameover():
-	if dialog:
-		dialog.queue_free()
+	if has_dialog:
+		close_dialog()
 	has_dialog = true
 	dialog = Main.create_dialog_view()
 	dialog.title.text = "挑戰失敗"

@@ -1,4 +1,4 @@
-extends Button
+extends ButtonEx
 
 enum CHOICES {
 	剪刀,
@@ -28,7 +28,6 @@ func _ready() -> void:
 
 
 func setup(c: CHOICES, bot: bool = false):
-	pivot_offset = Vector2(size.x/2.0, size.y/2.0)
 	bg = $BG
 	bg_s = $BG_s
 	hand = $TextureRect
