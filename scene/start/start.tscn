@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bwg6dvrtjky3i"]
+[gd_scene load_steps=6 format=3 uid="uid://bwg6dvrtjky3i"]
 
 [ext_resource type="Script" path="res://scene/start/start.gd" id="1_upowf"]
 [ext_resource type="Script" path="res://extends/spine_sprite_ex.gd" id="3_expao"]
 [ext_resource type="Script" path="res://extends/button_ex.gd" id="3_lkw0v"]
 [ext_resource type="SpineSkeletonDataResource" uid="uid://d283y7njhp6p1" path="res://scene/start/spine/title.tres" id="3_n5avh"]
+[ext_resource type="Texture2D" uid="uid://cer5nxuyrhidn" path="res://scene/start/tbh_logo.png" id="5_g57kp"]
 
 [node name="Start" type="Control"]
 layout_mode = 3
@@ -97,23 +98,20 @@ flat = true
 alignment = 0
 script = ExtResource("3_lkw0v")
 
-[node name="Title" type="Label" parent="."]
+[node name="Title" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 0.2
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.2
-offset_left = -400.0
-offset_top = -140.0
-offset_right = 400.0
-offset_bottom = 140.0
+anchor_bottom = 0.5
+offset_left = -470.0
+offset_top = -476.02
+offset_right = 470.0
+offset_bottom = -105.02
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 200
-text = "廁戰勇者"
-horizontal_alignment = 1
-vertical_alignment = 1
+texture = ExtResource("5_g57kp")
 
 [node name="Mask" type="ColorRect" parent="."]
 layout_mode = 1
