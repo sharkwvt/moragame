@@ -34,6 +34,7 @@ window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/resizable=false
 window/stretch/mode="viewport"
+mouse_cursor/custom_image="res://image/mouse.png"
 
 [input]
 
@@ -45,6 +46,9 @@ scale_time={
 
 [internationalization]
 
+locale/translation_remaps={
+"res://scene/start/tbh_logo.png": PackedStringArray()
+}
 locale/translations=PackedStringArray("res://csv/UI.en.translation", "res://csv/UI.zh.translation", "res://csv/UI.zhc.translation")
 locale/fallback="zhc"
 locale/locale_filter_mode=0
