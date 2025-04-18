@@ -52,10 +52,13 @@ var statistics: Dictionary = {
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	reload_data()
+	Input.set_custom_mouse_cursor(load("res://image/mouse.png"),Input.CURSOR_ARROW)
+	Input.set_custom_mouse_cursor(load("res://image/mouse2.png"),Input.CURSOR_POINTING_HAND)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	move_mouse_trail()
+	#move_mouse_trail()
+	pass
 
 
 func move_mouse_trail():
@@ -111,7 +114,7 @@ func to_scene(scene: SCENE, anim_type = 0):
 	current_scene = instance_scenes[scene]
 	
 	# 滑鼠特效移到最前
-	mouse_trail_effect.move_to_front()
+	#mouse_trail_effect.move_to_front()
 
 func get_menu_scene() -> MenuScene:
 	return instance_scenes[SCENE.menu]
@@ -317,17 +320,13 @@ func _input(event):
 	# 滑鼠任何鍵
 	if event is InputEventMouseButton and event.pressed:
 		var click_effect: GPUParticles2D = mouse_click_effect.instantiate()
-		click_effect.emitting = true
-		#click_effect.position = get_viewport().get_mouse_position()
-		click_effect.position = event.position
+		click_effect.emitting = true		
+		click_effect.position = Vector2(event.position.x+0,event.position.y+0)
 		get_tree().root.add_child(click_effect)
 		
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("scale_time"):
-		if Engine.time_scale == 1:
-			Engine.time_scale = 0.01
-		else:
-			Engine.time_scale = 1
+		get_tree().paused = not get_tree().paused
 	
 	if event.is_action_pressed("ui_cancel"):
 		if !TransitionEffect.main and current_scene.visible:
