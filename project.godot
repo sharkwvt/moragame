@@ -10,11 +10,15 @@ config_version=5
 
 [application]
 
-config/name="野球拳"
+config/name="廁戰勇者"
+config/description="廁戰勇者 Toilet Battle Hero
+"
 run/main_scene="res://scene/start/start.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 boot_splash/image="res://image/title_1.png"
-config/icon="res://icon.svg"
+config/icon="res://image/app_icon.png"
+config/macos_native_icon="res://image/app_icon.icns"
+config/windows_native_icon="res://image/favicon.ico"
 
 [autoload]
 
