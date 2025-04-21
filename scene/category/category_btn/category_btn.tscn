@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://go5vh14alrtp"]
+[gd_scene load_steps=6 format=3 uid="uid://go5vh14alrtp"]
 
 [ext_resource type="Script" uid="uid://byrousrsa41eu" path="res://scene/category/category_btn/category_btn.gd" id="1_d1dxt"]
+[ext_resource type="Texture2D" uid="uid://wkblav6euhh3" path="res://categorys/apartment/btn/building_halo.png" id="3_y0ev6"]
+[ext_resource type="Shader" uid="uid://ryitfc63igyp" path="res://shaders/mask.gdshader" id="4_y0ev6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dm3ir"]
 bg_color = Color(0, 0, 0, 0.25098)
@@ -9,12 +11,18 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[node name="CategoryBtn" type="Button"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wjdy6"]
+shader = ExtResource("4_y0ev6")
+shader_parameter/progress = 1.0
+
+[node name="CategoryBtn" type="Button" node_paths=PackedStringArray("img_light", "img_halo")]
 focus_mode = 0
 theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
 flat = true
 icon_alignment = 1
 script = ExtResource("1_d1dxt")
+img_light = NodePath("LightImg")
+img_halo = NodePath("Halo")
 
 [node name="Panel" type="Panel" parent="."]
 visible = false
@@ -60,6 +68,7 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 30
 
 [node name="LightImg" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_wjdy6")
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -89,3 +98,4 @@ offset_bottom = 108.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+texture = ExtResource("3_y0ev6")

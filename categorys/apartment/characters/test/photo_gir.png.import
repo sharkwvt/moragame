@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dn4oq5bjwdyek"
-path="res://.godot/imported/lang.png-75b806e216895e151ee96f7d06eedd87.ctex"
+uid="uid://p7t8b2di8k7g"
+path="res://.godot/imported/photo_gir.png-57538e8cb523396dfce539d2945be1e1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://image/lang.png"
-dest_files=["res://.godot/imported/lang.png-75b806e216895e151ee96f7d06eedd87.ctex"]
+source_file="res://categorys/apartment/characters/test/photo_gir.png"
+dest_files=["res://.godot/imported/photo_gir.png-57538e8cb523396dfce539d2945be1e1.ctex"]
 
 [params]
 
