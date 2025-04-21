@@ -12,10 +12,8 @@ var is_to_bonus: bool
 func _ready() -> void:
 	setup()
 	$lightMask.mouse_filter = MOUSE_FILTER_IGNORE
+	$SpineBG/SpineSprite.play_first_anim()
 	Main.show_talk_view("今天，要攻略哪一個對象呢❤️")
-	
-	var backgroundAni: SpineAnimationState = $SpineBG/SpineSprite.get_animation_state()
-	backgroundAni.set_animation("toilet_a")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

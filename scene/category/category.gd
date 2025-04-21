@@ -9,10 +9,8 @@ var btns = []
 func _ready() -> void:
 	create_character_btns()
 	$CPUParticles2D.move_to_front()
+	$SpineBG/SpineSprite.play_first_anim()
 	Main.show_talk_view("挑一個好地點出擊，獲取勝利吧！")
-	
-	var backgroundAni: SpineAnimationState = $SpineBG/SpineSprite.get_animation_state()
-	backgroundAni.set_animation("scen_a")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

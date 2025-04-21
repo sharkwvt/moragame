@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://sfxekiqbeugx"]
 
-[ext_resource type="Script" path="res://common/talk/talk.gd" id="1_dp28c"]
+[ext_resource type="Script" uid="uid://d3sawu6vlaj0u" path="res://common/talk/talk.gd" id="1_dp28c"]
 [ext_resource type="Texture2D" uid="uid://blfq5yhxp6co4" path="res://common/talk/talk_bar.png" id="2_jebo6"]
 
 [node name="Talk" type="TextureRect"]

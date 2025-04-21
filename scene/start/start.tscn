@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://bwg6dvrtjky3i"]
 
-[ext_resource type="Script" path="res://scene/start/start.gd" id="1_upowf"]
-[ext_resource type="Script" path="res://extends/spine_sprite_ex.gd" id="3_expao"]
-[ext_resource type="Script" path="res://extends/button_ex.gd" id="3_lkw0v"]
+[ext_resource type="Script" uid="uid://b0dwqt0l5nuod" path="res://scene/start/start.gd" id="1_upowf"]
+[ext_resource type="Script" uid="uid://74aly0fqsq5b" path="res://extends/spine_sprite_ex.gd" id="3_expao"]
+[ext_resource type="Script" uid="uid://busxpt8b3jr3b" path="res://extends/button_ex.gd" id="3_lkw0v"]
 [ext_resource type="SpineSkeletonDataResource" uid="uid://d283y7njhp6p1" path="res://scene/start/spine/title.tres" id="3_n5avh"]
 [ext_resource type="Texture2D" uid="uid://cer5nxuyrhidn" path="res://scene/start/tbh_logo.png" id="5_g57kp"]
 

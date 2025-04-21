@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bfrlvuybx0tun"]
 
 [ext_resource type="Texture2D" uid="uid://bx32u4ei43qnx" path="res://scene/game/choice_btn/select_bg.png" id="1_j7d1b"]
-[ext_resource type="Script" path="res://scene/game/choice_btn/choice_btn.gd" id="2_u1kpv"]
+[ext_resource type="Script" uid="uid://bltdgodg8883b" path="res://scene/game/choice_btn/choice_btn.gd" id="2_u1kpv"]
 [ext_resource type="Texture2D" uid="uid://hbtapov7n6oi" path="res://scene/game/choice_btn/select_bg_s.png" id="3_0jww1"]
 [ext_resource type="Texture2D" uid="uid://dghmld6na1wkp" path="res://scene/game/choice_btn/paper_a.png" id="3_kkfh2"]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://xq5sy8c0spv"]
 
-[ext_resource type="Script" path="res://common/setting/setting_view.gd" id="1_7xfc6"]
+[ext_resource type="Script" uid="uid://b5tu1kmpud46l" path="res://common/setting/setting_view.gd" id="1_7xfc6"]
 [ext_resource type="AudioStream" uid="uid://c12134dx2n1k4" path="res://sound/maou_se_system47.mp3" id="1_twnpm"]
 [ext_resource type="Texture2D" uid="uid://bb4exyrnh7o00" path="res://image/scrollbar_bg.png" id="2_dcjoh"]
 [ext_resource type="Texture2D" uid="uid://cn5qct58mryrh" path="res://image/option_bg.png" id="2_swdfx"]
@@ -120,6 +120,7 @@ selected = 0
 fit_to_longest_item = false
 item_count = 3
 popup/item_0/text = "繁體中文"
+popup/item_0/id = 0
 popup/item_1/text = "简体中文"
 popup/item_1/id = 1
 popup/item_2/text = "English"
@@ -160,6 +161,7 @@ selected = 0
 fit_to_longest_item = false
 item_count = 6
 popup/item_0/text = "視窗 720p"
+popup/item_0/id = 0
 popup/item_1/text = "視窗 1080p"
 popup/item_1/id = 1
 popup/item_2/text = "視窗 1440p"

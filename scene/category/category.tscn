@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dru60vogwkrk2"]
+[gd_scene load_steps=10 format=3 uid="uid://dru60vogwkrk2"]
 
-[ext_resource type="Script" path="res://scene/category/category.gd" id="1_fsov7"]
+[ext_resource type="Script" uid="uid://bwgh38gfexbw0" path="res://scene/category/category.gd" id="1_fsov7"]
 [ext_resource type="Texture2D" uid="uid://b5km4if17uloy" path="res://scene/category/category_bg.png" id="2_32ujb"]
 [ext_resource type="Texture2D" uid="uid://brlcx2erf54ob" path="res://image/setting.png" id="3_iof1k"]
+[ext_resource type="Script" uid="uid://74aly0fqsq5b" path="res://extends/spine_sprite_ex.gd" id="4_vodge"]
 [ext_resource type="PackedScene" uid="uid://c2hckrk53snne" path="res://common/btn/return/return_button.tscn" id="5_dd1j8"]
-[ext_resource type="Script" path="res://extends/button_ex.gd" id="5_k54hs"]
+[ext_resource type="Script" uid="uid://busxpt8b3jr3b" path="res://extends/button_ex.gd" id="5_k54hs"]
 [ext_resource type="Texture2D" uid="uid://d3rxs3qwnxuwl" path="res://image/particle/rain_drop_1x16.png" id="6_3ulg3"]
 [ext_resource type="Texture2D" uid="uid://twb4hgdg6oew" path="res://image/particle/rain_drop_2x30.png" id="7_at8md"]
 [ext_resource type="SpineSkeletonDataResource" uid="uid://ck8rd6gxpymn8" path="res://scene/category/spine/scen.tres" id="8_larw7"]
@@ -45,6 +46,7 @@ preview_skin = "Default"
 preview_animation = "scen_a"
 preview_frame = false
 preview_time = 0.0
+script = ExtResource("4_vodge")
 
 [node name="SettingButton" type="Button" parent="."]
 visible = false
@@ -76,9 +78,9 @@ grow_horizontal = 0
 position = Vector2(860, -325)
 rotation = -0.23811
 amount = 120
+texture = ExtResource("6_3ulg3")
 lifetime = 2.0
 local_coords = true
-texture = ExtResource("6_3ulg3")
 emission_shape = 3
 emission_rect_extents = Vector2(1920, 1)
 initial_velocity_min = 20.0
@@ -89,9 +91,9 @@ color = Color(0.562958, 0.562958, 0.562958, 1)
 position = Vector2(1040, -355)
 rotation = -0.194687
 amount = 60
+texture = ExtResource("7_at8md")
 lifetime = 2.0
 local_coords = true
-texture = ExtResource("7_at8md")
 emission_shape = 3
 emission_rect_extents = Vector2(1920, 1)
 initial_velocity_min = 20.0
