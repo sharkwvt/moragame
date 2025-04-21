@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dru60vogwkrk2"]
+[gd_scene load_steps=11 format=3 uid="uid://dru60vogwkrk2"]
 
 [ext_resource type="Script" uid="uid://bwgh38gfexbw0" path="res://scene/category/category.gd" id="1_fsov7"]
 [ext_resource type="Texture2D" uid="uid://b5km4if17uloy" path="res://scene/category/category_bg.png" id="2_32ujb"]
@@ -9,8 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://d3rxs3qwnxuwl" path="res://image/particle/rain_drop_1x16.png" id="6_3ulg3"]
 [ext_resource type="Texture2D" uid="uid://twb4hgdg6oew" path="res://image/particle/rain_drop_2x30.png" id="7_at8md"]
 [ext_resource type="SpineSkeletonDataResource" uid="uid://ck8rd6gxpymn8" path="res://scene/category/spine/scen.tres" id="8_larw7"]
+[ext_resource type="Texture2D" uid="uid://cn5qct58mryrh" path="res://image/option_bg.png" id="10_dls4e"]
 
-[node name="Category" type="Control"]
+[node name="Category" type="Control" node_paths=PackedStringArray("info_view", "info_lbl")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,6 +19,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fsov7")
+info_view = NodePath("InfoView")
+info_lbl = NodePath("InfoView/Label")
 
 [node name="BG" type="TextureRect" parent="."]
 visible = false
@@ -99,6 +102,31 @@ emission_rect_extents = Vector2(1920, 1)
 initial_velocity_min = 20.0
 initial_velocity_max = 100.0
 color = Color(0.454524, 0.454524, 0.454524, 1)
+
+[node name="InfoView" type="NinePatchRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 400.0
+texture = ExtResource("10_dls4e")
+patch_margin_left = 30
+patch_margin_top = 30
+patch_margin_right = 30
+patch_margin_bottom = 30
+
+[node name="Label" type="Label" parent="InfoView"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = -30.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "test"
 
 [connection signal="pressed" from="SettingButton" to="." method="_on_setting_button_pressed"]
 [connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]

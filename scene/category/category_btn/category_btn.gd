@@ -1,11 +1,16 @@
 extends Button
+class_name CategoryBtn
 
 @export var img_light: TextureRect
 @export var img_halo: TextureRect
 
+signal lighted
+signal unlight
+
 var texture_n: Texture
 var texture_light: Texture
 var texture_halo: Texture
+var c_data: CategoryData
 var tween: Tween
 var is_lock: bool
 var on_exit = false
@@ -18,6 +23,7 @@ func _ready() -> void:
 
 
 func set_data(data: CategoryData):
+	c_data = data
 	on_exit = false
 	$Panel/TitleLabel.text = data.category
 	$Panel/ProgressLabel.text = data.get_progress_str()
@@ -44,6 +50,7 @@ func set_light_progress(progress: float):
 func _on_mouse_entered():
 	if is_lock:
 		return
+	lighted.emit()
 	img_halo.visible = true
 	img_light.visible = true
 	if tween:
@@ -60,6 +67,7 @@ func _on_mouse_entered():
 
 func _on_mouse_exited():
 	img_halo.visible = false
+	unlight.emit()
 	if tween:
 		tween.kill()
 	#img_light.modulate.a = 1 if on_exit else 0

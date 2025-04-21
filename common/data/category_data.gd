@@ -18,7 +18,8 @@ func get_img_path(type) -> String:
 			name += "_s"
 		2:
 			name += "_halo"
-	return path + "/btn/" + name + ".png"
+	name += ".png"
+	return path.path_join("btn").path_join(name)
 
 
 func get_progress_str() -> String:
