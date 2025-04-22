@@ -18,7 +18,6 @@ enum SCREEN_MODE {
 	視窗1080p,
 	視窗1440p,
 	視窗2160p,
-	無邊框全螢幕,
 	全螢幕
 }
 
@@ -85,7 +84,7 @@ func set_sound_db(value):
 
 
 func set_screen_mode(mode: SCREEN_MODE):
-	var is_window = mode not in [SCREEN_MODE.無邊框全螢幕, SCREEN_MODE.全螢幕]
+	var is_window = mode != SCREEN_MODE.全螢幕
 	var to_window = DisplayServer.window_get_mode() in [DisplayServer.WINDOW_MODE_FULLSCREEN, DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN]
 	if is_window and to_window:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
@@ -102,10 +101,9 @@ func set_screen_mode(mode: SCREEN_MODE):
 			DisplayServer.window_set_size(Vector2i(2560, 1440))
 		SCREEN_MODE.視窗2160p:
 			DisplayServer.window_set_size(Vector2i(3840, 2160))
-		SCREEN_MODE.無邊框全螢幕:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 		SCREEN_MODE.全螢幕:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+
 	
 	if is_window:
 		center_window()

@@ -76,6 +76,5 @@ func _on_display_option_item_selected(index: int) -> void:
 	Main.play_btn_sfx()
 	Setting.set_screen_mode(index)
 
-
 func _on_option_button_pressed() -> void:
 	Main.play_btn_sfx()

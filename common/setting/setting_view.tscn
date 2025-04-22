@@ -159,7 +159,7 @@ theme_override_styles/normal = ExtResource("3_mup16")
 theme_override_icons/arrow = SubResource("ImageTexture_yq2r3")
 selected = 0
 fit_to_longest_item = false
-item_count = 6
+item_count = 5
 popup/item_0/text = "視窗 720p"
 popup/item_0/id = 0
 popup/item_1/text = "視窗 1080p"
@@ -168,10 +168,8 @@ popup/item_2/text = "視窗 1440p"
 popup/item_2/id = 2
 popup/item_3/text = "視窗 2160p"
 popup/item_3/id = 3
-popup/item_4/text = "無邊框全螢幕"
+popup/item_4/text = "全螢幕"
 popup/item_4/id = 4
-popup/item_5/text = "全螢幕"
-popup/item_5/id = 5
 
 [node name="MusicLabel" type="Label" parent="SettingBG"]
 layout_mode = 1
