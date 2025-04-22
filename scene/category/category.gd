@@ -8,7 +8,6 @@ class_name CategoryScene
 var category_btn = preload("res://scene/category/category_btn/category_btn.tscn")
 
 var btns = []
-var info_text = ""
 var info_char_index = 0
 var info_tween: Tween
 
@@ -65,8 +64,10 @@ func show_info_view(btn: CategoryBtn):
 	info_view.visible = true
 	
 	# 資訊文字
-	info_text = "未開放" if btn.is_lock else btn.c_data.category
-	info_lbl.text = info_text
+	var txt = btn.c_data.category
+	if btn.is_lock:
+		txt = "未開放\n需要通過先前關卡"
+	info_lbl.text = txt
 	info_lbl.visible_characters = 0
 	info_char_index = 0
 	info_timer.wait_time = 0.1
@@ -116,7 +117,9 @@ func _on_return_button_pressed() -> void:
 
 
 func _on_timer_timeout() -> void:
-	if info_char_index < info_text.length():
+	var count = info_lbl.text.length()
+	info_timer.wait_time = 1.0 / count
+	if info_char_index < count:
 		info_char_index += 1
 		info_lbl.visible_characters = info_char_index
 		info_timer.start()

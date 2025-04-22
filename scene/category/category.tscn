@@ -107,7 +107,7 @@ color = Color(0.454524, 0.454524, 0.454524, 1)
 [node name="InfoView" type="NinePatchRect" parent="."]
 visible = false
 layout_mode = 0
-offset_right = 200.0
+offset_right = 300.0
 offset_bottom = 400.0
 texture = ExtResource("10_dls4e")
 patch_margin_left = 30
@@ -128,6 +128,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 30
 text = "test"
+autowrap_mode = 3
 
 [node name="Timer" type="Timer" parent="InfoView"]
 wait_time = 0.1
