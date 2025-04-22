@@ -6,7 +6,6 @@ var display_name: String
 var file_name: String
 var category: String
 var level: int
-var story: Array
 var progress = 0
 var has_bonus = false
 
@@ -21,6 +20,6 @@ func get_cg_path(index) -> String:
 	return get_path().path_join(img_name)
 
 func get_spine_path() -> String:
-	var scene_name = file_name + ".tres"
-	var path = get_path().path_join("spine").path_join(scene_name)
+	var spine_name = file_name + ".tres"
+	var path = get_path().path_join("spine").path_join(spine_name)
 	return path if FileAccess.file_exists(path) else ""

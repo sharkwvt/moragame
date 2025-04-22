@@ -3,7 +3,8 @@ extends Node
 var screen_size = Vector2i(1920, 1080)
 
 var categorys_path = "res://categorys"
-var category_json_path = "/data.json"
+var category_json_path = "res://categorys/%s/data.json"
+var talk_json_path = "res://data/json/talk.json"
 var game_save_path = "user://moragame.sav"
 var csv_path = "res://categorys/%s/csv"
 
@@ -25,6 +26,8 @@ var mouse_trail_effect: GPUParticles2D
 
 var categorys_data = []
 var characters_data = []
+var talk_data: TalkData
+
 var current_scene: Control
 var current_character_data: CharacterData
 var current_category_data: CategoryData
@@ -121,6 +124,7 @@ func get_menu_scene() -> MenuScene:
 
 func reload_data():
 	load_categorys_data()
+	load_talk_data()
 	load_csv()
 	load_game_save()
 
@@ -145,7 +149,7 @@ func load_categorys_data():
 			else:
 				print(category_data.get_menu_path() + " 不存在")
 			categorys_data.append(category_data)
-			var json_data = get_json_data(category_data.path + category_json_path)
+			var json_data = get_json_data(category_json_path % file_name)
 			if !json_data.is_empty():
 				category_data.id = int(json_data["category"]["id"])
 				var characters: Array = json_data["characters"]
@@ -164,26 +168,13 @@ func load_categorys_data():
 	categorys_data.sort_custom(func(a, b): return a["id"] < b["id"])
 
 
-func get_json_data(path: String) -> Dictionary:
-	var json = JSON.new()
-	if not FileAccess.file_exists(path):
-		print(path + " 不存在")
-		return {}
-		
-	var file := FileAccess.open(path, FileAccess.READ)
-	if not file:
-		print("讀取" + path + "失敗")
-		return {}
-		
-	var content := file.get_as_text()
-	file.close()
-	
-	var pares_result := json.parse(content)
-	if pares_result != OK:
-		print(path + "內容錯誤")
-		return {}
-	
-	return json.data
+func load_talk_data():
+	var json_data = get_json_data(talk_json_path)
+	if !json_data.is_empty():
+		talk_data = TalkData.new()
+		talk_data.lose_strs = json_data["lose"]
+		talk_data.win_strs = json_data["win"]
+		talk_data.pass_strs = json_data["pass"]
 
 
 func save_game():
@@ -252,6 +243,28 @@ func load_csv():
 				TranslationServer.add_translation(load(path + "/" + file_name))
 			file_name = dir.get_next()
 		dir.list_dir_end()
+
+
+func get_json_data(path: String) -> Dictionary:
+	var json = JSON.new()
+	if not FileAccess.file_exists(path):
+		print(path + " 不存在")
+		return {}
+		
+	var file := FileAccess.open(path, FileAccess.READ)
+	if not file:
+		print("讀取" + path + "失敗")
+		return {}
+		
+	var content := file.get_as_text()
+	file.close()
+	
+	var pares_result := json.parse(content)
+	if pares_result != OK:
+		print(path + "內容錯誤")
+		return {}
+	
+	return json.data
 
 
 func show_setting_view():

@@ -109,7 +109,7 @@ func refresh_game():
 
 func load_imgs():
 	character_imgs.clear()
-	for i in character_data.story.size():
+	for i in character_data.level+1:
 		var path = character_data.get_cg_path(i)
 		var img = load(path)
 		character_imgs.append(img)
@@ -190,7 +190,10 @@ func play_character_switch_anim():
 func show_story():
 	story_view.visible = true
 	game_view.visible = false
-	talk_view.show_talk_anim(character_data.story[now_level])
+	var talk_str = Main.talk_data.get_win_str()
+	if now_level == character_data.level:
+		talk_str = Main.talk_data.get_pass_str()
+	talk_view.show_talk_anim(talk_str)
 	# 播完動畫後繼續
 	await talk_view.tween.finished
 	to_continue()
@@ -264,9 +267,12 @@ func play_logic():
 	
 	await result_spine.animation_completed
 	switch_choice(false)
-	to_continue()
-	if is_bonus and result == -1:
-		gameover()
+	if result == -1:
+		if is_bonus:
+			gameover()
+		talk_view.show_talk_anim(Main.talk_data.get_lose_str())
+	else:
+		to_continue()
 
 # 猜拳判定
 func determine_winner(player, bot):

@@ -73,7 +73,7 @@ func create_category_btns():
 
 func load_imgs(data: CharacterData):
 	review_imgs.clear()
-	for i in data.story.size():
+	for i in data.level+1:
 		review_imgs.append(load(data.get_cg_path(i)))
 	if not data.has_bonus:
 		return
