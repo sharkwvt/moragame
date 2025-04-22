@@ -78,7 +78,7 @@ offset_left = -100.0
 offset_right = 0.0
 grow_horizontal = 0
 
-[node name="SelectRoom" type="TextureRect" parent="."]
+[node name="SelectRoom1" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -133,7 +133,7 @@ mouse_filter = 2
 texture = ExtResource("11_aldum")
 expand_mode = 1
 
-[node name="MenuBtn" parent="." instance=ExtResource("12_65nh0")]
+[node name="MenuBtn1" parent="." instance=ExtResource("12_65nh0")]
 layout_mode = 0
 offset_left = 92.0
 offset_top = 235.0

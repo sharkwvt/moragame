@@ -11,7 +11,7 @@
 [ext_resource type="SpineSkeletonDataResource" uid="uid://ck8rd6gxpymn8" path="res://scene/category/spine/scen.tres" id="8_larw7"]
 [ext_resource type="Texture2D" uid="uid://cn5qct58mryrh" path="res://image/option_bg.png" id="10_dls4e"]
 
-[node name="Category" type="Control" node_paths=PackedStringArray("info_view", "info_lbl")]
+[node name="Category" type="Control" node_paths=PackedStringArray("info_view", "info_lbl", "info_timer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,6 +21,7 @@ grow_vertical = 2
 script = ExtResource("1_fsov7")
 info_view = NodePath("InfoView")
 info_lbl = NodePath("InfoView/Label")
+info_timer = NodePath("InfoView/Timer")
 
 [node name="BG" type="TextureRect" parent="."]
 visible = false
@@ -127,6 +128,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 30
 text = "test"
+
+[node name="Timer" type="Timer" parent="InfoView"]
+wait_time = 0.1
 
 [connection signal="pressed" from="SettingButton" to="." method="_on_setting_button_pressed"]
 [connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]

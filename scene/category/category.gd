@@ -3,10 +3,13 @@ class_name CategoryScene
 
 @export var info_view: NinePatchRect
 @export var info_lbl: Label
+@export var info_timer: Timer
 
 var category_btn = preload("res://scene/category/category_btn/category_btn.tscn")
 
 var btns = []
+var info_text = ""
+var info_char_index = 0
 var info_tween: Tween
 
 # Called when the node enters the scene tree for the first time.
@@ -14,6 +17,7 @@ func _ready() -> void:
 	create_character_btns()
 	$CPUParticles2D.move_to_front()
 	info_view.move_to_front()
+	info_timer.timeout.connect(_on_timer_timeout)
 	$SpineBG/SpineSprite.play_first_anim()
 	Main.show_talk_view("挑一個好地點出擊，獲取勝利吧！")
 
@@ -41,8 +45,8 @@ func create_character_btns():
 			btn.disabled = btn.is_lock
 		# 綁定點擊事件
 		btn.pressed.connect(_on_category_btn_pressed.bind(data))
-		btn.lighted.connect(show_info_view.bind(btn))
-		btn.unlight.connect(func(): info_view.visible = false)
+		btn.show_info.connect(show_info_view.bind(btn))
+		btn.hide_info.connect(func(): info_view.visible = false)
 		btns.append(btn)
 		add_child(btn)
 	# 排列
@@ -60,8 +64,13 @@ func create_character_btns():
 func show_info_view(btn: CategoryBtn):
 	info_view.visible = true
 	
-	var info = btn.c_data.category
-	info_lbl.text = info
+	# 資訊文字
+	info_text = "未開放" if btn.is_lock else btn.c_data.category
+	info_lbl.text = info_text
+	info_lbl.visible_characters = 0
+	info_char_index = 0
+	info_timer.wait_time = 0.1
+	info_timer.start()
 	
 	# 資訊位置
 	var spacing = 50
@@ -104,3 +113,12 @@ func _on_setting_button_pressed() -> void:
 
 func _on_return_button_pressed() -> void:
 	return_scene()
+
+
+func _on_timer_timeout() -> void:
+	if info_char_index < info_text.length():
+		info_char_index += 1
+		info_lbl.visible_characters = info_char_index
+		info_timer.start()
+	else:
+		info_timer.stop()

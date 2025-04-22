@@ -4,8 +4,8 @@ class_name CategoryBtn
 @export var img_light: TextureRect
 @export var img_halo: TextureRect
 
-signal lighted
-signal unlight
+signal show_info
+signal hide_info
 
 var texture_n: Texture
 var texture_light: Texture
@@ -48,9 +48,9 @@ func set_light_progress(progress: float):
 
 
 func _on_mouse_entered():
+	show_info.emit()
 	if is_lock:
 		return
-	lighted.emit()
 	img_halo.visible = true
 	img_light.visible = true
 	if tween:
@@ -67,7 +67,7 @@ func _on_mouse_entered():
 
 func _on_mouse_exited():
 	img_halo.visible = false
-	unlight.emit()
+	hide_info.emit()
 	if tween:
 		tween.kill()
 	#img_light.modulate.a = 1 if on_exit else 0

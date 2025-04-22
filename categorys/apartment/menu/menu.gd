@@ -22,16 +22,9 @@ func _process(_delta: float) -> void:
 
 
 func setup():
-	select_rooms.append($SelectRoom)
-	select_rooms.append($SelectRoom2)
-	select_rooms.append($SelectRoom3)
-	select_rooms.append($SelectRoom4)
-	select_rooms.append($SelectRoom5)
-	btns.append($MenuBtn)
-	btns.append($MenuBtn2)
-	btns.append($MenuBtn3)
-	btns.append($MenuBtn4)
-	btns.append($MenuBtn5)
+	for i in range(1, 6):
+		select_rooms.append(get_node("SelectRoom" + str(i)))
+		btns.append(get_node("MenuBtn" + str(i)))
 	
 	for i in btns.size():
 		var btn: MenuBtn = btns[i]
