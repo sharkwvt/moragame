@@ -23,7 +23,7 @@ func _process(_delta: float) -> void:
 
 func setup():
 	for i in range(1, 6):
-		select_rooms.append(get_node("SelectRoom" + str(i)))
+		select_rooms.append(get_node("SelectRooms/SelectRoom" + str(i)))
 		btns.append(get_node("MenuBtn" + str(i)))
 	
 	for i in btns.size():
