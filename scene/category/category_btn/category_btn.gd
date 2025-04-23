@@ -40,7 +40,7 @@ func set_data(data: CategoryData):
 	#img_light.visible = false
 	#set_light_progress(0.0)
 	
-	set_light_progress(data.progress / data.all_level if data.all_level != 0 else 0)
+	set_light_progress(data.progress / data.all_level if data.all_level != 0 else 0.0)
 	
 	await $Panel/ProgressLabel.minimum_size_changed # 大小有變更
 	$Panel.size = $Panel/TitleLabel.size
