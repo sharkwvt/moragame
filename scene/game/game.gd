@@ -5,7 +5,7 @@ extends Scene
 @export var character_temp: TextureRect
 @export var character_light_mask: TextureRect
 @export var character_light: ColorRect
-@export var progress_bar: ProgressBar
+@export var progress_bar: TextureProgressBar
 # 對話
 @export var story_view: Control
 @export var talk_view: TextureRect
