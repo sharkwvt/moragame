@@ -3,6 +3,7 @@ class_name CategoryBtn
 
 @export var img_light: TextureRect
 @export var img_halo: TextureRect
+@export var shader: Shader
 
 signal show_info
 signal hide_info
@@ -30,11 +31,16 @@ func set_data(data: CategoryData):
 	icon = texture_n
 	img_light.texture = texture_light
 	img_halo.texture = texture_halo
+	var mt = ShaderMaterial.new()
+	mt.shader = shader
+	img_light.material = mt
 	
 	#img_light.modulate.a = 0
 	img_halo.visible = false
-	img_light.visible = false
-	set_light_progress(0.0)
+	#img_light.visible = false
+	#set_light_progress(0.0)
+	
+	set_light_progress(data.progress / data.all_level if data.all_level != 0 else 0)
 	
 	await $Panel/ProgressLabel.minimum_size_changed # 大小有變更
 	$Panel.size = $Panel/TitleLabel.size
@@ -49,20 +55,20 @@ func set_light_progress(progress: float):
 
 func _on_mouse_entered():
 	show_info.emit()
-	if is_lock:
-		return
+	#if is_lock:
+		#return
 	img_halo.visible = true
 	img_light.visible = true
 	if tween:
 		tween.kill()
-	set_light_progress(0.0)
-	tween = create_tween()
+	#set_light_progress(0.0)
+	#tween = create_tween()
 	#tween.tween_property(img_light, "modulate:a", 1, 1)
-	var count: float = 3
-	for i in count:
-		tween.tween_callback(func(): set_light_progress((i+1) * (1/count)))
-		tween.tween_interval(1/count)
-	tween.finished.connect(tween.kill)
+	#var count: float = 3
+	#for i in count:
+		#tween.tween_callback(func(): set_light_progress((i+1) * (1/count)))
+		#tween.tween_interval(1/count)
+	#tween.finished.connect(tween.kill)
 
 
 func _on_mouse_exited():
@@ -71,8 +77,8 @@ func _on_mouse_exited():
 	if tween:
 		tween.kill()
 	#img_light.modulate.a = 1 if on_exit else 0
-	img_light.visible = on_exit
-	set_light_progress(1 if on_exit else 0)
+	#img_light.visible = on_exit
+	#set_light_progress(1 if on_exit else 0)
 
 
 func _on_button_down() -> void:

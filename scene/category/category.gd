@@ -81,12 +81,12 @@ func show_info_view(btn: CategoryBtn):
 		info_view.position.x = btn.position.x - spacing - info_view.size.x
 	
 	# 資訊動畫
-	if info_tween:
-		info_tween.kill()
-	info_view.modulate.a = 0
-	var duration = 1.0
-	info_tween = info_view.create_tween()
-	info_tween.tween_property(info_view, "modulate:a", 1.0, duration)
+	#if info_tween:
+		#info_tween.kill()
+	#info_view.modulate.a = 0
+	#var duration = 1.0
+	#info_tween = info_view.create_tween()
+	#info_tween.tween_property(info_view, "modulate:a", 1.0, duration)
 
 
 func refresh():

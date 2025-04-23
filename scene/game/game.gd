@@ -191,6 +191,8 @@ func show_story():
 	story_view.visible = true
 	game_view.visible = false
 	var talk_str = Main.talk_data.get_win_str()
+	if now_level == 0:
+		talk_str = Main.talk_data.get_lose_str()
 	if now_level == character_data.level:
 		talk_str = Main.talk_data.get_pass_str()
 	talk_view.show_talk_anim(talk_str)
