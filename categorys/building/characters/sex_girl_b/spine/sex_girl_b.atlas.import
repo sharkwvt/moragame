@@ -1,0 +1,15 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://7m0688ym7gjq"
+path="res://.godot/imported/sex_girl_b.atlas-73ee107c3ff4a5251b95c4e7cc968d71.spatlas"
+
+[deps]
+
+source_file="res://categorys/building/characters/sex_girl_b/spine/sex_girl_b.atlas"
+dest_files=["res://.godot/imported/sex_girl_b.atlas-73ee107c3ff4a5251b95c4e7cc968d71.spatlas"]
+
+[params]
+
+normal_map_prefix="n"

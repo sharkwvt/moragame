@@ -1,0 +1,15 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://cvcyenyjfassw"
+path="res://.godot/imported/lock_a.atlas-3d5e56618fee8942e03d03926224a526.spatlas"
+
+[deps]
+
+source_file="res://categorys/hospital/menu/menu_btn/spine/lock/lock_a.atlas"
+dest_files=["res://.godot/imported/lock_a.atlas-3d5e56618fee8942e03d03926224a526.spatlas"]
+
+[params]
+
+normal_map_prefix="n"

@@ -1,0 +1,200 @@
+[gd_scene load_steps=14 format=3 uid="uid://ba32oi8ilahl2"]
+
+[ext_resource type="Script" uid="uid://cxnwii4bs8jrq" path="res://categorys/apartment/menu/menu.gd" id="1_c1l7e"]
+[ext_resource type="Texture2D" uid="uid://b3t2ytl32tv2m" path="res://categorys/apartment/menu/menu_bg.jpg" id="2_sb1vq"]
+[ext_resource type="SpineSkeletonDataResource" uid="uid://gun6ki8nkyxt" path="res://categorys/apartment/menu/spine/toilet.tres" id="3_m4gst"]
+[ext_resource type="Script" uid="uid://74aly0fqsq5b" path="res://extends/spine_sprite_ex.gd" id="4_c64sy"]
+[ext_resource type="Texture2D" uid="uid://brlcx2erf54ob" path="res://image/setting.png" id="5_3xgku"]
+[ext_resource type="Script" uid="uid://busxpt8b3jr3b" path="res://extends/button_ex.gd" id="6_safax"]
+[ext_resource type="PackedScene" uid="uid://c2hckrk53snne" path="res://common/btn/return/return_button.tscn" id="7_wcoj3"]
+[ext_resource type="Texture2D" uid="uid://bcw7eptj1qgoh" path="res://categorys/apartment/menu/select_rooms/select_room_a.png" id="8_b1hnj"]
+[ext_resource type="Texture2D" uid="uid://c58ggahgwm0pk" path="res://categorys/apartment/menu/select_rooms/select_room_b.png" id="9_ldq03"]
+[ext_resource type="Texture2D" uid="uid://bx86vseqt28ei" path="res://categorys/apartment/menu/select_rooms/select_room_c.png" id="10_oqcm6"]
+[ext_resource type="Texture2D" uid="uid://ckhkl1an162wh" path="res://categorys/apartment/menu/select_rooms/select_room_d.png" id="11_47b3r"]
+[ext_resource type="Texture2D" uid="uid://cjc16ska1fl1r" path="res://categorys/apartment/menu/select_rooms/select_room_e.png" id="12_pohy8"]
+[ext_resource type="PackedScene" uid="uid://cxxejc615wwp5" path="res://categorys/apartment/menu/menu_btn/menu_btn.tscn" id="13_is2vg"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c1l7e")
+
+[node name="BG" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_sb1vq")
+expand_mode = 1
+
+[node name="SpineBG" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SpineSprite" type="SpineSprite" parent="SpineBG"]
+skeleton_data_res = ExtResource("3_m4gst")
+preview_skin = "Default"
+preview_animation = "toilet_a"
+preview_frame = false
+preview_time = 0.0
+script = ExtResource("4_c64sy")
+
+[node name="SettingButton" type="Button" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -101.0
+offset_top = 26.0
+offset_right = -27.0
+offset_bottom = 100.0
+grow_horizontal = 0
+icon = ExtResource("5_3xgku")
+flat = true
+script = ExtResource("6_safax")
+
+[node name="ReturnButton" parent="." instance=ExtResource("7_wcoj3")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = -100.0
+offset_right = 0.0
+grow_horizontal = 0
+
+[node name="SelectRooms" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SelectRoom1" type="TextureRect" parent="SelectRooms"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("8_b1hnj")
+expand_mode = 1
+
+[node name="SelectRoom2" type="TextureRect" parent="SelectRooms"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("9_ldq03")
+expand_mode = 1
+
+[node name="SelectRoom3" type="TextureRect" parent="SelectRooms"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("10_oqcm6")
+expand_mode = 1
+
+[node name="SelectRoom4" type="TextureRect" parent="SelectRooms"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("11_47b3r")
+expand_mode = 1
+
+[node name="SelectRoom5" type="TextureRect" parent="SelectRooms"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("12_pohy8")
+expand_mode = 1
+
+[node name="MenuBtn1" parent="." instance=ExtResource("13_is2vg")]
+layout_mode = 0
+offset_left = 92.0
+offset_top = 235.0
+offset_right = 402.0
+offset_bottom = 947.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="MenuBtn2" parent="." instance=ExtResource("13_is2vg")]
+layout_mode = 0
+offset_left = 465.0
+offset_top = 235.0
+offset_right = 769.0
+offset_bottom = 954.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="MenuBtn3" parent="." instance=ExtResource("13_is2vg")]
+layout_mode = 0
+offset_left = 830.0
+offset_top = 235.0
+offset_right = 1139.0
+offset_bottom = 946.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="MenuBtn4" parent="." instance=ExtResource("13_is2vg")]
+layout_mode = 0
+offset_left = 1199.0
+offset_top = 235.0
+offset_right = 1503.0
+offset_bottom = 954.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="MenuBtn5" parent="." instance=ExtResource("13_is2vg")]
+layout_mode = 0
+offset_left = 1567.0
+offset_top = 235.0
+offset_right = 1871.0
+offset_bottom = 963.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="lightMask" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[connection signal="pressed" from="SettingButton" to="." method="_on_setting_button_pressed"]
+[connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]

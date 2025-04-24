@@ -1,0 +1,14 @@
+lock_a.png
+size:124,124
+filter:Linear,Linear
+d_lock1
+bounds:0,26,48,42
+d_lock2
+bounds:49,43,33,25
+d_lock4
+bounds:86,65,59,25
+rotate:90
+d_lock5
+bounds:0,0,59,25
+lock_a
+bounds:0,69,85,55

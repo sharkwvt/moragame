@@ -1,0 +1,15 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://byn2rubsckac3"
+path="res://.godot/imported/lock_a.atlas-c1fb943650395131d92645b5629047e5.spatlas"
+
+[deps]
+
+source_file="res://categorys/school/menu/menu_btn/spine/lock/lock_a.atlas"
+dest_files=["res://.godot/imported/lock_a.atlas-c1fb943650395131d92645b5629047e5.spatlas"]
+
+[params]
+
+normal_map_prefix="n"

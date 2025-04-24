@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://1raajodaxq5r"
+path="res://.godot/imported/lock_a.skel-1eda8da9d6f4fc29a452cc78bbf6b0a5.spskel"
+
+[deps]
+
+source_file="res://categorys/school/menu/menu_btn/spine/lock/lock_a.skel"
+dest_files=["res://.godot/imported/lock_a.skel-1eda8da9d6f4fc29a452cc78bbf6b0a5.spskel"]
+
+[params]
+

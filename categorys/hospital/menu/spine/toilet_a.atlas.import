@@ -1,0 +1,15 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://dhtasi8uq4cbv"
+path="res://.godot/imported/toilet_a.atlas-3b29c4b361ac5a4dae7da3d624857452.spatlas"
+
+[deps]
+
+source_file="res://categorys/hospital/menu/spine/toilet_a.atlas"
+dest_files=["res://.godot/imported/toilet_a.atlas-3b29c4b361ac5a4dae7da3d624857452.spatlas"]
+
+[params]
+
+normal_map_prefix="n"

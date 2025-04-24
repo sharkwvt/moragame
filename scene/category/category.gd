@@ -14,6 +14,7 @@ var info_tween: Tween
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	create_character_btns()
+	refresh()
 	$CPUParticles2D.move_to_front()
 	info_view.move_to_front()
 	info_timer.timeout.connect(_on_timer_timeout)
@@ -35,13 +36,9 @@ func create_character_btns():
 		btn.texture_n = load(data.get_img_path(0))
 		btn.texture_light = load(data.get_img_path(1))
 		btn.texture_halo = load(data.get_img_path(2))
-		btn.set_data(data)
+		btn.icon = btn.texture_n
 		btn.position = Vector2.ZERO # 不知為何這樣才能取到size
 		all_width += btn.size.x
-		if i > 0:
-			var temp: CategoryData = categorys[i-1]
-			btn.is_lock = temp.progress != temp.all_level or data.all_level == 0
-			btn.disabled = btn.is_lock
 		# 綁定點擊事件
 		btn.pressed.connect(_on_category_btn_pressed.bind(data))
 		btn.show_info.connect(show_info_view.bind(btn))
@@ -91,8 +88,15 @@ func show_info_view(btn: CategoryBtn):
 
 func refresh():
 	info_view.visible = false
-	for i in Main.categorys_data.size():
-		btns[i].set_data(Main.categorys_data[i])
+	var categorys = Main.categorys_data
+	for i in categorys.size():
+		var btn = btns[i]
+		var data = categorys[i]
+		btn.set_data(data)
+		if i > 0:
+			var temp: CategoryData = categorys[i-1]
+			btn.is_lock = temp.progress != temp.all_level or data.all_level == 0
+			btn.disabled = btn.is_lock
 
 
 func show_scene():

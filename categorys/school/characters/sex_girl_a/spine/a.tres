@@ -1,0 +1,8 @@
+[gd_resource type="SpineSkeletonDataResource" load_steps=3 format=3 uid="uid://cfcjtcjinr0ph"]
+
+[ext_resource type="SpineAtlasResource" uid="uid://m8fvwim55ynr" path="res://categorys/apartment/characters/sex_girl_a/spine/sex_girl_a.atlas" id="1_4eh2x"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://c1j3pgmvhkhlm" path="res://categorys/apartment/characters/sex_girl_a/spine/sex_girl_a.skel" id="2_jr1ib"]
+
+[resource]
+atlas_res = ExtResource("1_4eh2x")
+skeleton_file_res = ExtResource("2_jr1ib")

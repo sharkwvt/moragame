@@ -1,0 +1,16 @@
+toilet_a.png
+size:2096,2096
+filter:Linear,Linear
+toilet_bg
+bounds:0,1016,1920,1080
+toilet_light
+bounds:0,5,1115,1010
+offsets:91,70,1298,1080
+toilet_w
+bounds:0,0,4,33
+offsets:1,1,5,44
+rotate:90
+toilet_w2
+bounds:1921,2089,54,7
+toilet_w3
+bounds:1116,1005,8,10

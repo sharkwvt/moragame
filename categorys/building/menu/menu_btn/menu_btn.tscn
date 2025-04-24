@@ -1,0 +1,135 @@
+[gd_scene load_steps=7 format=3 uid="uid://diuryswi7pxdw"]
+
+[ext_resource type="Script" uid="uid://dqts3axngwg5d" path="res://scene/menu/menu_btn.gd" id="1_n64mp"]
+[ext_resource type="SpineSkeletonDataResource" uid="uid://c5ag0s6vyrp6q" path="res://categorys/apartment/characters/photo_girl/photo.tres" id="2_kqb8j"]
+[ext_resource type="Script" uid="uid://busxpt8b3jr3b" path="res://extends/button_ex.gd" id="3_wuunv"]
+[ext_resource type="Texture2D" uid="uid://de7dqg6fww0vb" path="res://categorys/apartment/menu/menu_btn/bonus.png" id="4_bfmrv"]
+[ext_resource type="SpineSkeletonDataResource" uid="uid://bld7of8wgr8cg" path="res://categorys/apartment/menu/menu_btn/spine/lock/lock.tres" id="5_vr5ak"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_50xma"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[node name="MenuBtn" type="Button" node_paths=PackedStringArray("avatar_btn", "avatar_spine", "lock_view", "lock_sp")]
+offset_left = -103.0
+offset_top = -243.0
+offset_right = 103.0
+offset_bottom = 243.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+flat = true
+script = ExtResource("1_n64mp")
+avatar_btn = NodePath("Avatar/AvatarButton")
+avatar_spine = NodePath("Avatar/AvatarSpine")
+lock_view = NodePath("Lock")
+lock_sp = NodePath("Lock/LockSpine")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.490196)
+
+[node name="NameBG" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -76.0
+offset_top = 83.0
+offset_right = 76.0
+offset_bottom = 131.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_50xma")
+
+[node name="NameLabel" type="Label" parent="NameBG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -21.5
+offset_right = 30.0
+offset_bottom = 21.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "名稱"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Avatar" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = -68.78
+offset_bottom = -68.78
+grow_horizontal = 2
+
+[node name="AvatarSpine" type="SpineSprite" parent="Avatar"]
+skeleton_data_res = ExtResource("2_kqb8j")
+preview_skin = "photo_girl_a"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0
+
+[node name="AvatarButton" type="Button" parent="Avatar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -118.0
+offset_top = -20.0
+offset_right = 118.0
+offset_bottom = 221.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+script = ExtResource("3_wuunv")
+
+[node name="BonusButton" type="Button" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = -106.0
+offset_right = 147.0
+offset_bottom = -34.0
+grow_vertical = 0
+focus_mode = 0
+icon = ExtResource("4_bfmrv")
+flat = true
+expand_icon = true
+
+[node name="Lock" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LockSpine" type="SpineSprite" parent="Lock"]
+skeleton_data_res = ExtResource("5_vr5ak")
+preview_skin = "default"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0

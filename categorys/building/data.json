@@ -3,5 +3,40 @@
 	"id": 3
   },
   "characters": [
+	{
+	  "id": 16,
+	  "display_name": "凱特林",
+	  "name": "Caitlyn",
+	  "file_name": "a",
+	  "level": 2
+	},
+	{
+	  "id": 17,
+	  "display_name": "雷歐娜",
+	  "name": "Leona",
+	  "file_name": "b",
+	  "level": 2
+	},
+	{
+	  "id": 18,
+	  "display_name": "雷歐娜",
+	  "name": "Leona",
+	  "file_name": "c",
+	  "level": 2
+	},
+	{
+	  "id": 19,
+	  "display_name": "雷歐娜",
+	  "name": "Leona",
+	  "file_name": "d",
+	  "level": 2
+	},
+	{
+	  "id": 20,
+	  "display_name": "雷歐娜",
+	  "name": "Leona",
+	  "file_name": "e",
+	  "level": 2
+	}
   ]
 }

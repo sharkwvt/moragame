@@ -1,0 +1,17 @@
+photo_gir.png
+size:591,591
+filter:Linear,Linear
+photo_girl_a
+bounds:402,386,189,205
+offsets:0,11,200,216
+photo_girl_a1
+bounds:0,375,200,216
+photo_girl_a2
+bounds:0,158,200,216
+photo_girl_b
+bounds:402,180,189,205
+offsets:0,11,200,216
+photo_girl_b1
+bounds:201,375,200,216
+photo_girl_b2
+bounds:201,158,200,216

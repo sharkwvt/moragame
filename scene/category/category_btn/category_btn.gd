@@ -28,7 +28,6 @@ func set_data(data: CategoryData):
 	on_exit = false
 	$Panel/TitleLabel.text = data.category
 	$Panel/ProgressLabel.text = data.get_progress_str()
-	icon = texture_n
 	img_light.texture = texture_light
 	img_halo.texture = texture_halo
 	var mt = ShaderMaterial.new()

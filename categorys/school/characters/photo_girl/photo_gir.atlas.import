@@ -1,0 +1,15 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://c8annyv2x2x6t"
+path="res://.godot/imported/photo_gir.atlas-6739ce4716a0768e2a169dd81673d8cf.spatlas"
+
+[deps]
+
+source_file="res://categorys/school/characters/photo_girl/photo_gir.atlas"
+dest_files=["res://.godot/imported/photo_gir.atlas-6739ce4716a0768e2a169dd81673d8cf.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
