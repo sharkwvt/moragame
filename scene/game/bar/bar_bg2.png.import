@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://civeu3sqchnyf"
-path="res://.godot/imported/sex_girl_c_lv1.png-608ee0c7550a55ce67100d38940459aa.ctex"
+uid="uid://bc8gxwkemtpyf"
+path="res://.godot/imported/bar_bg2.png-0d31c335cef54b38aa6b2b396c634485.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://categorys/building/characters/sex_girl_c/sex_girl_c_lv1.png"
-dest_files=["res://.godot/imported/sex_girl_c_lv1.png-608ee0c7550a55ce67100d38940459aa.ctex"]
+source_file="res://scene/game/bar/bar_bg2.png"
+dest_files=["res://.godot/imported/bar_bg2.png-0d31c335cef54b38aa6b2b396c634485.ctex"]
 
 [params]
 

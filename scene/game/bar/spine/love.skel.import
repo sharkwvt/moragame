@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://wey307fgmvdr"
+path="res://.godot/imported/love.skel-73ab7490cd51cec2a43ba6df55633a4f.spskel"
+
+[deps]
+
+source_file="res://scene/game/bar/spine/love.skel"
+dest_files=["res://.godot/imported/love.skel-73ab7490cd51cec2a43ba6df55633a4f.spskel"]
+
+[params]
+

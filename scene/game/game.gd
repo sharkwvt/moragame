@@ -5,7 +5,8 @@ extends Scene
 @export var character_temp: TextureRect
 @export var character_light_mask: TextureRect
 @export var character_light: ColorRect
-@export var progress_bar: TextureProgressBar
+@export var progress_bar: NinePatchRect
+@export var progress_spine: SpineSpriteEx
 # 對話
 @export var story_view: Control
 @export var talk_view: TextureRect
@@ -83,7 +84,8 @@ func setup():
 
 func reset_game():
 	character_data = Main.current_character_data
-	progress_bar.value = 0
+	progress_bar.anchor_top = 1
+	progress_spine.play_anim("love_standby")
 	load_imgs()
 	set_character_tween()
 	game_state = STATE.對話
@@ -146,17 +148,19 @@ func to_continue():
 
 
 func set_progress(ps: float):
-	if progress_bar.value == ps:
+	var value = 1 - ps
+	if progress_bar.anchor_top == value:
 		return
-	
+	if progress_bar.anchor_top > value:
+		progress_spine.play_anim("love_get")
 	if pb_tween:
 		pb_tween.kill()
 	pb_tween = progress_bar.create_tween()
 	pb_tween.set_trans(Tween.TRANS_QUART)
 	pb_tween.set_ease(Tween.EASE_OUT)
-	pb_tween.tween_property(progress_bar, "value", ps, 1)
-	pb_tween.parallel().tween_property($progress, "scale", Vector2(1.05, 1.05), 1)
-	pb_tween.tween_property($progress, "scale", Vector2(1, 1), 1)
+	pb_tween.tween_property(progress_bar, "anchor_top", value, 1)
+	await pb_tween.finished
+	progress_spine.play_anim("love_standby")
 
 
 func set_character_tween():

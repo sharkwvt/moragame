@@ -1,0 +1,7 @@
+love.png
+size:83,83
+filter:Linear,Linear
+love_a
+bounds:0,42,49,41
+love_b
+bounds:0,0,49,41

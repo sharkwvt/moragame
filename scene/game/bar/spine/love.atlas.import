@@ -1,0 +1,15 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://ueybvm6jfbfy"
+path="res://.godot/imported/love.atlas-b755f5f926e8c5ba6a495ff3c7291f84.spatlas"
+
+[deps]
+
+source_file="res://scene/game/bar/spine/love.atlas"
+dest_files=["res://.godot/imported/love.atlas-b755f5f926e8c5ba6a495ff3c7291f84.spatlas"]
+
+[params]
+
+normal_map_prefix="n"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ba1wq5rsch7ls"]
+[gd_scene load_steps=18 format=3 uid="uid://ba1wq5rsch7ls"]
 
 [ext_resource type="Script" uid="uid://bylxmth5oi4ei" path="res://scene/game/game.gd" id="1_tbpdr"]
 [ext_resource type="PackedScene" uid="uid://bfrlvuybx0tun" path="res://scene/game/choice_btn/choice_btn.tscn" id="2_h614x"]
@@ -12,6 +12,8 @@
 [ext_resource type="SpineSkeletonDataResource" uid="uid://r5klclna050j" path="res://scene/game/spine/npc/npc.tres" id="7_0e5wi"]
 [ext_resource type="PackedScene" uid="uid://c2hckrk53snne" path="res://common/btn/return/return_button.tscn" id="7_hr14f"]
 [ext_resource type="Texture2D" uid="uid://bpdhsgsoyhgvi" path="res://scene/game/bar/bar_b.png" id="7_oixtr"]
+[ext_resource type="SpineSkeletonDataResource" uid="uid://bae5ppkarnc8o" path="res://scene/game/bar/spine/love.tres" id="7_okn60"]
+[ext_resource type="Texture2D" uid="uid://bc8gxwkemtpyf" path="res://scene/game/bar/bar_bg2.png" id="8_o100e"]
 [ext_resource type="PackedScene" uid="uid://sfxekiqbeugx" path="res://common/talk/talk.tscn" id="8_qrful"]
 [ext_resource type="Script" uid="uid://74aly0fqsq5b" path="res://extends/spine_sprite_ex.gd" id="10_a5m72"]
 
@@ -19,7 +21,7 @@
 shader = ExtResource("4_s858n")
 shader_parameter/alpha = 1.0
 
-[node name="Game" type="Control" node_paths=PackedStringArray("menu_btn", "character", "character_temp", "character_light_mask", "character_light", "progress_bar", "story_view", "talk_view", "game_view", "tips_node", "result_spine", "user_spine", "npc_spine", "bonus_view", "spine_sprite")]
+[node name="Game" type="Control" node_paths=PackedStringArray("menu_btn", "character", "character_temp", "character_light_mask", "character_light", "progress_bar", "progress_spine", "story_view", "talk_view", "game_view", "tips_node", "result_spine", "user_spine", "npc_spine", "bonus_view", "spine_sprite")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,7 +34,8 @@ character = NodePath("Character")
 character_temp = NodePath("Character/TempCharacter")
 character_light_mask = NodePath("Character/LightMask")
 character_light = NodePath("Character/LightMask/Light")
-progress_bar = NodePath("progress/TextureProgressBar")
+progress_bar = NodePath("ProgressBG/ProgressUnder/Progress")
+progress_spine = NodePath("ProgressBG/Spine/SpineSpriteEx")
 story_view = NodePath("Story")
 talk_view = NodePath("Story/Talk")
 choice_btn = ExtResource("2_h614x")
@@ -95,7 +98,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 0)
 
-[node name="progress" type="TextureRect" parent="."]
+[node name="ProgressBG" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -107,22 +110,68 @@ offset_bottom = 254.0
 grow_vertical = 2
 texture = ExtResource("5_o100e")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="progress"]
+[node name="BG2" type="TextureRect" parent="ProgressBG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.0
+offset_top = -254.0
+offset_right = 34.0
+offset_bottom = 254.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_o100e")
+
+[node name="Spine" type="Control" parent="ProgressBG"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = -41.93
+offset_bottom = -41.93
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="SpineSpriteEx" type="SpineSprite" parent="ProgressBG/Spine"]
+skeleton_data_res = ExtResource("7_okn60")
+preview_skin = "Default"
+preview_animation = "love_standby"
+preview_frame = false
+preview_time = 0.0
+script = ExtResource("10_a5m72")
+metadata/_custom_type_script = "uid://74aly0fqsq5b"
+
+[node name="ProgressUnder" type="TextureRect" parent="ProgressBG"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -19.0
-offset_top = 23.42
-offset_right = 19.0
-offset_bottom = 431.42
+offset_left = -20.0
+offset_top = 23.0
+offset_right = 20.0
+offset_bottom = 431.0
 grow_horizontal = 2
-max_value = 1.0
-step = 0.01
-value = 0.5
-fill_mode = 3
-texture_under = ExtResource("7_oixtr")
-texture_progress = ExtResource("6_okn60")
+texture = ExtResource("7_oixtr")
+
+[node name="Progress" type="NinePatchRect" parent="ProgressBG/ProgressUnder"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.763
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("6_okn60")
+patch_margin_top = 20
+patch_margin_bottom = 20
 
 [node name="Game" type="ColorRect" parent="."]
 layout_mode = 1

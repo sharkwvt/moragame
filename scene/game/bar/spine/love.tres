@@ -1,0 +1,8 @@
+[gd_resource type="SpineSkeletonDataResource" load_steps=3 format=3 uid="uid://bae5ppkarnc8o"]
+
+[ext_resource type="SpineAtlasResource" uid="uid://ueybvm6jfbfy" path="res://scene/game/bar/spine/love.atlas" id="1_k4mny"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://wey307fgmvdr" path="res://scene/game/bar/spine/love.skel" id="2_kxm5p"]
+
+[resource]
+atlas_res = ExtResource("1_k4mny")
+skeleton_file_res = ExtResource("2_kxm5p")
