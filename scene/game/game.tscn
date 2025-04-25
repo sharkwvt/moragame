@@ -21,7 +21,7 @@
 shader = ExtResource("4_s858n")
 shader_parameter/alpha = 1.0
 
-[node name="Game" type="Control" node_paths=PackedStringArray("menu_btn", "character", "character_temp", "character_light_mask", "character_light", "progress_bar", "progress_spine", "story_view", "talk_view", "game_view", "tips_node", "result_spine", "user_spine", "npc_spine", "bonus_view", "spine_sprite")]
+[node name="Game" type="Control" node_paths=PackedStringArray("menu_btn", "character", "character_temp", "character_light_mask", "character_light", "progress_bar", "progress_spine", "progress_light", "story_view", "talk_view", "game_view", "tips_node", "result_spine", "user_spine", "npc_spine", "bonus_view", "spine_sprite")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -36,6 +36,7 @@ character_light_mask = NodePath("Character/LightMask")
 character_light = NodePath("Character/LightMask/Light")
 progress_bar = NodePath("ProgressBG/ProgressUnder/Progress")
 progress_spine = NodePath("ProgressBG/Spine/SpineSpriteEx")
+progress_light = NodePath("ProgressBG/BG2")
 story_view = NodePath("Story")
 talk_view = NodePath("Story/Talk")
 choice_btn = ExtResource("2_h614x")

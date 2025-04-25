@@ -58,7 +58,7 @@ func create_character_btns():
 		var btn: Button = btns[i]
 		btn.position = Vector2(
 			offset,
-			size.y * 0.75 - btn.size.y
+			size.y * 0.8 - btn.size.y
 		)
 		offset += btn.size.x + spaceing
 
