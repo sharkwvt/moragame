@@ -26,7 +26,7 @@ func _ready() -> void:
 func set_data(data: CategoryData):
 	c_data = data
 	on_exit = false
-	$Panel/TitleLabel.text = data.category
+	$Panel/TitleLabel.text = data.category_title
 	$Panel/ProgressLabel.text = data.get_progress_str()
 	img_light.texture = texture_light
 	img_halo.texture = texture_halo

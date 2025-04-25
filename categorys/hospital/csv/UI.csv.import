@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://coqmhggs458i2"
+
+[deps]
+
+files=["res://categorys/hospital/csv/UI.zhc.translation", "res://categorys/hospital/csv/UI.zh.translation", "res://categorys/hospital/csv/UI.en.translation"]
+
+source_file="res://categorys/hospital/csv/UI.csv"
+dest_files=["res://categorys/hospital/csv/UI.zhc.translation", "res://categorys/hospital/csv/UI.zh.translation", "res://categorys/hospital/csv/UI.en.translation"]
+
+[params]
+
+compress=true
+delimiter=0

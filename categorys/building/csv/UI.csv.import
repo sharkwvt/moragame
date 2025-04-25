@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://jo5eptb2bnge"
+
+[deps]
+
+files=["res://categorys/building/csv/UI.zhc.translation", "res://categorys/building/csv/UI.zh.translation", "res://categorys/building/csv/UI.en.translation"]
+
+source_file="res://categorys/building/csv/UI.csv"
+dest_files=["res://categorys/building/csv/UI.zhc.translation", "res://categorys/building/csv/UI.zh.translation", "res://categorys/building/csv/UI.en.translation"]
+
+[params]
+
+compress=true
+delimiter=0
