@@ -3,6 +3,7 @@ class_name CategoryScene
 
 @export var info_view: NinePatchRect
 @export var info_lbl: Label
+@export var info_desc: Label
 @export var info_timer: Timer
 
 var category_btn = preload("res://scene/category/category_btn/category_btn.tscn")
@@ -10,9 +11,13 @@ var category_btn = preload("res://scene/category/category_btn/category_btn.tscn"
 var btns = []
 var info_char_index = 0
 var info_tween: Tween
+# 資訊文字
+var txt_title:String
+var txt_desc:String
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+		
 	create_character_btns()
 	refresh()
 	$CPUParticles2D.move_to_front()
@@ -45,6 +50,7 @@ func create_character_btns():
 		btn.hide_info.connect(func(): info_view.visible = false)
 		btns.append(btn)
 		add_child(btn)
+		
 	# 排列
 	var spaceing = (size.x - all_width) / (btns.size() + 1)
 	var offset = spaceing
@@ -60,18 +66,26 @@ func create_character_btns():
 func show_info_view(btn: CategoryBtn):
 	info_view.visible = true
 	
-	# 資訊文字
-	var txt = btn.c_data.category
-	if btn.is_lock:
-		txt = "未開放\n需要通過先前關卡"
-	info_lbl.text = txt
+	txt_title = btn.c_data.category_title
+	txt_desc = btn.c_data.category_desc
+	info_lbl.text = txt_title
 	info_lbl.visible_characters = 0
-	info_char_index = 0
-	info_timer.wait_time = 0.1
-	info_timer.start()
+	info_desc.text = txt_desc
+	info_desc.visible_characters = 0
+	
+	if btn.is_lock:				
+		info_timer.stop()
+		info_lbl.text = "未開放"
+		info_lbl.visible_characters = -1
+	else :
+		info_char_index = 0
+		info_timer.wait_time = 0.1
+		info_timer.start()	
+		
+	
 	
 	# 資訊位置
-	var spacing = 50
+	var spacing = 0
 	info_view.position.y = btn.position.y + btn.size.y - info_view.size.y
 	info_view.position.x = btn.position.x + btn.size.x + spacing
 	if btn.position.x > size.x/2.0:
@@ -122,10 +136,12 @@ func _on_return_button_pressed() -> void:
 
 func _on_timer_timeout() -> void:
 	var count = info_lbl.text.length()
-	info_timer.wait_time = 1.0 / count
-	if info_char_index < count:
+	var countDesc = info_desc.text.length()
+	info_timer.wait_time = 0.3 / count
+	if info_char_index < countDesc:
 		info_char_index += 1
 		info_lbl.visible_characters = info_char_index
+		info_desc.visible_characters = info_char_index
 		info_timer.start()
 	else:
 		info_timer.stop()

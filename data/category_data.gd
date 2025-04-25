@@ -3,6 +3,8 @@ class_name CategoryData
 
 var id: int
 var category: String
+var category_title: String
+var category_desc: String
 var characters = []
 var all_level: int
 var progress: float

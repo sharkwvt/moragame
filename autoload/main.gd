@@ -142,7 +142,7 @@ func load_categorys_data():
 		if dir.current_is_dir() and file_name != "." and file_name != "..":
 			print("load_category_data: ", file_name)
 			var category_data = CategoryData.new()
-			category_data.category = file_name
+			category_data.category = file_name		
 			category_data.path = categorys_path + "/" + file_name
 			if FileAccess.file_exists(category_data.get_menu_path()):
 				category_data.menu = load(category_data.get_menu_path())
@@ -152,6 +152,8 @@ func load_categorys_data():
 			var json_data = get_json_data(category_json_path % file_name)
 			if !json_data.is_empty():
 				category_data.id = int(json_data["category"]["id"])
+				category_data.category_title=json_data["category"]["title"]
+				category_data.category_desc=json_data["category"]["desc"]
 				var characters: Array = json_data["characters"]
 				for character: Dictionary in characters:
 					var data = CharacterData.new()
