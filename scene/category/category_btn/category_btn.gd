@@ -39,14 +39,18 @@ func set_data(data: CategoryData):
 	#img_light.visible = false
 	#set_light_progress(0.0)
 	
-	set_light_progress(data.progress / data.all_level if data.all_level != 0 else 0.0)
-	
 	await $Panel/ProgressLabel.minimum_size_changed # 大小有變更
 	$Panel.size = $Panel/TitleLabel.size
 	$Panel.size.x += 20
 	$Panel.position.x = (size.x - $Panel.size.x)/2.0
 	$Panel/ProgressLabel.position.y = $Panel.size.y
 
+
+func refresh_light_progress():
+	var progress = 0.3 + c_data.progress / c_data.all_level * 0.7
+	if is_lock:
+		progress = 0
+	set_light_progress(progress)
 
 func set_light_progress(progress: float):
 	img_light.material.set_shader_parameter("progress", progress)
@@ -58,8 +62,8 @@ func _on_mouse_entered():
 		#return
 	img_halo.visible = true
 	img_light.visible = true
-	if tween:
-		tween.kill()
+	#if tween:
+		#tween.kill()
 	#set_light_progress(0.0)
 	#tween = create_tween()
 	#tween.tween_property(img_light, "modulate:a", 1, 1)
@@ -73,8 +77,8 @@ func _on_mouse_entered():
 func _on_mouse_exited():
 	img_halo.visible = false
 	hide_info.emit()
-	if tween:
-		tween.kill()
+	#if tween:
+		#tween.kill()
 	#img_light.modulate.a = 1 if on_exit else 0
 	#img_light.visible = on_exit
 	#set_light_progress(1 if on_exit else 0)

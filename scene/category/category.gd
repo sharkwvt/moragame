@@ -17,7 +17,6 @@ var txt_desc:String
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-		
 	create_character_btns()
 	refresh()
 	$CPUParticles2D.move_to_front()
@@ -111,6 +110,7 @@ func refresh():
 			var temp: CategoryData = categorys[i-1]
 			btn.is_lock = temp.progress != temp.all_level or data.all_level == 0
 			btn.disabled = btn.is_lock
+		btn.refresh_light_progress()
 
 
 func show_scene():
