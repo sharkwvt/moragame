@@ -11,9 +11,6 @@ var category_btn = preload("res://scene/category/category_btn/category_btn.tscn"
 var btns = []
 var info_char_index = 0
 var info_tween: Tween
-# 資訊文字
-var txt_title:String
-var txt_desc:String
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -65,27 +62,25 @@ func create_character_btns():
 func show_info_view(btn: CategoryBtn):
 	info_view.visible = true
 	
-	txt_title = btn.c_data.category_title
-	txt_desc = btn.c_data.category_desc
-	info_lbl.text = txt_title
+	# 資訊文字
+	info_lbl.text = btn.c_data.category_title
+	info_desc.text = btn.c_data.category_desc
 	info_lbl.visible_characters = 0
-	info_desc.text = txt_desc
 	info_desc.visible_characters = 0
 	
-	if btn.is_lock:				
+	if btn.is_lock:
 		info_timer.stop()
 		info_lbl.text = "未開放"
 		info_lbl.visible_characters = -1
 	else :
 		info_char_index = 0
 		info_timer.wait_time = 0.1
-		info_timer.start()	
-		
+		info_timer.start()
 	
 	
 	# 資訊位置
 	var spacing = 0
-	info_view.position.y = btn.position.y + btn.size.y - info_view.size.y
+	info_view.position.y = btn.position.y + btn.size.y - info_view.size.y - 15
 	info_view.position.x = btn.position.x + btn.size.x + spacing
 	if btn.position.x > size.x/2.0:
 		info_view.position.x = btn.position.x - spacing - info_view.size.x
