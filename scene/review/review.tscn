@@ -1,11 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://7eupwhka7hay"]
+[gd_scene load_steps=12 format=3 uid="uid://7eupwhka7hay"]
 
 [ext_resource type="Script" uid="uid://vwtitrvuo1nb" path="res://scene/review/review.gd" id="1_v2t6e"]
 [ext_resource type="Texture2D" uid="uid://dryyp3w856wdb" path="res://scene/review/review_bg.jpg" id="1_xnd0t"]
+[ext_resource type="PackedScene" uid="uid://drs1erfxicjah" path="res://scene/review/btn/review_category_btn.tscn" id="2_lyq4w"]
 [ext_resource type="PackedScene" uid="uid://c2hckrk53snne" path="res://common/btn/return/return_button.tscn" id="3_dxly4"]
+[ext_resource type="Texture2D" uid="uid://oshmv10dnkr" path="res://image/箭頭.png" id="4_t3u1b"]
 [ext_resource type="Texture2D" uid="uid://cllgmvngq6gop" path="res://scene/review/iphone.png" id="5_h58or"]
 [ext_resource type="PackedScene" uid="uid://4d5p6dmomc7w" path="res://scene/review/btn/review_character_btn.tscn" id="6_bmebv"]
 [ext_resource type="Script" uid="uid://74aly0fqsq5b" path="res://extends/spine_sprite_ex.gd" id="6_jwv2b"]
+[ext_resource type="Texture2D" uid="uid://cn5qct58mryrh" path="res://image/option_bg.png" id="6_oes3e"]
+[ext_resource type="Script" uid="uid://busxpt8b3jr3b" path="res://extends/button_ex.gd" id="9_b7yeu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xclfo"]
 bg_color = Color(0.707496, 0.513817, 0.782956, 1)
@@ -14,7 +18,7 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
-[node name="Review" type="Control" node_paths=PackedStringArray("phone")]
+[node name="Review" type="Control" node_paths=PackedStringArray("phone", "categorys_view", "characters_view", "cg_view_root", "cg_btns_view", "cg_view_btn", "cg_spine", "full_view", "full_view_img", "full_view_spine")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,6 +27,18 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_v2t6e")
 phone = NodePath("Phone")
+category_btn = ExtResource("2_lyq4w")
+character_btn = ExtResource("6_bmebv")
+categorys_view = NodePath("Phone/CategoryList")
+characters_view = NodePath("Characters")
+cg_view_root = NodePath("CGViewRoot")
+cg_btns_view = NodePath("CGViewRoot/Btns")
+cg_view_btn = NodePath("CGViewRoot/CGView")
+cg_spine = NodePath("CGViewRoot/Spine/SpineSpriteEx")
+full_view = NodePath("FullView")
+full_view_img = NodePath("FullView/TextureRect")
+full_view_spine = NodePath("FullView/Spine/SpineSprite")
+play_icon = ExtResource("4_t3u1b")
 
 [node name="BG" type="TextureRect" parent="."]
 layout_mode = 1
@@ -47,12 +63,10 @@ grow_horizontal = 0
 
 [node name="Phone" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.1
-anchor_top = 0.209
-anchor_right = 0.389
+anchors_preset = 9
 anchor_bottom = 1.0
-grow_vertical = 0
+offset_right = 550.0
+grow_vertical = 2
 texture = ExtResource("5_h58or")
 expand_mode = 1
 stretch_mode = 5
@@ -64,10 +78,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -155.0
-offset_top = -283.0
-offset_right = 160.0
-offset_bottom = 282.0
+offset_left = -199.0
+offset_top = -367.0
+offset_right = 209.0
+offset_bottom = 371.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_xclfo")
@@ -81,43 +95,26 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="RCBtn" parent="Characters" instance=ExtResource("6_bmebv")]
-layout_mode = 0
-offset_left = 830.0
-offset_top = 360.0
-offset_right = 1030.0
-offset_bottom = 560.0
+[node name="CGViewRoot" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -992.54
+offset_top = -450.0
+offset_right = -92.54
+offset_bottom = 450.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("6_oes3e")
+patch_margin_left = 30
+patch_margin_top = 30
+patch_margin_right = 30
+patch_margin_bottom = 30
 
-[node name="RCBtn2" parent="Characters" instance=ExtResource("6_bmebv")]
-layout_mode = 0
-offset_left = 1168.0
-offset_top = 360.0
-offset_right = 1368.0
-offset_bottom = 560.0
-
-[node name="RCBtn3" parent="Characters" instance=ExtResource("6_bmebv")]
-layout_mode = 0
-offset_left = 1464.0
-offset_top = 360.0
-offset_right = 1664.0
-offset_bottom = 560.0
-
-[node name="RCBtn4" parent="Characters" instance=ExtResource("6_bmebv")]
-layout_mode = 0
-offset_left = 989.0
-offset_top = 642.0
-offset_right = 1189.0
-offset_bottom = 842.0
-
-[node name="RCBtn5" parent="Characters" instance=ExtResource("6_bmebv")]
-layout_mode = 0
-offset_left = 1325.0
-offset_top = 642.0
-offset_right = 1525.0
-offset_bottom = 842.0
-
-[node name="View" type="ColorRect" parent="."]
-visible = false
+[node name="Btns" type="Control" parent="CGViewRoot"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -125,7 +122,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Spine" type="Control" parent="View"]
+[node name="CGView" type="Button" parent="CGViewRoot"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("9_b7yeu")
+metadata/_custom_type_script = "uid://busxpt8b3jr3b"
+
+[node name="Spine" type="Control" parent="CGViewRoot"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -135,10 +148,33 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SpineSprite" type="SpineSprite" parent="View/Spine"]
+[node name="SpineSpriteEx" type="SpineSprite" parent="CGViewRoot/Spine"]
+script = ExtResource("6_jwv2b")
+metadata/_custom_type_script = "uid://74aly0fqsq5b"
+
+[node name="FullView" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Spine" type="Control" parent="FullView"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SpineSprite" type="SpineSprite" parent="FullView/Spine"]
 script = ExtResource("6_jwv2b")
 
-[node name="TextureRect" type="TextureRect" parent="View"]
+[node name="TextureRect" type="TextureRect" parent="FullView"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -148,14 +184,18 @@ grow_vertical = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="ViewButton" type="Button" parent="View"]
+[node name="ViewButton" type="Button" parent="FullView"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 0
 flat = true
+script = ExtResource("9_b7yeu")
+metadata/_custom_type_script = "uid://busxpt8b3jr3b"
 
 [connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]
-[connection signal="pressed" from="View/ViewButton" to="." method="_on_view_button_pressed"]
+[connection signal="pressed" from="CGViewRoot/CGView" to="." method="_on_cg_view_pressed"]
+[connection signal="pressed" from="FullView/ViewButton" to="." method="_on_view_button_pressed"]

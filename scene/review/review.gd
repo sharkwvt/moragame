@@ -2,83 +2,153 @@ extends Scene
 
 @export var phone: TextureRect
 
-var category_list_btn = preload("res://scene/review/btn/review_category_btn.tscn")
+@export var category_btn: PackedScene
+@export var character_btn: PackedScene
 
-var category_list_panel: Panel
+@export var categorys_view: Panel
+@export var characters_view: Control
+@export var cg_view_root: NinePatchRect
+@export var cg_btns_view: Control
+@export var cg_view_btn: ButtonEx
+@export var cg_spine: SpineSpriteEx
+@export var full_view: ColorRect
+@export var full_view_img: TextureRect
+@export var full_view_spine: SpineSpriteEx
+
+@export var play_icon: Texture
+
 var category_list_btns = []
 var character_btns = []
-var character_lbls = []
+var cg_btns = []
 
 var review_imgs = []
-var review_view: ColorRect
-var review_img: TextureRect
-var review_spine: SpineSpriteEx
+var skeleton_data_res
 var view_index = 0
+var has_spine = false
 
 var selected_category: CategoryData
+var selected_character: CharacterData
 var tween: Tween
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	setup()
 	create_category_btns()
-	play_start_anim()
-	await tween.finished
+	create_character_btns()
+	create_cg_btns()
+	reset()
+	#play_start_anim()
+	#await tween.finished
+
+func reset():
+	cg_view_root.visible = false
+	cg_btns_view.visible = false
+	cg_view_btn.visible = false
+	cg_spine.visible = false
+	full_view.visible = false
+	full_view_spine.visible = false
 	_on_category_btn_pressed(0) # 開第一個
-
-
-func setup():
-	category_list_panel = $Phone/CategoryList
-	character_btns.append($Characters/RCBtn)
-	character_btns.append($Characters/RCBtn2)
-	character_btns.append($Characters/RCBtn3)
-	character_btns.append($Characters/RCBtn4)
-	character_btns.append($Characters/RCBtn5)
-	for i in character_btns.size():
-		var btn: Button = character_btns[i]
-		btn.pressed.connect(_on_character_button_pressed.bind(i))
-	review_view = $View
-	review_img = $View/TextureRect
-	review_spine = $View/Spine/SpineSprite
-	review_view.visible = false
-	review_spine.visible = false
 
 
 func play_start_anim():
 	tween = create_tween()
 	tween.tween_property(phone, "position", phone.position, 1)
 	phone.position.y += phone.size.y
+	
+
+func show_cg_btns():
+	cg_view_root.visible = true
+	cg_btns_view.visible = true
+	cg_view_btn.visible = false
+	cg_spine.visible = false
+	load_imgs()
+	
+	var data: CharacterData = selected_character
+	for i in cg_btns.size():
+		var btn: Button = cg_btns[i]
+		if i <= data.level:
+			btn.icon = review_imgs[i]
+			btn.visible = true
+		elif has_spine:
+			btn.icon = play_icon
+			btn.expand_icon = false
+		else:
+			btn.visible = false
 
 
-func show_review(data: CharacterData):
-	review_view.visible = true
-	load_imgs(data)
-	review_img.texture = review_imgs[view_index]
+func show_cg_view():
+	cg_btns_view.visible = false
+	if view_index < review_imgs.size():
+		cg_spine.visible = false
+		cg_view_btn.icon = review_imgs[view_index]
+		cg_view_btn.visible = true
+	else:
+		cg_view_btn.visible = false
+		cg_spine.skeleton_data_res = skeleton_data_res
+		cg_spine.play_first_anim()
+		cg_spine.visible = true
+
+
+func show_full_view():
+	full_view.visible = true
+	full_view_img.texture = review_imgs[view_index]
 
 
 func create_category_btns():
 	var offset_y = 20
 	for i in Main.categorys_data.size():
 		var category_data: CategoryData = Main.categorys_data[i]
-		var btn: Button = category_list_btn.instantiate()
+		var btn: Button = category_btn.instantiate()
 		btn.text = tr(category_data.category) + " " + category_data.get_progress_str()
 		btn.position = Vector2(
 			0,
 			offset_y + i * (btn.size.y + offset_y)
 		)
 		btn.pressed.connect(_on_category_btn_pressed.bind(i))
-		category_list_panel.add_child(btn)
+		categorys_view.add_child(btn)
 		category_list_btns.append(btn)
 
 
-func load_imgs(data: CharacterData):
+func create_character_btns():
+	var character_count = 5
+	for i in character_count:
+		var btn: Button = character_btn.instantiate()
+		btn.pressed.connect(_on_character_button_pressed.bind(i))
+		btn.position = Vector2(
+			phone.position.x + phone.size.x + 20,
+			((size.y - btn.size.y * character_count)/(character_count+1) + btn.size.y) * i
+		)
+		characters_view.add_child(btn)
+		character_btns.append(btn)
+
+
+func create_cg_btns():
+	var count = 4
+	var offset = 30
+	for i in count:
+		var btn = ButtonEx.new()
+		btn.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		btn.vertical_icon_alignment = VERTICAL_ALIGNMENT_CENTER
+		btn.expand_icon = true
+		btn.size = Vector2(
+			(cg_view_root.size.x - offset * 3)/2.0,
+			(cg_view_root.size.y - offset * 3)/2.0
+		)
+		btn.position = Vector2(
+			offset + (offset + btn.size.x) * (i%2),
+			offset + (offset + btn.size.y) * floor(i/2.0)
+		)
+		btn.pressed.connect(_on_cg_btn_pressed.bind(i))
+		cg_btns_view.add_child(btn)
+		cg_btns.append(btn)
+
+
+func load_imgs():
+	var data: CharacterData = selected_character
 	review_imgs.clear()
 	for i in data.level+1:
 		review_imgs.append(load(data.get_cg_path(i)))
-	if not data.has_bonus:
-		return
-	review_spine.skeleton_data_res = load(data.get_spine_path())
-	review_spine.play_first_anim()
+	if has_spine:
+		skeleton_data_res = load(data.get_spine_path())
 
 
 func refresh_characters():
@@ -103,10 +173,14 @@ func refresh():
 
 func show_scene():
 	refresh()
-	_on_category_btn_pressed(0)
+	reset()
 
 func return_scene():
-	Main.to_scene(Main.SCENE.start)
+	if full_view.visible:
+		full_view.visible = false
+		cg_view_btn.visible = false
+	else:
+		Main.to_scene(Main.SCENE.start)
 
 
 func _on_category_btn_pressed(index):
@@ -118,28 +192,40 @@ func _on_category_btn_pressed(index):
 	refresh_characters()
 
 
+func _on_character_button_pressed(extra_arg_0: int) -> void:
+	selected_character = selected_category.characters[extra_arg_0]
+	#show_review(selected_character)
+	has_spine = selected_character.has_bonus and selected_character.get_spine_path() != ""
+	show_cg_btns()
+
+
+func _on_cg_btn_pressed(index: int):
+	view_index = index
+	show_cg_view()
+
+
 func _on_return_button_pressed() -> void:
 	return_scene()
 
 
-func _on_character_button_pressed(extra_arg_0: int) -> void:
-	var data = selected_category.characters[extra_arg_0]
-	show_review(data)
+func _on_cg_view_pressed() -> void:
+	show_full_view()
 
 
 func _on_view_button_pressed() -> void:
 	view_index += 1
 	if view_index < review_imgs.size():
-		review_img.texture = review_imgs[view_index]
-	elif view_index == review_imgs.size() and review_spine.skeleton_data_res:
+		full_view_img.texture = review_imgs[view_index]
+	elif view_index == review_imgs.size() and has_spine:
 		# 顯示spine
-		review_img.visible = false
-		review_spine.visible = true
+		full_view_img.visible = false
+		full_view_spine.skeleton_data_res = skeleton_data_res
+		full_view_spine.play_first_anim()
+		full_view_spine.visible = true
 	else:
 		# 關閉
-		review_view.visible = false
+		full_view.visible = false
 		# 初始化
-		review_img.visible = true
-		review_spine.visible = false
+		full_view_img.visible = true
+		full_view_spine.visible = false
 		view_index = 0
-	
