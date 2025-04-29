@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://drs1erfxicjah"]
+[gd_scene load_steps=3 format=3 uid="uid://drs1erfxicjah"]
 
 [ext_resource type="Texture2D" uid="uid://b0nff7sdwts26" path="res://scene/review/btn/folder.png" id="1_oncl8"]
+[ext_resource type="Script" uid="uid://busxpt8b3jr3b" path="res://extends/button_ex.gd" id="2_fy5by"]
 
 [node name="Btn" type="Button"]
 anchors_preset = 10
@@ -14,3 +15,4 @@ text = "主題 00%"
 icon = ExtResource("1_oncl8")
 flat = true
 expand_icon = true
+script = ExtResource("2_fy5by")

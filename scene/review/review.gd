@@ -172,7 +172,6 @@ func _on_category_btn_pressed(index):
 	cg_btns_view.visible = false
 	full_view.visible = false
 	full_view_spine.visible = false
-	Main.play_btn_sfx()
 	for btn: Button in category_list_btns:
 		btn.button_pressed = false
 	category_list_btns[index].button_pressed = true
