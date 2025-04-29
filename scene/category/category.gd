@@ -130,8 +130,8 @@ func _on_return_button_pressed() -> void:
 
 
 func _on_timer_timeout() -> void:
-	var count = info_lbl.text.length()
-	var countDesc = info_desc.text.length()
+	var count = tr(info_lbl.text).length()
+	var countDesc = tr(info_desc.text).length()
 	info_timer.wait_time = 0.3 / count
 	if info_char_index < countDesc:
 		info_char_index += 1

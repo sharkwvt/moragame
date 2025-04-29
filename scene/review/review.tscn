@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://4d5p6dmomc7w" path="res://scene/review/btn/review_character_btn.tscn" id="6_bmebv"]
 [ext_resource type="Script" uid="uid://74aly0fqsq5b" path="res://extends/spine_sprite_ex.gd" id="6_jwv2b"]
 [ext_resource type="Texture2D" uid="uid://cn5qct58mryrh" path="res://image/option_bg.png" id="6_oes3e"]
-[ext_resource type="Script" uid="uid://busxpt8b3jr3b" path="res://extends/button_ex.gd" id="9_b7yeu"]
 [ext_resource type="Texture2D" uid="uid://cdyb41iokvcsy" path="res://scene/game/game_bg.png" id="9_tye8t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xclfo"]
@@ -19,7 +18,10 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
-[node name="Review" type="Control" node_paths=PackedStringArray("phone", "categorys_view", "characters_view", "cg_view_root", "cg_btns_view", "full_view", "full_view_img", "full_view_spine")]
+[sub_resource type="ViewportTexture" id="ViewportTexture_b7yeu"]
+viewport_path = NodePath("FullView/SubViewport")
+
+[node name="Review" type="Control" node_paths=PackedStringArray("phone", "categorys_view", "characters_view", "cg_view_root", "cg_btns_view", "full_view_root", "full_view_img", "full_view_spine", "sub_viewport", "cam", "slider")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,9 +36,12 @@ categorys_view = NodePath("Phone/CategoryList")
 characters_view = NodePath("Characters")
 cg_view_root = NodePath("CGViewRoot")
 cg_btns_view = NodePath("CGViewRoot/Btns")
-full_view = NodePath("FullView")
-full_view_img = NodePath("FullView/TextureRect")
-full_view_spine = NodePath("FullView/Spine/SpineSprite")
+full_view_root = NodePath("FullView")
+full_view_img = NodePath("FullView/SubViewport/TextureRect")
+full_view_spine = NodePath("FullView/SubViewport/Spine/SpineSprite")
+sub_viewport = NodePath("FullView/SubViewport")
+cam = NodePath("FullView/SubViewport/Camera2D")
+slider = NodePath("FullView/VSlider")
 play_icon = ExtResource("4_t3u1b")
 
 [node name="BG" type="TextureRect" parent="."]
@@ -48,17 +53,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_xnd0t")
 expand_mode = 1
-
-[node name="ReturnButton" parent="." instance=ExtResource("3_dxly4")]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 0.0
-offset_left = -100.0
-offset_right = 0.0
-grow_horizontal = 0
 
 [node name="Phone" type="TextureRect" parent="."]
 layout_mode = 1
@@ -122,7 +116,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="FullView" type="ColorRect" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -130,8 +123,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BG" type="TextureRect" parent="FullView"]
-layout_mode = 1
+[node name="SubViewport" type="SubViewport" parent="FullView"]
+size = Vector2i(1920, 1080)
+
+[node name="BG" type="TextureRect" parent="FullView/SubViewport"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -139,8 +134,8 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("9_tye8t")
 
-[node name="Spine" type="Control" parent="FullView"]
-layout_mode = 1
+[node name="Spine" type="Control" parent="FullView/SubViewport"]
+layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -149,11 +144,10 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SpineSprite" type="SpineSprite" parent="FullView/Spine"]
+[node name="SpineSprite" type="SpineSprite" parent="FullView/SubViewport/Spine"]
 script = ExtResource("6_jwv2b")
 
-[node name="TextureRect" type="TextureRect" parent="FullView"]
-layout_mode = 1
+[node name="TextureRect" type="TextureRect" parent="FullView/SubViewport"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -162,17 +156,52 @@ grow_vertical = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="ViewButton" type="Button" parent="FullView"]
+[node name="Camera2D" type="Camera2D" parent="FullView/SubViewport"]
+position = Vector2(960, 540)
+limit_left = 0
+limit_top = 0
+limit_right = 1920
+limit_bottom = 1080
+
+[node name="View" type="TextureRect" parent="FullView"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-focus_mode = 0
-flat = true
-script = ExtResource("9_b7yeu")
-metadata/_custom_type_script = "uid://busxpt8b3jr3b"
+texture = SubResource("ViewportTexture_b7yeu")
 
+[node name="VSlider" type="VSlider" parent="FullView"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -75.64
+offset_top = -250.0
+offset_right = -45.64
+offset_bottom = 250.0
+grow_horizontal = 0
+grow_vertical = 2
+min_value = 1.0
+max_value = 2.0
+step = 0.01
+value = 1.18
+ticks_on_borders = true
+
+[node name="ReturnButton" parent="." instance=ExtResource("3_dxly4")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = -100.0
+offset_right = 0.0
+grow_horizontal = 0
+
+[connection signal="gui_input" from="FullView/View" to="." method="_on_view_gui_input"]
+[connection signal="value_changed" from="FullView/VSlider" to="." method="_on_v_slider_value_changed"]
 [connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]
-[connection signal="pressed" from="FullView/ViewButton" to="." method="_on_view_button_pressed"]
