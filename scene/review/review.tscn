@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://7eupwhka7hay"]
+[gd_scene load_steps=13 format=3 uid="uid://7eupwhka7hay"]
 
 [ext_resource type="Script" uid="uid://vwtitrvuo1nb" path="res://scene/review/review.gd" id="1_v2t6e"]
 [ext_resource type="Texture2D" uid="uid://dryyp3w856wdb" path="res://scene/review/review_bg.jpg" id="1_xnd0t"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://74aly0fqsq5b" path="res://extends/spine_sprite_ex.gd" id="6_jwv2b"]
 [ext_resource type="Texture2D" uid="uid://cn5qct58mryrh" path="res://image/option_bg.png" id="6_oes3e"]
 [ext_resource type="Script" uid="uid://busxpt8b3jr3b" path="res://extends/button_ex.gd" id="9_b7yeu"]
+[ext_resource type="Texture2D" uid="uid://cdyb41iokvcsy" path="res://scene/game/game_bg.png" id="9_tye8t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xclfo"]
 bg_color = Color(0.707496, 0.513817, 0.782956, 1)
@@ -18,7 +19,7 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
-[node name="Review" type="Control" node_paths=PackedStringArray("phone", "categorys_view", "characters_view", "cg_view_root", "cg_btns_view", "cg_view_btn", "cg_spine", "full_view", "full_view_img", "full_view_spine")]
+[node name="Review" type="Control" node_paths=PackedStringArray("phone", "categorys_view", "characters_view", "cg_view_root", "cg_btns_view", "full_view", "full_view_img", "full_view_spine")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,8 +34,6 @@ categorys_view = NodePath("Phone/CategoryList")
 characters_view = NodePath("Characters")
 cg_view_root = NodePath("CGViewRoot")
 cg_btns_view = NodePath("CGViewRoot/Btns")
-cg_view_btn = NodePath("CGViewRoot/CGView")
-cg_spine = NodePath("CGViewRoot/Spine/SpineSpriteEx")
 full_view = NodePath("FullView")
 full_view_img = NodePath("FullView/TextureRect")
 full_view_spine = NodePath("FullView/Spine/SpineSprite")
@@ -122,36 +121,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CGView" type="Button" parent="CGViewRoot"]
-visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.1
-anchor_top = 0.1
-anchor_right = 0.9
-anchor_bottom = 0.9
-grow_horizontal = 2
-grow_vertical = 2
-focus_mode = 0
-icon_alignment = 1
-expand_icon = true
-script = ExtResource("9_b7yeu")
-metadata/_custom_type_script = "uid://busxpt8b3jr3b"
-
-[node name="Spine" type="Control" parent="CGViewRoot"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="SpineSpriteEx" type="SpineSprite" parent="CGViewRoot/Spine"]
-script = ExtResource("6_jwv2b")
-metadata/_custom_type_script = "uid://74aly0fqsq5b"
-
 [node name="FullView" type="ColorRect" parent="."]
 visible = false
 layout_mode = 1
@@ -160,6 +129,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="BG" type="TextureRect" parent="FullView"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_tye8t")
 
 [node name="Spine" type="Control" parent="FullView"]
 layout_mode = 1
@@ -197,5 +175,4 @@ script = ExtResource("9_b7yeu")
 metadata/_custom_type_script = "uid://busxpt8b3jr3b"
 
 [connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]
-[connection signal="pressed" from="CGViewRoot/CGView" to="." method="_on_cg_view_pressed"]
 [connection signal="pressed" from="FullView/ViewButton" to="." method="_on_view_button_pressed"]

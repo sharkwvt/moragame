@@ -9,8 +9,6 @@ extends Scene
 @export var characters_view: Control
 @export var cg_view_root: NinePatchRect
 @export var cg_btns_view: Control
-@export var cg_view_btn: ButtonEx
-@export var cg_spine: SpineSpriteEx
 @export var full_view: ColorRect
 @export var full_view_img: TextureRect
 @export var full_view_spine: SpineSpriteEx
@@ -40,12 +38,6 @@ func _ready() -> void:
 	#await tween.finished
 
 func reset():
-	cg_view_root.visible = false
-	cg_btns_view.visible = false
-	cg_view_btn.visible = false
-	cg_spine.visible = false
-	full_view.visible = false
-	full_view_spine.visible = false
 	_on_category_btn_pressed(0) # 開第一個
 
 
@@ -58,16 +50,14 @@ func play_start_anim():
 func show_cg_btns():
 	cg_view_root.visible = true
 	cg_btns_view.visible = true
-	cg_view_btn.visible = false
-	cg_spine.visible = false
 	load_imgs()
 	
 	var data: CharacterData = selected_character
 	for i in cg_btns.size():
 		var btn: Button = cg_btns[i]
+		btn.visible = true
 		if i <= data.level:
 			btn.icon = review_imgs[i]
-			btn.visible = true
 		elif has_spine:
 			btn.icon = play_icon
 			btn.expand_icon = false
@@ -75,22 +65,17 @@ func show_cg_btns():
 			btn.visible = false
 
 
-func show_cg_view():
-	cg_btns_view.visible = false
-	if view_index < review_imgs.size():
-		cg_spine.visible = false
-		cg_view_btn.icon = review_imgs[view_index]
-		cg_view_btn.visible = true
-	else:
-		cg_view_btn.visible = false
-		cg_spine.skeleton_data_res = skeleton_data_res
-		cg_spine.play_first_anim()
-		cg_spine.visible = true
-
-
 func show_full_view():
 	full_view.visible = true
-	full_view_img.texture = review_imgs[view_index]
+	if view_index < review_imgs.size():
+		full_view_img.texture = review_imgs[view_index]
+		full_view_img.visible = true
+	elif view_index == review_imgs.size() and has_spine:
+		# 顯示spine
+		full_view_img.visible = false
+		full_view_spine.skeleton_data_res = skeleton_data_res
+		full_view_spine.play_first_anim()
+		full_view_spine.visible = true
 
 
 func create_category_btns():
@@ -178,12 +163,15 @@ func show_scene():
 func return_scene():
 	if full_view.visible:
 		full_view.visible = false
-		cg_view_btn.visible = false
 	else:
 		Main.to_scene(Main.SCENE.start)
 
 
 func _on_category_btn_pressed(index):
+	cg_view_root.visible = false
+	cg_btns_view.visible = false
+	full_view.visible = false
+	full_view_spine.visible = false
 	Main.play_btn_sfx()
 	for btn: Button in category_list_btns:
 		btn.button_pressed = false
@@ -201,31 +189,15 @@ func _on_character_button_pressed(extra_arg_0: int) -> void:
 
 func _on_cg_btn_pressed(index: int):
 	view_index = index
-	show_cg_view()
+	show_full_view()
 
 
 func _on_return_button_pressed() -> void:
 	return_scene()
 
 
-func _on_cg_view_pressed() -> void:
-	show_full_view()
-
-
 func _on_view_button_pressed() -> void:
-	view_index += 1
-	if view_index < review_imgs.size():
-		full_view_img.texture = review_imgs[view_index]
-	elif view_index == review_imgs.size() and has_spine:
-		# 顯示spine
-		full_view_img.visible = false
-		full_view_spine.skeleton_data_res = skeleton_data_res
-		full_view_spine.play_first_anim()
-		full_view_spine.visible = true
-	else:
-		# 關閉
-		full_view.visible = false
-		# 初始化
-		full_view_img.visible = true
-		full_view_spine.visible = false
-		view_index = 0
+	#view_index += 1
+	#show_full_view()
+	# 關閉
+	full_view.visible = false

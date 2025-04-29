@@ -241,8 +241,9 @@ func load_csv():
 		var file_name = dir.get_next()
 		while file_name != "":
 			if ".translation" in file_name:
-				print("load_csv: ", file_name)
-				TranslationServer.add_translation(load(path + "/" + file_name))
+				var file_path = path.path_join(file_name)
+				print("load_csv: ", file_path)
+				TranslationServer.add_translation(load(file_path))
 			file_name = dir.get_next()
 		dir.list_dir_end()
 
