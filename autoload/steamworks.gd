@@ -11,6 +11,7 @@ var achievements: Dictionary = {
 	"成就ID3": false
 }
 
+var dlc_data: Array
 
 func _init() -> void:
 	# 設定環境變數
@@ -55,6 +56,8 @@ func initialize_steam() -> void:
 		steam_name = steam_api.getPersonaName()
 		print("steam_id " + str(steam_id))
 		print("steam_name " + steam_name)
+		dlc_data = Steam.getDLCData()
+		print(dlc_data)
 		# 接收Steam狀態後執行
 		Steam.current_stats_received.connect(_on_steam_stats_ready)
 

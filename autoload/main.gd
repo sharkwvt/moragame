@@ -32,7 +32,7 @@ var current_scene: Control
 var current_character_data: CharacterData
 var current_category_data: CategoryData
 
-var instance_scenes = [0, 0, 0, 0, 0]
+var instance_scenes = [] # 實例化場景
 enum SCENE {
 	start,
 	category,
@@ -54,6 +54,7 @@ var statistics: Dictionary = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	instance_scenes.resize(SCENE.size())
 	reload_data()
 	Input.set_custom_mouse_cursor(load("res://image/mouse.png"),Input.CURSOR_ARROW)
 	Input.set_custom_mouse_cursor(load("res://image/mouse2.png"),Input.CURSOR_POINTING_HAND)
@@ -242,7 +243,7 @@ func load_csv():
 		while file_name != "":
 			if ".translation" in file_name:
 				var file_path = path.path_join(file_name)
-				print("load_csv: ", file_path)
+				#print("load_csv: ", file_path)
 				TranslationServer.add_translation(load(file_path))
 			file_name = dir.get_next()
 		dir.list_dir_end()
@@ -336,7 +337,7 @@ func _input(event):
 	# 滑鼠任何鍵
 	if event is InputEventMouseButton and event.pressed:
 		var click_effect: GPUParticles2D = mouse_click_effect.instantiate()
-		click_effect.emitting = true		
+		click_effect.emitting = true
 		click_effect.position = Vector2(event.position.x+0,event.position.y+0)
 		get_tree().root.add_child(click_effect)
 		
