@@ -10,7 +10,6 @@ extends Scene
 @export var progress_light: TextureRect
 # 對話
 @export var story_view: Control
-@export var talk_view: TextureRect
 # 猜拳
 @export var choice_btn: PackedScene
 @export var game_view: Control
@@ -213,12 +212,12 @@ func show_story():
 	game_view.visible = false
 	var talk_str = Main.talk_data.get_win_str()
 	if now_level == 0:
-		talk_str = Main.talk_data.get_lose_str()
+		talk_str = Main.talk_data.get_start_strs()
 	if now_level == character_data.level:
 		talk_str = Main.talk_data.get_pass_str()
-	talk_view.show_talk_anim(talk_str)
+	Main.show_talk_view(talk_str)
 	# 播完動畫後繼續
-	await talk_view.tween.finished
+	await Main.instance_talk_view.tween.finished
 	to_continue()
 
 
@@ -293,7 +292,7 @@ func play_logic():
 	if result == -1:
 		if is_bonus:
 			gameover()
-		talk_view.show_talk_anim(Main.talk_data.get_lose_str())
+		Main.show_talk_view(Main.talk_data.get_lose_str())
 	else:
 		to_continue()
 

@@ -26,7 +26,9 @@ var mouse_trail_effect: GPUParticles2D
 
 var categorys_data = []
 var characters_data = []
+
 var talk_data: TalkData
+var instance_talk_view: Control
 
 var current_scene: Control
 var current_character_data: CharacterData
@@ -175,6 +177,7 @@ func load_talk_data():
 	var json_data = get_json_data(talk_json_path)
 	if !json_data.is_empty():
 		talk_data = TalkData.new()
+		talk_data.start_strs = json_data["start"]
 		talk_data.lose_strs = json_data["lose"]
 		talk_data.win_strs = json_data["win"]
 		talk_data.pass_strs = json_data["pass"]
@@ -276,10 +279,11 @@ func show_setting_view():
 
 
 func show_talk_view(text):
-	var view = talk_view.instantiate()
-	get_tree().root.add_child(view)
-	view.show_talk_anim(text)
-	view.tween.finished.connect(view.queue_free)
+	if instance_talk_view:
+		instance_talk_view.queue_free()
+	instance_talk_view = talk_view.instantiate()
+	get_tree().root.add_child(instance_talk_view)
+	instance_talk_view.show_talk_anim(text)
 
 
 func play_sfx(sfx):

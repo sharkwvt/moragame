@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://cinbxlivgi3u5"
+
+[deps]
+
+files=["res://csv/Talk.zhc.translation", "res://csv/Talk.zh.translation", "res://csv/Talk.en.translation"]
+
+source_file="res://csv/Talk.csv"
+dest_files=["res://csv/Talk.zhc.translation", "res://csv/Talk.zh.translation", "res://csv/Talk.en.translation"]
+
+[params]
+
+compress=true
+delimiter=0

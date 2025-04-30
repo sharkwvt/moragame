@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://blfq5yhxp6co4" path="res://common/talk/talk_bar.png" id="2_jebo6"]
 
 [node name="Talk" type="TextureRect"]
+mouse_filter = 2
 script = ExtResource("1_dp28c")
 
 [node name="SubViewport" type="SubViewport" parent="."]

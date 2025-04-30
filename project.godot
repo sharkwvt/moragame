@@ -63,7 +63,7 @@ scale_time={
 locale/translation_remaps={
 "res://scene/start/tbh_logo.png": PackedStringArray()
 }
-locale/translations=PackedStringArray("res://csv/UI.en.translation", "res://csv/UI.zh.translation", "res://csv/UI.zhc.translation")
+locale/translations=PackedStringArray("res://csv/UI.en.translation", "res://csv/UI.zh.translation", "res://csv/UI.zhc.translation", "res://csv/Talk.en.translation", "res://csv/Talk.zh.translation", "res://csv/Talk.zhc.translation")
 locale/fallback="zhc"
 locale/locale_filter_mode=0
 
