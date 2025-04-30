@@ -153,9 +153,10 @@ func set_progress(ps: float):
 	if progress_bar.anchor_top == value:
 		return
 
-	var tn = progress_light.create_tween()
+	var tn: Tween
 	if progress_bar.anchor_top > value:
 		progress_spine.play_anim("love_get")
+		tn = progress_light.create_tween()
 		tn.set_loops()
 		tn.tween_callback(func(): progress_light.visible = false)
 		tn.tween_interval(0.1)
@@ -169,7 +170,8 @@ func set_progress(ps: float):
 	pb_tween.set_ease(Tween.EASE_OUT)
 	pb_tween.tween_property(progress_bar, "anchor_top", value, 1)
 	await pb_tween.finished
-	tn.kill()
+	if tn:
+		tn.kill()
 	progress_light.visible = false
 	progress_spine.play_anim("love_standby")
 
