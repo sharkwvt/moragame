@@ -72,20 +72,25 @@ func show_cg_btns():
 
 
 func show_full_view():
+	if view_index < review_imgs.size():
+		full_view_spine.visible = false
+		full_view_img.texture = review_imgs[view_index]
+		full_view_img.visible = true
+	elif view_index == review_imgs.size() and has_spine:
+		if selected_character.has_dlc:
+			# 顯示spine
+			full_view_img.visible = false
+			full_view_spine.skeleton_data_res = skeleton_data_res
+			full_view_spine.play_first_anim()
+			full_view_spine.visible = true
+		else:
+			Steamworks.show_DLC()
+			return
 	full_view_root.visible = true
 	sub_viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
 	slider.value = 1
 	cam.enabled = true
 	
-	if view_index < review_imgs.size():
-		full_view_img.texture = review_imgs[view_index]
-		full_view_img.visible = true
-	elif view_index == review_imgs.size() and has_spine:
-		# 顯示spine
-		full_view_img.visible = false
-		full_view_spine.skeleton_data_res = skeleton_data_res
-		full_view_spine.play_first_anim()
-		full_view_spine.visible = true
 
 
 func create_category_btns():
@@ -142,7 +147,7 @@ func load_imgs():
 	review_imgs.clear()
 	for i in data.level+1:
 		review_imgs.append(load(data.get_cg_path(i)))
-	if has_spine:
+	if has_spine and data.has_dlc:
 		skeleton_data_res = load(data.get_spine_path())
 
 
@@ -194,8 +199,7 @@ func _on_category_btn_pressed(index):
 
 func _on_character_button_pressed(extra_arg_0: int) -> void:
 	selected_character = selected_category.characters[extra_arg_0]
-	#show_review(selected_character)
-	has_spine = selected_character.has_bonus and selected_character.get_spine_path() != ""
+	has_spine = selected_character.has_bonus
 	show_cg_btns()
 
 

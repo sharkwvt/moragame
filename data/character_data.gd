@@ -8,6 +8,7 @@ var category: String
 var level: int
 var progress = 0
 var has_bonus = false
+var has_dlc: bool
 
 func get_path() -> String:
 	return "res://categorys/" + category + "/characters/sex_girl_" + file_name
@@ -23,3 +24,6 @@ func get_spine_path() -> String:
 	var spine_name = file_name + ".tres"
 	var path = get_path().path_join("spine").path_join(spine_name)
 	return path if FileAccess.file_exists(path) else ""
+
+func check_dlc():
+	has_dlc = get_spine_path() != ""

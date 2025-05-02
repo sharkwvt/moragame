@@ -1,6 +1,5 @@
 extends Node
 
-var steam_api: Object = null
 var steam_appid: int = 3668520 # 480為測試用
 var steam_id: int = 0
 var steam_name: String = "You"
@@ -32,7 +31,7 @@ func _process(_delta: float) -> void:
 
 
 func is_steam_enabled() -> bool:
-	if Main.this_platform == "steam" and steam_api != null:
+	if Main.this_platform == "steam":
 		return true
 	return false
 
@@ -40,26 +39,28 @@ func is_steam_enabled() -> bool:
 # steam 初始化
 func initialize_steam() -> void:
 	if Engine.has_singleton("Steam"):
-		steam_api = Engine.get_singleton("Steam")
-		
-		var initialized: Dictionary = steam_api.steamInitEx(true)
+		var initialized: Dictionary = Steam.steamInitEx(true, steam_appid)
 		
 		print("[STEAM] 初始化: %s" % initialized)
 		
-		if initialized['status'] > 0:
+		if initialized['status'] != Steam.STEAM_API_INIT_RESULT_OK:
 			print("Steam初始化失敗, 停用功能: %s" % initialized)
-			steam_api = null
 			return
 		
 		Main.this_platform = "steam"
-		steam_id = steam_api.getSteamID()
-		steam_name = steam_api.getPersonaName()
+		steam_id = Steam.getSteamID()
+		steam_name = Steam.getPersonaName()
 		print("steam_id " + str(steam_id))
 		print("steam_name " + steam_name)
 		dlc_data = Steam.getDLCData()
 		print(dlc_data)
-		# 接收Steam狀態後執行
-		Steam.current_stats_received.connect(_on_steam_stats_ready)
+		
+		connect_steam_callbacks()
+
+
+func connect_steam_callbacks() -> void:
+	Steam.current_stats_received.connect(_on_steam_stats_ready)
+	Steam.user_stats_received.connect(_on_steam_stats_ready)
 
 
 func _on_steam_stats_ready(this_game: int, this_result: int, this_user: int) -> void:
@@ -75,6 +76,10 @@ func _on_steam_stats_ready(this_game: int, this_result: int, this_user: int) -> 
 		return
 	load_steam_stats()
 	load_steam_achievements()
+
+
+func show_DLC():
+	Steam.activateGameOverlayToStore(1983901)
 
 
 # 讀取數據

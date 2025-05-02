@@ -164,6 +164,7 @@ func load_categorys_data():
 						if key in data:
 							data.set(key, character[key])
 					data.category = category_data.category
+					data.check_dlc()
 					characters_data.append(data)
 					category_data.characters.append(data)
 		file_name = dir.get_next()
