@@ -123,16 +123,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SubViewport" type="SubViewport" parent="FullView"]
-size = Vector2i(1920, 1080)
-
-[node name="BG" type="TextureRect" parent="FullView/SubViewport"]
+[node name="BG" type="TextureRect" parent="FullView"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("9_tye8t")
+
+[node name="SubViewport" type="SubViewport" parent="FullView"]
+transparent_bg = true
+size = Vector2i(1920, 1080)
 
 [node name="Spine" type="Control" parent="FullView/SubViewport"]
 layout_mode = 3
