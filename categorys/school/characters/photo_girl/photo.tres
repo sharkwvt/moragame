@@ -1,8 +1,0 @@
-[gd_resource type="SpineSkeletonDataResource" load_steps=3 format=3 uid="uid://b5xvnc36i5cbg"]
-
-[ext_resource type="SpineAtlasResource" uid="uid://b7b2k4wi7jxdm" path="res://categorys/apartment/characters/photo_girl/photo_gir.atlas" id="1_hypgu"]
-[ext_resource type="SpineSkeletonFileResource" uid="uid://b7snbgorubhch" path="res://categorys/apartment/characters/photo_girl/photo_gir.skel" id="2_42uei"]
-
-[resource]
-atlas_res = ExtResource("1_hypgu")
-skeleton_file_res = ExtResource("2_42uei")

@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://uphj1vp1u2ba"
+path="res://.godot/imported/photo_gir.skel-342dc1c8121c369f96d1d17d323bc6f8.spskel"
+
+[deps]
+
+source_file="res://spine/photo_gir/photo_gir.skel"
+dest_files=["res://.godot/imported/photo_gir.skel-342dc1c8121c369f96d1d17d323bc6f8.spskel"]
+
+[params]
+

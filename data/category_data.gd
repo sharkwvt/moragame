@@ -37,7 +37,3 @@ func get_progress_str() -> String:
 
 func get_menu_path() -> String:
 	return path + "/menu/menu.tscn"
-
-
-func get_avatar_path() -> String:
-	return path + "/characters/photo_girl/photo.tres"

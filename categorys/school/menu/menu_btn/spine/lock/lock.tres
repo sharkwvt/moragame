@@ -1,4 +1,4 @@
-[gd_resource type="SpineSkeletonDataResource" load_steps=3 format=3 uid="uid://dd6wunrt5c02h"]
+[gd_resource type="SpineSkeletonDataResource" load_steps=3 format=3 uid="uid://cdxr2gfny62fr"]
 
 [ext_resource type="SpineAtlasResource" uid="uid://btv2u8wgglcyp" path="res://categorys/apartment/menu/menu_btn/spine/lock/lock_a.atlas" id="1_11mpt"]
 [ext_resource type="SpineSkeletonFileResource" uid="uid://bdoy1627qaujo" path="res://categorys/apartment/menu/menu_btn/spine/lock/lock_a.skel" id="2_4bfyn"]

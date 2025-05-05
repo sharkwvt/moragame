@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ba1wq5rsch7ls"]
+[gd_scene load_steps=18 format=3 uid="uid://ba1wq5rsch7ls"]
 
 [ext_resource type="Script" uid="uid://bylxmth5oi4ei" path="res://scene/game/game.gd" id="1_tbpdr"]
 [ext_resource type="PackedScene" uid="uid://bfrlvuybx0tun" path="res://scene/game/choice_btn/choice_btn.tscn" id="2_h614x"]
@@ -16,11 +16,14 @@
 [ext_resource type="Texture2D" uid="uid://bc8gxwkemtpyf" path="res://scene/game/bar/bar_bg2.png" id="8_o100e"]
 [ext_resource type="Script" uid="uid://74aly0fqsq5b" path="res://extends/spine_sprite_ex.gd" id="10_a5m72"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_sc3j8"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o100e"]
 shader = ExtResource("4_s858n")
 shader_parameter/alpha = 1.0
 
-[node name="Game" type="Control" node_paths=PackedStringArray("menu_btn", "character", "character_temp", "character_light_mask", "character_light", "progress_bar", "progress_spine", "progress_light", "story_view", "game_view", "tips_node", "result_spine", "user_spine", "npc_spine", "bonus_view", "spine_sprite")]
+[sub_resource type="ViewportTexture" id="ViewportTexture_o100e"]
+viewport_path = NodePath("Bonus/SubViewport")
+
+[node name="Game" type="Control" node_paths=PackedStringArray("menu_btn", "character", "character_light_mask", "character_light", "progress_bar", "progress_spine", "progress_light", "story_view", "game_view", "tips_node", "result_spine", "user_spine", "npc_spine", "bonus_view", "spine_sprite", "spine_light")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -30,7 +33,6 @@ grow_vertical = 2
 script = ExtResource("1_tbpdr")
 menu_btn = NodePath("Game/MenuButton")
 character = NodePath("Character")
-character_temp = NodePath("Character/TempCharacter")
 character_light_mask = NodePath("Character/LightMask")
 character_light = NodePath("Character/LightMask/Light")
 progress_bar = NodePath("ProgressBG/ProgressUnder/Progress")
@@ -44,7 +46,8 @@ result_spine = NodePath("Game/Tips/Result")
 user_spine = NodePath("Game/Tips/User")
 npc_spine = NodePath("Game/Tips/Npc")
 bonus_view = NodePath("Bonus")
-spine_sprite = NodePath("Bonus/Spine/SpineSprite")
+spine_sprite = NodePath("Bonus/SubViewport/Spine/SpineSprite")
+spine_light = NodePath("Bonus/SpineView/SpineLight")
 
 [node name="BG" type="TextureRect" parent="."]
 layout_mode = 1
@@ -66,19 +69,9 @@ grow_vertical = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="TempCharacter" type="TextureRect" parent="Character"]
-material = SubResource("ShaderMaterial_sc3j8")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-expand_mode = 1
-stretch_mode = 5
-
 [node name="LightMask" type="TextureRect" parent="Character"]
-clip_children = 1
+clip_children = 2
+material = SubResource("ShaderMaterial_o100e")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -261,8 +254,12 @@ grow_vertical = 2
 texture = ExtResource("2_i4cql")
 expand_mode = 1
 
-[node name="Spine" type="Control" parent="Bonus"]
-layout_mode = 1
+[node name="SubViewport" type="SubViewport" parent="Bonus"]
+transparent_bg = true
+size = Vector2i(1920, 1080)
+
+[node name="Spine" type="Control" parent="Bonus/SubViewport"]
+layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -271,8 +268,26 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SpineSprite" type="SpineSprite" parent="Bonus/Spine"]
+[node name="SpineSprite" type="SpineSprite" parent="Bonus/SubViewport/Spine"]
 script = ExtResource("10_a5m72")
+
+[node name="SpineView" type="TextureRect" parent="Bonus"]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_o100e")
+
+[node name="SpineLight" type="ColorRect" parent="Bonus/SpineView"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Story" type="ColorRect" parent="."]
 visible = false

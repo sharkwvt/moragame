@@ -2,7 +2,6 @@ extends Scene
 
 @export var menu_btn: MenuButton
 @export var character: TextureRect
-@export var character_temp: TextureRect
 @export var character_light_mask: TextureRect
 @export var character_light: ColorRect
 @export var progress_bar: NinePatchRect
@@ -20,6 +19,7 @@ extends Scene
 # bonus
 @export var bonus_view: Control
 @export var spine_sprite: SpineSpriteEx
+@export var spine_light: ColorRect
 
 var character_data: CharacterData
 var character_imgs = []
@@ -92,6 +92,7 @@ func reset_game():
 	game_state = STATE.對話
 	bonus_view.visible = false
 	tips_node.visible = false
+	character_light.color.a = 0
 	# 已通關時重新開始
 	if character_data.progress >= character_data.level or is_bonus:
 		now_level = 0
@@ -192,10 +193,9 @@ func play_character_switch_anim():
 		
 	var duration = 0.3
 	
-	character_temp.texture = character.texture
-	var mt: ShaderMaterial = character_temp.material
-	mt.set_shader_parameter("alpha", 1.0)
 	character_light_mask.texture = character.texture
+	var mt: ShaderMaterial = character_light_mask.material
+	mt.set_shader_parameter("alpha", 1.0)
 	character_light.color.a = 0
 	character.texture = character_imgs[now_level]
 	
@@ -224,12 +224,37 @@ func show_story():
 
 
 func show_bonus():
+	if !character_data.has_dlc:
+		quite()
+		return
+	
 	game_state = STATE.bonus
+	spine_sprite.skeleton_data_res = load(character_data.get_spine_path())
+	spine_sprite.play_first_anim()
+	
+	if character_tween:
+		character_tween.kill()
+		
+	var duration = 0.3
+	
+	character_light_mask.texture = character.texture
+	var mt: ShaderMaterial = character_light_mask.material
+	mt.set_shader_parameter("alpha", 1.0)
+	character_light_mask.texture = character.texture
+	character_light.color.a = 0
+	spine_light.color.a = 0.5
+	
+	character_tween = character.create_tween()
+	character_tween.tween_property(character, "scale", Vector2(1.1, 1.1), duration)
+	character_tween.parallel().tween_property(mt, "shader_parameter/alpha", 0.0, duration)
+	character_tween.parallel().tween_property(character_light, "color:a", 0.5, duration)
+	await  character_tween.finished
 	story_view.visible = false
 	game_view.visible = false
 	bonus_view.visible = true
-	spine_sprite.skeleton_data_res = load(character_data.get_spine_path())
-	spine_sprite.play_first_anim()
+	character_tween.kill()
+	character_tween = character.create_tween()
+	character_tween.tween_property(spine_light, "color:a", 0, duration)
 
 
 # 顯示雙方猜拳

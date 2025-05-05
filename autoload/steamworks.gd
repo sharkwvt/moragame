@@ -1,6 +1,7 @@
 extends Node
 
-var steam_appid: int = 3668520 # 480為測試用
+var steam_appid: int = 3668520
+#var steam_appid: int = 480 # 測試用
 var steam_id: int = 0
 var steam_name: String = "You"
 
@@ -78,10 +79,6 @@ func _on_steam_stats_ready(this_game: int, this_result: int, this_user: int) -> 
 	load_steam_achievements()
 
 
-func show_DLC():
-	Steam.activateGameOverlayToStore(1983901)
-
-
 # 讀取數據
 func load_steam_stats() -> void:
 	var statistics := Main.statistics
@@ -153,3 +150,10 @@ func set_achievement(this_achievement: String) -> void:
 		return
 	
 	print("成就設定完成")
+
+
+func show_DLC():
+	if is_steam_enabled():
+		Steam.activateGameOverlayToStore(1983901)
+	else:
+		Main.show_tip("需購買DLC")

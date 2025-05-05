@@ -18,11 +18,11 @@ func _ready() -> void:
 	anim.set_animation("lock_a", false)
 	anim.set_time_scale(0)
 
-func set_data(category_data: CategoryData, data: CharacterData):
+func set_data(_category_data: CategoryData, data: CharacterData):
 	character_data = data
 	#$AvatarBG/Avatar.texture = load(data.get_avatar_path())
 	#$NameBG/NameLabel.text = data.display_name
-	avatar_spine.skeleton_data_res = load(category_data.get_avatar_path())
+	#avatar_spine.skeleton_data_res = load(category_data.get_avatar_path())
 	can_bonus = data.progress >= data.level and data.level > 0
 	to_bonus = false
 	set_avatar_skin()
@@ -51,7 +51,7 @@ func play_unlock_anim():
 
 func set_avatar_skin():
 	var skin = character_data.get_avatar_name()
-	if character_data.get_spine_path() != "" and can_bonus:
+	if can_bonus:
 		skin += "2" if to_bonus else "1"
 	var skel: SpineSkeleton = avatar_spine.get_skeleton()
 	skel.set_skin_by_name(skin)

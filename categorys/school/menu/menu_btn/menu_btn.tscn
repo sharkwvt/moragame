@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://co36byxl5wv2s"]
+[gd_scene load_steps=7 format=3 uid="uid://ge275lpl1vjr"]
 
 [ext_resource type="Script" uid="uid://dqts3axngwg5d" path="res://scene/menu/menu_btn.gd" id="1_a0ov3"]
-[ext_resource type="SpineSkeletonDataResource" uid="uid://c5ag0s6vyrp6q" path="res://categorys/apartment/characters/photo_girl/photo.tres" id="2_0nwey"]
+[ext_resource type="SpineSkeletonDataResource" uid="uid://deopiuwp0arfq" path="res://spine/photo_gir/photo.tres" id="2_0nwey"]
 [ext_resource type="Script" uid="uid://busxpt8b3jr3b" path="res://extends/button_ex.gd" id="3_vssqm"]
 [ext_resource type="Texture2D" uid="uid://de7dqg6fww0vb" path="res://categorys/apartment/menu/menu_btn/bonus.png" id="4_43ibe"]
 [ext_resource type="SpineSkeletonDataResource" uid="uid://bld7of8wgr8cg" path="res://categorys/apartment/menu/menu_btn/spine/lock/lock.tres" id="5_isvjm"]

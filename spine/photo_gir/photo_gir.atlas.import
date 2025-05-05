@@ -1,0 +1,15 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://cfy68e6c3jj0c"
+path="res://.godot/imported/photo_gir.atlas-3d4a8de3155b979e6c6ecf332006c663.spatlas"
+
+[deps]
+
+source_file="res://spine/photo_gir/photo_gir.atlas"
+dest_files=["res://.godot/imported/photo_gir.atlas-3d4a8de3155b979e6c6ecf332006c663.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
