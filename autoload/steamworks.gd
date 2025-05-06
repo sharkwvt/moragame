@@ -2,6 +2,7 @@ extends Node
 
 var steam_appid: int = 3668520
 #var steam_appid: int = 480 # 測試用
+#var steam_appid: int = 236390 # 測試用
 var steam_id: int = 0
 var steam_name: String = "You"
 
@@ -53,15 +54,23 @@ func initialize_steam() -> void:
 		steam_name = Steam.getPersonaName()
 		print("steam_id " + str(steam_id))
 		print("steam_name " + steam_name)
-		dlc_data = Steam.getDLCData()
-		print(dlc_data)
 		
 		connect_steam_callbacks()
+		dlc_check()
 
 
 func connect_steam_callbacks() -> void:
 	Steam.current_stats_received.connect(_on_steam_stats_ready)
 	Steam.user_stats_received.connect(_on_steam_stats_ready)
+	Steam.dlc_installed.connect(_on_dlc_installed)
+
+
+func dlc_check():
+	dlc_data = Steam.getDLCData()
+	print("dlc_data: %s" % dlc_data)
+	for dic: Dictionary in dlc_data:
+		if Steam.isDLCInstalled(dic["id"]):
+			PckLoader.load_dlc_pck(dic["id"])
 
 
 func _on_steam_stats_ready(this_game: int, this_result: int, this_user: int) -> void:
@@ -152,8 +161,13 @@ func set_achievement(this_achievement: String) -> void:
 	print("成就設定完成")
 
 
-func show_DLC():
+func show_DLC_store():
 	if is_steam_enabled():
 		Steam.activateGameOverlayToStore(1983901)
 	else:
 		Main.show_tip("需購買DLC")
+
+
+func _on_dlc_installed(dlc_id: int):
+	print("DLC安裝完成：%s" % dlc_id)
+	PckLoader.load_dlc_pck(dlc_id)
