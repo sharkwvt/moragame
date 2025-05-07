@@ -125,6 +125,7 @@ func to_scene(scene: SCENE, anim_type = 0):
 func get_menu_scene() -> MenuScene:
 	return instance_scenes[SCENE.menu]
 
+#region Save and load
 func reload_data():
 	load_categorys_data()
 	load_talk_data()
@@ -136,21 +137,18 @@ func load_categorys_data():
 	
 	var dir = DirAccess.open(categorys_path)
 	if dir == null:
-		print("無法開啟資料夾: ", categorys_path)
+		Logger.log(str("無法開啟資料夾: ", categorys_path))
 		return
 	
 	dir.list_dir_begin()
 	var file_name = dir.get_next()
 	while file_name != "":
 		if dir.current_is_dir() and file_name != "." and file_name != "..":
-			print("load_category_data: ", file_name)
+			Logger.log(str("load_category_data: ", file_name))
 			var category_data = CategoryData.new()
 			category_data.category = file_name		
 			category_data.path = categorys_path + "/" + file_name
-			if FileAccess.file_exists(category_data.get_menu_path()):
-				category_data.menu = load(category_data.get_menu_path())
-			else:
-				print(category_data.get_menu_path() + " 不存在")
+			category_data.menu = load(category_data.get_menu_path())
 			categorys_data.append(category_data)
 			var json_data = get_json_data(category_json_path % file_name)
 			if !json_data.is_empty():
@@ -251,7 +249,7 @@ func load_csv():
 				TranslationServer.add_translation(load(file_path))
 			file_name = dir.get_next()
 		dir.list_dir_end()
-
+#endregion
 
 func get_json_data(path: String) -> Dictionary:
 	var json = JSON.new()
@@ -285,18 +283,6 @@ func show_talk_view(text):
 	instance_talk_view = talk_view.instantiate()
 	get_tree().root.add_child(instance_talk_view)
 	instance_talk_view.show_talk_anim(text)
-
-
-func play_sfx(sfx):
-	var audio_player = AudioStreamPlayer.new()
-	audio_player.stream = sfx
-	audio_player.bus = "SFX"
-	audio_player.finished.connect(audio_player.queue_free)
-	get_tree().root.add_child(audio_player)
-	audio_player.play()
-
-func play_btn_sfx():
-	play_sfx(btn_sfx)
 
 
 func show_tip(msg: String):
@@ -334,6 +320,18 @@ func create_dialog_view() -> DialogView:
 	return dialog
 
 
+func play_sfx(sfx):
+	var audio_player = AudioStreamPlayer.new()
+	audio_player.stream = sfx
+	audio_player.bus = "SFX"
+	audio_player.finished.connect(audio_player.queue_free)
+	get_tree().root.add_child(audio_player)
+	audio_player.play()
+
+func play_btn_sfx():
+	play_sfx(btn_sfx)
+
+
 func _on_music_finished():
 	music_player.play()
 
@@ -354,3 +352,6 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		if !TransitionEffect.main and current_scene.visible:
 			current_scene.return_scene()
+	
+	if event.is_action_pressed("show_log"):
+		Logger.show_log()
