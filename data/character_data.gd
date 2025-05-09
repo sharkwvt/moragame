@@ -14,7 +14,7 @@ func get_path() -> String:
 	return "res://categorys/" + category + "/characters/sex_girl_" + file_name
 
 func get_avatar() -> String:
-	return get_cg_path(0)
+	return get_cg_path(0) if ResourceLoader.exists(get_cg_path(0)) else ""
 
 func get_avatar_name() -> String:
 	return "photo_girl_" + file_name

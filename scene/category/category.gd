@@ -118,7 +118,11 @@ func refresh_info_avatar(dara: CategoryData):
 	for i in info_avatar_root.get_children().size():
 		var c_data: CharacterData = dara.characters[i]
 		var img_view: TextureRect = info_avatar_root.get_children()[i]
-		img_view.texture = load(c_data.get_avatar())
+		if c_data.get_avatar() != "":
+			img_view.texture = load(c_data.get_avatar())
+		else:
+			img_view.texture = Texture.new()
+
 
 func refresh():
 	info_view.visible = false
