@@ -82,7 +82,7 @@ func show_info_view(btn: CategoryBtn):
 	info_view.visible = true
 	
 	# 資訊文字
-	info_lbl.text = btn.c_data.category_title
+	info_lbl.text = tr(btn.c_data.category_title) + " (" + btn.c_data.get_progress_str() + ")"
 	info_desc.text = btn.c_data.category_desc
 	info_lbl.visible_characters = 0
 	info_desc.visible_characters = 0
