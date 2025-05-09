@@ -13,6 +13,9 @@ var has_dlc: bool
 func get_path() -> String:
 	return "res://categorys/" + category + "/characters/sex_girl_" + file_name
 
+func get_avatar() -> String:
+	return get_cg_path(0)
+
 func get_avatar_name() -> String:
 	return "photo_girl_" + file_name
 

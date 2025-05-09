@@ -5,6 +5,7 @@ class_name CategoryScene
 @export var info_lbl: Label
 @export var info_desc: Label
 @export var info_timer: Timer
+@export var info_avatar_root: ColorRect
 
 var category_btn = preload("res://scene/category/category_btn/category_btn.tscn")
 
@@ -15,6 +16,7 @@ var info_tween: Tween
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	create_character_btns()
+	create_info_avatar()
 	refresh()
 	$CPUParticles2D.move_to_front()
 	info_view.move_to_front()
@@ -58,6 +60,23 @@ func create_character_btns():
 		)
 		offset += btn.size.x + spaceing
 
+func create_info_avatar():
+	var count = 5
+	var offset = 10
+	for i in count:
+		var img_view = TextureRect.new()
+		img_view.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		img_view.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		img_view.size = Vector2(
+			info_avatar_root.size.x/count - offset*2,
+			info_avatar_root.size.y - offset*2
+		)
+		img_view.position = Vector2(
+			offset + (img_view.size.x + offset) * i,
+			offset
+		)
+		info_avatar_root.add_child(img_view)
+
 
 func show_info_view(btn: CategoryBtn):
 	info_view.visible = true
@@ -82,7 +101,7 @@ func show_info_view(btn: CategoryBtn):
 	var spacing = 0
 	info_view.position.y = btn.position.y + btn.size.y - info_view.size.y - 15
 	info_view.position.x = btn.position.x + btn.size.x + spacing
-	if btn.position.x > size.x/2.0:
+	if size.x - info_view.position.x < info_view.size.x:
 		info_view.position.x = btn.position.x - spacing - info_view.size.x
 	
 	# 資訊動畫
@@ -92,7 +111,14 @@ func show_info_view(btn: CategoryBtn):
 	#var duration = 1.0
 	#info_tween = info_view.create_tween()
 	#info_tween.tween_property(info_view, "modulate:a", 1.0, duration)
+	
+	refresh_info_avatar(btn.c_data)
 
+func refresh_info_avatar(dara: CategoryData):
+	for i in info_avatar_root.get_children().size():
+		var c_data: CharacterData = dara.characters[i]
+		var img_view: TextureRect = info_avatar_root.get_children()[i]
+		img_view.texture = load(c_data.get_avatar())
 
 func refresh():
 	info_view.visible = false
