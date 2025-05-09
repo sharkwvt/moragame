@@ -46,13 +46,14 @@ func set_btns():
 			continue
 		var c_data: CharacterData = category_data.characters[i]
 		btn.set_data(category_data, c_data)
-		if i > 0 and !btns[i-1].can_bonus:
-			btn.lock()
-		else:
-			if show_unlock_anim and c_data.progress == 0:
-				btn.play_unlock_anim()
-			else:
-				btn.open()
+		#if i > 0 and !btns[i-1].can_bonus:
+			#btn.lock()
+		#else:
+			#if show_unlock_anim and c_data.progress == 0:
+				#btn.play_unlock_anim()
+			#else:
+				#btn.open()
+		btn.open()
 
 
 func play_enter_effect(i):
