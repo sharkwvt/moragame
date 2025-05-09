@@ -18,12 +18,18 @@ func get_avatar_name() -> String:
 
 func get_cg_path(index) -> String:
 	var img_name = "sex_girl_" + file_name + "_lv" + str(index+1) + ".png"
-	return get_path().path_join(img_name)
+	var path = get_path().path_join(img_name)
+	return path
 
 func get_spine_path() -> String:
 	var spine_name = file_name + ".tres"
 	var path = get_path().path_join("spine").path_join(spine_name)
-	return path if FileAccess.file_exists(path) else ""
+	#return path if FileAccess.file_exists(path) else ""
+	return path if ResourceLoader.exists(path) else ""
 
 func check_dlc():
 	has_dlc = get_spine_path() != ""
+	#if Steamworks.is_steam_enabled():
+		#has_dlc = id == 0
+	#else:
+		#has_dlc = get_spine_path() != ""

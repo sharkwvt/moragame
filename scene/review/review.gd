@@ -193,8 +193,14 @@ func _on_category_btn_pressed(index):
 	for btn: Button in category_list_btns:
 		btn.button_pressed = false
 	category_list_btns[index].button_pressed = true
-	selected_category = Main.categorys_data[index]
-	refresh_characters()
+	
+	var data: CategoryData = Main.categorys_data[index]
+	if data.has_dlc:
+		selected_category = data
+		refresh_characters()
+	else:
+		Steamworks.show_DLC_store(selected_category.dlc_id)
+	
 
 
 func _on_character_button_pressed(extra_arg_0: int) -> void:

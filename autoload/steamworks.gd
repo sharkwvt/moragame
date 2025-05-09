@@ -2,7 +2,7 @@ extends Node
 
 var steam_appid: int = 3668520
 #var steam_appid: int = 480 # 測試用
-#var steam_appid: int = 236390 # 測試用
+#var steam_appid: int = 3681730 # playtest
 var steam_id: int = 0
 var steam_name: String = "You"
 
@@ -13,6 +13,11 @@ var achievements: Dictionary = {
 }
 
 var dlc_data: Array
+enum DLC {
+	醫院 = 3728980,
+	學校 = 3728990,
+	大樓 = 3729000
+}
 
 func _init() -> void:
 	initialize_steam()
@@ -66,6 +71,7 @@ func dlc_check():
 	Logger.log("dlc_data: %s" % str(dlc_data))
 	for dic: Dictionary in dlc_data:
 		if Steam.isDLCInstalled(dic["id"]):
+			Logger.log("isDLCInstalled: %s" % str(dic["id"]))
 			PckLoader.load_dlc_pck(dic["id"])
 
 
@@ -157,9 +163,10 @@ func set_achievement(this_achievement: String) -> void:
 	Logger.log("成就設定完成")
 
 
-func show_DLC_store():
+func show_DLC_store(id: int = 1983901):
+	Logger.log(str("show_DLC_store: ", id))
 	if is_steam_enabled():
-		Steam.activateGameOverlayToStore(1983901)
+		Steam.activateGameOverlayToStore(id)
 	else:
 		Main.show_tip("需購買DLC")
 

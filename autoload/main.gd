@@ -127,6 +127,7 @@ func get_menu_scene() -> MenuScene:
 
 #region Save and load
 func reload_data():
+	Logger.log("platform: " + Main.this_platform)
 	load_categorys_data()
 	load_talk_data()
 	load_csv()
@@ -155,6 +156,7 @@ func load_categorys_data():
 				category_data.id = int(json_data["category"]["id"])
 				category_data.category_title=json_data["category"]["title"]
 				category_data.category_desc=json_data["category"]["desc"]
+				category_data.check_dlc()
 				var characters: Array = json_data["characters"]
 				for character: Dictionary in characters:
 					var data = CharacterData.new()
@@ -343,7 +345,7 @@ func _input(event):
 		click_effect.emitting = true
 		click_effect.position = Vector2(event.position.x+0,event.position.y+0)
 		get_tree().root.add_child(click_effect)
-		
+
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("scale_time"):
 		#get_tree().paused = not get_tree().paused

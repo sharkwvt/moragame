@@ -2,6 +2,7 @@ extends Object
 class_name CategoryData
 
 var id: int
+var dlc_id: int
 var category: String
 var category_title: String
 var category_desc: String
@@ -10,6 +11,7 @@ var all_level: int
 var progress: float
 var path: String
 var menu: PackedScene
+var has_dlc: bool
 
 func get_img_path(type) -> String:
 	var name = "building"
@@ -37,3 +39,21 @@ func get_progress_str() -> String:
 
 func get_menu_path() -> String:
 	return path + "/menu/menu.tscn"
+
+
+func check_dlc():
+	match category:
+		"hospital":
+			dlc_id = Steamworks.DLC.醫院
+		"school":
+			dlc_id = Steamworks.DLC.學校
+		"building":
+			dlc_id = Steamworks.DLC.大樓
+	
+	if id == 0:
+		has_dlc = true
+	else:
+		if Steamworks.is_steam_enabled():
+			has_dlc = Steam.isDLCInstalled(dlc_id)
+		else:
+			has_dlc = ResourceLoader.exists(get_menu_path())

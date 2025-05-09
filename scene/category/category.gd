@@ -102,9 +102,10 @@ func refresh():
 		var data = categorys[i]
 		btn.set_data(data)
 		if i > 0:
-			var temp: CategoryData = categorys[i-1]
-			btn.is_lock = temp.progress != temp.all_level or data.all_level == 0
-			btn.disabled = btn.is_lock
+			#var temp: CategoryData = categorys[i-1]
+			#btn.is_lock = temp.progress != temp.all_level or data.all_level == 0
+			#btn.disabled = btn.is_lock
+			btn.is_lock = !data.has_dlc
 		btn.refresh_light_progress()
 
 
@@ -116,9 +117,12 @@ func return_scene():
 	Main.to_scene(Main.SCENE.start)
 
 
-func _on_category_btn_pressed(data):
-	Main.current_category_data = data
-	Main.to_scene(Main.SCENE.menu, 2)
+func _on_category_btn_pressed(data: CategoryData):
+	if data.has_dlc:
+		Main.current_category_data = data
+		Main.to_scene(Main.SCENE.menu, 2)
+	else:
+		Steamworks.show_DLC_store(data.dlc_id)
 
 
 func _on_setting_button_pressed() -> void:
