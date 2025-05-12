@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://dru60vogwkrk2"]
+[gd_scene load_steps=13 format=3 uid="uid://dru60vogwkrk2"]
 
 [ext_resource type="Script" uid="uid://bwgh38gfexbw0" path="res://scene/category/category.gd" id="1_fsov7"]
+[ext_resource type="PackedScene" uid="uid://go5vh14alrtp" path="res://scene/category/category_btn/category_btn.tscn" id="2_6p158"]
 [ext_resource type="Texture2D" uid="uid://b5km4if17uloy" path="res://scene/category/category_bg.png" id="2_32ujb"]
 [ext_resource type="Texture2D" uid="uid://brlcx2erf54ob" path="res://image/setting.png" id="3_iof1k"]
 [ext_resource type="Script" uid="uid://74aly0fqsq5b" path="res://extends/spine_sprite_ex.gd" id="4_vodge"]
@@ -9,9 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://d3rxs3qwnxuwl" path="res://image/particle/rain_drop_1x16.png" id="6_3ulg3"]
 [ext_resource type="Texture2D" uid="uid://twb4hgdg6oew" path="res://image/particle/rain_drop_2x30.png" id="7_at8md"]
 [ext_resource type="SpineSkeletonDataResource" uid="uid://ck8rd6gxpymn8" path="res://scene/category/spine/scen.tres" id="8_larw7"]
-[ext_resource type="Texture2D" uid="uid://cn5qct58mryrh" path="res://image/option_bg.png" id="10_dls4e"]
+[ext_resource type="Texture2D" uid="uid://4t3olkfwgpmk" path="res://scene/category/info/info_bg.png" id="10_ultki"]
+[ext_resource type="Texture2D" uid="uid://c637hli2xtyp8" path="res://scene/category/info/steam_dlc.png" id="11_ultki"]
 
-[node name="Category" type="Control" node_paths=PackedStringArray("info_view", "info_lbl", "info_desc", "info_timer", "info_avatar_root")]
+[node name="Category" type="Control" node_paths=PackedStringArray("info_view", "info_lbl", "info_desc", "info_timer", "info_avatar_root", "info_dlc_mark")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,10 +22,12 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fsov7")
 info_view = NodePath("InfoView")
-info_lbl = NodePath("InfoView/Text/title")
-info_desc = NodePath("InfoView/Text/title/desc")
+info_lbl = NodePath("InfoView/TitleLabel")
+info_desc = NodePath("InfoView/DescLabel")
 info_timer = NodePath("InfoView/Timer")
 info_avatar_root = NodePath("InfoView/Avatar")
+info_dlc_mark = NodePath("InfoView/DLC")
+category_btn = ExtResource("2_6p158")
 
 [node name="BG" type="TextureRect" parent="."]
 visible = false
@@ -106,71 +110,66 @@ initial_velocity_min = 20.0
 initial_velocity_max = 100.0
 color = Color(0.454524, 0.454524, 0.454524, 1)
 
-[node name="InfoView" type="NinePatchRect" parent="."]
+[node name="InfoView" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 600.0
-offset_bottom = 400.0
-texture = ExtResource("10_dls4e")
-patch_margin_left = 30
-patch_margin_top = 30
-patch_margin_right = 30
-patch_margin_bottom = 30
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("10_ultki")
 
 [node name="Timer" type="Timer" parent="InfoView"]
 wait_time = 0.1
 
-[node name="Text" type="ColorRect" parent="InfoView"]
-clip_children = 1
+[node name="TitleLabel" type="Label" parent="InfoView"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 52.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 25
+text = "test"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DescLabel" type="Label" parent="InfoView"]
 layout_mode = 1
 anchors_preset = -1
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 0.6
-offset_left = 30.0
-offset_top = 30.0
-offset_right = -30.0
+anchor_bottom = 0.5
+offset_left = 25.0
+offset_top = -120.0
+offset_right = -25.0
+offset_bottom = 55.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="title" type="Label" parent="InfoView/Text"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 32
-text = "test"
-autowrap_mode = 3
-
-[node name="desc" type="Label" parent="InfoView/Text/title"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 12.0
-offset_bottom = 1010.0
-grow_horizontal = 0
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 25
 text = "請慎重選用進階選項。除非您已經對這些選項十分熟悉，否則請在 Steamworks 開發者群組討論區中與我們討論。
-
  啟用 ISteamApps::GetLaunchCommandLine()。在以命令列啟動您的應用程式時，此舉將停用 Steam 的彈出警告。
 
  覆寫 Steam Deck 外部顯示器的解析度 (?) 
 
 "
 autowrap_mode = 3
+clip_text = true
 
 [node name="Avatar" type="ColorRect" parent="InfoView"]
 layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.65
-anchor_right = 1.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 30.0
-offset_right = -30.0
-offset_bottom = -30.0
+offset_top = -54.0
+offset_bottom = -54.0
 grow_horizontal = 2
 grow_vertical = 0
 color = Color(1, 1, 1, 0)
+
+[node name="DLC" type="TextureRect" parent="InfoView"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("11_ultki")
 
 [connection signal="pressed" from="SettingButton" to="." method="_on_setting_button_pressed"]
 [connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]

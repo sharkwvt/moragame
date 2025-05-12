@@ -1,13 +1,15 @@
 extends Scene
 class_name CategoryScene
 
-@export var info_view: NinePatchRect
+@export var info_view: TextureRect
 @export var info_lbl: Label
 @export var info_desc: Label
 @export var info_timer: Timer
 @export var info_avatar_root: ColorRect
+@export var info_dlc_mark: TextureRect
+@export var category_btn: PackedScene
 
-var category_btn = preload("res://scene/category/category_btn/category_btn.tscn")
+var avatar_path = "res://scene/category/info/avatar/"
 
 var btns = []
 var info_char_index = 0
@@ -62,18 +64,14 @@ func create_character_btns():
 
 func create_info_avatar():
 	var count = 5
-	var offset = 10
+	var offset = 75
 	for i in count:
 		var img_view = TextureRect.new()
-		img_view.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-		img_view.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		img_view.size = Vector2(
-			info_avatar_root.size.x/count - offset*2,
-			info_avatar_root.size.y - offset*2
-		)
+		img_view.grow_horizontal = Control.GROW_DIRECTION_BOTH
+		img_view.grow_vertical = Control.GROW_DIRECTION_BOTH
 		img_view.position = Vector2(
-			offset + (img_view.size.x + offset) * i,
-			offset
+			offset * (i - (count-1)/2.0),
+			0
 		)
 		info_avatar_root.add_child(img_view)
 
@@ -115,6 +113,8 @@ func show_info_view(btn: CategoryBtn):
 	#info_tween = info_view.create_tween()
 	#info_tween.tween_property(info_view, "modulate:a", 1.0, duration)
 	
+	info_dlc_mark.visible = !btn.c_data.has_dlc
+	
 	refresh_info_avatar(btn.c_data)
 
 func refresh_info_avatar(dara: CategoryData):
@@ -122,7 +122,8 @@ func refresh_info_avatar(dara: CategoryData):
 		var c_data: CharacterData = dara.characters[i]
 		var img_view: TextureRect = info_avatar_root.get_children()[i]
 		if c_data.get_avatar() != "":
-			img_view.texture = load(c_data.get_avatar())
+			var path = avatar_path + "sex_girl_" + c_data.file_name + ".png"
+			img_view.texture = load(path)
 		else:
 			img_view.texture = Texture.new()
 
