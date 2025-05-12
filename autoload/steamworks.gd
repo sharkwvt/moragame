@@ -7,9 +7,7 @@ var steam_id: int = 0
 var steam_name: String = "You"
 
 var achievements: Dictionary = {
-	"成就ID1": false,
-	"成就ID2": false,
-	"成就ID3": false
+	"ACHIEVEMENT_0": false # 開始遊戲
 }
 
 var dlc_data: Array
@@ -30,7 +28,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	Steam.run_callbacks()
+	if is_steam_enabled():
+		Steam.run_callbacks()
 
 
 func is_steam_enabled() -> bool:
@@ -68,7 +67,7 @@ func connect_steam_callbacks() -> void:
 
 func dlc_check():
 	dlc_data = Steam.getDLCData()
-	Logger.log("dlc_data: %s" % str(dlc_data))
+	#Logger.log("dlc_data: %s" % str(dlc_data))
 	for dic: Dictionary in dlc_data:
 		if Steam.isDLCInstalled(dic["id"]):
 			Logger.log("isDLCInstalled: %s" % str(dic["id"]))
@@ -105,6 +104,7 @@ func load_steam_stats() -> void:
 
 # 讀取成就
 func load_steam_achievements() -> void:
+	Logger.log(str("成就資料: ", achievements))
 	for this_achievement in achievements.keys():
 		var steam_achievement: Dictionary = Steam.getAchievement(this_achievement)
 		
@@ -149,6 +149,7 @@ func set_achievement(this_achievement: String) -> void:
 		return
 	
 	achievements[this_achievement] = true
+	Main.save_game()
 	
 	if not Steam.setAchievement(this_achievement):
 		Logger.log("成就設定失敗: %s" % this_achievement)

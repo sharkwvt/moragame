@@ -87,14 +87,17 @@ func show_info_view(btn: CategoryBtn):
 	info_lbl.visible_characters = 0
 	info_desc.visible_characters = 0
 	
-	if btn.is_lock:
-		info_timer.stop()
-		info_lbl.text = "未開放"
-		info_lbl.visible_characters = -1
-	else :
-		info_char_index = 0
-		info_timer.wait_time = 0.1
-		info_timer.start()
+	#if btn.is_lock:
+		#info_timer.stop()
+		#info_lbl.text = "未開放"
+		#info_lbl.visible_characters = -1
+	#else :
+		#info_char_index = 0
+		#info_timer.wait_time = 0.1
+		#info_timer.start()
+	info_char_index = 0
+	info_timer.wait_time = 0.1
+	info_timer.start()
 	
 	
 	# 資訊位置

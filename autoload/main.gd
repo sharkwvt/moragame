@@ -49,9 +49,11 @@ var music_player: AudioStreamPlayer
 var this_platform: String = "other" # 遊戲平台
 
 const STAT_KEY_Characters = "characters_data"
+const STAT_KEY_Achievements = "achievements_data"
 # 要同步的數據
 var statistics: Dictionary = {
-	STAT_KEY_Characters: []
+	STAT_KEY_Characters: [],
+	STAT_KEY_Achievements: []
 }
 
 # Called when the node enters the scene tree for the first time.
@@ -195,7 +197,9 @@ func save_game():
 			"has_bonus" = data.has_bonus
 		}
 		statistics[STAT_KEY_Characters].append(dic)
-		
+	
+	statistics[STAT_KEY_Achievements] = Steamworks.achievements
+	
 	#save_file.store_line(JSON.stringify(statistics))
 	save_file.store_var(statistics)
 
@@ -233,6 +237,9 @@ func load_game_save():
 			if obj["id"] == data.id:
 				data.progress = obj["progress"]
 				data.has_bonus = obj["has_bonus"]
+	
+	if statistics.find_key(STAT_KEY_Achievements):
+		Steamworks.achievements = statistics[STAT_KEY_Achievements]
 
 
 func load_csv():
