@@ -23,7 +23,7 @@ var cg_btns = []
 var review_imgs = []
 var skeleton_data_res
 var view_index = 0
-var has_spine = false
+var has_bonus = false
 var cam_org_pos: Vector2
 
 var selected_category: CategoryData
@@ -58,9 +58,10 @@ func show_cg_btns():
 		var btn: ReviewCGBtn = cg_btns[i]
 		var img: Texture
 		btn.is_lock = false
+		btn.has_dlc = selected_character.has_dlc
 		if i < review_imgs.size():
 			img = review_imgs[i]
-		elif has_spine:
+		elif has_bonus:
 			pass # TODO: 動態圖
 		else:
 			btn.is_lock = true
@@ -72,7 +73,7 @@ func show_full_view():
 		full_view_spine.visible = false
 		full_view_img.texture = review_imgs[view_index]
 		full_view_img.visible = true
-	elif view_index == review_imgs.size() and has_spine:
+	elif view_index == review_imgs.size() and has_bonus:
 		if selected_character.has_dlc:
 			# 顯示spine
 			full_view_img.visible = false
@@ -135,7 +136,7 @@ func load_imgs():
 	review_imgs.clear()
 	for i in data.progress+1:
 		review_imgs.append(load(data.get_cg_path(i)))
-	if has_spine and data.has_dlc:
+	if has_bonus and data.has_dlc:
 		skeleton_data_res = load(data.get_spine_path())
 
 
@@ -195,7 +196,7 @@ func _on_category_btn_pressed(index):
 
 func _on_character_button_pressed(extra_arg_0: int) -> void:
 	selected_character = selected_category.characters[extra_arg_0]
-	has_spine = selected_character.has_bonus
+	has_bonus = selected_character.has_bonus
 	show_cg_btns()
 
 

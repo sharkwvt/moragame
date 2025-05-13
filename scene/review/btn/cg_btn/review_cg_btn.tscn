@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ctcpdov2tlyk1"]
+[gd_scene load_steps=8 format=3 uid="uid://ctcpdov2tlyk1"]
 
 [ext_resource type="Texture2D" uid="uid://c0k1ysge3lyer" path="res://scene/review/btn/cg_btn/re_photo_bg.png.jpg" id="1_lrumq"]
 [ext_resource type="Script" uid="uid://ctb44hdetnser" path="res://scene/review/btn/cg_btn/review_cg_btn.gd" id="1_tlpme"]
@@ -6,8 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://dvgww1dt2buk1" path="res://scene/review/btn/cg_btn/lock.png" id="4_r4u2u"]
 [ext_resource type="Texture2D" uid="uid://d37ki8uiwtyyg" path="res://scene/review/btn/cg_btn/re_video.png" id="4_uew0n"]
 [ext_resource type="Texture2D" uid="uid://oshmv10dnkr" path="res://image/箭頭.png" id="5_uew0n"]
+[ext_resource type="Texture2D" uid="uid://c38i2wa6cew61" path="res://scene/review/btn/cg_btn/dlc.png" id="7_877di"]
 
-[node name="ReviewCgBtn" type="Button" node_paths=PackedStringArray("image_view", "frame_view", "play_view", "lock_view")]
+[node name="ReviewCgBtn" type="Button" node_paths=PackedStringArray("image_view", "frame_view", "play_view", "lock_view", "dlc_view")]
 icon = ExtResource("1_lrumq")
 flat = true
 script = ExtResource("1_tlpme")
@@ -15,6 +16,7 @@ image_view = NodePath("Image")
 frame_view = NodePath("Frame")
 play_view = NodePath("Play")
 lock_view = NodePath("Lock")
+dlc_view = NodePath("DLC")
 frame_img_photo = ExtResource("3_4k1dh")
 frame_img_video = ExtResource("4_uew0n")
 metadata/_custom_type_script = "uid://busxpt8b3jr3b"
@@ -64,3 +66,9 @@ offset_bottom = 51.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_r4u2u")
+
+[node name="DLC" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("7_877di")
