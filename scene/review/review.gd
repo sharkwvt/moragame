@@ -4,10 +4,10 @@ extends Scene
 
 @export var category_btn: PackedScene
 @export var character_btn: PackedScene
+@export var cg_btn: PackedScene
 
 @export var categorys_view: Panel
 @export var characters_view: Control
-@export var cg_view_root: NinePatchRect
 @export var cg_btns_view: Control
 @export var full_view_root: ColorRect
 @export var full_view_img: TextureRect
@@ -15,9 +15,6 @@ extends Scene
 @export var sub_viewport: SubViewport
 @export var cam: Camera2D
 @export var slider: VSlider
-
-
-@export var play_icon: Texture
 
 var category_list_btns = []
 var character_btns = []
@@ -54,21 +51,20 @@ func play_start_anim():
 	
 
 func show_cg_btns():
-	cg_view_root.visible = true
 	cg_btns_view.visible = true
 	load_imgs()
 	
-	var data: CharacterData = selected_character
 	for i in cg_btns.size():
-		var btn: Button = cg_btns[i]
-		btn.visible = true
-		if i <= data.level:
-			btn.icon = review_imgs[i]
+		var btn: ReviewCGBtn = cg_btns[i]
+		var img: Texture
+		btn.is_lock = false
+		if i < review_imgs.size():
+			img = review_imgs[i]
 		elif has_spine:
-			btn.icon = play_icon
-			btn.expand_icon = false
+			pass # TODO: 動態圖
 		else:
-			btn.visible = false
+			btn.is_lock = true
+		btn.refresh(img)
 
 
 func show_full_view():
@@ -94,15 +90,12 @@ func show_full_view():
 
 
 func create_category_btns():
-	var offset_y = 20
+	var offset_y = 10
 	for i in Main.categorys_data.size():
 		var category_data: CategoryData = Main.categorys_data[i]
-		var btn: Button = category_btn.instantiate()
-		btn.text = tr(category_data.category_title) + " " + category_data.get_progress_str()
-		btn.position = Vector2(
-			0,
-			offset_y + i * (btn.size.y + offset_y)
-		)
+		var btn: ReviewCategoryBtn = category_btn.instantiate()
+		btn.set_data(category_data)
+		btn.position.y = offset_y + i * (btn.size.y + offset_y)
 		btn.pressed.connect(_on_category_btn_pressed.bind(i))
 		categorys_view.add_child(btn)
 		category_list_btns.append(btn)
@@ -125,14 +118,9 @@ func create_cg_btns():
 	var count = 4
 	var offset = 30
 	for i in count:
-		var btn = ButtonEx.new()
-		btn.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		btn.vertical_icon_alignment = VERTICAL_ALIGNMENT_CENTER
-		btn.expand_icon = true
-		btn.size = Vector2(
-			(cg_view_root.size.x - offset * 3)/2.0,
-			(cg_view_root.size.y - offset * 3)/2.0
-		)
+		var btn = cg_btn.instantiate()
+		btn.is_video = i >= 3
+		btn.position.x = 0 # 不知為何這樣才能讀到size
 		btn.position = Vector2(
 			offset + (offset + btn.size.x) * (i%2),
 			offset + (offset + btn.size.y) * floor(i/2.0)
@@ -145,7 +133,7 @@ func create_cg_btns():
 func load_imgs():
 	var data: CharacterData = selected_character
 	review_imgs.clear()
-	for i in data.level+1:
+	for i in data.progress+1:
 		review_imgs.append(load(data.get_cg_path(i)))
 	if has_spine and data.has_dlc:
 		skeleton_data_res = load(data.get_spine_path())
@@ -158,7 +146,6 @@ func refresh_characters():
 			btn.visible = false
 			continue
 		var data: CharacterData = selected_category.characters[i]
-		btn.visible = data.progress >= data.level
 		btn.set_data(selected_category, data)
 
 
@@ -166,9 +153,8 @@ func refresh():
 	# 更新主題按鈕
 	for i in Main.categorys_data.size():
 		var category_data: CategoryData = Main.categorys_data[i]
-		var btn = category_list_btns[i]
-		btn.text = tr(category_data.category_title) + " " + category_data.get_progress_str()
-		btn.button_pressed = false
+		var btn: ReviewCategoryBtn = category_list_btns[i]
+		btn.set_data(category_data)
 
 
 func show_scene():
@@ -186,13 +172,17 @@ func return_scene():
 
 
 func _on_category_btn_pressed(index):
-	cg_view_root.visible = false
 	cg_btns_view.visible = false
 	full_view_root.visible = false
 	full_view_spine.visible = false
-	for btn: Button in category_list_btns:
-		btn.button_pressed = false
-	category_list_btns[index].button_pressed = true
+	for i in category_list_btns.size():
+		var btn: ReviewCategoryBtn = category_list_btns[i]
+		if i != index:
+			btn.button_pressed = false
+			btn.icon = btn.img_n
+		else:
+			btn.button_pressed = true
+			btn.icon = btn.img_s
 	
 	var data: CategoryData = Main.categorys_data[index]
 	if data.has_dlc:

@@ -3,11 +3,13 @@ extends Node
 var steam_appid: int = 3668520
 #var steam_appid: int = 480 # 測試用
 #var steam_appid: int = 3681730 # playtest
+#var steam_appid: int = 1085660
 var steam_id: int = 0
 var steam_name: String = "You"
 
+const ACHV_Start = "ACHIEVEMENT_0"
 var achievements: Dictionary = {
-	"ACHIEVEMENT_0": false # 開始遊戲
+	ACHV_Start: false # 開始遊戲
 }
 
 var dlc_data: Array
@@ -28,8 +30,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if is_steam_enabled():
-		Steam.run_callbacks()
+	pass
 
 
 func is_steam_enabled() -> bool:
@@ -41,7 +42,7 @@ func is_steam_enabled() -> bool:
 # steam 初始化
 func initialize_steam() -> void:
 	if Engine.has_singleton("Steam"):
-		var initialized: Dictionary = Steam.steamInitEx(steam_appid)
+		var initialized: Dictionary = Steam.steamInitEx(steam_appid, true)
 		
 		Logger.log("[STEAM] 初始化: %s" % initialized)
 		

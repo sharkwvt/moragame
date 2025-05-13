@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cllgmvngq6gop"
-path="res://.godot/imported/iphone.png-af7671536d26a03300f00b32743897ff.ctex"
+uid="uid://bs6qsauor2k08"
+path="res://.godot/imported/phone_a.png-a7a34ea52082da5fde117f7a9213b314.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scene/review/iphone.png"
-dest_files=["res://.godot/imported/iphone.png-af7671536d26a03300f00b32743897ff.ctex"]
+source_file="res://scene/review/phone_a.png"
+dest_files=["res://.godot/imported/phone_a.png-a7a34ea52082da5fde117f7a9213b314.ctex"]
 
 [params]
 

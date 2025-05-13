@@ -13,6 +13,8 @@ func _ready() -> void:
 	Main.play_music(Main.music_1)
 	setup()
 	play_start_anim()
+	if Steamworks.is_steam_enabled():
+		Steamworks.set_achievement(Steamworks.ACHV_Start)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
