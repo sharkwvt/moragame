@@ -1,7 +1,7 @@
 extends ButtonEx
 class_name ReviewCategoryBtn
 
-@export var lbl: Label
+@export var lbl: LabelEx
 @export var dlc_view: TextureRect
 @export var img_n: Texture
 @export var img_s: Texture

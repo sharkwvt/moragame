@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dru60vogwkrk2"]
+[gd_scene load_steps=14 format=3 uid="uid://dru60vogwkrk2"]
 
 [ext_resource type="Script" uid="uid://bwgh38gfexbw0" path="res://scene/category/category.gd" id="1_fsov7"]
 [ext_resource type="PackedScene" uid="uid://go5vh14alrtp" path="res://scene/category/category_btn/category_btn.tscn" id="2_6p158"]
@@ -12,6 +12,7 @@
 [ext_resource type="SpineSkeletonDataResource" uid="uid://ck8rd6gxpymn8" path="res://scene/category/spine/scen.tres" id="8_larw7"]
 [ext_resource type="Texture2D" uid="uid://4t3olkfwgpmk" path="res://scene/category/info/info_bg.png" id="10_ultki"]
 [ext_resource type="Texture2D" uid="uid://c637hli2xtyp8" path="res://scene/category/info/steam_dlc.png" id="11_ultki"]
+[ext_resource type="Script" uid="uid://b7a8k4lq1idu8" path="res://extends/label_ex.gd" id="12_n1nol"]
 
 [node name="Category" type="Control" node_paths=PackedStringArray("info_view", "info_lbl", "info_desc", "info_timer", "info_avatar_root", "info_dlc_mark")]
 layout_mode = 3
@@ -121,14 +122,16 @@ wait_time = 0.1
 
 [node name="TitleLabel" type="Label" parent="InfoView"]
 layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 52.0
+anchors_preset = -1
+anchor_left = 0.18
+anchor_right = 0.82
+anchor_bottom = 0.15
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 35
 text = "test"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("12_n1nol")
 
 [node name="DescLabel" type="Label" parent="InfoView"]
 layout_mode = 1

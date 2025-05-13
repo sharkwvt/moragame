@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://drs1erfxicjah"]
+[gd_scene load_steps=6 format=3 uid="uid://drs1erfxicjah"]
 
 [ext_resource type="Texture2D" uid="uid://dxemph0xi4phb" path="res://scene/review/btn/category_btn/folder_d.png" id="1_fy5by"]
 [ext_resource type="Script" uid="uid://bb4mdw3m10nv2" path="res://scene/review/btn/category_btn/review_category_btn.gd" id="2_fy5by"]
 [ext_resource type="Texture2D" uid="uid://3tumctnvedqw" path="res://scene/review/btn/category_btn/dlc.png" id="3_55t6v"]
 [ext_resource type="Texture2D" uid="uid://dwikte3d42or2" path="res://scene/review/btn/category_btn/folder_e.png" id="3_l3w7l"]
+[ext_resource type="Script" uid="uid://b7a8k4lq1idu8" path="res://extends/label_ex.gd" id="4_twvds"]
 
 [node name="Btn" type="Button" node_paths=PackedStringArray("lbl", "dlc_view")]
 anchors_preset = 5
@@ -24,17 +25,19 @@ img_s = ExtResource("3_l3w7l")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 4
+anchors_preset = -1
+anchor_left = 0.363
 anchor_top = 0.5
+anchor_right = 0.95
 anchor_bottom = 0.5
-offset_left = 126.05
-offset_top = -22.0
-offset_right = 254.05
-offset_bottom = 22.0
+grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 30
 text = "主題 00%"
 vertical_alignment = 1
+clip_text = true
+script = ExtResource("4_twvds")
+metadata/_custom_type_script = "uid://b7a8k4lq1idu8"
 
 [node name="DLC" type="TextureRect" parent="."]
 layout_mode = 0
