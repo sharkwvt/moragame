@@ -25,6 +25,8 @@ func _ready() -> void:
 	info_timer.timeout.connect(_on_timer_timeout)
 	$SpineBG/SpineSprite.play_first_anim()
 	Main.show_talk_view("挑一個好地點出擊，獲取勝利吧！")
+	
+	Steamworks.set_achievement(Steamworks.ACHV_Start)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

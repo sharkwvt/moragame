@@ -8,8 +8,12 @@ var steam_id: int = 0
 var steam_name: String = "You"
 
 const ACHV_Start = "ACHIEVEMENT_0"
+const ACHV_Win = "ACHIEVEMENT_1"
+const ACHV_BonusWin = "ACHIEVEMENT_2"
 var achievements: Dictionary = {
-	ACHV_Start: false # 開始遊戲
+	ACHV_Start: false,			# 開始遊戲
+	ACHV_Win: false,				# 首勝
+	ACHV_BonusWin: false			# 連勝
 }
 
 var dlc_data: Array
@@ -145,6 +149,10 @@ func set_statistic(this_stat: String, new_value: int = 0) -> void:
 
 # 設定成就
 func set_achievement(this_achievement: String) -> void:
+	if !Steamworks.is_steam_enabled():
+		Logger.log("Steam未啟動")
+		return
+	
 	if not achievements.has(this_achievement):
 		Logger.log("成就不存在: %s" % this_achievement)
 		return

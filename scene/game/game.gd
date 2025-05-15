@@ -108,6 +108,7 @@ func refresh_game():
 	#$"Game/進度".text = "進度 " + str(now_level) + "/" + str(character_data.level)
 	set_progress(float(now_level)/character_data.level)
 	if now_level >= character_data.level:
+		Steamworks.set_achievement(Steamworks.ACHV_BonusWin if is_bonus else Steamworks.ACHV_Win)
 		game_state = STATE.通關
 
 
