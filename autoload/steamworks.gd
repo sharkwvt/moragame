@@ -21,7 +21,8 @@ var dlc_data: Array
 enum DLC {
 	醫院 = 3728980,
 	學校 = 3728990,
-	大樓 = 3729000
+	大樓 = 3729000,
+	動畫1 = 3756280
 }
 
 var dlc_tip: Control

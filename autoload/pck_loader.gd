@@ -19,6 +19,8 @@ func load_dlc_pck(dlc_id: int):
 			pck_name = "gym.pck"
 		Steamworks.DLC.大樓:
 			pck_name = "building.pck"
+		Steamworks.DLC.動畫1:
+			pck_name = "animation1.pck"
 		_:
 			pck_name = "dlc.pck"
 	var pck_path = file_dir.path_join(pck_name)
