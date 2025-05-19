@@ -158,7 +158,7 @@ func _on_category_btn_pressed(data: CategoryData):
 		Main.current_category_data = data
 		Main.to_scene(Main.SCENE.menu, 2)
 	else:
-		Steamworks.show_DLC_store(data.dlc_id)
+		Steamworks.show_DLC_tip(data.dlc_id)
 
 
 func _on_setting_button_pressed() -> void:

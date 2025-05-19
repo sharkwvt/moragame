@@ -3,9 +3,10 @@ extends Node
 var steam_appid: int = 3668520
 #var steam_appid: int = 480 # 測試用
 #var steam_appid: int = 3681730 # playtest
-#var steam_appid: int = 1085660
 var steam_id: int = 0
 var steam_name: String = "You"
+
+var img_path = "res://image/steam/%s"
 
 const ACHV_Start = "ACHIEVEMENT_0"
 const ACHV_Win = "ACHIEVEMENT_1"
@@ -22,6 +23,9 @@ enum DLC {
 	學校 = 3728990,
 	大樓 = 3729000
 }
+
+var dlc_tip: Control
+var return_btn_path = "res://common/btn/return/return_button.tscn"
 
 func _init() -> void:
 	initialize_steam()
@@ -173,12 +177,59 @@ func set_achievement(this_achievement: String) -> void:
 	Logger.log("成就設定完成")
 
 
-func show_DLC_store(id: int = 1983901):
-	Logger.log(str("show_DLC_store: ", id))
-	if is_steam_enabled():
-		Steam.activateGameOverlayToStore(id)
-	else:
+func show_DLC_tip(id: int = steam_appid):
+	Logger.log(str("show_DLC_tip: ", id))
+	
+	if dlc_tip:
+		dlc_tip.queue_free()
+	
+	if !is_steam_enabled():
 		Main.show_tip("需購買DLC")
+		return
+	
+	var mask = ColorRect.new()
+	get_tree().root.add_child(mask)
+	mask.color = Color(Color.BLACK, 0.8)
+	mask.set_anchors_preset(Control.PRESET_FULL_RECT, true)
+	mask.gui_input.connect(func(event:InputEvent): if event.is_pressed(): mask.queue_free())
+	var return_img = TextureRect.new()
+	mask.add_child(return_img)
+	return_img.texture = load("res://image/back_d.png")
+	return_img.set_anchors_preset(Control.PRESET_TOP_RIGHT, true)
+	return_img.position.x -= return_img.size.x + 19
+	return_img.position.y += 16
+	var img_btn = ButtonEx.new()
+	mask.add_child(img_btn)
+	var img_name = ""
+	match id:
+		#DLC.醫院:
+			#img_name = "dlc_醫院.png"
+		#DLC.學校:
+			#img_name = "dlc_學校.png"
+		#DLC.大樓:
+			#img_name = "dlc_大樓.png"
+		_:
+			img_name = "dlc.jpg"
+	img_btn.icon = load(img_path % img_name)
+	img_btn.flat = true
+	var btn = ButtonEx.new()
+	mask.add_child(btn)
+	btn.text = "前往商店頁面"
+	btn.add_theme_font_size_override("font_size", 50)
+	img_btn.position = Vector2.ZERO # 不知為何這樣才能取到size
+	btn.position = Vector2.ZERO
+	img_btn.position = Vector2(
+		(mask.size.x - img_btn.size.x)/2.0,
+		(mask.size.y - (img_btn.size.y + btn.size.y))/2.0,
+	)
+	btn.position = Vector2(
+		(mask.size.x - btn.size.x)/2.0,
+		img_btn.position.y + img_btn.size.y + 30
+	)
+	img_btn.pressed.connect(Steam.activateGameOverlayToStore.bind(id))
+	btn.pressed.connect(Steam.activateGameOverlayToStore.bind(id))
+	
+	dlc_tip = mask
 
 
 func _on_dlc_installed(dlc_id: int):

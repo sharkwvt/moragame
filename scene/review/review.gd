@@ -81,8 +81,10 @@ func show_full_view():
 			full_view_spine.play_first_anim()
 			full_view_spine.visible = true
 		else:
-			Steamworks.show_DLC_store()
+			Steamworks.show_DLC_tip()
 			return
+	else:
+		return
 	full_view_root.visible = true
 	sub_viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
 	slider.value = 1
@@ -190,7 +192,7 @@ func _on_category_btn_pressed(index):
 		selected_category = data
 		refresh_characters()
 	else:
-		Steamworks.show_DLC_store(selected_category.dlc_id)
+		Steamworks.show_DLC_tip(data.dlc_id)
 	
 
 

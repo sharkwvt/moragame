@@ -359,6 +359,9 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		Engine.time_scale = 1.0 if Engine.time_scale == 0.01 else 0.01
 	
 	if event.is_action_pressed("ui_cancel"):
+		if Steamworks.dlc_tip:
+			Steamworks.dlc_tip.queue_free()
+			return
 		if !TransitionEffect.main and current_scene.visible:
 			current_scene.return_scene()
 	

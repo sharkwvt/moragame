@@ -42,12 +42,12 @@ func get_menu_path() -> String:
 
 
 func check_dlc():
-	match category:
-		"hospital":
+	match id:
+		1:
 			dlc_id = Steamworks.DLC.醫院
-		"school":
+		2:
 			dlc_id = Steamworks.DLC.學校
-		"building":
+		3:
 			dlc_id = Steamworks.DLC.大樓
 	
 	if id == 0:
