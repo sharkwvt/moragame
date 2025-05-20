@@ -23,6 +23,7 @@ var cg_btns = []
 var review_imgs = []
 var skeleton_data_res
 var view_index = 0
+var spine_index = 3
 var has_bonus = false
 var cam_org_pos: Vector2
 
@@ -73,7 +74,7 @@ func show_full_view():
 		full_view_spine.visible = false
 		full_view_img.texture = review_imgs[view_index]
 		full_view_img.visible = true
-	elif view_index == review_imgs.size() and has_bonus:
+	elif view_index == spine_index and has_bonus:
 		if selected_character.has_dlc:
 			# 顯示spine
 			full_view_img.visible = false
@@ -81,7 +82,7 @@ func show_full_view():
 			full_view_spine.play_first_anim()
 			full_view_spine.visible = true
 		else:
-			Steamworks.show_DLC_tip()
+			Steamworks.show_DLC_tip(selected_character.dlc_id)
 			return
 	else:
 		return

@@ -2,6 +2,7 @@ extends Object
 class_name CharacterData
 
 var id = 0
+var dlc_id = 0
 var display_name: String
 var file_name: String
 var category: String

@@ -187,6 +187,20 @@ func show_DLC_tip(id: int = steam_appid):
 	if !is_steam_enabled():
 		Main.show_tip("需購買DLC")
 		return
+		
+	var img_name = ""
+	match id:
+		DLC.醫院:
+			img_name = "dlc.jpg"
+		DLC.學校:
+			img_name = "dlc.jpg"
+		DLC.大樓:
+			img_name = "dlc.jpg"
+		DLC.動畫1:
+			img_name = "dlc.jpg"
+		_:
+			Main.show_tip("尚未開放")
+			return
 	
 	var mask = ColorRect.new()
 	get_tree().root.add_child(mask)
@@ -201,16 +215,6 @@ func show_DLC_tip(id: int = steam_appid):
 	return_img.position.y += 16
 	var img_btn = ButtonEx.new()
 	mask.add_child(img_btn)
-	var img_name = ""
-	match id:
-		#DLC.醫院:
-			#img_name = "dlc_醫院.png"
-		#DLC.學校:
-			#img_name = "dlc_學校.png"
-		#DLC.大樓:
-			#img_name = "dlc_大樓.png"
-		_:
-			img_name = "dlc.jpg"
 	img_btn.icon = load(img_path % img_name)
 	img_btn.flat = true
 	var btn = ButtonEx.new()
