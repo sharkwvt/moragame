@@ -189,15 +189,20 @@ func show_DLC_tip(id: int = steam_appid):
 		return
 		
 	var img_name = ""
+	var title = ""
 	match id:
 		DLC.醫院:
-			img_name = "dlc.jpg"
+			img_name = "dlc_banner_b.png"
+			title = (Main.categorys_data[1] as CategoryData).category_title
 		DLC.學校:
-			img_name = "dlc.jpg"
+			img_name = "dlc_banner_a.png"
+			title = (Main.categorys_data[2] as CategoryData).category_title
 		DLC.大樓:
-			img_name = "dlc.jpg"
+			img_name = "dlc_banner_c.png"
+			title = (Main.categorys_data[3] as CategoryData).category_title
 		DLC.動畫1:
 			img_name = "dlc.jpg"
+			title = "動畫包#1"
 		_:
 			Main.show_tip("尚未開放")
 			return
@@ -207,31 +212,42 @@ func show_DLC_tip(id: int = steam_appid):
 	mask.color = Color(Color.BLACK, 0.8)
 	mask.set_anchors_preset(Control.PRESET_FULL_RECT, true)
 	mask.gui_input.connect(func(event:InputEvent): if event.is_pressed(): mask.queue_free())
-	var return_img = TextureRect.new()
-	mask.add_child(return_img)
-	return_img.texture = load("res://image/back_d.png")
-	return_img.set_anchors_preset(Control.PRESET_TOP_RIGHT, true)
-	return_img.position.x -= return_img.size.x + 19
-	return_img.position.y += 16
-	var img_btn = ButtonEx.new()
-	mask.add_child(img_btn)
-	img_btn.icon = load(img_path % img_name)
-	img_btn.flat = true
+	var img_view = TextureRect.new()
+	mask.add_child(img_view)
+	img_view.texture = load(img_path % img_name)
+	var title_lbl = Label.new()
+	mask.add_child(title_lbl)
+	title_lbl.text = title
+	title_lbl.add_theme_font_size_override("font_size", 50)
+	var close_btn = ButtonEx.new()
+	mask.add_child(close_btn)
+	close_btn.icon = load(img_path % "close.png")
+	close_btn.pressed.connect(mask.queue_free)
+	close_btn.flat = true
 	var btn = ButtonEx.new()
 	mask.add_child(btn)
+	btn.icon = load(img_path % "buy_dlc.png")
+	btn.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	btn.text = "前往商店頁面"
 	btn.add_theme_font_size_override("font_size", 50)
-	img_btn.position = Vector2.ZERO # 不知為何這樣才能取到size
+	img_view.position = Vector2.ZERO # 不知為何這樣才能取到size
 	btn.position = Vector2.ZERO
-	img_btn.position = Vector2(
-		(mask.size.x - img_btn.size.x)/2.0,
-		(mask.size.y - (img_btn.size.y + btn.size.y))/2.0,
+	img_view.position = Vector2(
+		(mask.size.x - img_view.size.x)/2.0,
+		(mask.size.y - img_view.size.y)/2.0,
+	)
+	title_lbl.position = Vector2(
+		img_view.position.x + 150,
+		img_view.position.y + 80
+	)
+	close_btn.position = Vector2(
+		img_view.position.x + img_view.size.x - 160,
+		img_view.position.y + 70
 	)
 	btn.position = Vector2(
 		(mask.size.x - btn.size.x)/2.0,
-		img_btn.position.y + img_btn.size.y + 30
+		img_view.position.y + img_view.size.y - btn.size.y - 80
 	)
-	img_btn.pressed.connect(Steam.activateGameOverlayToStore.bind(id))
 	btn.pressed.connect(Steam.activateGameOverlayToStore.bind(id))
 	
 	dlc_tip = mask
