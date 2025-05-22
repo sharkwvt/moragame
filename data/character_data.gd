@@ -32,8 +32,5 @@ func get_spine_path() -> String:
 	return path if ResourceLoader.exists(path) else ""
 
 func check_dlc():
-	has_dlc = get_spine_path() != ""
-	#if Steamworks.is_steam_enabled():
-		#has_dlc = id == 0
-	#else:
-		#has_dlc = get_spine_path() != ""
+	if Steamworks.is_steam_enabled():
+		has_dlc = Steam.isDLCInstalled(dlc_id) if id != 1 else true

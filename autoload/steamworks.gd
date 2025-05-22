@@ -228,7 +228,7 @@ func show_DLC_tip(id: int = steam_appid):
 	mask.add_child(btn)
 	btn.icon = load(img_path % "buy_dlc.png")
 	btn.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	btn.text = "前往商店頁面"
+	btn.text = "立即購買"
 	btn.add_theme_font_size_override("font_size", 50)
 	img_view.position = Vector2.ZERO # 不知為何這樣才能取到size
 	btn.position = Vector2.ZERO
