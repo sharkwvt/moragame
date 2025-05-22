@@ -209,7 +209,7 @@ func show_DLC_tip(id: int = steam_appid):
 	
 	var mask = ColorRect.new()
 	get_tree().root.add_child(mask)
-	mask.color = Color(Color.BLACK, 0.8)
+	mask.color = Color(Color.BLACK, 0.0)
 	mask.set_anchors_preset(Control.PRESET_FULL_RECT, true)
 	mask.gui_input.connect(func(event:InputEvent): if event.is_pressed(): mask.queue_free())
 	var img_view = TextureRect.new()
@@ -228,6 +228,7 @@ func show_DLC_tip(id: int = steam_appid):
 	mask.add_child(btn)
 	btn.icon = load(img_path % "buy_dlc.png")
 	btn.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	btn.flat = true
 	btn.text = "立即購買"
 	btn.add_theme_font_size_override("font_size", 50)
 	img_view.position = Vector2.ZERO # 不知為何這樣才能取到size

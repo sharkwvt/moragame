@@ -21,6 +21,7 @@ var character_btns = []
 var cg_btns = []
 
 var review_imgs = []
+var full_imgs = []
 var skeleton_data_res
 var view_index = 0
 var spine_index = 3
@@ -72,7 +73,8 @@ func show_cg_btns():
 func show_full_view():
 	if view_index < review_imgs.size():
 		full_view_spine.visible = false
-		full_view_img.texture = review_imgs[view_index]
+		#full_view_img.texture = review_imgs[view_index]
+		full_view_img.texture = load(selected_character.get_full_cg_path(view_index))
 		full_view_img.visible = true
 	elif view_index == spine_index and has_bonus:
 		if selected_character.has_dlc:

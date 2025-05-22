@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://cl5ocva0msrck"]
 
 [ext_resource type="Script" uid="uid://cxnwii4bs8jrq" path="res://categorys/apartment/menu/menu.gd" id="1_5gd2t"]
-[ext_resource type="Texture2D" uid="uid://b3t2ytl32tv2m" path="res://categorys/apartment/menu/menu_bg.jpg" id="2_ebdpr"]
+[ext_resource type="Texture2D" uid="uid://bdfxab270px6n" path="res://categorys/school/menu/menu_bg.jpg" id="2_5gd2t"]
 [ext_resource type="SpineSkeletonDataResource" uid="uid://gun6ki8nkyxt" path="res://categorys/apartment/menu/spine/toilet.tres" id="3_qyfvu"]
 [ext_resource type="Script" uid="uid://74aly0fqsq5b" path="res://extends/spine_sprite_ex.gd" id="4_ce4ja"]
 [ext_resource type="Texture2D" uid="uid://brlcx2erf54ob" path="res://image/setting.png" id="5_i8as1"]
@@ -24,17 +24,17 @@ grow_vertical = 2
 script = ExtResource("1_5gd2t")
 
 [node name="BG" type="TextureRect" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_ebdpr")
+texture = ExtResource("2_5gd2t")
 expand_mode = 1
 
 [node name="SpineBG" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
